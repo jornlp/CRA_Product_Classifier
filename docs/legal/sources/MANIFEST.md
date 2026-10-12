@@ -132,6 +132,12 @@ Record the access date — these are living documents.
 | B19c | Reg. (EU) No 168/2013, consolidated 2.8.2026 (M1–M5) | L-category scope (Art. 2, 4) and L1e-A "powered cycle … cycles designed to pedal" intact; 2025/1535 carve-back still meaningful. Does not yet include CRA Annex II amendment (from 11.12.2027) or 2026/1738 |
 | B20 | SWD(2026) 590 — subsidiarity grid for the Public Procurement Act proposal | **Not the proposal itself.** Confirms COM(2026) 590 amends Reg. 2024/2847 among many acts; which CRA provisions is not stated here. Likely procurement-related, but unverified — `52026PC0590` still needed |
 
+| B21 | COM(2026) 590 — Public Procurement Act proposal, fetched from Cellar (`.xhtml`, DOC_1) | Its Art. 147(11) **deletes CRA Art. 5** (procurement), and references to it are to be read as references to the new Art. 68, which carries the same content. No scope, class or route effect. The proposal is internally inconsistent: its correlation table says Art. 67. Proposal only, application deferred two years after adoption |
+
+Corrigendum **R(08)** (9.10.2026) exists, found via Cellar SPARQL, not shown on the page
+the same day. It covers the Slovenian text only, so it has no effect on the English text. English-relevant corrigenda remain R(01) 5.12.2024,
+R(02) 2.7.2025 and R(04) 17.10.2025, all in B1c.
+
 Duplicates of B1c and B14 were downloaded again; hashes matched, so they were removed.
 
 ## P2 — discovery routes and prior art
