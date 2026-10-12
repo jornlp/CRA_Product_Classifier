@@ -6,7 +6,23 @@
   "PRODUCT_KIND": {
    "question": "Is what you place on the market hardware, software, or an online service?",
    "kind": "enum",
-   "why_we_ask": "Art. 3(1), 3(2): products with digital elements are hardware or software, including remote data processing the product needs. A standalone online service is not (BND-03, BND-04).",
+   "why_we_ask": "The CRA covers products: hardware and software, including a cloud backend that your product needs in order to work. A purely online service with no product behind it is not covered.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "1",
+     "quote": "‘product with digital elements’ means a software or hardware product and its remote data processing solutions",
+     "ref": "CRA Art. 3(1)"
+    },
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "2",
+     "quote": "the absence of which would prevent the product with digital elements from performing one of its functions",
+     "ref": "CRA Art. 3(2)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -34,7 +50,23 @@
   "MARKET_STATUS": {
    "question": "Where is the product in its life on the EU market?",
    "kind": "enum",
-   "why_we_ask": "Art. 2(1), 3(22): the CRA applies to products made available on the EU market. Planned sale is assessed prospectively (SCP-09); display at a trade fair (SCP-08) and own use (OWN-01) are not making available.",
+   "why_we_ask": "The CRA applies to products supplied on the EU market. If you plan to sell in the EU, we answer for the moment the product goes on sale. Showing a prototype at a fair, or using something only inside your own company, is not supplying it.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "1",
+     "quote": "This Regulation applies to products with digital elements made available on the market",
+     "ref": "CRA Art. 2(1)"
+    },
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "22",
+     "quote": "the supply of a product with digital elements for distribution or use on the Union market in the course of a commercial activity",
+     "ref": "CRA Art. 3(22)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -66,7 +98,22 @@
   "COMMERCIAL_ACTIVITY": {
    "question": "Is it supplied in the course of a commercial activity, whether paid or free of charge?",
    "kind": "bool",
-   "why_we_ask": "Art. 3(22)",
+   "why_we_ask": "The CRA only covers products supplied as part of a business activity. Giving something away for free can still count: what matters is whether you earn from it in some way, for example by charging for support, for a platform around it, or by requiring users' personal data. Truly non-commercial projects, such as most volunteer open-source work, are outside.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "22",
+     "quote": "in the course of a commercial activity, whether in return for payment or free of charge",
+     "ref": "CRA Art. 3(22)"
+    },
+    {
+     "src": "RECITAL",
+     "n": "15",
+     "quote": "Supply in the course of a commercial activity might be characterised not only by charging a price for a product with digital elements, but also by charging a price for technical support services where this does not serve only the recuperation of actual costs, by an intention to monetise",
+     "ref": "CRA recital 15"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -86,7 +133,23 @@
   "DATA_INTERFACE_PRESENT": {
    "question": "Does the product have any way to exchange data at all: network, radio, cable, USB, memory card, or a software interface?",
    "kind": "bool",
-   "why_we_ask": "Art. 2(1), 3(8)-(10). If there is no interface of any kind, no connection can be intended or foreseen (SCP-06).",
+   "why_we_ask": "The CRA covers products that can exchange data with something else. If your product has no way at all to exchange data (no network, radio, cable, USB, card slot or software interface), it is outside the CRA.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "1",
+     "quote": "includes a direct or indirect logical or physical data connection to a device or network",
+     "ref": "CRA Art. 2(1)"
+    },
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "9",
+     "quote": "including through electrical, optical or mechanical interfaces, wires or radio waves",
+     "ref": "CRA Art. 3(9)"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -106,7 +169,23 @@
   "CONNECTION_INTENDED": {
    "question": "Is the product intended to exchange data with another device or network, directly or indirectly?",
    "kind": "bool",
-   "why_we_ask": "Art. 2(1) 'intended purpose ... includes a direct or indirect logical or physical data connection'. Indirect counts: a sensor talking only to a hub (SCP-05). If the answer is no, CONNECTION_FORESEEABLE is asked (SCP-07).",
+   "why_we_ask": "What counts is whether exchanging data is part of how the product is meant to be used. It does not have to be the internet: a USB cable, Bluetooth, or a link through another device all count.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "1",
+     "quote": "the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection to a device or network",
+     "ref": "CRA Art. 2(1)"
+    },
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "10",
+     "quote": "a connection to a device or network, which does not take place directly but rather as part of a larger system",
+     "ref": "CRA Art. 3(10)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -126,7 +205,16 @@
   "CONNECTION_FORESEEABLE": {
    "question": "If no connection is intended, could one reasonably be foreseen in use?",
    "kind": "bool",
-   "why_we_ask": "Art. 2(1) 'reasonably foreseeable use'",
+   "why_we_ask": "Even if you do not intend a connection, the CRA applies if users can reasonably be expected to connect the product anyway, for example through a port you have not disabled.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "1",
+     "quote": "the intended purpose or reasonably foreseeable use of which includes",
+     "ref": "CRA Art. 2(1)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -146,7 +234,23 @@
   "EXCLUSION_SCREEN": {
    "question": "Do any of these apply to the product? Tick all that apply, or none.",
    "kind": "multi-enum",
-   "why_we_ask": "Art. 2(2)-(7) and Del. Reg. 2025/1535. One question over an OR-joined list: unticked options are answered 'no'. Each ticked option opens one follow-up, because each exclusion has its own condition.",
+   "why_we_ask": "Some products are covered by other EU laws instead of the CRA. Tick only what applies; each exclusion has its own condition, which the next question checks. If none applies, tick nothing.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "2",
+     "quote": "This Regulation does not apply to products with digital elements to which the following Union legal acts apply",
+     "ref": "CRA Art. 2(2)"
+    },
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "6",
+     "quote": "This Regulation does not apply to spare parts",
+     "ref": "CRA Art. 2(6)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -190,7 +294,16 @@
   "MEDICAL_STATUS": {
    "question": "Is it CE-marked as a medical or in vitro diagnostic device, or does it have a medical purpose without being certified as one?",
    "kind": "enum",
-   "why_we_ask": "Art. 2(2)(a)(b). Only a product to which MDR/IVDR applies is excluded. A medical purpose without certification is a qualification question under MDR, outside this tool (EXC-03).",
+   "why_we_ask": "Medical devices are excluded only if the medical device rules actually apply to them. A product with a medical purpose that is not certified as a medical device raises a question about those rules, which this tool cannot answer.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "2",
+     "quote": "(a) Regulation (EU) 2017/745; (b) Regulation (EU) 2017/746",
+     "ref": "CRA Art. 2(2)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -214,7 +327,16 @@
   "VEHICLE_2019_2144": {
    "question": "Is it a vehicle, system or component type-approved under Regulation (EU) 2019/2144?",
    "kind": "enum",
-   "why_we_ask": "Art. 2(2)(c). Applies to what that Regulation covers; equipment used to test vehicles is not covered (UG-06). Unclear component status goes to review (EXC-04).",
+   "why_we_ask": "Vehicles and their parts are excluded where the vehicle type-approval rules cover them. Equipment used to develop or test vehicles is not covered by those rules, so it stays under the CRA.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "2",
+     "quote": "(c) Regulation (EU) 2019/2144",
+     "ref": "CRA Art. 2(2)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -238,7 +360,16 @@
   "AVIATION_2018_1139": {
    "question": "Is it certified in accordance with Regulation (EU) 2018/1139?",
    "kind": "enum",
-   "why_we_ask": "Art. 2(3) excludes only products certified under it; falling within its scope is not enough (EXC-07).",
+   "why_we_ask": "Aviation products are excluded only if they are actually certified under the EU aviation rules. Being the kind of product those rules cover is not enough.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "3",
+     "quote": "This Regulation does not apply to products with digital elements that have been certified in accordance with Regulation (EU) 2018/1139",
+     "ref": "CRA Art. 2(3)"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -262,7 +393,16 @@
   "MARINE_2014_90": {
    "question": "Is it marine equipment within the scope of Directive 2014/90/EU?",
    "kind": "bool",
-   "why_we_ask": "Art. 2(4) (EXC-13).",
+   "why_we_ask": "Marine equipment covered by the EU marine equipment rules is excluded from the CRA.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "4",
+     "quote": "This Regulation does not apply to equipment that falls within the scope of Directive 2014/90/EU",
+     "ref": "CRA Art. 2(4)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -282,7 +422,15 @@
   "L_CATEGORY_168_2013": {
    "question": "Is it a two- or three-wheel vehicle or quadricycle under Regulation (EU) No 168/2013, or a system or component for one? Is it an L1e vehicle designed to pedal?",
    "kind": "enum",
-   "why_we_ask": "Del. Reg. (EU) 2025/1535 excludes products under Reg. 168/2013, except L1e vehicles designed to pedal (EXC-11, EXC-12).",
+   "why_we_ask": "Mopeds, motorcycles, three-wheelers and quadricycles are excluded by a separate act. Light vehicles designed to be pedalled, such as speed pedelecs, are not excluded.",
+   "legal_basis": [
+    {
+     "src": "B14",
+     "cite": "Delegated Regulation (EU) 2025/1535, Art. 1",
+     "quote": "However, that exclusion shall not apply to L1e category vehicles designed to pedal",
+     "ref": "Delegated Regulation (EU) 2025/1535, Art. 1"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -306,7 +454,16 @@
   "SPARE_PART": {
    "question": "Is it a spare part replacing an identical component, made to the same specifications?",
    "kind": "enum",
-   "why_we_ask": "Art. 2(6). A replacement with improved or different specifications is not excluded (BND-06, BND-07).",
+   "why_we_ask": "A spare part that replaces an identical component, made to the same specifications, is excluded. A replacement with different or improved specifications is a product in its own right.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "6",
+     "quote": "spare parts that are made available on the market to replace identical components in products with digital elements and that are manufactured according to the same specifications as the components that they are intended to replace",
+     "ref": "CRA Art. 2(6)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -330,7 +487,16 @@
   "DEFENCE_STATUS": {
    "question": "Was it developed or modified exclusively for national security or defence, or specifically designed to process classified information?",
    "kind": "enum",
-   "why_we_ask": "Art. 2(7). Dual-use products are not excluded (EXC-09). Because exclusion is the permissive answer, it needs documentary support (EXC-05, EXC-14).",
+   "why_we_ask": "Products made only for national security or defence are excluded. A product also sold for civilian use is not. Because this exclusion takes a product out of the CRA, you will need documents that show it.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "7",
+     "quote": "developed or modified exclusively for national security or defence purposes or to products specifically designed to process classified information",
+     "ref": "CRA Art. 2(7)"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -358,13 +524,37 @@
   "CORE_FUNCTION": {
    "question": "In one sentence, what is this product for? What would a buyer say it does?",
    "kind": "text",
-   "why_we_ask": "Art. 7(1)/8(1): core functionality determines the category. B2 recital 2.",
+   "why_we_ask": "The class depends on what the product is for, not on every function it contains. A smartphone contains an operating system, but it is not an operating system. Describe your product as a buyer would; the following questions test what that means.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "7",
+     "para": "1",
+     "quote": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
+     "ref": "CRA Art. 7(1)"
+    },
+    {
+     "src": "CRA",
+     "art": "7",
+     "para": "1",
+     "quote": "The integration of a product with digital elements which has the core functionality of a product category set out in Annex III shall not in itself render the product in which it is integrated subject to",
+     "ref": "CRA Art. 7(1)"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY"
   },
   "STORES_PASSWORDS_CORE": {
    "question": "Is storing passwords, on the device or on a server, what this product is for?",
    "kind": "bool",
-   "why_we_ask": "III-I-03: 'store passwords, locally on a device or on a remote server'. Generation, sharing and filling are listed as examples, not conditions (WP5 MP-02).",
+   "why_we_ask": "Password managers are a listed category. What counts is whether storing passwords is the product's purpose, not whether it has a password field.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-03",
+     "quote": "Products with digital elements that store passwords, locally on a device or on a remote server",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-03"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "hint": "Generating, sharing or auto-filling passwords is typical but not required.",
    "options": [
@@ -389,7 +579,15 @@
   "PROTECTS_PHYSICAL_SECURITY": {
    "question": "Is the product's purpose to protect the physical security of people in that setting?",
    "kind": "bool",
-   "why_we_ask": "III-I-17. Monitoring pests, energy or comfort is not physical security of consumers.",
+   "why_we_ask": "Smart home security products are a listed category. What counts is whether the product's purpose is protecting people's physical security, for example against intruders. Watching pests, energy use or comfort does not count, even with a camera.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-17",
+     "quote": "protect the physical security of consumers in a residential setting",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -413,7 +611,15 @@
   "RESIDENTIAL_SETTING": {
    "question": "Is it intended for use in a home, as opposed to an office, industrial or public setting?",
    "kind": "bool",
-   "why_we_ask": "III-I-16, III-I-17",
+   "why_we_ask": "The smart home categories cover products for people's homes. The same device sold for offices, shops or hotels falls outside them, though the CRA itself still applies.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-17",
+     "quote": "in a residential setting",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17"
+    }
+   ],
    "evidence": "MIXED",
    "options": [
     {
@@ -437,7 +643,15 @@
   "CONTROL_PATH": {
    "question": "How can the product be controlled or managed from another system?",
    "kind": "enum",
-   "why_we_ask": "III-I-17: 'can be controlled or managed remotely from other systems'. Control from a nearby phone only is an open question (WP5 MP-14).",
+   "why_we_ask": "Smart home security products are covered when another system can control or manage them, such as an app over the internet or a home hub. Control only from a phone standing next to the device is a case the law does not clearly settle.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-17",
+     "quote": "can be controlled or managed remotely from other systems",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -461,7 +675,15 @@
   "CENTRAL_CONTROL_OF_SECURITY": {
    "question": "Does it centrally control products that protect physical security, such as locks or alarms?",
    "kind": "bool",
-   "why_we_ask": "III-I-17, fourth limb",
+   "why_we_ask": "A hub or app that controls locks, alarms or security cameras in the home is in the same category as those products, even if it protects nothing itself.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-17",
+     "quote": "as well as hardware and software that centrally control such products",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -485,7 +707,21 @@
   "IC_TYPE": {
    "question": "Is the product itself an integrated circuit? If so, which kind?",
    "kind": "enum",
-   "why_we_ask": "III-I-13 (microprocessor: external memory), III-I-14 (microcontroller: integrated memory), III-I-15 (ASIC/FPGA), III-II-03/04, IV-03 (microcontroller or microprocessor).",
+   "why_we_ask": "Several categories cover chips: microprocessors, microcontrollers and custom chips with security functions, and secure elements. If your product is not itself a chip, all of them are ruled out with one answer.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-14",
+     "quote": "integrated circuits that carry out central processing functions integrating memory",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14"
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-13",
+     "quote": "integrated circuits that carry out central processing functions relying on external memory and peripherals",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-13"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -517,7 +753,15 @@
   "SECURITY_FUNCTION": {
    "question": "Does the product provide any security-related functionality, such as encryption, authentication, secure key storage, random number generation or a trusted execution environment?",
    "kind": "bool",
-   "why_we_ask": "Shared condition of III-I-13/14/15",
+   "why_we_ask": "Chips are only in these categories if they provide security functions such as encryption, authentication, secure key storage or random number generation.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-14",
+     "quote": "They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -537,7 +781,15 @@
   "SECURES_BEYOND_ITSELF": {
    "question": "Does that security functionality aim to secure OTHER products, networks or services — beyond the chip itself?",
    "kind": "bool",
-   "why_we_ask": "The decisive limiter in III-I-13/14/15. A chip protecting only its own operation is outside.",
+   "why_we_ask": "A chip only counts if its security functions protect other products, networks or services, such as a secure boot chain for the device it sits in. Protecting only its own internal operation does not count.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-14",
+     "quote": "that aim to secure other products, networks or services beyond the microcontroller itself",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -557,7 +809,21 @@
   "TAMPER_PROTECTION": {
    "question": "Does it provide tamper evidence, tamper resistance or tamper response?",
    "kind": "bool",
-   "why_we_ask": "III-II-03/04, IV-01, IV-03",
+   "why_we_ask": "Tamper evidence, resistance or response against physical attack moves a chip into a higher class, and is required for secure elements.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-II-04",
+     "quote": "including tamper evidence, resistance or response",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-04"
+    },
+    {
+     "src": "B2",
+     "cat": "IV-03",
+     "quote": "Secure elements are microcontrollers or microprocessors with security-related functionalities, including tamper evidence, resistance or response",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-03"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -577,7 +843,21 @@
   "AVA_VAN_LEVEL": {
    "question": "What AVA_VAN level is it designed to provide, under the Common Criteria?",
    "kind": "enum",
-   "why_we_ask": "III-II-03/04 require level 2 or 3 exactly; IV-03 requires AT LEAST AVA_VAN.4. Level 1 matters: it fails both (WP5 MP-24..26).",
+   "why_we_ask": "AVA_VAN is the Common Criteria rating for resistance to attack. Level 2 or 3 makes a tamper-resistant chip Class II; level 4 or higher makes it a secure element, which is critical. A certificate is good evidence; not having one proves nothing.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-II-04",
+     "quote": "designed to provide protection of AVA_VAN level 2 or 3",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-04"
+    },
+    {
+     "src": "B2",
+     "cat": "IV-03",
+     "quote": "Secure elements are designed to provide protection of at least AVA_VAN.4",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-03"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -613,7 +893,15 @@
   "METERING_COMMUNICATION": {
    "question": "Does it control communication between metering components and authorised third parties such as utilities?",
    "kind": "bool",
-   "why_we_ask": "IV-02 gateway limb",
+   "why_we_ask": "Smart meter gateways are critical products. A gateway controls the communication between the metering system and outside parties such as the utility. A meter that only sends its own readings is not a gateway.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-02",
+     "quote": "control communication between components in or connected to smart metering systems",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -633,7 +921,15 @@
   "COLLECTS_METER_DATA": {
    "question": "Does it collect, process and store meter data or personal data?",
    "kind": "bool",
-   "why_we_ask": "IV-02: 'collect, process and store meter or personal data'.",
+   "why_we_ask": "A smart meter gateway collects, processes and stores meter data or personal data. This is one of five functions that together make a gateway.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-02",
+     "quote": "collect, process and store meter or personal data",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -653,7 +949,15 @@
   "CRYPTO_SUPPORT": {
    "question": "Does it protect data and information flows by supporting specific cryptographic needs, such as encrypting and decrypting data for the metering system?",
    "kind": "bool",
-   "why_we_ask": "IV-02: 'protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data'.",
+   "why_we_ask": "A smart meter gateway protects the metering system's data by encrypting and decrypting it. Using encryption only for the device's own connection is not this function.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-02",
+     "quote": "protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "hint": "This is about protecting the metering system's data flows, not only the device's own connection.",
    "options": [
@@ -674,7 +978,15 @@
   "FIREWALLING": {
    "question": "Does it incorporate firewalling functionality for the metering system?",
    "kind": "bool",
-   "why_we_ask": "IV-02: 'incorporate firewalling functionalities'.",
+   "why_we_ask": "A smart meter gateway filters and restricts traffic for the metering system, like a firewall.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-02",
+     "quote": "incorporate firewalling functionalities",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -694,7 +1006,15 @@
   "CONTROLS_OTHER_DEVICES": {
    "question": "Does it provide the means to control other devices?",
    "kind": "bool",
-   "why_we_ask": "IV-02, III-I-16",
+   "why_we_ask": "A smart meter gateway lets the metering system control other devices. A device that only measures and reports controls nothing.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-02",
+     "quote": "provide the means to control other devices",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -714,7 +1034,21 @@
   "METERED_COMMODITY": {
    "question": "Which commodity does the metering system measure?",
    "kind": "enum",
-   "why_we_ask": "IV-02 gateway limb: electricity is named, and gas or heat as 'other sources of energy'. Water is not an energy source (WP1; A4-02).",
+   "why_we_ask": "The gateway category names electricity, and gas or heat as other sources of energy. Water is not a source of energy, so a water gateway falls outside that part of the category.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-02",
+     "quote": "smart meter gateways related to smart metering systems measuring electricity",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+    },
+    {
+     "src": "B2",
+     "cat": "IV-02",
+     "quote": "measuring consumption of other sources of energy such as gas or heat",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -746,7 +1080,15 @@
   "ADVANCED_SECURITY_CORE": {
    "question": "Is the product's core functionality an advanced security purpose, such as secure cryptoprocessing, as opposed to a feature it also has?",
    "kind": "bool",
-   "why_we_ask": "IV-02 second limb: 'other devices for advanced security purposes, including for secure cryptoprocessing'. It has no technical description, so a TRUE answer leads to expert review, never to a match (WP1 open question).",
+   "why_we_ask": "The critical category also mentions other devices for advanced security purposes, such as secure cryptoprocessing, but the EU has not described them further. If your product's purpose is of that kind, the tool will flag it for expert review instead of deciding.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-02",
+     "quote": "other devices for advanced security purposes, including for secure cryptoprocessing",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -770,7 +1112,22 @@
   "HIGH_RISK_AI_BASIS": {
    "question": "Is the product a high-risk AI system under the AI Act, and on which basis?",
    "kind": "enum",
-   "why_we_ask": "CRA Art. 12 sets the conformity route for high-risk AI. The AI Act as amended by Reg. 2026/1744 treats the bases differently: Annex III from 2.12.2027; Annex I Section A from 2.8.2028; Annex I Section B (e.g. machinery) outside Art. 43 (cases AI-01, AI-05, AI-06).",
+   "why_we_ask": "If your product is also a high-risk AI system, the AI Act can change which conformity procedure you use. The dates differ by basis, and for machinery the AI Act was changed in 2026 in a way the CRA does not yet reflect.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "12",
+     "para": "2",
+     "quote": "the relevant conformity assessment procedure provided for in Article 43",
+     "ref": "CRA Art. 12(2)"
+    },
+    {
+     "src": "AIACT",
+     "cite": "Regulation (EU) 2024/1689, Art. 2(2) and Art. 113(c), as amended by Regulation (EU) 2026/1744",
+     "quote": "",
+     "ref": "Regulation (EU) 2024/1689, Art. 2(2) and Art. 113(c), as amended by Regulation (EU) 2026/1744"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -798,7 +1155,15 @@
   "EHR_SYSTEM": {
    "question": "Is the product classified as an electronic health record (EHR) system under Regulation (EU) 2025/327?",
    "kind": "bool",
-   "why_we_ask": "CRA Art. 32(5a), inserted by the EHDS: EHR systems follow the EHDS conformity procedure from 26.3.2027 (EHR-01).",
+   "why_we_ask": "Electronic health record systems follow the conformity procedure of the European Health Data Space rules instead of the CRA's own procedure, from 26 March 2027.",
+   "legal_basis": [
+    {
+     "src": "EHDS",
+     "cite": "Regulation (EU) 2025/327, Art. 104, inserting CRA Art. 32(5a)",
+     "quote": "",
+     "ref": "Regulation (EU) 2025/327, Art. 104, inserting CRA Art. 32(5a)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -818,7 +1183,23 @@
   "UNITS_PLACED_ON_MARKET": {
    "question": "When are, or were, the units you are assessing placed on the market? Each unit counts on its own.",
    "kind": "date",
-   "why_we_ask": "Art. 69(2) and 71(2): units placed before 11.12.2027 are exempt from the main requirements unless substantially modified; units placed later must comply, however long the type has been sold (TYPE-01/02). RED DA: units placed from 1.8.2025.",
+   "why_we_ask": "The CRA's main requirements apply to units placed on the market from 11 December 2027. Units placed earlier are exempt unless they are substantially changed later. This is about the units you are asking about, not when the model was launched: later units of an older model must comply.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "69",
+     "para": "2",
+     "quote": "Products with digital elements that have been placed on the market before 11 December 2027 shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification",
+     "ref": "CRA Art. 69(2)"
+    },
+    {
+     "src": "CRA",
+     "art": "71",
+     "para": "2",
+     "quote": "This Regulation shall apply from 11 December 2027",
+     "ref": "CRA Art. 71(2)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "hint": "If you are asking about both stock already shipped and future production, assess them separately.",
    "options": [
@@ -831,7 +1212,16 @@
   "CHANGE_AT": {
    "question": "When was the change made, or when will it be?",
    "kind": "date",
-   "why_we_ask": "Art. 69(2): only substantial modifications made from 11.12.2027 bring earlier units under the main requirements (LIFE-10).",
+   "why_we_ask": "Only changes made from 11 December 2027 can bring earlier units under the main requirements.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "69",
+     "para": "2",
+     "quote": "only if, from that date, those products are subject to a substantial modification",
+     "ref": "CRA Art. 69(2)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -847,7 +1237,16 @@
   "CHANGE_AFFECTS_PURPOSE": {
    "question": "Does that change modify the intended purpose for which the product was assessed?",
    "kind": "bool",
-   "why_we_ask": "Art. 3(30) limb (b)",
+   "why_we_ask": "A change that alters what the product is meant to be used for is a substantial modification, and brings the product under the CRA's main requirements.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "30",
+     "quote": "which results in a modification to the intended purpose for which the product with digital elements has been assessed",
+     "ref": "CRA Art. 3(30)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -867,7 +1266,16 @@
   "CHANGE_AFFECTS_ANNEX_I": {
    "question": "Does the change affect how secure the product is — for example how it authenticates users, protects stored or transmitted data, or delivers updates?",
    "kind": "enum",
-   "why_we_ask": "Art. 3(30) limb (a): a change affecting compliance with the essential cybersecurity requirements in Annex I, Part I. The MVP cannot decide this, so it must be asked, and UNKNOWN must never be read as NO.",
+   "why_we_ask": "A change that affects whether the product still meets the CRA's security requirements is also a substantial modification. That needs a security assessment, which this tool cannot do, so a change of this kind is flagged for review.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "30",
+     "quote": "which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I",
+     "ref": "CRA Art. 3(30)"
+    }
+   ],
    "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
@@ -887,7 +1295,15 @@
   "RADIO_EQUIPMENT_RED_DA": {
    "question": "Is the product radio equipment that (a) can communicate over the internet, directly or via other equipment; (b) is internet-connected or in the childcare, toy or wearable categories AND can process personal data, traffic data or location data; or (c) is internet-connected and lets the user transfer money, monetary value or virtual currency?",
    "kind": "enum",
-   "why_we_ask": "Delegated Regulation (EU) 2022/30 Art. 1, applying RED Art. 3(3)(d), (e) and (f). Its Art. 2 derogates: MDR/IVDR products are out entirely; products under Reg. 2018/1139, Reg. 2019/2144 or Dir. 2019/520 are out of limbs (e) and (f). Not a CRA scope question - radio equipment is fully in CRA scope - but these requirements have applied since 1 August 2025, so a CRA-only timeline answer would be falsely reassuring.",
+   "why_we_ask": "Before the CRA applies, radio products may already have cybersecurity rules under the radio equipment rules: since 1 August 2025, for internet-connected radio equipment, equipment handling personal data, and equipment that can transfer money.",
+   "legal_basis": [
+    {
+     "src": "B16",
+     "cite": "Delegated Regulation (EU) 2022/30, Art. 1",
+     "quote": "radio equipment that can communicate itself over the internet",
+     "ref": "Delegated Regulation (EU) 2022/30, Art. 1"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -907,7 +1323,16 @@
   "OTHER_LEGISLATION_CERTIFICATE": {
    "question": "Does the product hold an EU type-examination certificate or approval decision covering cybersecurity under other EU harmonisation legislation? If so, when does it expire?",
    "kind": "bool+date",
-   "why_we_ask": "Art. 69(1): such certificates stay valid until 11.6.2028, or their earlier expiry, unless that legislation provides otherwise (LIFE-07, LIFE-11).",
+   "why_we_ask": "If your product already holds an EU type-examination certificate covering cybersecurity under other EU product rules, that certificate stays valid for a while under the CRA.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "69",
+     "para": "1",
+     "quote": "shall remain valid until 11 June 2028, unless they expire before that date",
+     "ref": "CRA Art. 69(1)"
+    }
+   ],
    "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
@@ -927,13 +1352,23 @@
   "CERTIFICATE_EXPIRY": {
    "question": "When does that certificate expire?",
    "kind": "date",
-   "why_we_ask": "Art. 69(1): validity ends at the certificate's own expiry if that is before 11.6.2028.",
+   "why_we_ask": "The certificate stays valid until 11 June 2028, or until its own expiry date if that comes first.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "69",
+     "para": "1",
+     "quote": "shall remain valid until 11 June 2028, unless they expire before that date",
+     "ref": "CRA Art. 69(1)"
+    }
+   ],
    "follows": "OTHER_LEGISLATION_CERTIFICATE"
   },
   "ASSESSMENT_DATE": {
    "question": "Assessment date",
    "kind": "date",
    "why_we_ask": "Which obligations already apply depends on the date of the assessment.",
+   "legal_basis": [],
    "internal": true
   }
  },

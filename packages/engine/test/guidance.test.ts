@@ -12,6 +12,8 @@ const norm = (s: string) => s.replace(/[‘’]/g, "'").replace(/[“”]/g, '"'
 const inventory = JSON.parse(read(g.sources.B2.text));
 const b2 = Object.fromEntries(inventory.categories.map((c: any) => [c.id, norm(c.technical_description + " " + c.title)]));
 const faq = norm(read(g.sources.B7.text));
+const recitals = JSON.parse(read(g.sources.B1R.text)).recitals as Record<string, string>;
+const recital = (item: string) => norm(recitals[item.replace("Recital ", "")]);
 const cases = new Set(JSON.parse(read(g.sources.CASE.text)).cases.map((c: any) => c.id));
 const register = JSON.parse(read("docs/research/out/wp2-fact-register.json"));
 const activeFacts = new Set(register.facts.filter((f: any) => f.status !== "SUPERSEDED").map((f: any) => f.fact_id));
@@ -30,6 +32,7 @@ for (const [fid, q] of Object.entries<any>(g.questions)) {
         expect(e.text.length).toBeGreaterThan(10);
         if (e.kind === "OFFICIAL_TEXT") expect(b2[e.category], `B2 ${e.category}`).toContain(norm(e.quote));
         else if (e.kind === "OFFICIAL_GUIDANCE") expect(faq).toContain(norm(e.quote));
+        else if (e.kind === "OFFICIAL_RECITAL") expect(recital(e.item)).toContain(norm(e.quote));
         else expect(cases.has(e.case), `case ${e.case}`).toBe(true);
       });
     }

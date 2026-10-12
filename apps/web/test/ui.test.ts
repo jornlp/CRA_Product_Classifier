@@ -42,6 +42,11 @@ describe("screens: pest-control camera", () => {
     expect(heading()).toContain("hardware, software, or an online service");
     expect(app().querySelector("details.why")).not.toBeNull();
   });
+  it("explains why in plain words, with the legal wording one level down", () => {
+    const why = app().querySelector("details.why")!;
+    expect(why.querySelector("p")!.textContent!.length).toBeGreaterThan(60);
+    expect(why.querySelector("details.legal blockquote")!.textContent).toContain("product with digital elements");
+  });
   it("Back undoes an answer", async () => {
     await answer("Hardware");
     expect(heading()).toContain("life on the EU market");

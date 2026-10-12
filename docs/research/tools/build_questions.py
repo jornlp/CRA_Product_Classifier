@@ -64,9 +64,11 @@ CONFLICT_OK = {"PROTECTS_PHYSICAL_SECURITY", "RESIDENTIAL_SETTING", "STORES_PASS
 # Value conventions per engine: classification and scope use booleans; the timeline uses YES/NO codes.
 CODE_FACTS = {"CHANGE_AFFECTS_ANNEX_I", "RADIO_EQUIPMENT_RED_DA"}
 EXTRA = {
-    "CERTIFICATE_EXPIRY": {"question": "When does that certificate expire?", "kind": "date", "why_we_ask": "Art. 69(1): validity ends at the certificate's own expiry if that is before 11.6.2028.",
+    "CERTIFICATE_EXPIRY": {"question": "When does that certificate expire?", "kind": "date",
+                           "why_we_ask": "The certificate stays valid until 11 June 2028, or until its own expiry date if that comes first.",
+                           "legal_basis": [{"src": "CRA", "art": "69", "para": "1", "quote": "shall remain valid until 11 June 2028, unless they expire before that date", "ref": "CRA Art. 69(1)"}],
                            "follows": "OTHER_LEGISLATION_CERTIFICATE"},
-    "ASSESSMENT_DATE": {"question": "Assessment date", "kind": "date", "why_we_ask": "Which obligations already apply depends on the date of the assessment.", "internal": True},
+    "ASSESSMENT_DATE": {"question": "Assessment date", "kind": "date", "why_we_ask": "Which obligations already apply depends on the date of the assessment.", "legal_basis": [], "internal": True},
 }
 
 
@@ -103,10 +105,14 @@ def build():
     used = list(dict.fromkeys(list(scope["facts"]) + ["CORE_FUNCTION"] + list(cls["facts"]) + timeline))
     out = {}
     for fid in used:
-        f = reg[fid]  # KeyError here means a rule uses a fact with no question: fix the register
+        if fid not in reg:
+            sys.exit(f"Rules use {fid}, which has no question in the fact register. Add it there first.")
+        f = reg[fid]
+        if "user_why" not in f:
+            sys.exit(f"{fid} has no plain-language 'user_why' in the fact register (DoD item 5). Add it, with its legal_basis.")
         kind = f["kind"]
         q = {"question": f["question"], "kind": "date" if kind.startswith("date") else kind.split(":")[0],
-             "why_we_ask": f["why_we_ask"], "evidence": f["evidence_expectation"]}
+             "why_we_ask": f["user_why"], "legal_basis": f.get("legal_basis", []), "evidence": f["evidence_expectation"]}
         if f.get("question_hint"):
             q["hint"] = f["question_hint"]
         if kind.startswith("date") and fid == "UNITS_PLACED_ON_MARKET":

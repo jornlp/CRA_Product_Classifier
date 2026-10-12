@@ -18,7 +18,8 @@ const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
 const TIMELINE = tl as unknown as TimelineRules;
 type Option = { value: unknown; label: string };
-type Question = { question: string; kind: string; why_we_ask: string; hint?: string; options?: Option[]; evidence?: string };
+type Legal = { ref: string; quote?: string };
+type Question = { question: string; kind: string; why_we_ask: string; legal_basis?: Legal[]; hint?: string; options?: Option[]; evidence?: string };
 const QUESTIONS = (qs as { questions: Record<string, Question> }).questions;
 const CATEGORIES = (qs as { categories: Record<string, { title: string; class: string }> }).categories;
 type Example = { answer: string; kind: string; source: string; text: string; quote?: string; item?: string; category?: string; case?: string };
@@ -29,7 +30,8 @@ const CLASS_LABEL: Record<string, string> = {
   DEFAULT: "Default", IMPORTANT_I: "Important, Class I", IMPORTANT_II: "Important, Class II", CRITICAL: "Critical", UNRESOLVED: "Not determined",
 };
 const SOURCE_LABEL: Record<string, string> = {
-  OFFICIAL_TEXT: "Official text (binding)", OFFICIAL_GUIDANCE: "Commission FAQ v14 (non-binding)", WORKED_CASE: "Worked example (our interpretation)",
+  OFFICIAL_TEXT: "Official text (binding)", OFFICIAL_RECITAL: "CRA recital (explains the law, not binding)",
+  OFFICIAL_GUIDANCE: "Commission FAQ v14 (non-binding)", WORKED_CASE: "Worked example (our interpretation)",
 };
 
 // ------------------------------------------------------------------ state
@@ -123,7 +125,11 @@ function questionHtml(phase: Phase, fid: string): string {
         ${hint ? `<p class="hint">${esc(hint)}</p>` : ""}
         <div class="opts">${control}</div>
       </fieldset>
-      <details class="why"><summary>Why we ask</summary><p>${esc(q.why_we_ask)}</p></details>
+      <details class="why"><summary>Why we ask</summary>
+        <p>${esc(q.why_we_ask)}</p>
+        ${q.legal_basis?.length ? `<details class="legal"><summary>Legal basis</summary><ul>${q.legal_basis.map((l) =>
+          `<li><strong>${esc(l.ref)}</strong>${l.quote ? `<blockquote>${esc(l.quote)}</blockquote>` : ""}</li>`).join("")}</ul></details>` : ""}
+      </details>
       <div class="nav">
         ${state.history.length ? `<button type="button" id="back" class="secondary">Back</button>` : ""}
         <button type="submit">Next</button>
