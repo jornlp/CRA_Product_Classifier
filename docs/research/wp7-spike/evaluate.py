@@ -184,6 +184,7 @@ def to_output(fx, spec, res, routes):
         reasons.append({"kind": "EVIDENCE_BELOW_REQUIREMENT", "detail": t})
     return {
         "assessment_id": fx["case"], "assessed_at": "2026-10-12", "rule_set_version": spec["rule_set_version"],
+        "law_as_of": "2026-10-12", "valid_until": "2027-10-12",
         "sources": [{"code": c, "id": i, "sha256": checksums[c]} for c, i in spec["law_version"].items() if c in checksums],
         "facts": [{"fact_id": k, "value": v["value"], "provenance": v.get("provenance", "USER_CONFIRMED")} for k, v in fx["facts"].items()],
         "scope": {"status": "IN_SCOPE", "reasons": ["assumed in trial"], "assumed": True},

@@ -17,7 +17,9 @@
   "reasons",
   "next_questions",
   "reassessment_recommended",
-  "disclaimer_version"
+  "disclaimer_version",
+  "law_as_of",
+  "valid_until"
  ],
  "properties": {
   "assessment_id": {
@@ -322,6 +324,18 @@
   },
   "disclaimer_version": {
    "type": "string"
+  },
+  "law_as_of": {
+   "description": "Date of the latest legal source checked for this rule set (DR-05). Shown next to the result.",
+   "type": "string",
+   "format": "date",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+  },
+  "valid_until": {
+   "description": "End of the tool's validity (DR-05). After this date the tool must not issue a classification.",
+   "type": "string",
+   "format": "date",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
   }
  },
  "additionalProperties": false,
@@ -390,6 +404,10 @@
      }
     }
    }
+  },
+  {
+   "description": "DR-05: an assessment made after valid_until is not a valid output. JSON Schema cannot compare dates; the engine refuses to classify, and its tests check this.",
+   "properties": {}
   }
  ],
  "$defs": {

@@ -110,6 +110,46 @@ recorded basis — which is what the earlier note about skipped questions was re
 
 **Disclaimer.** Use v3 §13's fuller clause, not v4's shortened paragraph.
 
+### DR-05 — A time-boxed tool, built so it can become a maintained one
+
+Decided 12 October 2026, after WP4 Layer 1 (`docs/research/out/wp4-layer1-static-audit.md`).
+Three options were weighed: (1) a maintained classification tool, (2) publishing the research only,
+(3) a tool with a fixed end date. **Option 3, staying open to option 1** if someone takes on
+maintenance.
+
+The reason is maintenance. The law moved four times on the day this was decided (AI Act amended by
+Reg. 2026/1744, the EHDS route into CRA Art. 32(5a), a corrigendum, a proposal amending the CRA), and
+two of the seven open legal questions in the catalogue were created by an amendment that summer. A
+classifier with dated rules and no owner goes wrong silently. A fixed end date makes that limit
+visible instead of hidden.
+
+**What option 3 means in practice:**
+
+- **Focus on classification.** WP4 showed the existing tools handle scope reasonably and cover all 26
+  categories. The gap is classification: no tool can say "unresolved", and the clearest lenient
+  errors come from general or name-based questions instead of condition tests. Scope is kept
+  because a class without a scope result means nothing, but it is not where effort goes.
+- **Every result states the law it rests on.** Output carries `law_as_of` (the date of the latest
+  source checked) and `valid_until`, shown to the user next to the result, not only in the export.
+- **After `valid_until` the tool stops classifying.** It shows that it is archived and no longer
+  maintained, and points to the research. A tool that keeps answering after its law has moved is the
+  "project stops but tool keeps circulating" risk in v4 §9.
+- **Until then, `eurlex_watch` runs on a schedule**, and a HIGH finding in the validity window is
+  shown as a warning on affected results, even if nobody updates the rules.
+
+**Staying open to option 1** costs nothing extra if the build keeps what is already designed for a
+maintainer: rule versioning and changelog (WP7 §7), the watchlist and baseline, mechanical quote
+verification, fixtures per rule. A future owner then extends `valid_until`; they do not rebuild.
+
+**Open parameter: the end date.** Recommendation: **twelve months after release, and no later than
+31 March 2028.** That covers the run-up to the CRA's application on 11.12.2027, when classification
+questions peak, and stops before a cluster of changes the tool would not track: the end of Art. 69(1)
+certificate validity (11.6.2028), the AI Act's Annex I high-risk date (2.8.2028), and the expected
+harmonised standards and the RED delegated act's announced repeal.
+
+**Unchanged:** DR-04 positioning, AC-02 as the release-blocking criterion, and WP3. Two short
+interviews should still confirm that target users need classification help before Phase 1 starts.
+
 ## Items reinstated from v3 that v4 dropped
 
 - **Rules-as-Code prior art** — Catala, LegalRuleML, OpenFisca, OECD Law as Code. The
