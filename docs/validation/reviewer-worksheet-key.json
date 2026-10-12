@@ -1,0 +1,1004 @@
+{
+ "artifact": "reviewer-worksheet-key",
+ "created": "2026-10-12",
+ "shuffle_seed": 20261012,
+ "warning": "DO NOT SHARE WITH THE REVIEWER BEFORE THE WORKSHEET IS RETURNED. Contains our expected outcomes.",
+ "excluded": "Section J (engine properties) is excluded - determinism and unknown-propagation are not legal classification questions.",
+ "intentional_duplicates": "CAT-17P/LOCK-01, CAT-17N/RAT-01, CAT-25P/A4-01, CAT-25N/WTR-01 describe the same products in different words. Divergent answers measure the reviewer's own consistency.",
+ "rows": [
+  {
+   "nr": 1,
+   "case_id": "CORE-04",
+   "section": "D",
+   "scenario": "Product documentation and marketing describe different core functions",
+   "our_expectation": "No automatic selection; reviewer flag"
+  },
+  {
+   "nr": 2,
+   "case_id": "CAT-14N",
+   "section": "L",
+   "scenario": "Microcontroller with an on-die RNG used solely for its own internal functions",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 3,
+   "case_id": "CORE-06",
+   "section": "D",
+   "scenario": "Home automation hub that centrally controls smart locks and alarms",
+   "our_expectation": "cat. III-I-17 candidate in its own right, via the \"centrally control such products\" limb"
+  },
+  {
+   "nr": 4,
+   "case_id": "CORE-02",
+   "section": "D",
+   "scenario": "Video doorbell marketed for intruder detection",
+   "our_expectation": "cat. III-I-17 candidate — positive-side test"
+  },
+  {
+   "nr": 5,
+   "case_id": "BND-07",
+   "section": "C",
+   "scenario": "Replacement module with improved specifications",
+   "our_expectation": "Art. 2(6) does not apply; own assessment and own timeline"
+  },
+  {
+   "nr": 6,
+   "case_id": "LIFE-02",
+   "section": "H",
+   "scenario": "Product substantially changed after 11-12-2027, status of change uncertain",
+   "our_expectation": "No definitive transition exemption; question or expert review"
+  },
+  {
+   "nr": 7,
+   "case_id": "ROL-02",
+   "section": "G",
+   "scenario": "A connected product imported into the EU from outside, bearing the foreign maker's brand.",
+   "our_expectation": "Different role questions, same class"
+  },
+  {
+   "nr": 8,
+   "case_id": "CAT-26P",
+   "section": "L",
+   "scenario": "Trusted Platform Module designed to AVA_VAN.4",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 9,
+   "case_id": "CAT-07P",
+   "section": "L",
+   "scenario": "SIEM platform",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 10,
+   "case_id": "A3-06",
+   "section": "E",
+   "scenario": "An internet-connected toy with a microphone and speaker, assessed on or after 1 August 2030.",
+   "our_expectation": "Same category, but the reference resolves to Reg. (EU) 2025/2509 via its Art. 56 correlation clause — tests dated cross-reference resolution"
+  },
+  {
+   "nr": 11,
+   "case_id": "CAT-13P",
+   "section": "L",
+   "scenario": "CPU providing a secure boot chain and trusted execution environment for the wider system",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 12,
+   "case_id": "CAT-12N",
+   "section": "L",
+   "scenario": "Smart speaker with a Wi-Fi client that neither routes, modulates nor forwards packets",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 13,
+   "case_id": "CAT-11P",
+   "section": "L",
+   "scenario": "Real-time operating system placed on the market as a product",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 14,
+   "case_id": "CAT-08N",
+   "section": "L",
+   "scenario": "OS updater that replaces kernel images but does not manage startup or select boot options",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 15,
+   "case_id": "EXC-09",
+   "section": "N",
+   "scenario": "Dual-use product with both civilian and defence applications",
+   "our_expectation": "Not excluded — the Art. 2(7) exclusion requires exclusivity"
+  },
+  {
+   "nr": 16,
+   "case_id": "CORE-07",
+   "section": "D",
+   "scenario": "Product integrating components that perform a category's functions, but whose own core function differs",
+   "our_expectation": "Not in that category — B7 §3.4: a smartphone is not an operating system or password manager; SOAR is not SIEM"
+  },
+  {
+   "nr": 17,
+   "case_id": "CAT-14P",
+   "section": "L",
+   "scenario": "Microcontroller providing secure key storage for the host product",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 18,
+   "case_id": "A3-04",
+   "section": "E",
+   "scenario": "HVAC controller / building access control",
+   "our_expectation": "Evaluated per core function"
+  },
+  {
+   "nr": 19,
+   "case_id": "BND-03",
+   "section": "C",
+   "scenario": "Device + cloud backend, backend is remote data processing for the product",
+   "our_expectation": "Backend in scope as product element"
+  },
+  {
+   "nr": 20,
+   "case_id": "CAT-24P",
+   "section": "L",
+   "scenario": "Hardware security module generating and managing cryptographic elements",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 21,
+   "case_id": "UG-05",
+   "section": "M",
+   "scenario": "Industrial machine embedding a third-party cellular gateway module",
+   "our_expectation": "Machine assessed on its own core function; the module is its own product only if placed on the market separately (Art. 3(1)); Art. 13(5) due diligence applies either way"
+  },
+  {
+   "nr": 22,
+   "case_id": "UG-03",
+   "section": "M",
+   "scenario": "Retailer's in-house store system, used internally for years, now sold to other retailers",
+   "our_expectation": "Not in scope while purely internal; becomes a product placed on the market on first commercial supply (Art. 3(21)(22))"
+  },
+  {
+   "nr": 23,
+   "case_id": "RAT-02",
+   "section": "E",
+   "scenario": "A camera device fitted to a trap, marketed as remotely managed home intruder monitoring.",
+   "our_expectation": "cat. III-I-17 candidate with explicit changed core function and source reference"
+  },
+  {
+   "nr": 24,
+   "case_id": "EXC-08",
+   "section": "B",
+   "scenario": "Sectoral rules claimed to cover the Annex I risks",
+   "our_expectation": "No exclusion unless a delegated act under Art. 2(5) actually says so; absence of an act is not an exclusion"
+  },
+  {
+   "nr": 25,
+   "case_id": "LIFE-05",
+   "section": "H",
+   "scenario": "Firmware update adding a new remote-management capability",
+   "our_expectation": "Substantial modification candidate + review flag"
+  },
+  {
+   "nr": 26,
+   "case_id": "CAT-13N",
+   "section": "L",
+   "scenario": "Microprocessor whose cryptographic accelerator protects only its own internal operation",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 27,
+   "case_id": "TYPE-02",
+   "section": "N",
+   "scenario": "A manufacturer produces 5 000 further units of a router, identical to units it placed on the market before 11 December 2027, and places these new units on the market after that date.",
+   "our_expectation": "Must comply. Earlier placement of the type gives later units no protection (Blue Guide 2.2)"
+  },
+  {
+   "nr": 28,
+   "case_id": "CORE-03",
+   "section": "D",
+   "scenario": "Device runs Linux and TLS, core function is irrigation timing",
+   "our_expectation": "No class from component presence"
+  },
+  {
+   "nr": 29,
+   "case_id": "CAT-16P",
+   "section": "L",
+   "scenario": "Smart speaker with an integrated virtual assistant",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 30,
+   "case_id": "SCP-07",
+   "section": "A",
+   "scenario": "Connection technically present but vendor says it is unused",
+   "our_expectation": "Foreseeable-use question; vendor claim alone not decisive"
+  },
+  {
+   "nr": 31,
+   "case_id": "CAT-04N",
+   "section": "L",
+   "scenario": "File integrity monitor that reports changes but neither detects malicious code nor removes it",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 32,
+   "case_id": "A3-01",
+   "section": "E",
+   "scenario": "Firewall or IDS product, consumer or industrial",
+   "our_expectation": "Class II candidate on the technical description alone; v3/v4 both wrongly assumed an industrial qualifier"
+  },
+  {
+   "nr": 33,
+   "case_id": "CAT-26N",
+   "section": "L",
+   "scenario": "Microcontroller with cryptographic functions designed below AVA_VAN.4 and without tamper resistance",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 34,
+   "case_id": "SCP-04",
+   "section": "A",
+   "scenario": "Device with no network stack, data exchanged only over USB to a PC",
+   "our_expectation": "Not `OUT_OF_SCOPE` on \"no internet\"; art. 2(1)/3 question"
+  },
+  {
+   "nr": 35,
+   "case_id": "OWN-01",
+   "section": "N",
+   "scenario": "Development and configuration tools a manufacturer builds for its own use",
+   "our_expectation": "Out of scope — placing on the market does not occur for products made for one's own use (Blue Guide 2.3)"
+  },
+  {
+   "nr": 36,
+   "case_id": "CAT-01N",
+   "section": "L",
+   "scenario": "Employee directory app that stores records but performs no authentication or access control",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 37,
+   "case_id": "CAT-04P",
+   "section": "L",
+   "scenario": "Rootkit detection tool",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 38,
+   "case_id": "AI-02",
+   "section": "K",
+   "scenario": "A network firewall product that is also classified as a high-risk AI system under Art. 6 of the AI Act.",
+   "our_expectation": "Art. 12(3) derogation: CRA conformity procedures apply for the CRA essential requirements"
+  },
+  {
+   "nr": 39,
+   "case_id": "WTR-01",
+   "section": "F",
+   "scenario": "Connected water meter measuring and transmitting consumption; no separately sold gateway",
+   "our_expectation": "Not automatically cat. IV-2; `DEFAULT` only after complete exclusion"
+  },
+  {
+   "nr": 40,
+   "case_id": "CAT-19N",
+   "section": "L",
+   "scenario": "Wearable step counter that is a CE-marked medical device under Reg. 2017/745 - expressly excluded",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 41,
+   "case_id": "LOCK-01",
+   "section": "D",
+   "scenario": "Residential smart door lock, app-controlled, remotely manageable",
+   "our_expectation": "cat. III-I-17 candidate"
+  },
+  {
+   "nr": 42,
+   "case_id": "A4-03",
+   "section": "F",
+   "scenario": "Device called \"smart meter gateway\" in marketing, lacking the described functions",
+   "our_expectation": "Name is not evidence; conditions tested individually"
+  },
+  {
+   "nr": 43,
+   "case_id": "A4-02",
+   "section": "F",
+   "scenario": "Water gateway with identical technical functions",
+   "our_expectation": "B2 names only gas/heat as other energy sources, so the gateway limb has a textual basis for not matching; second limb of the category title unresolved (WP1 §1)"
+  },
+  {
+   "nr": 44,
+   "case_id": "LIFE-08",
+   "section": "H",
+   "scenario": "Update changes security behaviour; intended purpose unchanged; effect on Annex I Part I compliance UNKNOWN",
+   "our_expectation": "Must not conclude \"not substantial\" from unchanged intended purpose alone — `UNRESOLVED` + reviewer flag. The MVP cannot decide limb (a)"
+  },
+  {
+   "nr": 45,
+   "case_id": "A4-01",
+   "section": "F",
+   "scenario": "Electricity smart-meter gateway matching the B2 description",
+   "our_expectation": "cat. IV-2 candidate on the stated conditions"
+  },
+  {
+   "nr": 46,
+   "case_id": "LOCK-04",
+   "section": "D",
+   "scenario": "Smart lock marketed for short-term rental use — \"residential and Airbnb\"",
+   "our_expectation": "`RESIDENTIAL_SETTING` = `CONFLICTING`; reviewer flag rather than a choice. Short-term rental is neither an ordinary home nor a commercial building"
+  },
+  {
+   "nr": 47,
+   "case_id": "LIFE-04",
+   "section": "H",
+   "scenario": "Routine security firmware update, no functional change",
+   "our_expectation": "Not automatically a substantial modification"
+  },
+  {
+   "nr": 48,
+   "case_id": "CAT-09N",
+   "section": "L",
+   "scenario": "Application that validates certificates using the operating system trust store and manages no certificate lifecycle",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 49,
+   "case_id": "UG-02",
+   "section": "M",
+   "scenario": "Hospitality platform that issues per-reservation PIN codes and centrally controls door locks in hotels",
+   "our_expectation": "`III-I-17` fourth limb engages on central control yet fails on \"residential setting\" — tests that both must hold"
+  },
+  {
+   "nr": 50,
+   "case_id": "CAT-18N",
+   "section": "L",
+   "scenario": "Connected toy whose only sensing detects proximity of the user - expressly not location tracking",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 51,
+   "case_id": "CAT-05P",
+   "section": "L",
+   "scenario": "VPN gateway appliance",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 52,
+   "case_id": "BND-05",
+   "section": "C",
+   "scenario": "Bundle sold as one SKU but containing two candidate categories",
+   "our_expectation": "No silent merge; boundary question + review flag"
+  },
+  {
+   "nr": 53,
+   "case_id": "SCP-02",
+   "section": "A",
+   "scenario": "A connected product sold commercially, but never made available on the EU market.",
+   "our_expectation": "Scope `OUT_OF_SCOPE` with stated reason"
+  },
+  {
+   "nr": 54,
+   "case_id": "CAT-23P",
+   "section": "L",
+   "scenario": "Microcontroller with tamper resistance designed to AVA_VAN level 2",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 55,
+   "case_id": "CAT-11N",
+   "section": "L",
+   "scenario": "Smartphone integrating an operating system - core functionality is not that of an OS (B7 section 3.4)",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 56,
+   "case_id": "UG-01",
+   "section": "M",
+   "scenario": "Industrial networking family: managed switches, interface cards and a network management suite, sold as one portfolio",
+   "our_expectation": "Assess each product separately; `III-I-06`, `III-I-10`, `III-I-12` may each apply — multi-category is an expected outcome, not an error"
+  },
+  {
+   "nr": 57,
+   "case_id": "CAT-07N",
+   "section": "L",
+   "scenario": "Log archiving service with no correlation or analysis for security purposes",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 58,
+   "case_id": "OWN-02",
+   "section": "N",
+   "scenario": "Development and configuration tools a manufacturer originally built for its own use, now offered for sale as separate products.",
+   "our_expectation": "In scope from that point; pairs with `UG-03`"
+  },
+  {
+   "nr": 59,
+   "case_id": "CAT-17N",
+   "section": "L",
+   "scenario": "A camera device fitted to a trap, whose core function is detecting captured rodents for pest control.",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 60,
+   "case_id": "RAT-04",
+   "section": "E",
+   "scenario": "Documentation describes both pest monitoring and home security",
+   "our_expectation": "`CONFLICTING` / review flag; no automatic choice"
+  },
+  {
+   "nr": 61,
+   "case_id": "CAT-09P",
+   "section": "L",
+   "scenario": "Online certificate status protocol responder",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 62,
+   "case_id": "ROL-01",
+   "section": "G",
+   "scenario": "Manufacturer under own brand",
+   "our_expectation": "Role obligations; class unchanged"
+  },
+  {
+   "nr": 63,
+   "case_id": "LOCK-03",
+   "section": "D",
+   "scenario": "A smart door lock, app-controlled, whose marketing claims both home and office use.",
+   "our_expectation": "`CONFLICTING` + review flag; no silent choice"
+  },
+  {
+   "nr": 64,
+   "case_id": "OSS-02",
+   "section": "I",
+   "scenario": "Open-source software offered together with paid support and commercial distribution.",
+   "our_expectation": "Different route; reasons recorded"
+  },
+  {
+   "nr": 65,
+   "case_id": "BND-06",
+   "section": "C",
+   "scenario": "Spare part replacing an identical component, same specifications",
+   "our_expectation": "Excluded by Art. 2(6) — a genuine exclusion, not merely a separate assessment"
+  },
+  {
+   "nr": 66,
+   "case_id": "UG-04",
+   "section": "M",
+   "scenario": "Design agency develops a product end-to-end; the client markets it under the client's name",
+   "our_expectation": "The client is the manufacturer (Art. 3(13)); the agency is not — role, not technology, decides"
+  },
+  {
+   "nr": 67,
+   "case_id": "CAT-06N",
+   "section": "L",
+   "scenario": "Device dashboard that displays network status but cannot change network operations or configuration",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 68,
+   "case_id": "WTR-03",
+   "section": "C",
+   "scenario": "A connected water meter sold by one company; a separate gateway serving the same metering system is sold by a third party.",
+   "our_expectation": "Two delimited assessments, no category carry-over"
+  },
+  {
+   "nr": 69,
+   "case_id": "LIFE-03",
+   "section": "H",
+   "scenario": "New product first placed on market in 2028",
+   "our_expectation": "Main requirements assessed as applicable if scope `IN_SCOPE`"
+  },
+  {
+   "nr": 70,
+   "case_id": "EXC-10",
+   "section": "N",
+   "scenario": "A product modified exclusively for national security or defence purposes.",
+   "our_expectation": "Excluded under Art. 2(7)"
+  },
+  {
+   "nr": 71,
+   "case_id": "CAT-15P",
+   "section": "L",
+   "scenario": "FPGA implementing the secure boot chain for the system it is embedded in",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 72,
+   "case_id": "CAT-19P",
+   "section": "L",
+   "scenario": "Fitness tracker with continuous heart-rate monitoring, outside MDR/IVDR",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 73,
+   "case_id": "WTR-02",
+   "section": "F",
+   "scenario": "Separate security gateway: third-party communication, crypto, firewalling, device control",
+   "our_expectation": "cat. IV-2 candidate + legal review; never Critical on keyword"
+  },
+  {
+   "nr": 74,
+   "case_id": "EXC-06",
+   "section": "B",
+   "scenario": "Exclusion claimed but applicable instrument unidentified",
+   "our_expectation": "No exclusion granted; question returned"
+  },
+  {
+   "nr": 75,
+   "case_id": "SCP-08",
+   "section": "A",
+   "scenario": "Prototype shown at a trade fair, not yet placed on market",
+   "our_expectation": "Scope and timeline answered separately"
+  },
+  {
+   "nr": 76,
+   "case_id": "CORE-01",
+   "section": "D",
+   "scenario": "Pet camera for behaviour analysis",
+   "our_expectation": "Not matched on \"camera\"; `DEFAULT` plausible if all categories excluded"
+  },
+  {
+   "nr": 77,
+   "case_id": "A3-02",
+   "section": "E",
+   "scenario": "Consumer router/modem",
+   "our_expectation": "Category assessed against B2 description"
+  },
+  {
+   "nr": 78,
+   "case_id": "LOCK-02",
+   "section": "D",
+   "scenario": "A smart door lock, app-controlled and remotely manageable, marketed for office access control.",
+   "our_expectation": "cat. III-I-17 may not match; still in CRA scope"
+  },
+  {
+   "nr": 79,
+   "case_id": "CAT-16N",
+   "section": "L",
+   "scenario": "Voice-command remote that recognises fixed words offline and sends infrared codes only",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 80,
+   "case_id": "CORE-05",
+   "section": "D",
+   "scenario": "Product whose core function matches a category, carrying unrelated extra features",
+   "our_expectation": "Category retained — extra functions do not remove core functionality (B2 recital 4)"
+  },
+  {
+   "nr": 81,
+   "case_id": "LIFE-07",
+   "section": "H",
+   "scenario": "Product holds an EU type-examination certificate under other harmonisation legislation",
+   "our_expectation": "Certificate valid until 11 June 2028 unless it expires earlier or that legislation says otherwise — a fourth date the plan omitted"
+  },
+  {
+   "nr": 82,
+   "case_id": "CAT-02P",
+   "section": "L",
+   "scenario": "Embedded browser component intended for integration into another application",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 83,
+   "case_id": "SCP-06",
+   "section": "A",
+   "scenario": "Genuinely air-gapped device, no data interface of any kind",
+   "our_expectation": "Scope may resolve negative, with each path recorded FALSE"
+  },
+  {
+   "nr": 84,
+   "case_id": "LIFE-06",
+   "section": "H",
+   "scenario": "Placing date unknown",
+   "our_expectation": "Timeline `UNRESOLVED` per obligation; no single \"CRA from date\" answer"
+  },
+  {
+   "nr": 85,
+   "case_id": "CAT-03N",
+   "section": "L",
+   "scenario": "Notes application with one encrypted field, no password generation, sharing or application integration",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 86,
+   "case_id": "CAT-22N",
+   "section": "L",
+   "scenario": "A microprocessor providing security functions for the wider system it is built into, with no tamper evidence, resistance or response.",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 87,
+   "case_id": "CAT-20N",
+   "section": "L",
+   "scenario": "Application sandbox that isolates one process but manages no VM or container lifecycle",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 88,
+   "case_id": "A4-05",
+   "section": "F",
+   "scenario": "Water meter deployed across a utility's network; the operator is a NIS2 essential entity in a critical-infrastructure sector",
+   "our_expectation": "No effect on classification. Annex IV \"critical product\" is a product-category test on core functionality; critical-infrastructure status belongs to the operator under NIS 2, not to the product under the CRA"
+  },
+  {
+   "nr": 89,
+   "case_id": "CAT-20P",
+   "section": "L",
+   "scenario": "Type 1 bare-metal hypervisor",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 90,
+   "case_id": "OSS-01",
+   "section": "I",
+   "scenario": "Non-commercial OSS project, no monetisation",
+   "our_expectation": "Dedicated scope/role route"
+  },
+  {
+   "nr": 91,
+   "case_id": "AI-03",
+   "section": "K",
+   "scenario": "A hardware security module that is also classified as a high-risk AI system under Art. 6 of the AI Act.",
+   "our_expectation": "Art. 12(3) derogation applies"
+  },
+  {
+   "nr": 92,
+   "case_id": "A3-03",
+   "section": "E",
+   "scenario": "PLC or industrial gateway",
+   "our_expectation": "Not automatically Class II"
+  },
+  {
+   "nr": 93,
+   "case_id": "A4-06",
+   "section": "F",
+   "scenario": "Device whose core functionality is secure cryptoprocessing, unrelated to any metering system",
+   "our_expectation": "Tests whether the undescribed \"other devices for advanced security purposes\" limb operates independently of the gateway description"
+  },
+  {
+   "nr": 94,
+   "case_id": "CAT-17P",
+   "section": "L",
+   "scenario": "A residential smart door locking device, controlled from a mobile app.",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 95,
+   "case_id": "CAT-18P",
+   "section": "L",
+   "scenario": "Connected toy with a microphone and speaker for two-way interaction",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 96,
+   "case_id": "CAT-05N",
+   "section": "L",
+   "scenario": "Application using TLS for its own traffic, constructing no tunnel from network resources",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 97,
+   "case_id": "CAT-25P",
+   "section": "L",
+   "scenario": "An electricity smart meter gateway that controls communication between metering components and the utility, performing cryptographic and firewalling functions.",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 98,
+   "case_id": "SCP-05",
+   "section": "A",
+   "scenario": "Device whose only data path is a proprietary radio to a vendor hub",
+   "our_expectation": "Connectivity treated as potentially relevant"
+  },
+  {
+   "nr": 99,
+   "case_id": "TEST-01",
+   "section": "N",
+   "scenario": "Beta or release-candidate software made available for a limited period, with a visible sign that it is non-compliant and for testing only",
+   "our_expectation": "Making available permitted despite non-compliance; vulnerability handling still applied as far as possible (recital 37)"
+  },
+  {
+   "nr": 100,
+   "case_id": "CAT-10N",
+   "section": "L",
+   "scenario": "USB mass-storage controller - not a network interface",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 101,
+   "case_id": "EXC-02",
+   "section": "B",
+   "scenario": "Camera toothbrush marketed for oral hygiene only",
+   "our_expectation": "No medical exclusion; continue to classification"
+  },
+  {
+   "nr": 102,
+   "case_id": "CAT-15N",
+   "section": "L",
+   "scenario": "ASIC performing only signal processing, with no security-related functionality",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 103,
+   "case_id": "AI-01",
+   "section": "K",
+   "scenario": "A connected product that is also classified as a high-risk AI system under Art. 6 of the AI Act.",
+   "our_expectation": "CRA class unchanged; conformity route is the AI Act's Art. 43 procedure (Art. 12(2))"
+  },
+  {
+   "nr": 104,
+   "case_id": "CAT-21P",
+   "section": "L",
+   "scenario": "Consumer network firewall product - tests that no industrial-use qualifier applies",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 105,
+   "case_id": "A4-04",
+   "section": "F",
+   "scenario": "Gas or heat gateway with identical technical functions",
+   "our_expectation": "cat. IV-2 candidate — pairs against A4-02 to isolate the carrier question"
+  },
+  {
+   "nr": 106,
+   "case_id": "CAT-24N",
+   "section": "L",
+   "scenario": "Single-chip crypto device with no multiple discrete components and no physical envelope",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 107,
+   "case_id": "CAT-22P",
+   "section": "L",
+   "scenario": "Microprocessor with tamper response designed to AVA_VAN level 3",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 108,
+   "case_id": "CAT-02N",
+   "section": "L",
+   "scenario": "In-app help viewer that renders only local static HTML with no web protocol support or script execution",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 109,
+   "case_id": "UG-06",
+   "section": "M",
+   "scenario": "Automotive test and measurement equipment used in vehicle development",
+   "our_expectation": "Art. 2(2)(c) exclusion fails — Reg. 2019/2144 applies to vehicles, not to equipment used to test them"
+  },
+  {
+   "nr": 110,
+   "case_id": "RAT-03",
+   "section": "E",
+   "scenario": "Connection unknown",
+   "our_expectation": "No definitive `OUT_OF_SCOPE`; targeted direct/indirect connection question"
+  },
+  {
+   "nr": 111,
+   "case_id": "EXC-01",
+   "section": "B",
+   "scenario": "Product with a medical intended purpose under MDR/IVDR",
+   "our_expectation": "Exclusion evaluated explicitly, reason recorded"
+  },
+  {
+   "nr": 112,
+   "case_id": "TEST-02",
+   "section": "N",
+   "scenario": "Beta software made available indefinitely, with no visible sign that it is non-compliant and intended only for testing.",
+   "our_expectation": "Art. 4(3) does not apply; ordinary obligations stand"
+  },
+  {
+   "nr": 113,
+   "case_id": "ROL-05",
+   "section": "G",
+   "scenario": "Custom software built for one client",
+   "our_expectation": "Role and boundary established before class"
+  },
+  {
+   "nr": 114,
+   "case_id": "COMP-01",
+   "section": "N",
+   "scenario": "Product integrating third-party components that do not bear the CE marking, during the transition",
+   "our_expectation": "Integration permitted; due diligence must be exercised by other means (Art. 13(5), recital 35)"
+  },
+  {
+   "nr": 115,
+   "case_id": "CAT-01P",
+   "section": "L",
+   "scenario": "Enterprise single sign-on software",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 116,
+   "case_id": "AI-04",
+   "section": "K",
+   "scenario": "Product embeds an AI component but its core function is not that of a high-risk AI system",
+   "our_expectation": "No change to class or route; the component rule applies as elsewhere"
+  },
+  {
+   "nr": 117,
+   "case_id": "TYPE-01",
+   "section": "N",
+   "scenario": "10 000 units of a product type placed on the market before 11-12-2027, not yet with end users",
+   "our_expectation": "Need not be brought into compliance (Art. 69(2))"
+  },
+  {
+   "nr": 118,
+   "case_id": "RAT-01",
+   "section": "E",
+   "scenario": "Commercial rat-trap camera, external data connection, pest-monitoring core function",
+   "our_expectation": "Scope candidate `IN_SCOPE`; cat. III-I-17 not matched on \"camera\" alone; `DEFAULT` only on complete coverage"
+  },
+  {
+   "nr": 119,
+   "case_id": "CAT-10P",
+   "section": "L",
+   "scenario": "Wi-Fi network interface card with firmware",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 120,
+   "case_id": "CAT-21N",
+   "section": "L",
+   "scenario": "Router integrating firewall functionality - remains a router (B2 recital 4)",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 121,
+   "case_id": "CAT-12P",
+   "section": "L",
+   "scenario": "Wireless access point operating as a bridge",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 122,
+   "case_id": "EXC-03",
+   "section": "B",
+   "scenario": "EXC-02 variant marketed for gum-disease diagnosis",
+   "our_expectation": "Exclusion candidate + expert review flag"
+  },
+  {
+   "nr": 123,
+   "case_id": "BND-01",
+   "section": "C",
+   "scenario": "Sensor sold only as an integrated appliance",
+   "our_expectation": "One assessment"
+  },
+  {
+   "nr": 124,
+   "case_id": "OSS-03",
+   "section": "I",
+   "scenario": "Open-source steward role",
+   "our_expectation": "Steward-specific questions, distinct from manufacturer"
+  },
+  {
+   "nr": 125,
+   "case_id": "CAT-03P",
+   "section": "L",
+   "scenario": "Hardware-based password manager",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 126,
+   "case_id": "EXC-07",
+   "section": "B",
+   "scenario": "Avionics product within scope of Reg. 2018/1139 but not certified under it",
+   "our_expectation": "Art. 2(3) excludes only products *certified in accordance with* 2018/1139 — scope alone is not enough"
+  },
+  {
+   "nr": 127,
+   "case_id": "ROL-03",
+   "section": "G",
+   "scenario": "A connected product distributed unchanged, in its original packaging.",
+   "our_expectation": "Different role questions, same class"
+  },
+  {
+   "nr": 128,
+   "case_id": "ARCH-01",
+   "section": "N",
+   "scenario": "Public archive of historical versions no longer made available on the market",
+   "our_expectation": "Permitted, provided users are clearly informed of the risks of unsupported software"
+  },
+  {
+   "nr": 129,
+   "case_id": "BND-04",
+   "section": "C",
+   "scenario": "Standalone SaaS with no associated device",
+   "our_expectation": "Scope differs; reason recorded"
+  },
+  {
+   "nr": 130,
+   "case_id": "LIFE-01",
+   "section": "H",
+   "scenario": "Placed on market before 11-12-2027, no substantial modification since",
+   "our_expectation": "Main requirements: transitional handling; art. 14 assessed separately"
+  },
+  {
+   "nr": 131,
+   "case_id": "ROL-06",
+   "section": "G",
+   "scenario": "Integrator combines third-party products into a system",
+   "our_expectation": "Explicit question; no automatic answer"
+  },
+  {
+   "nr": 132,
+   "case_id": "A3-05",
+   "section": "E",
+   "scenario": "Internet-connected toy assessed with an assessment date before 01-08-2030",
+   "our_expectation": "cat. III-I-18 resolved against Directive 2009/48/EC"
+  },
+  {
+   "nr": 133,
+   "case_id": "CAT-25N",
+   "section": "L",
+   "scenario": "A connected water consumption meter that measures and transmits readings, and is not a gateway.",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 134,
+   "case_id": "CAT-06P",
+   "section": "L",
+   "scenario": "Software-defined networking controller",
+   "our_expectation": "candidate for this category"
+  },
+  {
+   "nr": 135,
+   "case_id": "ROL-04",
+   "section": "G",
+   "scenario": "White-label product rebranded by the seller",
+   "our_expectation": "Manufacturer role question; boundary recorded"
+  },
+  {
+   "nr": 136,
+   "case_id": "BND-02",
+   "section": "C",
+   "scenario": "A sensor that is built into an appliance, and is also sold separately as a component.",
+   "our_expectation": "Separate assessment per offered product"
+  },
+  {
+   "nr": 137,
+   "case_id": "CAT-23N",
+   "section": "L",
+   "scenario": "A microcontroller providing security functions for the wider system it is built into, with no AVA_VAN level claim.",
+   "our_expectation": "category excluded, with the failing condition recorded"
+  },
+  {
+   "nr": 138,
+   "case_id": "EXC-04",
+   "section": "B",
+   "scenario": "Component for a type-approved motor vehicle",
+   "our_expectation": "Art. 2(2)(c) exclusion where that Regulation applies to the product"
+  },
+  {
+   "nr": 139,
+   "case_id": "SCP-01",
+   "section": "A",
+   "scenario": "Connected product sold commercially in the EU",
+   "our_expectation": "Scope `IN_SCOPE`; reasons cite art. 2/3"
+  },
+  {
+   "nr": 140,
+   "case_id": "EXC-05",
+   "section": "B",
+   "scenario": "Device developed exclusively for military/classified use",
+   "our_expectation": "Exclusion candidate; documentary evidence required"
+  },
+  {
+   "nr": 141,
+   "case_id": "SCP-03",
+   "section": "A",
+   "scenario": "A connected product sold commercially; whether it is made available on the EU market is not known.",
+   "our_expectation": "No definitive outcome; targeted question"
+  },
+  {
+   "nr": 142,
+   "case_id": "CAT-08P",
+   "section": "L",
+   "scenario": "UEFI firmware",
+   "our_expectation": "candidate for this category"
+  }
+ ]
+}

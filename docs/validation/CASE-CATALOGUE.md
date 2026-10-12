@@ -77,6 +77,7 @@ The point of this family: a component does not determine a class (v4 §3.3).
 | CORE-03 | Device runs Linux and TLS, core function is irrigation timing | OS/crypto are components | No class from component presence | v4 §3.3 | H |
 | LOCK-01 | Residential smart door lock, app-controlled, remotely manageable | residential consumer security | cat. III-I-17 candidate | new | H |
 | LOCK-02 | Same lock marketed for office access control | residential context absent | cat. III-I-17 may not match; still in CRA scope | new | H |
+| LOCK-04 | Smart lock marketed for short-term rental use — "residential and Airbnb" | setting is genuinely both | `RESIDENTIAL_SETTING` = `CONFLICTING`; reviewer flag rather than a choice. Short-term rental is neither an ordinary home nor a commercial building | new | H |
 | LOCK-03 | Same lock, marketing claims both home and office use | CONFLICTING context | `CONFLICTING` + review flag; no silent choice | new | H |
 | CORE-04 | Product documentation and marketing describe different core functions | CONFLICTING evidence | No automatic selection; reviewer flag | v4 (cf. RAT-04) | H |
 | CORE-05 | Product whose core function matches a category, carrying unrelated extra features | extra functions present | Category retained — extra functions do not remove core functionality (B2 recital 4) | new | H |
@@ -157,6 +158,25 @@ classification-adjacent, not merely informational.
 | AI-03 | Same, but an Annex IV critical product | class + AI Act internal-control route | Art. 12(3) derogation applies | new | H |
 | AI-04 | Product embeds an AI component but its core function is not that of a high-risk AI system | AI as component | No change to class or route; the component rule applies as elsewhere | new | H |
 
+## N. Cases from the official FAQ
+
+Drawn from worked examples in the official CRA FAQ. These are the Commission's own
+illustrations, which makes them unusually good test material — though the FAQ is non-binding
+and a living document, so each case records the version it came from (v14).
+
+| ID | Scenario | Decisive fact | Expected engine property | Src | St |
+|---|---|---|---|---|---|
+| OWN-01 | Development and configuration tools a manufacturer builds for its own use | never placed on the market | Out of scope — placing on the market does not occur for products made for one's own use (Blue Guide 2.3) | FAQ | H |
+| OWN-02 | The same internal tools later offered as separate products | first making available | In scope from that point; pairs with `UG-03` | FAQ | H |
+| TYPE-01 | 10 000 units of a product type placed on the market before 11-12-2027, not yet with end users | individual units, placed before the date | Need not be brought into compliance (Art. 69(2)) | FAQ | H |
+| **TYPE-02** | A further 5 000 units **of the same type** placed on the market after 11-12-2027 | the CRA applies to individual products, not product types | **Must comply.** Earlier placement of the type gives later units no protection (Blue Guide 2.2) | FAQ | H |
+| TEST-01 | Beta or release-candidate software made available for a limited period, with a visible sign that it is non-compliant and for testing only | Art. 4(3) conditions met | Making available permitted despite non-compliance; vulnerability handling still applied as far as possible (recital 37) | FAQ | H |
+| TEST-02 | The same beta made available indefinitely, or without the visible sign | Art. 4(3) conditions not met | Art. 4(3) does not apply; ordinary obligations stand | FAQ | H |
+| ARCH-01 | Public archive of historical versions no longer made available on the market | Art. 13(11) | Permitted, provided users are clearly informed of the risks of unsupported software | FAQ | H |
+| EXC-09 | Dual-use product with both civilian and defence applications | not developed or modified **exclusively** for defence | **Not excluded** — the Art. 2(7) exclusion requires exclusivity | FAQ | H |
+| EXC-10 | The same product modified exclusively for national security or defence purposes | exclusivity met | Excluded under Art. 2(7) | FAQ | H |
+| COMP-01 | Product integrating third-party components that do not bear the CE marking, during the transition | components not yet subject to the CRA | Integration permitted; due diligence must be exercised by other means (Art. 13(5), recital 35) | FAQ | H |
+
 ## J. Engine properties (meta-cases)
 
 These test the engine contract rather than a product.
@@ -176,9 +196,9 @@ These test the engine contract rather than a product.
 
 ## M. Cases from real product shapes
 
-Derived from the kinds of products this tool will actually be used on — industrial and B2B
-rather than consumer smart home. These replace invented scenarios with shapes that will really
-arrive. No specific company or product is identified.
+Derived from real product shapes rather than invented scenarios. No specific company or product
+is identified. These sit alongside the per-category coverage in section L, which addresses every
+category in Annex III and Annex IV, critical products included.
 
 | ID | Scenario | Decisive fact | Expected engine property | Src | St |
 |---|---|---|---|---|---|
@@ -255,20 +275,21 @@ to be excluded with a reason.
 
 | Family | Cases |
 |---|---|
-| A. Scope / connectivity | 8 |
+| A. Scope, connectivity and market activity | 8 |
 | B. Exclusions | 8 |
 | C. Product boundary | 8 |
-| D. Core function vs feature | 10 |
-| E. Annex III | 10 |
-| F. Annex IV | 8 |
+| D. Core function versus feature | 11 |
+| E. Annex III candidates | 10 |
+| F. Annex IV (critical) candidates | 8 |
 | G. Economic role | 6 |
-| H. Lifecycle / timeline | 8 |
+| H. Lifecycle and timeline | 8 |
 | I. Open source | 3 |
-| K. AI Act overlap | 4 |
-| L. Per-category coverage | 52 |
-| M. Real user-group products | 6 |
-| J. Engine properties | 8 |
-| **Total** | **139** |
+| J. Engine properties (meta-cases) | 8 |
+| K. Overlap with the AI Act | 4 |
+| L. Per-category coverage (minimal pairs) | 52 |
+| M. Cases from real product shapes | 6 |
+| N. Cases from the official FAQ | 10 |
+| **Total** | **150** |
 
 All 11 v4 IDs are preserved: `RAT-01…04`, `WTR-01…03`, `LIFE-01…03`, `SRC-01`,
 `OTHER-01`. AC-05 references these by name.
@@ -293,6 +314,10 @@ The pairs that carry the most weight, each differing in one decisive fact:
 - `OSS-01` / `OSS-02` — non-commercial vs commercial activity
 - `SCP-02` / `SCP-03` — fact FALSE vs fact UNKNOWN
 - `BND-06` / `BND-07` — identical spare part vs improved specification
+- `TYPE-01` / `TYPE-02` — units of one product type, placed either side of 11-12-2027
+- `EXC-09` / `EXC-10` — dual-use vs exclusively defence
+- `OWN-01` / `OWN-02` — internal tools before and after being offered separately
+- `TEST-01` / `TEST-02` — testing release with and without the Art. 4(3) conditions
 - `MET-05` / `MET-06` — same unresolved category, product outside vs inside its exclusion gate
 - `CORE-05` / `CORE-07` — extra features keep the class vs capability without core function does not create it
 
