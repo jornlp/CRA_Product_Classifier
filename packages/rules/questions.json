@@ -1054,7 +1054,7 @@
   "PURPOSE_SCREEN": {
    "question": "What is your product mainly for?",
    "kind": "multi-enum",
-   "why_we_ask": "To say a product is not in a listed category, the tool has to rule that category out. This question rules out the ones that clearly do not fit, so you are only asked about the ones that might. Tick what your product is mainly for, not every function it has: a smart lock that has an app with a login is not mainly for storing passwords.",
+   "why_we_ask": "To say a product is not in a listed category, the tool has to rule that category out. This question rules out the ones that clearly do not fit, so you are only asked about the ones that might.",
    "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
