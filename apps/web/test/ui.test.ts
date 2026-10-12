@@ -76,21 +76,19 @@ describe("screens: pest-control camera", () => {
     expect(app().querySelector("textarea")).not.toBeNull();
     await answer({ text: "Detects a trapped rodent and alerts the pest controller" });
   });
-  it("shows binding, FAQ and worked examples next to the purpose question", async () => {
-    await answer("No, it is not itself a chip");
-    expect(heading()).toContain("protect the physical security");
+  it("asks what the product is mainly for, with binding, FAQ and worked examples", async () => {
+    expect(heading()).toContain("mainly for");
     const guide = app().querySelector("aside.guide")!.textContent!;
     expect(guide).toContain("Official text (binding)");
-    expect(guide).toContain("Worked example (our interpretation)");
+    expect(guide).toContain("Commission FAQ");
     expect(guide).toContain("rodent");
     expect(guide).toContain("Words that mislead");
   });
+  it("ticking nothing on the purpose screen skips every category question", async () => {
+    await answer([]);
+    expect(heading()).toContain("high-risk AI system");
+  });
   it("finishes the remaining questions", async () => {
-    await answer("No"); // protects physical security
-    await answer("No"); // central control
-    await answer("No"); // stores passwords
-    await answer("No"); // metering communication
-    await answer("No"); // advanced security core
     await answer("No high-risk AI system");
     await answer("No"); // EHR
     await answer({ date: "2028-03-01" });
@@ -105,6 +103,7 @@ describe("screens: pest-control camera", () => {
     expect(text).toContain("protect the physical security of consumers");
     expect(text).toContain("Not determined. At least: Default");
     expect(text).toContain("rules for 6 of 26 categories");
+    expect(text).toContain("you indicated the product is not mainly for this");
     expect(text).toContain("not legal advice");
   });
   it("result shows when obligations apply", () => {

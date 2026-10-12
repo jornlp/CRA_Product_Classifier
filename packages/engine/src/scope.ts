@@ -5,16 +5,13 @@
  * The evidence gate applies to whichever result is permissive: FALSE for applicability,
  * TRUE for an exclusion. A permissive result without the provenance the fact requires is UNKNOWN.
  */
-import { T, F, U, C, O, AND_ORDER, OR_ORDER, NOT, combine, evalMatch, mapKey, pyRepr } from "./logic.js";
-import type { Value, Match, Facts } from "./logic.js";
+import { T, F, U, C, O, AND_ORDER, OR_ORDER, NOT, combine, evalMatch, mapKey, pyRepr, applyDerive } from "./logic.js";
+import type { Value, Match, Facts, Derive } from "./logic.js";
 
 interface ScopeCondition {
   fact: string; quote?: string; law_ref?: string; open_ref?: string; note?: string;
   is?: unknown; map?: Record<string, Value>; default?: Value; contains?: string; if_contains?: Value;
 }
-type Derive =
-  | { screen: string; unticked_sets: Record<string, Record<string, unknown>>; why: string }
-  | { if: Record<string, unknown>; then: Record<string, unknown>; why: string };
 export interface ScopeRules {
   provenance_rank: Record<string, number>;
   facts: Record<string, { requires: string }>;
@@ -25,28 +22,7 @@ export interface ScopeRules {
 }
 export type ScopeStatus = "IN_SCOPE" | "OUT_OF_SCOPE" | "UNRESOLVED";
 
-function derive(rules: ScopeRules, raw: Facts): Facts {
-  const facts: Facts = { ...raw };
-  const setDefault = (k: string, v: Facts[string]) => { if (!(k in facts)) facts[k] = v; };
-  for (const d of rules.derive) {
-    if ("screen" in d) {
-      const scr = facts[d.screen];
-      if (scr && Array.isArray(scr.value)) {
-        for (const [opt, sets] of Object.entries(d.unticked_sets)) {
-          if (!(scr.value as unknown[]).includes(opt)) {
-            for (const [fk, fv] of Object.entries(sets)) setDefault(fk, { value: fv, provenance: scr.provenance ?? "USER_CONFIRMED", derived: d.why });
-          }
-        }
-      }
-      continue;
-    }
-    const [[k, v]] = Object.entries(d.if);
-    if (facts[k]?.value === v) {
-      for (const [fk, fv] of Object.entries(d.then)) setDefault(fk, { value: fv, provenance: facts[k].provenance ?? "USER_CONFIRMED", derived: d.why });
-    }
-  }
-  return facts;
-}
+const derive = (rules: ScopeRules, raw: Facts): Facts => applyDerive(rules.derive, raw);
 
 function condValue(rules: ScopeRules, cond: ScopeCondition, facts: Facts, permissive: Value, trace: string[]): Value {
   const f = facts[cond.fact];

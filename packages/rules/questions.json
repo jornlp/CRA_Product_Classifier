@@ -1116,6 +1116,67 @@
     }
    ]
   },
+  "PURPOSE_SCREEN": {
+   "question": "Which of these is your product mainly for? Tick all that apply, or none.",
+   "kind": "multi-enum",
+   "why_we_ask": "To say a product is not in a listed category, the tool has to rule that category out. This question rules out the ones that clearly do not fit, so you are only asked about the ones that might. Tick what your product is mainly for, not every function it has: a smart lock that has an app with a login is not mainly for storing passwords.",
+   "evidence": "MANUFACTURER_ONLY",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "7",
+     "para": "1",
+     "quote": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
+     "ref": "CRA Art. 7(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 7: Important products with digital elements",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
+          "mark": true
+         },
+         {
+          "text": " with digital elements and shall be subject to the conformity assessment procedures referred to in Article 32(2) and (3). The integration of a product with digital elements which has the core functionality of a product category set out in Annex III shall not in itself render the product in which it is integrated subject to the conformity assessment procedures referred to in Article 32(2) and (3)."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": "HOME_SECURITY",
+     "label": "Protecting a home or the people in it: locks, alarms, security cameras, baby monitors"
+    },
+    {
+     "value": "HOME_CONTROL",
+     "label": "Controlling security devices in a home, such as locks or alarms: a hub or home automation app"
+    },
+    {
+     "value": "PASSWORDS",
+     "label": "Storing or managing passwords"
+    },
+    {
+     "value": "CHIP",
+     "label": "Being a chip built into other products (processor, controller, secure element)"
+    },
+    {
+     "value": "METERING",
+     "label": "Linking an energy metering system to the utility or other outside parties (a gateway)"
+    },
+    {
+     "value": "CRYPTO_FOR_OTHERS",
+     "label": "Cryptographic processing or key protection for other systems"
+    }
+   ]
+  },
   "STORES_PASSWORDS_CORE": {
    "question": "Is storing passwords, on the device or on a server, what this product is for?",
    "kind": "bool",

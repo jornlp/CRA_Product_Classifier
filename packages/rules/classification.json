@@ -61,6 +61,18 @@
   "IV-03"
  ],
  "facts": {
+  "PURPOSE_SCREEN": {
+   "type": "multi-enum",
+   "values": [
+    "HOME_SECURITY",
+    "HOME_CONTROL",
+    "PASSWORDS",
+    "CHIP",
+    "METERING",
+    "CRYPTO_FOR_OTHERS"
+   ],
+   "evidence": "MANUFACTURER_ONLY"
+  },
   "STORES_PASSWORDS_CORE": {
    "type": "bool",
    "evidence": "MANUFACTURER_ONLY"
@@ -176,7 +188,34 @@
    "evidence": "MANUFACTURER_ONLY"
   }
  },
+ "derive": [
+  {
+   "screen": "PURPOSE_SCREEN",
+   "unticked_sets": {
+    "HOME_SECURITY": {
+     "PROTECTS_PHYSICAL_SECURITY": false
+    },
+    "HOME_CONTROL": {
+     "CENTRAL_CONTROL_OF_SECURITY": false
+    },
+    "PASSWORDS": {
+     "STORES_PASSWORDS_CORE": false
+    },
+    "CHIP": {
+     "IC_TYPE": "NOT_AN_IC"
+    },
+    "METERING": {
+     "METERING_COMMUNICATION": false
+    },
+    "CRYPTO_FOR_OTHERS": {
+     "ADVANCED_SECURITY_CORE": false
+    }
+   },
+   "why": "Answered on the purpose screen: the product is not mainly for this. One question over an OR-joined list, so every option left unticked is an answered 'no' (WP7 4.1)."
+  }
+ ],
  "ask_order": [
+  "PURPOSE_SCREEN",
   "IC_TYPE",
   "SECURITY_FUNCTION",
   "SECURES_BEYOND_ITSELF",

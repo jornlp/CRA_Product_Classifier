@@ -85,6 +85,13 @@
     "type": "string"
    },
    "uniqueItems": true
+  },
+  "derive": {
+   "description": "Screens and if-rules that settle facts (WP7 4.1, 10a). Direct answers always win.",
+   "type": "array",
+   "items": {
+    "type": "object"
+   }
   }
  },
  "additionalProperties": false,

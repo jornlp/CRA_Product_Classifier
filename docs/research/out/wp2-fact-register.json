@@ -1975,6 +1975,46 @@
      "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
     }
    ]
+  },
+  {
+   "fact_id": "PURPOSE_SCREEN",
+   "question": "Which of these is your product mainly for? Tick all that apply, or none.",
+   "kind": "multi-enum",
+   "values": [
+    "HOME_SECURITY",
+    "HOME_CONTROL",
+    "PASSWORDS",
+    "CHIP",
+    "METERING",
+    "CRYPTO_FOR_OTHERS"
+   ],
+   "categories_discriminated": [
+    "III-I-03",
+    "III-I-17",
+    "III-I-13",
+    "III-I-14",
+    "III-II-04",
+    "IV-02",
+    "IV-03"
+   ],
+   "why_we_ask": "Purpose screen over the encoded categories' core-purpose facts. OR-joined list: each unticked option is a user-confirmed 'no' that rules out its categories at once; ticked options open their detailed questions. Options describe purposes, not category names. Grows with each encoded category.",
+   "user_why": "To say a product is not in a listed category, the tool has to rule that category out. This question rules out the ones that clearly do not fit, so you are only asked about the ones that might. Tick what your product is mainly for, not every function it has: a smart lock that has an app with a login is not mainly for storing passwords.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "7",
+     "para": "1",
+     "quote": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
+     "ref": "CRA Art. 7(1)"
+    }
+   ],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A smart door lock: ticks 'protecting a home or the people in it'.",
+    "no": "A rodent-detecting camera for pest control: ticks nothing."
+   },
+   "revision": "v2 (purpose screen, added when building the screens)"
   }
  ],
  "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",

@@ -300,6 +300,25 @@ example on each side; the examples sit under the condition text, never instead o
 is to the condition, never "which example is yours". Official quotes are checked verbatim in CI, like
 rule quotes; a one-word change fails the build.
 
+## 10c. Purpose screen
+
+Found in the first real use of the screens: a smart-home device was asked whether it stores passwords.
+The engine had to rule out every category before stating a class (AC-03), and the free-text core
+function is not machine-readable, so it asked each category's purpose question in turn. With 26
+categories that becomes unusable.
+
+Fix: one purpose screen after the core-function question, the same pattern as the exclusion screen
+(§10a). Options describe **purposes, not category names** ("protecting a home or the people in it",
+not "III-I-17"). Each unticked option is a user-confirmed "no" that rules out its categories at once;
+ticked options open only their own questions. The pest-control camera drops from 18 to 13 questions,
+and no longer sees a category question at all; a smart lock is never asked about passwords, chips or
+meters. The result says which categories were ruled out by the screen, so a user can go back.
+
+This screen is where the WP3 manufacturers' error lives (choosing a category by name), so its
+examples and look-alikes carry most of the guidance. A soundness replay with the screen answered
+honestly from each fixture's facts reproduces the full-knowledge result for all 28 fixtures. The
+screen grows by one or two options per encoded category family.
+
 ## 11. Open after WP7
 
 - ~~Apply the §4.1 fact register changes~~ — done, register v2.

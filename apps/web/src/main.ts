@@ -182,7 +182,7 @@ function assemble() {
 }
 
 function resultHtml(): string {
-  const { out, s } = assemble();
+  const { out, s, res } = assemble();
   const c = out.classification;
   const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${w.kind === "PAST_END_DATE" ? "Outdated" : "Law changed"}:</strong> ${esc(w.detail)}</div>`).join("");
   const scopeText: Record<string, string> = {
@@ -208,8 +208,11 @@ function resultHtml(): string {
         `<li>${esc(reasonText[r.kind])} ${cat(r.category!)}${r.open_ref ? ` <span class="muted">(${esc(r.open_ref)})</span>` : ""}${r.kind === "LAW_OPEN" ? ". Get expert advice: more answers will not resolve this." : ""}</li>`).join("")}</ul>` : ""}
       ${blockingCov ? `<p class="note">This pilot has rules for ${RULES.categories.length} of 26 categories. Until all 26 are covered,
         it does not state a class it cannot fully check${c.class_floor === "CRITICAL" ? "" : ", including Default"}.</p>` : ""}
-      ${c.excluded.length ? `<h3>Ruled out, and why</h3><ul>${c.excluded.map((x) => `<li>${cat(x.category)}: does not meet
-        ${x.failing.map((f) => `<q>${esc(f.quote)}</q>`).join(" or ")}</li>`).join("")}</ul>` : ""}
+      ${c.excluded.length ? `<h3>Ruled out, and why</h3><ul>${c.excluded.map((x) => {
+        const viaScreen = x.failing.some((f) => f.fact && f.fact in res.derived);
+        return `<li>${cat(x.category)}: does not meet ${x.failing.map((f) => `<q>${esc(f.quote)}</q>`).join(" or ")}${viaScreen
+          ? ` <span class="muted small">(you indicated the product is not mainly for this; go back to change that)</span>` : ""}</li>`;
+      }).join("")}</ul>` : ""}
     </section>`;
     if (out.conformity_routes.some((r) => r.route !== "CRA_ART_32")) {
       body += `<section class="box"><h2>Conformity route</h2><ul>${out.conformity_routes.map((r) =>

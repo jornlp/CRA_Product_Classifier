@@ -25,6 +25,7 @@ for (const [fid, q] of Object.entries<any>(g.questions)) {
       const answers = q.examples.map((e: any) => e.answer);
       const yes = answers.some((a: string) => !["NO", "NONE", "FALSE", "CONFLICTING"].includes(a));
       const no = answers.some((a: string) => ["NO", "NONE", "FALSE", "CONFLICTING", "PROXIMITY_ONLY", "WATER"].includes(a));
+      // NONE on a screen is "tick nothing"; the YES side is any ticked option.
       expect(yes && no).toBe(true);
     });
     for (const [i, e] of q.examples.entries()) {

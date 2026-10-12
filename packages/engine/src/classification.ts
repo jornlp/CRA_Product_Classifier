@@ -2,8 +2,8 @@
  * Category evaluation, class aggregation and conformity routes.
  * Reference: docs/research/wp7-spike/evaluate.py (classify, route, to_output).
  */
-import { T, F, U, C, O, AND_ORDER, OR_ORDER, combine, evalMatch, mapKey, pyRepr } from "./logic.js";
-import type { Value, Match, Facts } from "./logic.js";
+import { T, F, U, C, O, AND_ORDER, OR_ORDER, combine, evalMatch, mapKey, pyRepr, applyDerive } from "./logic.js";
+import type { Value, Match, Facts, Derive } from "./logic.js";
 
 export type ClassName = "DEFAULT" | "IMPORTANT_I" | "IMPORTANT_II" | "CRITICAL";
 
@@ -27,7 +27,7 @@ export interface ClassificationRules {
   sources: Record<string, { id: string; sha256: string; file?: string }>;
   class_order: ClassName[]; categories_total: number; category_ids: string[];
   facts: Record<string, { type: string; evidence: string }>;
-  categories: CategoryRule[]; routes: RouteRule[]; ask_order?: string[];
+  categories: CategoryRule[]; routes: RouteRule[]; ask_order?: string[]; derive?: Derive[];
 }
 
 export interface CategoryResult {
@@ -36,6 +36,8 @@ export interface CategoryResult {
 export interface ClassifyResult {
   status: ClassName | "UNRESOLVED"; floor: ClassName; blockers: string[]; reasons: string[];
   categories: Record<string, CategoryResult>; trace: string[];
+  /** Facts settled by a screen or rule rather than answered directly, with the reason. */
+  derived: Record<string, string>;
 }
 
 type FactRead = ["VALUE", unknown] | [Value, null];
@@ -69,7 +71,9 @@ function evalCondition(cond: Condition, facts: Facts, rules: ClassificationRules
  * Evaluate every encoded category and aggregate the class. Categories without a rule always
  * block DEFAULT and cap the class (AC-03); there is deliberately no switch to assume them away.
  */
-export function classify(rules: ClassificationRules, facts: Facts): ClassifyResult {
+export function classify(rules: ClassificationRules, answered: Facts): ClassifyResult {
+  const facts = applyDerive(rules.derive, answered);
+  const derived = Object.fromEntries(Object.entries(facts).filter(([k, f]) => !(k in answered) && f.derived).map(([k, f]) => [k, f.derived!]));
   const order = rules.class_order;
   const results: Record<string, CategoryResult> = {};
   const trace: string[] = [];
@@ -92,7 +96,7 @@ export function classify(rules: ClassificationRules, facts: Facts): ClassifyResu
   const reasons = unsettled.map(([k, r]) =>
     r.value === O ? `LAW_OPEN ${k} (${r.open.filter(Boolean).join(", ")})`
       : r.value === C ? `CONFLICTING_FACTS ${k} -> review flag` : `MISSING_FACTS ${k}`);
-  return { status: blockers.length ? "UNRESOLVED" : floor, floor, blockers, reasons, categories: results, trace };
+  return { status: blockers.length ? "UNRESOLVED" : floor, floor, blockers, reasons, categories: results, trace, derived };
 }
 
 export interface RouteResult { rule: string; route: string; open_ref?: string; displaces?: string[] }

@@ -3,7 +3,7 @@
  * AC-03): a question is skipped only when its answer can no longer change the outcome, so every
  * category the engine stops asking about is settled, with its failing condition recorded.
  */
-import { T, F, U, C, O } from "./logic.js";
+import { T, F, U, C, O, derivationSources } from "./logic.js";
 import type { Value, Match, Facts } from "./logic.js";
 import { classify } from "./classification.js";
 import type { ClassificationRules } from "./classification.js";
@@ -48,6 +48,12 @@ export function nextClassificationQuestions(rules: ClassificationRules, facts: F
       weight.set(fid, (weight.get(fid) ?? 0) + 1);
       if (!firstSeen.has(fid)) firstSeen.set(fid, n++);
     }
+  }
+  // A fact a screen can settle is preceded by the screen (as for scope).
+  const src = derivationSources(rules.derive);
+  for (const fid of [...weight.keys()]) {
+    const s = src.get(fid);
+    if (s && !(s in facts)) { weight.set(s, (weight.get(s) ?? 0) + weight.get(fid)!); if (!firstSeen.has(s)) firstSeen.set(s, -1); }
   }
   // Reading order first (rules' ask_order); otherwise the fact that settles most categories.
   const pos = (f: string) => { const i = (rules.ask_order ?? []).indexOf(f); return i < 0 ? Infinity : i; };

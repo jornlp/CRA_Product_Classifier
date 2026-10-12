@@ -68,9 +68,29 @@ def eval_match(expr, values):
     raise ValueError(expr)
 
 
+def apply_derive(derives, raw):
+    """Screens and if-rules settle facts; direct answers win (same as the TypeScript engine)."""
+    facts = dict(raw)
+    for d in derives or []:
+        if "screen" in d:
+            scr = facts.get(d["screen"])
+            if scr and isinstance(scr["value"], list):
+                for opt, sets in d["unticked_sets"].items():
+                    if opt not in scr["value"]:
+                        for fk, fv in sets.items():
+                            facts.setdefault(fk, {"value": fv, "provenance": scr.get("provenance", "USER_CONFIRMED"), "derived": d["why"]})
+            continue
+        (k, v), = d["if"].items()
+        if facts.get(k, {}).get("value") == v:
+            for fk, fv in d["then"].items():
+                facts.setdefault(fk, {"value": fv, "provenance": facts[k].get("provenance", "USER_CONFIRMED"), "derived": d["why"]})
+    return facts
+
+
 def classify(spec, facts, uncovered="block"):
     """uncovered='block': categories without a rule block DEFAULT and cap the class (AC-03).
     uncovered='assume_excluded': test harness only, to check the spike's own categories."""
+    facts = apply_derive(spec.get("derive"), facts)
     order = spec["class_order"]
     results, trace = {}, []
     for cat in spec["categories"]:  # listed so that referenced categories come first

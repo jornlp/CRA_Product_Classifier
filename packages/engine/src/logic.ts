@@ -46,3 +46,46 @@ export function pyRepr(v: unknown): string {
 export type Provenance = "USER_CONFIRMED" | "DOCUMENT_SUPPORTED" | "LLM_DRAFT" | "DEFAULTED";
 export interface Fact { value: unknown; provenance?: Provenance; derived?: string }
 export type Facts = Record<string, Fact>;
+
+/**
+ * Derivation rules. A screen is one question over an OR-joined list (WP7 4.1, 10a): every option
+ * left unticked is an answered "no", which settles the facts listed for it. An if-rule settles facts
+ * from one answer (no data interface -> no connection). Answers given directly always win.
+ */
+export type Derive =
+  | { screen: string; unticked_sets: Record<string, Record<string, unknown>>; why: string }
+  | { if: Record<string, unknown>; then: Record<string, unknown>; why: string };
+
+export function applyDerive(derives: readonly Derive[] | undefined, raw: Facts): Facts {
+  const facts: Facts = { ...raw };
+  const setDefault = (k: string, v: Fact) => { if (!(k in facts)) facts[k] = v; };
+  for (const d of derives ?? []) {
+    if ("screen" in d) {
+      const scr = facts[d.screen];
+      if (scr && Array.isArray(scr.value)) {
+        for (const [opt, sets] of Object.entries(d.unticked_sets)) {
+          if (!(scr.value as unknown[]).includes(opt)) {
+            for (const [fk, fv] of Object.entries(sets)) setDefault(fk, { value: fv, provenance: scr.provenance ?? "USER_CONFIRMED", derived: d.why });
+          }
+        }
+      }
+      continue;
+    }
+    const [[k, v]] = Object.entries(d.if);
+    if (facts[k]?.value === v) {
+      for (const [fk, fv] of Object.entries(d.then)) setDefault(fk, { value: fv, provenance: facts[k].provenance ?? "USER_CONFIRMED", derived: d.why });
+    }
+  }
+  return facts;
+}
+
+/** Facts that derivation can settle, mapped to the fact they derive from. */
+export function derivationSources(derives: readonly Derive[] | undefined): Map<string, string> {
+  const m = new Map<string, string>();
+  for (const d of derives ?? []) {
+    const src = "screen" in d ? d.screen : Object.keys(d.if)[0];
+    const sets = "screen" in d ? Object.values(d.unticked_sets).flatMap((x) => Object.keys(x)) : Object.keys(d.then);
+    for (const f of sets) if (!m.has(f)) m.set(f, src);
+  }
+  return m;
+}

@@ -85,3 +85,18 @@ describe("timeline: asking only what matters gives the same result", () => {
     });
   }
 });
+
+describe("classification with the purpose screen: same result as knowing every fact", () => {
+  const screen = (cls.derive ?? []).find((d: any) => "screen" in d) as any;
+  /** The screen an honest user would tick: an option is ticked unless all its facts are its 'no' values. */
+  const honestScreen = (facts: Facts) => Object.entries<Record<string, unknown>>(screen.unticked_sets)
+    .filter(([, sets]) => !Object.entries(sets).every(([k, v]) => facts[k]?.value === v)).map(([opt]) => opt);
+  for (const f of read("tests/fixtures/classification.golden.json").fixtures) {
+    it(f.case, () => {
+      const all: Facts = { ...f.facts, PURPOSE_SCREEN: { value: honestScreen(f.facts), provenance: "USER_CONFIRMED" } };
+      const { facts } = replay((x) => nextClassificationQuestions(cls, x), all);
+      expect(classify(cls, facts).status).toBe(classify(cls, f.facts).status);
+      expect(classify(cls, facts).floor).toBe(classify(cls, f.facts).floor);
+    });
+  }
+});
