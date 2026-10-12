@@ -22,7 +22,7 @@ Why it matters for the tool, not for any one case:
 
 One download, three payoffs. Highest value on this list.
 
-## 2. The "Blue Guide" on the implementation of EU product rules
+## 2. The "Blue Guide" on the implementation of EU product rules — now confirmed, not inferred
 
 The canonical cross-sectoral source for **placing on the market**, **making available**,
 **substantial modification**, and the manufacturer / importer / distributor / own-brand
@@ -33,6 +33,12 @@ defining them from scratch. They govern our entire `LIFE-*` and `ROL-*` families
 cases — and we are currently interpreting them from the CRA text alone.
 
 This is the one gap most likely to produce confidently wrong answers across many products.
+
+**Confirmed 2026-10-12.** The official FAQ cites the Blue Guide directly, twice, on points that
+decide cases: section 2.3 for "placing on the market is considered not to take place where a
+product is manufactured for one's own use", and section 2.2 for the rule that the CRA applies to
+**individual products, not product types** — the basis of `TYPE-01`/`TYPE-02`. The Commission
+reads the CRA through the Blue Guide, so we must hold it.
 
 ## 3. Second opinions from people
 
