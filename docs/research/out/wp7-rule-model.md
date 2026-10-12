@@ -279,6 +279,27 @@ What it established:
 Not trialled, because they are not scope: Art. 4(3) testing versions (`TEST-01/02`), Art. 13(11)
 archives (`ARCH-01`) and the steward role (`OSS-03`). They are obligations and roles, handled after scope.
 
+## 10b. Guidance with each question
+
+Requested by the project lead after the WP3 interviews: both manufacturers classified by matching
+their product to a category name. So each question carries examples, shown next to the answer options
+(`packages/rules/guidance.json`), in three kinds, displayed differently:
+
+| Kind | Source | Shown as |
+|---|---|---|
+| `OFFICIAL_TEXT` | B2 technical descriptions, e.g. their "includes but is not limited to" lists | binding text, quoted |
+| `OFFICIAL_GUIDANCE` | Commission FAQ v14, e.g. smartphone is not an OS, SOAR is not a SIEM | non-binding, quoted, versioned |
+| `WORKED_CASE` | our catalogue, e.g. the pest-control camera | our interpretation, with case id |
+
+Plus **look-alikes**: the WP2 trap terms ("camera", "smart meter", "gateway", "critical") with why
+they mislead.
+
+**Examples can become a new keyword trap** if users pick the example nearest their product instead of
+answering the condition. Three safeguards, the first enforced in CI: every question has at least one
+example on each side; the examples sit under the condition text, never instead of it; and the answer
+is to the condition, never "which example is yours". Official quotes are checked verbatim in CI, like
+rule quotes; a one-word change fails the build.
+
 ## 11. Open after WP7
 
 - ~~Apply the §4.1 fact register changes~~ — done, register v2.
