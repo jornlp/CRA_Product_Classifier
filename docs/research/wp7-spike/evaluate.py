@@ -6,6 +6,7 @@ fifth condition value OPEN for questions the law does not settle (WP1 OPEN_QUEST
 
   python3 evaluate.py            run fixtures, print results, exit 1 on any mismatch
   python3 evaluate.py --verify   also check every quoted condition against the held B2 text
+  python3 evaluate.py --emit DIR write each result in the assessment-output schema
 """
 import json, re, sys
 from pathlib import Path
@@ -142,6 +143,62 @@ def route(spec, facts, result):
     return out
 
 
+def verify_open_refs(spec):
+    """Every condition that can yield OPEN must cite the recorded open question (not expressible in JSON Schema)."""
+    return [f"{cat['rule_id']} {cid}: maps to OPEN without open_ref"
+            for cat in spec["categories"] for cid, c in cat["conditions"].items()
+            if "OPEN" in c.get("map", {}).values() and not c.get("open_ref")]
+
+
+def to_output(fx, spec, res, routes):
+    """Render a result in the assessment-output schema (docs/research/out/schemas)."""
+    inv = json.loads((ROOT / "docs/research/out/wp1-category-inventory.json").read_text())
+    all_cats = [c["id"] for c in inv["categories"]]
+    cls_of = lambda cid: "CRITICAL" if cid.startswith("IV") else "IMPORTANT_II" if cid.startswith("III-II") else "IMPORTANT_I"
+    order = spec["class_order"]
+    encoded = {c["category"]: c for c in spec["categories"]}
+    uncovered = [c for c in all_cats if c not in encoded]
+    floor = res["floor"]
+    blocking = [{"category": k, "value": r["value"]} for k, r in res["categories"].items()
+                if r["value"] not in (T, F) and order.index(r["class"]) > order.index(floor)]
+    blocking += [{"category": c, "value": "NOT_COVERED"} for c in uncovered if order.index(cls_of(c)) > order.index(floor)]
+    checksums = {}
+    for line in (ROOT / "docs/legal/sources/CHECKSUMS.txt").read_text().splitlines():
+        if line.strip():
+            h, name = line.split(None, 1)
+            checksums[name.split("_")[0]] = h
+    reasons, nextq = [], []
+    for k, r in res["categories"].items():
+        if r["value"] in (U, C, O) and order.index(r["class"]) > order.index(floor):
+            kind = {U: "MISSING_FACTS", C: "CONFLICTING_FACTS", O: "LAW_OPEN"}[r["value"]]
+            item = {"kind": kind, "category": k, "detail": f"{k} is {r['value']}"}
+            if r["value"] == O:
+                item["open_ref"] = ", ".join(filter(None, r["open"]))
+            reasons.append(item)
+            if kind == "MISSING_FACTS":
+                nextq += [encoded[k]["conditions"][cid]["fact"] for cid, v in r["conditions"].items()
+                          if v == U and "fact" in encoded[k]["conditions"][cid]]
+    if uncovered:
+        reasons.append({"kind": "COVERAGE", "detail": f"{len(uncovered)} categories have no rule yet"})
+    for t in res["trace"]:
+        reasons.append({"kind": "EVIDENCE_BELOW_REQUIREMENT", "detail": t})
+    return {
+        "assessment_id": fx["case"], "assessed_at": "2026-10-12", "rule_set_version": spec["rule_set_version"],
+        "sources": [{"code": c, "id": i, "sha256": checksums[c]} for c, i in spec["law_version"].items() if c in checksums],
+        "facts": [{"fact_id": k, "value": v["value"], "provenance": v.get("provenance", "USER_CONFIRMED")} for k, v in fx["facts"].items()],
+        "scope": {"status": "IN_SCOPE", "reasons": ["assumed in trial"], "assumed": True},
+        "classification": {
+            "status": "UNRESOLVED" if blocking else floor, "class_floor": floor, "blocking": blocking,
+            "matched": [{"category": k, "class": r["class"], "rule_id": encoded[k]["rule_id"]} for k, r in res["categories"].items() if r["value"] == T],
+            "excluded": [{"category": k, "rule_id": encoded[k]["rule_id"],
+                          "failing": [{"condition": c, "quote": encoded[k]["conditions"][c]["quote"], **({"fact": encoded[k]["conditions"][c]["fact"]} if "fact" in encoded[k]["conditions"][c] else {})} for c in r["failing"]]}
+                         for k, r in res["categories"].items() if r["value"] == F],
+            "uncovered_categories": uncovered},
+        "conformity_routes": [{"rule_id": r["rule"], "route": r["route"], "open_ref": r.get("open_ref")} for r in routes],
+        "timeline": [], "reasons": reasons, "next_questions": sorted(set(nextq)),
+        "reassessment_recommended": {"value": False}, "disclaimer_version": "v3-13-draft"}
+
+
 def verify_quotes(spec):
     """AC-01 (amended): every condition quote must appear verbatim in the held B2 text."""
     inv = json.loads((ROOT / "docs/research/out/wp1-category-inventory.json").read_text())
@@ -165,11 +222,20 @@ def main():
         for b in bad:
             print("  not found:", b)
         fails += len(bad)
+        bad = verify_open_refs(spec)
+        print(f"OPEN references: {'all cited' if not bad else 'FAILED'}")
+        for b in bad:
+            print("  ", b)
+        fails += len(bad)
     for fx in fixtures:
         res = classify(spec, fx["facts"], uncovered="assume_excluded")
         real = classify(spec, fx["facts"], uncovered="block")
         routes = route(spec, fx["facts"], res)
         real_routes = route(spec, fx["facts"], real)
+        if "--emit" in sys.argv:
+            out = Path(sys.argv[sys.argv.index("--emit") + 1])
+            out.mkdir(parents=True, exist_ok=True)
+            (out / f"{fx['case']}.json").write_text(json.dumps(to_output(fx, spec, real, real_routes), indent=1))
         exp = fx["expect"]
         ok = res["status"] == exp["status"]
         if "floor" in exp:

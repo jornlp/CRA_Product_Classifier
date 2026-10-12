@@ -1,0 +1,468 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://cra-classifier.local/schemas/assessment-output.schema.json",
+ "title": "CRA classifier assessment output",
+ "description": "What evaluate() returns and what the JSON export contains (v4 5.3, amended by WP7 4.4-4.8). The conditional rules at the end encode AC-02 and AC-03: a definite class needs a settled scope and nothing blocking, and DEFAULT additionally needs complete coverage.",
+ "type": "object",
+ "required": [
+  "assessment_id",
+  "assessed_at",
+  "rule_set_version",
+  "sources",
+  "facts",
+  "scope",
+  "classification",
+  "conformity_routes",
+  "timeline",
+  "reasons",
+  "next_questions",
+  "reassessment_recommended",
+  "disclaimer_version"
+ ],
+ "properties": {
+  "assessment_id": {
+   "type": "string"
+  },
+  "assessed_at": {
+   "type": "string",
+   "format": "date"
+  },
+  "rule_set_version": {
+   "type": "string"
+  },
+  "sources": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "type": "object",
+    "required": [
+     "code",
+     "id",
+     "sha256"
+    ],
+    "properties": {
+     "code": {
+      "type": "string"
+     },
+     "id": {
+      "type": "string"
+     },
+     "sha256": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false
+   }
+  },
+  "facts": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/fact"
+   }
+  },
+  "scope": {
+   "type": "object",
+   "required": [
+    "status",
+    "reasons"
+   ],
+   "properties": {
+    "status": {
+     "enum": [
+      "IN_SCOPE",
+      "OUT_OF_SCOPE",
+      "UNRESOLVED"
+     ]
+    },
+    "reasons": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "assumed": {
+     "description": "Set when scope was not evaluated, e.g. in a trial.",
+     "type": "boolean"
+    }
+   },
+   "additionalProperties": false
+  },
+  "classification": {
+   "type": "object",
+   "required": [
+    "status",
+    "class_floor",
+    "blocking",
+    "matched",
+    "excluded",
+    "uncovered_categories"
+   ],
+   "properties": {
+    "status": {
+     "enum": [
+      "DEFAULT",
+      "IMPORTANT_I",
+      "IMPORTANT_II",
+      "CRITICAL",
+      "UNRESOLVED"
+     ]
+    },
+    "class_floor": {
+     "description": "The class the product reaches at least (WP7 4.4). When status is a class, it must equal class_floor; JSON Schema cannot compare two fields, so the engine tests check this.",
+     "enum": [
+      "DEFAULT",
+      "IMPORTANT_I",
+      "IMPORTANT_II",
+      "CRITICAL"
+     ]
+    },
+    "blocking": {
+     "description": "Categories above the floor not settled FALSE, with their value.",
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "category",
+       "value"
+      ],
+      "properties": {
+       "category": {
+        "type": "string"
+       },
+       "value": {
+        "enum": [
+         "UNKNOWN",
+         "CONFLICTING",
+         "OPEN",
+         "NOT_COVERED"
+        ]
+       }
+      },
+      "additionalProperties": false
+     }
+    },
+    "matched": {
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "category",
+       "class",
+       "rule_id"
+      ],
+      "properties": {
+       "category": {
+        "type": "string"
+       },
+       "class": {
+        "type": "string"
+       },
+       "rule_id": {
+        "type": "string"
+       },
+       "limb": {
+        "type": "string"
+       }
+      },
+      "additionalProperties": false
+     }
+    },
+    "excluded": {
+     "description": "Categories ruled out, each with the condition(s) that failed and their quotes (AC-03 substantive completeness).",
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "category",
+       "rule_id",
+       "failing"
+      ],
+      "properties": {
+       "category": {
+        "type": "string"
+       },
+       "rule_id": {
+        "type": "string"
+       },
+       "failing": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+         "type": "object",
+         "required": [
+          "condition",
+          "quote"
+         ],
+         "properties": {
+          "condition": {
+           "type": "string"
+          },
+          "quote": {
+           "type": "string"
+          },
+          "fact": {
+           "type": "string"
+          },
+          "limb": {
+           "type": "string"
+          }
+         },
+         "additionalProperties": false
+        }
+       }
+      },
+      "additionalProperties": false
+     }
+    },
+    "uncovered_categories": {
+     "description": "Categories with no enabled rule. Non-empty blocks DEFAULT (AC-03).",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "additionalProperties": false
+  },
+  "conformity_routes": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "rule_id",
+     "route"
+    ],
+    "properties": {
+     "rule_id": {
+      "type": "string"
+     },
+     "route": {
+      "type": "string"
+     },
+     "open_ref": {
+      "type": [
+       "string",
+       "null"
+      ]
+     }
+    },
+    "additionalProperties": false
+   }
+  },
+  "timeline": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/timelineItem"
+   }
+  },
+  "reasons": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "kind",
+     "detail"
+    ],
+    "properties": {
+     "kind": {
+      "enum": [
+       "MISSING_FACTS",
+       "CONFLICTING_FACTS",
+       "LAW_OPEN",
+       "COVERAGE",
+       "EVIDENCE_BELOW_REQUIREMENT"
+      ]
+     },
+     "category": {
+      "type": "string"
+     },
+     "detail": {
+      "type": "string"
+     },
+     "open_ref": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false
+   }
+  },
+  "next_questions": {
+   "description": "Fact ids only from MISSING_FACTS reasons; never asked to resolve LAW_OPEN (WP7 4.5).",
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "reviewer_flags": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "reassessment_recommended": {
+   "type": "object",
+   "required": [
+    "value"
+   ],
+   "properties": {
+    "value": {
+     "type": "boolean"
+    },
+    "stale_rules": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "why": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "disclaimer_version": {
+   "type": "string"
+  }
+ },
+ "additionalProperties": false,
+ "allOf": [
+  {
+   "description": "AC-02: a definite class requires an in-scope result and nothing blocking.",
+   "if": {
+    "properties": {
+     "classification": {
+      "properties": {
+       "status": {
+        "enum": [
+         "DEFAULT",
+         "IMPORTANT_I",
+         "IMPORTANT_II",
+         "CRITICAL"
+        ]
+       }
+      }
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "scope": {
+      "properties": {
+       "status": {
+        "const": "IN_SCOPE"
+       }
+      }
+     },
+     "classification": {
+      "properties": {
+       "blocking": {
+        "maxItems": 0
+       }
+      }
+     }
+    }
+   }
+  },
+  {
+   "description": "AC-03: DEFAULT additionally requires no uncovered categories and a match on nothing.",
+   "if": {
+    "properties": {
+     "classification": {
+      "properties": {
+       "status": {
+        "const": "DEFAULT"
+       }
+      }
+     }
+    }
+   },
+   "then": {
+    "properties": {
+     "classification": {
+      "properties": {
+       "uncovered_categories": {
+        "maxItems": 0
+       },
+       "matched": {
+        "maxItems": 0
+       }
+      }
+     }
+    }
+   }
+  }
+ ],
+ "$defs": {
+  "fact": {
+   "type": "object",
+   "required": [
+    "fact_id",
+    "value",
+    "provenance"
+   ],
+   "properties": {
+    "fact_id": {
+     "type": "string"
+    },
+    "value": {},
+    "provenance": {
+     "enum": [
+      "USER_CONFIRMED",
+      "DOCUMENT_SUPPORTED",
+      "LLM_DRAFT",
+      "DEFAULTED"
+     ]
+    },
+    "source_ref": {
+     "type": "string"
+    },
+    "confirmed_by": {
+     "type": "string"
+    },
+    "updated_at": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "timelineItem": {
+   "type": "object",
+   "required": [
+    "obligation",
+    "status",
+    "provision"
+   ],
+   "properties": {
+    "obligation": {
+     "type": "string"
+    },
+    "status": {
+     "enum": [
+      "APPLIES",
+      "NOT_YET",
+      "TRANSITION",
+      "NOT_APPLICABLE",
+      "UNRESOLVED"
+     ]
+    },
+    "provision": {
+     "type": "string"
+    },
+    "applies_from": {
+     "type": "string",
+     "format": "date"
+    },
+    "basis": {
+     "type": "string"
+    },
+    "open_questions": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    }
+   },
+   "additionalProperties": false
+  }
+ }
+}

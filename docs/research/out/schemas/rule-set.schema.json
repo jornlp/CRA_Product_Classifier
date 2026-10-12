@@ -1,0 +1,597 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "https://cra-classifier.local/schemas/rule-set.schema.json",
+ "title": "CRA classifier rule set",
+ "description": "Rule data evaluated by the engine (WP7 rule model, section 5). The engine contains logic only; everything legal lives here. A rule with enabled=true must meet the amended AC-01: verified conditions, held sources with hashes, a technical reviewer.",
+ "type": "object",
+ "required": [
+  "artifact",
+  "rule_set_version",
+  "class_order",
+  "categories_total",
+  "facts",
+  "categories"
+ ],
+ "properties": {
+  "artifact": {
+   "type": "string"
+  },
+  "rule_set_version": {
+   "type": "string",
+   "pattern": "^\\d+\\.\\d+\\.\\d+(-[0-9A-Za-z.-]+)?$"
+  },
+  "sources": {
+   "description": "Held legal sources, keyed by source code (B1c, B2, ...). Rules cite these codes.",
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/source"
+   }
+  },
+  "law_version": {
+   "description": "Deprecated by WP7 5: use sources. Kept for the trial.",
+   "type": "object"
+  },
+  "note": {
+   "type": "string"
+  },
+  "class_order": {
+   "type": "array",
+   "const": [
+    "DEFAULT",
+    "IMPORTANT_I",
+    "IMPORTANT_II",
+    "CRITICAL"
+   ]
+  },
+  "categories_total": {
+   "type": "integer",
+   "const": 26
+  },
+  "facts": {
+   "type": "object",
+   "additionalProperties": {
+    "$ref": "#/$defs/factDecl"
+   }
+  },
+  "categories": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/categoryRule"
+   }
+  },
+  "routes": {
+   "type": "array",
+   "items": {
+    "$ref": "#/$defs/routeRule"
+   }
+  }
+ },
+ "additionalProperties": false,
+ "$defs": {
+  "source": {
+   "type": "object",
+   "required": [
+    "id",
+    "sha256"
+   ],
+   "properties": {
+    "id": {
+     "description": "CELEX or consolidation id, e.g. 02024R2847-20241120",
+     "type": "string"
+    },
+    "sha256": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "file": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "date": {
+   "type": "string",
+   "format": "date",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+  },
+  "status": {
+   "enum": [
+    "AUTHOR_VERIFIED",
+    "AUTHOR_INTERPRETATION"
+   ]
+  },
+  "lawRef": {
+   "type": "object",
+   "required": [
+    "source",
+    "item"
+   ],
+   "properties": {
+    "source": {
+     "type": "string"
+    },
+    "item": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "factDecl": {
+   "type": "object",
+   "required": [
+    "type",
+    "evidence"
+   ],
+   "properties": {
+    "type": {
+     "enum": [
+      "bool",
+      "enum",
+      "multi-enum",
+      "date"
+     ]
+    },
+    "values": {
+     "type": "array",
+     "minItems": 2
+    },
+    "evidence": {
+     "enum": [
+      "MANUFACTURER_ONLY",
+      "DOCUMENT",
+      "DOCUMENT_LIKELY"
+     ]
+    },
+    "proxy": {
+     "type": "string"
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "type": {
+        "enum": [
+         "enum",
+         "multi-enum"
+        ]
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "values"
+      ]
+     }
+    }
+   ],
+   "additionalProperties": false
+  },
+  "conditionValue": {
+   "enum": [
+    "TRUE",
+    "FALSE",
+    "UNKNOWN",
+    "OPEN"
+   ]
+  },
+  "condition": {
+   "description": "One decisive condition with its verbatim quote. Exactly one test: is, in, map, or a reference to another category.",
+   "type": "object",
+   "required": [
+    "quote"
+   ],
+   "properties": {
+    "quote": {
+     "type": "string",
+     "minLength": 3
+    },
+    "where": {
+     "enum": [
+      "description",
+      "title"
+     ]
+    },
+    "fact": {
+     "type": "string"
+    },
+    "is": {
+     "type": [
+      "boolean",
+      "string",
+      "integer"
+     ]
+    },
+    "in": {
+     "type": "array",
+     "minItems": 1
+    },
+    "map": {
+     "type": "object",
+     "additionalProperties": {
+      "$ref": "#/$defs/conditionValue"
+     }
+    },
+    "category": {
+     "type": "string"
+    },
+    "status": {
+     "$ref": "#/$defs/status"
+    },
+    "open_ref": {
+     "description": "Required wherever map can yield OPEN: the recorded open question.",
+     "type": "string"
+    }
+   },
+   "oneOf": [
+    {
+     "required": [
+      "fact",
+      "is"
+     ]
+    },
+    {
+     "required": [
+      "fact",
+      "in"
+     ]
+    },
+    {
+     "required": [
+      "fact",
+      "map"
+     ]
+    },
+    {
+     "required": [
+      "category"
+     ],
+     "not": {
+      "required": [
+       "fact"
+      ]
+     }
+    }
+   ],
+   "additionalProperties": false
+  },
+  "match": {
+   "description": "Condition id, or a tree of all/any. Limbs may be named so explanations can say which limb failed.",
+   "oneOf": [
+    {
+     "type": "string"
+    },
+    {
+     "type": "object",
+     "required": [
+      "all"
+     ],
+     "properties": {
+      "name": {
+       "type": "string"
+      },
+      "all": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/match"
+       }
+      }
+     },
+     "additionalProperties": false
+    },
+    {
+     "type": "object",
+     "required": [
+      "any"
+     ],
+     "properties": {
+      "name": {
+       "type": "string"
+      },
+      "any": {
+       "type": "array",
+       "minItems": 2,
+       "items": {
+        "$ref": "#/$defs/match"
+       }
+      }
+     },
+     "additionalProperties": false
+    }
+   ]
+  },
+  "datedRule": {
+   "properties": {
+    "effective_from": {
+     "$ref": "#/$defs/date"
+    },
+    "effective_to": {
+     "$ref": "#/$defs/date"
+    },
+    "date_basis": {
+     "description": "Which date the validity is tested against (WP7 4.6).",
+     "enum": [
+      "placed_on_market",
+      "assessment_date"
+     ]
+    }
+   }
+  },
+  "provenance": {
+   "properties": {
+    "enabled": {
+     "type": "boolean"
+    },
+    "verified_by": {
+     "type": "string"
+    },
+    "verified_at": {
+     "$ref": "#/$defs/date"
+    },
+    "technical_reviewer": {
+     "type": "string"
+    }
+   },
+   "if": {
+    "properties": {
+     "enabled": {
+      "const": true
+     }
+    },
+    "required": [
+     "enabled"
+    ]
+   },
+   "then": {
+    "required": [
+     "verified_by",
+     "verified_at",
+     "technical_reviewer"
+    ]
+   }
+  },
+  "categoryRule": {
+   "type": "object",
+   "allOf": [
+    {
+     "$ref": "#/$defs/datedRule"
+    },
+    {
+     "$ref": "#/$defs/provenance"
+    }
+   ],
+   "required": [
+    "rule_id",
+    "category",
+    "class",
+    "status",
+    "law_ref",
+    "conditions",
+    "match",
+    "test_ids"
+   ],
+   "properties": {
+    "rule_id": {
+     "type": "string",
+     "pattern": "^CAT-(III-I|III-II|IV)-\\d{2}$"
+    },
+    "category": {
+     "type": "string",
+     "pattern": "^(III-I|III-II|IV)-\\d{2}$"
+    },
+    "class": {
+     "enum": [
+      "IMPORTANT_I",
+      "IMPORTANT_II",
+      "CRITICAL"
+     ]
+    },
+    "status": {
+     "$ref": "#/$defs/status"
+    },
+    "law_ref": {
+     "$ref": "#/$defs/lawRef"
+    },
+    "coverage": {
+     "enum": [
+      "author-verified",
+      "operative-for-exclusion",
+      "not-covered"
+     ]
+    },
+    "conditions": {
+     "type": "object",
+     "minProperties": 1,
+     "additionalProperties": {
+      "$ref": "#/$defs/condition"
+     }
+    },
+    "match": {
+     "$ref": "#/$defs/match"
+    },
+    "descriptive": {
+     "description": "Quoted wording deliberately NOT treated as a condition, with the reason (WP5 finding 1).",
+     "type": "array",
+     "items": {
+      "type": "object",
+      "required": [
+       "quote",
+       "why"
+      ],
+      "properties": {
+       "quote": {
+        "type": "string"
+       },
+       "why": {
+        "type": "string"
+       }
+      },
+      "additionalProperties": false
+     }
+    },
+    "test_ids": {
+     "type": "array",
+     "minItems": 2,
+     "items": {
+      "type": "string"
+     }
+    },
+    "effective_from": true,
+    "effective_to": true,
+    "date_basis": true,
+    "enabled": true,
+    "verified_by": true,
+    "verified_at": true,
+    "technical_reviewer": true
+   },
+   "additionalProperties": false
+  },
+  "routeCase": {
+   "type": "object",
+   "required": [
+    "when",
+    "route"
+   ],
+   "properties": {
+    "when": {
+     "type": "object",
+     "required": [
+      "is"
+     ],
+     "properties": {
+      "is": {},
+      "date_fact": {
+       "type": "string"
+      },
+      "on_or_after": {
+       "$ref": "#/$defs/date"
+      },
+      "before": {
+       "$ref": "#/$defs/date"
+      }
+     },
+     "additionalProperties": false
+    },
+    "route": {
+     "type": "string"
+    },
+    "unless_class_in": {
+     "type": "array",
+     "items": {
+      "enum": [
+       "DEFAULT",
+       "IMPORTANT_I",
+       "IMPORTANT_II",
+       "CRITICAL"
+      ]
+     }
+    },
+    "unless_route": {
+     "type": "string"
+    },
+    "open_ref": {
+     "type": "string"
+    },
+    "note": {
+     "type": "string"
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "required": [
+       "unless_class_in"
+      ]
+     },
+     "then": {
+      "required": [
+       "unless_route"
+      ]
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "route": {
+        "const": "OPEN"
+       }
+      }
+     },
+     "then": {
+      "required": [
+       "open_ref"
+      ]
+     }
+    }
+   ],
+   "additionalProperties": false
+  },
+  "routeRule": {
+   "type": "object",
+   "allOf": [
+    {
+     "$ref": "#/$defs/datedRule"
+    },
+    {
+     "$ref": "#/$defs/provenance"
+    }
+   ],
+   "required": [
+    "rule_id",
+    "status",
+    "law_ref",
+    "fact",
+    "cases"
+   ],
+   "properties": {
+    "rule_id": {
+     "type": "string",
+     "pattern": "^ROUTE-"
+    },
+    "status": {
+     "$ref": "#/$defs/status"
+    },
+    "law_ref": {
+     "oneOf": [
+      {
+       "$ref": "#/$defs/lawRef"
+      },
+      {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "$ref": "#/$defs/lawRef"
+       }
+      }
+     ]
+    },
+    "fact": {
+     "type": "string"
+    },
+    "cases": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "$ref": "#/$defs/routeCase"
+     }
+    },
+    "displaces": {
+     "description": "Routes this one replaces when it applies (WP7 4.7).",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "effective_from": true,
+    "effective_to": true,
+    "date_basis": true,
+    "enabled": true,
+    "verified_by": true,
+    "verified_at": true,
+    "technical_reviewer": true
+   },
+   "additionalProperties": false
+  }
+ }
+}
