@@ -52,8 +52,10 @@ Absence of a match is never an exclusion (v4 §5.2).
 | EXC-04 | Component for a type-approved motor vehicle | Reg. 2019/2144 applies | Art. 2(2)(c) exclusion where that Regulation applies to the product | v3 | H |
 | EXC-05 | Device developed exclusively for military/classified use | national-security exclusion | Exclusion candidate; documentary evidence required | new | H |
 | EXC-06 | Exclusion claimed but applicable instrument unidentified | exclusion basis UNKNOWN | No exclusion granted; question returned | new | H |
+| EXC-11 | Connected moped or quadricycle within Reg. (EU) No 168/2013 | an applicable Art. 2(5) delegated act exists | **Excluded** by Delegated Regulation (EU) 2025/1535 Art. 1 | new | H |
+| EXC-12 | Connected speed pedelec — an L1e vehicle designed to pedal | the carve-out from the carve-out | **Not excluded.** 2025/1535 Art. 1 second paragraph expressly keeps pedal-designed L1e vehicles in CRA scope | new | H |
 | EXC-07 | Avionics product within scope of Reg. 2018/1139 but **not** certified under it | certification, not scope | Art. 2(3) excludes only products *certified in accordance with* 2018/1139 — scope alone is not enough | new | H |
-| EXC-08 | Sectoral rules claimed to cover the Annex I risks | Art. 2(5) delegated act | No exclusion unless a delegated act under Art. 2(5) actually says so; absence of an act is not an exclusion | new | H |
+| EXC-08 | Sectoral rules claimed to cover the Annex I risks, with no delegated act covering this product | Art. 2(5) requires an **applicable** act | No exclusion. The test is whether an applicable delegated act covers this product, not whether any exist — one does (2025/1535), but not for this product | new | H |
 
 ## C. Product boundary
 
@@ -138,6 +140,8 @@ Role does not change the technical class (v4 §3.3).
 | LIFE-05 | Firmware update adding a new remote-management capability | functional change | Substantial modification candidate + review flag | new | H |
 | LIFE-06 | Placing date unknown | date UNKNOWN | Timeline `UNRESOLVED` per obligation; no single "CRA from date" answer | new | H |
 | LIFE-08 | Update changes security behaviour; intended purpose unchanged; effect on Annex I Part I compliance UNKNOWN | limb (a) of Art. 3(30) | Must **not** conclude "not substantial" from unchanged intended purpose alone — `UNRESOLVED` + reviewer flag. The MVP cannot decide limb (a) | new | H |
+| RED-01 | Internet-connected radio equipment placed on the market between 1 Aug 2025 and 10 Dec 2027 | in RED DA scope, placed before the CRA applies | CRA essential requirements do not yet apply (Art. 69(2)), **but the output must say the RED Delegated Regulation's cybersecurity requirements already do**. Silence here is falsely reassuring | FAQ | H |
+| RED-02 | The same radio equipment placed on the market on or after 11 Dec 2027 | placed after the CRA applies | CRA essential requirements apply. The Commission *aims* to repeal the RED Delegated Regulation from that date — an intention, not a fact, so the tool must not assert the repeal | FAQ | H |
 | LIFE-07 | Product holds an EU type-examination certificate under other harmonisation legislation | Art. 69(1) | Certificate valid until 11 June 2028 unless it expires earlier or that legislation says otherwise — a fourth date the plan omitted | new | H |
 
 ## I. Open source
@@ -178,6 +182,18 @@ and a living document, so each case records the version it came from (v14).
 | EXC-09 | Dual-use product with both civilian and defence applications | not developed or modified **exclusively** for defence | **Not excluded** — the Art. 2(7) exclusion requires exclusivity | FAQ | H |
 | EXC-10 | The same product modified exclusively for national security or defence purposes | exclusivity met | Excluded under Art. 2(7) | FAQ | H |
 | COMP-01 | Product integrating third-party components that do not bear the CE marking, during the transition | components not yet subject to the CRA | Integration permitted; due diligence must be exercised by other means (Art. 13(5), recital 35) | FAQ | H |
+
+## O. Adjacent regimes that do not exclude
+
+Other law applying alongside the CRA. The engine flags these as pointers; it does not assess them
+(v4 section 2.3). The two exceptions are RED and the AI Act, which change a CRA answer.
+
+| ID | Scenario | Decisive fact | Expected engine property | Src | St |
+|---|---|---|---|---|---|
+| OVL-01 | Connected industrial machine that is machinery under Reg. (EU) 2023/1230 | machinery and a product with digital elements | **Not excluded.** Both apply; the Machinery Regulation's Annex III ss. 1.1.9/1.2.1 address safety-relevant cybersecurity. Flag as a pointer, do not assess | FAQ | H |
+| OVL-02 | Consumer product with digital elements carrying risks beyond cybersecurity | consumer product, non-cyber risks | **Not excluded.** GPSR applies alongside for the other risks. Pointer only | FAQ | H |
+| OVL-03 | Connected product that is also a connected product under the Data Act | data-access obligations exist | **Not excluded.** Arts. 4 and 5 obligations must be considered within the manufacturer's CRA risk assessment. Pointer, with that link stated | FAQ | H |
+| OVL-04 | Product whose maker claims an adjacent regime means the CRA does not apply | adjacent vs exclusion | The CRA applies. An adjacent regime is not an exclusion; only Art. 2(2)–(7) and an applicable Art. 2(5) delegated act exclude | new | H |
 
 ## J. Engine properties (meta-cases)
 
@@ -278,20 +294,21 @@ to be excluded with a reason.
 | Family | Cases |
 |---|---|
 | A. Scope, connectivity and market activity | 8 |
-| B. Exclusions | 8 |
+| B. Exclusions | 10 |
 | C. Product boundary | 8 |
 | D. Core function versus feature | 11 |
 | E. Annex III candidates | 10 |
 | F. Annex IV (critical) candidates | 8 |
 | G. Economic role | 6 |
-| H. Lifecycle and timeline | 8 |
+| H. Lifecycle and timeline | 10 |
 | I. Open source | 3 |
 | J. Engine properties (meta-cases) | 8 |
 | K. Overlap with the AI Act | 4 |
 | L. Per-category coverage (minimal pairs) | 52 |
 | M. Cases from real product shapes | 6 |
 | N. Cases from the official FAQ | 10 |
-| **Total** | **150** |
+| O. Adjacent regimes that do not exclude | 4 |
+| **Total** | **158** |
 
 All 11 v4 IDs are preserved: `RAT-01…04`, `WTR-01…03`, `LIFE-01…03`, `SRC-01`,
 `OTHER-01`. AC-05 references these by name.

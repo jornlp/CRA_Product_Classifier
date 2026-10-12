@@ -56,28 +56,43 @@ These are named inside the Annex categories, so their definitions are part of th
 | Regulation (EU) 2017/746 (IVDR) | Same | CELEX `32017R0746` |
 | Directive 2009/48/EC (toy safety) | Named in III-I-18. **Check whether a newer Toy Safety Regulation has replaced it** | CELEX `32009L0048` |
 
-## UNVERIFIED CLAIM — a delegated act under Art. 2(5) may already exist
+## VERIFIED — an Art. 2(5) delegated act exists
 
-Raised in review round 2, **not yet verified**, and it contradicts what this project recorded on
-12 October ("no evidence found of a delegated act under Art. 2(5)").
+Flagged in review round 2, contradicting our own record ("no evidence found of a delegated act
+under Art. 2(5)"), and now **confirmed against the authentic OJ text**.
 
-> **Commission Delegated Regulation (EU) 2025/1535**, said to have been adopted 29 July 2025,
-> excluding products falling within Regulation (EU) No 168/2013 (two- and three-wheel vehicles
-> and quadricycles), with an express exception for certain L1e vehicles designed to pedal.
+**Commission Delegated Regulation (EU) 2025/1535** of 29 July 2025 (OJ L, 2025/1535, 29.10.2025),
+adopted under CRA **Art. 2(5), second subparagraph**. Article 1, verbatim:
 
-Plausible on its face: the CRA's own title amends Reg. (EU) No 168/2013, so that family is
-already in its field of view. But the claim comes from an LLM review and **must be checked
-against EUR-Lex before anything is built on it**.
+> The application of Regulation (EU) 2024/2847 shall be excluded for products with digital
+> elements falling within the scope of Regulation (EU) No 168/2013.
+>
+> However, that exclusion shall not apply to L1e category vehicles designed to pedal referred to
+> in Article 3, point (94)(b), of Regulation (EU) No 168/2013.
 
-If it holds, two things follow:
+Held as `B14_del-reg-2025-1535_art2-5-exclusion_168-2013.pdf`, hashed.
 
-1. The engine's Art. 2(5) rule changes shape. It must check whether an **applicable** delegated
-   act covers this product, not whether any delegated act exists. Those are different questions
-   and only the first is answerable.
-2. Our records are wrong and need correcting wherever they say no such act was found.
+**Two consequences.**
 
-**To obtain:** CELEX for Delegated Regulation (EU) 2025/1535, and a search of the OJ for any
-other delegated acts under CRA Art. 2(5), 7(3), 8(1) and 8(2).
+1. Two- and three-wheel vehicles and quadricycles are **excluded** from the CRA — but
+   **pedal-designed L1e vehicles are carved back in**. That is a live distinction for a large
+   product population, and it is a carve-out from a carve-out, which is exactly the shape that
+   gets implemented wrongly.
+2. The engine's Art. 2(5) rule changes: check whether an **applicable** delegated act covers this
+   product, never whether any delegated act exists. Our `EXC-08` was built on the second question.
+
+**Method note.** Our "no evidence found" came from secondary web sources. The correction came
+from an LLM review flagging a specific instrument, which we then verified against the official
+text. That is precisely the division of labour DR-04 and `PROVENANCE.md` set out, and it worked.
+
+**Still to check:** any further delegated acts under Art. 2(5), and any under Art. 7(3), 8(1) or
+8(2).
+
+## Also held
+
+- `B15_dir-2014-53_RED.pdf` — Radio Equipment Directive 2014/53/EU, the parent instrument.
+  **Note:** this is not the delegated act. The cybersecurity requirements come from **Commission
+  Delegated Regulation (EU) 2022/30**, CELEX `32022R0030`, which is still to obtain.
 
 ## P1 — exclusions under CRA Art. 2
 

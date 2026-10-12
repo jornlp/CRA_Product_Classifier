@@ -78,16 +78,17 @@
   },
   {
    "fact_id": "EXCLUSION_CLAIMED",
-   "question": "Is the product covered by MDR 2017/745, IVDR 2017/746, Reg. 2019/2144, certified under Reg. 2018/1139, within Dir. 2014/90/EU, a same-spec spare part, or exclusively for defence or classified information?",
+   "question": "Is the product covered by any of these? MDR 2017/745 · IVDR 2017/746 · Reg. 2019/2144 (vehicles) · certified under Reg. 2018/1139 (aviation) · Dir. 2014/90/EU (marine) · Reg. (EU) No 168/2013 (two- and three-wheel vehicles and quadricycles) · a same-specification spare part · developed exclusively for defence or to process classified information",
    "kind": "enum",
-   "why_we_ask": "Art. 2(2)-(7). Each limb is a separate question in the full assessment.",
+   "why_we_ask": "Art. 2(2)-(7), plus Art. 2(5) delegated acts. Commission Delegated Regulation (EU) 2025/1535 excludes products within Reg. (EU) No 168/2013 - BUT NOT L1e category vehicles designed to pedal, which remain in CRA scope. Each limb is a separate question in the full assessment.",
    "categories_discriminated": [],
    "evidence_expectation": "MIXED",
    "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
    "worked_example": {
-    "yes": "A device that is a CE-marked medical device under Reg. 2017/745.",
-    "no": "A health-adjacent wearable with no medical intended purpose."
-   }
+    "yes": "A moped or quadricycle within Reg. (EU) No 168/2013 — excluded by Delegated Regulation (EU) 2025/1535.",
+    "no": "A speed pedelec or other L1e vehicle designed to pedal — expressly carved back IN by that same Regulation."
+   },
+   "delegated_act_rule": "Check whether an APPLICABLE delegated act covers this product, never whether any delegated act exists. As at 12 October 2026 the only one found under Art. 2(5) is Delegated Regulation (EU) 2025/1535. Re-check each release."
   },
   {
    "fact_id": "MARKET_ROLE",
@@ -762,6 +763,20 @@
     "yes": "A TPM, eUICC or payment card chip.",
     "no": "A general microcontroller with a crypto library."
    }
+  },
+  {
+   "fact_id": "RADIO_EQUIPMENT_RED_DA",
+   "question": "Is the product radio equipment that (a) can communicate over the internet, directly or via other equipment; (b) is internet-connected or in the childcare, toy or wearable categories AND can process personal data, traffic data or location data; or (c) is internet-connected and lets the user transfer money, monetary value or virtual currency?",
+   "kind": "enum:YES/NO/UNKNOWN",
+   "why_we_ask": "Delegated Regulation (EU) 2022/30 Art. 1, applying RED Art. 3(3)(d), (e) and (f). Its Art. 2 derogates: MDR/IVDR products are out entirely; products under Reg. 2018/1139, Reg. 2019/2144 or Dir. 2019/520 are out of limbs (e) and (f). Not a CRA scope question - radio equipment is fully in CRA scope - but these requirements have applied since 1 August 2025, so a CRA-only timeline answer would be falsely reassuring.",
+   "categories_discriminated": [],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "An internet-connected device with a Wi-Fi or cellular radio, placed on the market after 1 August 2025.",
+    "no": "A wired-only product with no radio, or radio equipment outside the Delegated Regulation's listed categories."
+   },
+   "output_rule": "POINTER ONLY. The tool must not assess RED conformity - v4 section 2.3 keeps this out of scope. It states that other requirements may already apply and that the user should check them separately. Harmonised standards for the RED Delegated Regulation are the EN 18031 series, cited in the OJ; they are NOT CRA standards."
   }
  ],
  "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",

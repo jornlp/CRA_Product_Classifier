@@ -174,7 +174,7 @@
    "expected_scope": "IN",
    "expected_class": "NOT_ASSERTED",
    "contested": "We keep IN. Art. 2(5) requires a delegated act for the limitation to exist; the absence of one is determinable, not unknown, so this is not the EXC-06 situation.",
-   "review_change": "Round 2 confirms IN where no applicable exclusion instrument exists - but corrects the reasoning. The engine must check for an APPLICABLE delegated act under Art. 2(5), not whether any delegated act exists. See the claim about Delegated Reg. (EU) 2025/1535 in docs/legal/sources/MANIFEST.md, which is UNVERIFIED."
+   "review_change": "Round 2 plus verification: the reasoning changes even though the answer does not. An Art. 2(5) delegated act DOES exist (2025/1535); the test is whether an applicable one covers this product."
   },
   {
    "id": "BND-01",
@@ -1733,6 +1733,94 @@
     "matches": false
    },
    "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-11",
+   "section": "B",
+   "scenario": "see catalogue",
+   "decisive_fact": "Art. 2(5) delegated act",
+   "expected_behaviour": "see catalogue",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED",
+   "status": "AUTHOR_VERIFIED",
+   "review_change": "Delegated Regulation (EU) 2025/1535 Art. 1, verified verbatim against the OJ text."
+  },
+  {
+   "id": "EXC-12",
+   "section": "B",
+   "scenario": "see catalogue",
+   "decisive_fact": "Art. 2(5) delegated act",
+   "expected_behaviour": "see catalogue",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "status": "AUTHOR_VERIFIED",
+   "review_change": "Delegated Regulation (EU) 2025/1535 Art. 1 second paragraph, verified verbatim."
+  },
+  {
+   "id": "RED-01",
+   "section": "H",
+   "scenario": "see catalogue",
+   "decisive_fact": "placing date vs RED DA window",
+   "expected_behaviour": "see catalogue",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "status": "AUTHOR_VERIFIED",
+   "review_change": "Official FAQ: radio equipment in RED Delegated Regulation scope is in CRA scope; placed 1 Aug 2025 - 10 Dec 2027 it is subject to the RED cybersecurity requirements, not the CRA's. The output must say so."
+  },
+  {
+   "id": "RED-02",
+   "section": "H",
+   "scenario": "see catalogue",
+   "decisive_fact": "placing date vs RED DA window",
+   "expected_behaviour": "see catalogue",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "status": "AUTHOR_VERIFIED",
+   "review_change": "Placed on or after 11 Dec 2027: CRA essential requirements apply. The Commission AIMS to repeal the RED Delegated Regulation from that date - an intention, so the tool must not assert the repeal."
+  },
+  {
+   "id": "OVL-01",
+   "section": "O",
+   "scenario": "see catalogue",
+   "decisive_fact": "adjacent regime, not an exclusion",
+   "expected_behaviour": "see catalogue",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "status": "AUTHOR_VERIFIED",
+   "review_change": "From the official FAQ overlap sections; the CRA is not excluded by any of these."
+  },
+  {
+   "id": "OVL-02",
+   "section": "O",
+   "scenario": "see catalogue",
+   "decisive_fact": "adjacent regime, not an exclusion",
+   "expected_behaviour": "see catalogue",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "status": "AUTHOR_VERIFIED",
+   "review_change": "From the official FAQ overlap sections; the CRA is not excluded by any of these."
+  },
+  {
+   "id": "OVL-03",
+   "section": "O",
+   "scenario": "see catalogue",
+   "decisive_fact": "adjacent regime, not an exclusion",
+   "expected_behaviour": "see catalogue",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "status": "AUTHOR_VERIFIED",
+   "review_change": "From the official FAQ overlap sections; the CRA is not excluded by any of these."
+  },
+  {
+   "id": "OVL-04",
+   "section": "O",
+   "scenario": "see catalogue",
+   "decisive_fact": "adjacent regime, not an exclusion",
+   "expected_behaviour": "see catalogue",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "status": "AUTHOR_VERIFIED",
+   "review_change": "From the official FAQ overlap sections; the CRA is not excluded by any of these."
   }
  ],
  "review_round_1": {
