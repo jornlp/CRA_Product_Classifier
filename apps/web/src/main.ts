@@ -19,7 +19,8 @@ import { reportMarkdown, routeLabel } from "./report.js";
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
 const TIMELINE = tl as unknown as TimelineRules;
-type CatInfo = { category: string; title: string; class: string; named_products: string[]; description: string };
+type CatInfo = { category: string; title: string; class: string; named_products: string[]; description: string;
+  description_parts?: { text: string; mark?: boolean }[] };
 type FaqExample = { counts: boolean; text: string; quote: string; source: string };
 type Option = { value: unknown; label: string; group?: string; info?: CatInfo[]; faq_examples?: FaqExample[] };
 
@@ -32,8 +33,9 @@ function optionInfoHtml(info: CatInfo[], id: string, faq: FaqExample[] = []): st
     <article class="law">
       <p class="law-act">Implementing Regulation (EU) 2025/2392 · ${esc(CLASS_LABEL[c.class])}</p>
       <p class="law-title">${esc(c.title)}</p>
-      ${c.named_products.map((n) => `<p class="law-line"><span class="law-label"></span><span>${esc(n)}</span></p>`).join("")}
-      <details><summary>Full official description</summary><p>${esc(c.description)}</p></details>
+      <p class="law-desc">${(c.description_parts ?? [{ text: c.description }]).map((p) =>
+        p.mark ? `<mark>${esc(p.text)}</mark>` : esc(p.text)).join("")}</p>
+      <p class="muted small">Highlighted: the conditions this tool checks for this category.</p>
     </article>`).join("")}</div>`;
 }
 type LawLine = { label: string; level: number; parts: { text: string; mark?: boolean }[] };

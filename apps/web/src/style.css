@@ -1,5 +1,5 @@
 :root { color-scheme: light dark; --bg: #fbfaf7; --fg: #1d1d1b; --muted: #5d5b55; --line: #dedad2; --card: #ffffff; --accent: #1f5f8b;
-        --warn-bg: #fff4d6; --warn: #6e4a00; --bind: #e6f0f7; --faq: #eef3e8; --case: #f3eef7; --rec: #f7f1e3; --on-accent: #ffffff; --mark: #fff0b3; --paper: #fffdf8; }
+        --warn-bg: #fff4d6; --warn: #6e4a00; --bind: #e6f0f7; --faq: #eef3e8; --case: #f3eef7; --rec: #f7f1e3; --on-accent: #ffffff; --mark: #ffe680; --paper: #fffdf8; }
 /* Dark: follows the system unless the user picked a theme; or forced by the switch. */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) { --bg: #171715; --fg: #ecebe6; --muted: #a8a59c; --line: #34332f; --card: #201f1d; --accent: #7fb6dc;
@@ -53,7 +53,9 @@ q { font-style: italic; }
 .law-line { display: grid; grid-template-columns: 2.4rem 1fr; margin: .25rem 0; }
 .law-line.lvl1 { margin-left: 2.4rem; } .law-line.lvl2 { margin-left: 4.8rem; }
 .law-label { color: var(--muted); }
-.law mark { background: var(--mark); color: inherit; padding: 0 .1rem; border-radius: 2px; }
+.law mark { background: var(--mark); color: inherit; font-weight: 700; padding: 0 .15rem; border-radius: 3px;
+            box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.law-desc { margin: .3rem 0 .4rem; }
 .law-cite { margin: .6rem 0; }
 
 .start h2 { margin-bottom: 1rem; }

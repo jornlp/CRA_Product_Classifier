@@ -120,7 +120,7 @@ FAQ_EXAMPLES = {
 }
 
 
-def option_info(cls):
+def option_info(cls, register=None):
     """For each purpose option: the categories it rules out when unticked (read from the rules:
     facts it settles, plus categories that build on those), with the official title, class,
     named products ('includes but is not limited to') and full description, verbatim from B2."""
@@ -144,7 +144,37 @@ def option_info(cls):
             desc = _clean(c["technical_description"])
             named = re.findall(r"This category includes but is not limited to [^.]*\.", desc)
             cls_name = "CRITICAL" if cid.startswith("IV") else "IMPORTANT_II" if cid.startswith("III-II") else "IMPORTANT_I"
-            info.append({"category": cid, "title": c["title"], "class": cls_name, "named_products": named, "description": desc})
+            # Mark every decisive condition of the rule inside the official description.
+            rule = next(r for r in cls["categories"] if r["category"] == cid)
+            quotes = [cond["quote"] for cond in rule["conditions"].values()]
+            # plus the verified legal-basis quotes of the questions that test this category
+            for cond in rule["conditions"].values():
+                for lb in (register or {}).get(cond.get("fact"), {}).get("legal_basis", []):
+                    if lb.get("src") == "B2" and lb.get("cat") == cid:
+                        quotes.append(lb["quote"])
+            spans = []
+            for quote in quotes:
+                try:
+                    spans.append(_find(desc, quote))
+                except SystemExit:
+                    pass  # the quote is in the category title or another category, not in this description
+            spans.sort()
+            merged = []
+            for a, b in spans:
+                if merged and a <= merged[-1][1]:
+                    merged[-1] = (merged[-1][0], max(b, merged[-1][1]))
+                else:
+                    merged.append((a, b))
+            parts, pos = [], 0
+            for a, b in merged:
+                if a > pos:
+                    parts.append({"text": desc[pos:a]})
+                parts.append({"text": desc[a:b], "mark": True})
+                pos = b
+            if pos < len(desc):
+                parts.append({"text": desc[pos:]})
+            info.append({"category": cid, "title": c["title"], "class": cls_name, "named_products": named,
+                         "description": desc, "description_parts": parts})
         out[opt] = info
     return out
 
@@ -346,7 +376,7 @@ def build():
             q["kind"] = "date"
             q["options"] = [NOT_SURE] if fid == "UNITS_PLACED_ON_MARKET" else [{"value": "", "label": "No change since placing"}, NOT_SURE]
         if fid in OPTION_INFO_FOR:
-            info = option_info(cls)
+            info = option_info(cls, reg)
             for o in q.get("options", []):
                 o["info"] = info.get(o["value"], [])
                 o["faq_examples"] = [{"counts": c == "COUNTS", "text": t, "quote": qt, "source": "Commission FAQ v14 (non-binding)"}

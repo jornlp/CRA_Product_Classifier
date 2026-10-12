@@ -102,6 +102,9 @@ describe("screens: pest-control camera", () => {
     expect(panel.hidden).toBe(false);
     expect(btn.getAttribute("aria-expanded")).toBe("true");
     expect(panel.textContent).toContain("smart door locking devices, baby monitoring systems, alarm systems and home security cameras");
+    const marked = [...panel.querySelectorAll("mark")].map((m) => m.textContent);
+    expect(marked.join(" | ")).toContain("protect the physical security of consumers in a residential setting");
+    expect(marked.join(" | ")).toContain("can be controlled or managed remotely from other systems");
     expect(panel.textContent).toContain("Important, Class I");
     expect(row.querySelector<HTMLInputElement>("input")!.checked).toBe(false);
     btn.click();
