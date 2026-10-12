@@ -195,6 +195,7 @@ function questionHtml(phase: Phase, fid: string): string {
         ${q.legal_basis?.length ? `<details class="legal"><summary>Legal basis</summary>${q.legal_basis.map(lawHtml).join("")}
           <p class="muted small">Highlighted: the words that decide this question.</p></details>` : ""}
       </details>
+      ${q.kind === "multi-enum" ? `<p id="selection" class="selection" aria-live="polite"></p>` : ""}
       <div class="nav">
         ${state.history.length ? `<button type="button" id="back" class="secondary">Back</button>` : ""}
         <button type="submit">Next</button>
@@ -408,6 +409,19 @@ function render() {
       b.setAttribute("aria-expanded", String(!open));
       panel.hidden = open;
     }));
+    // Tick boxes: repeat the selection next to Next, so a long list need not be scrolled back.
+    const sel = document.getElementById("selection");
+    if (sel) {
+      const show = () => {
+        const picked = [...form.querySelectorAll<HTMLInputElement>('input[type="checkbox"]:checked')]
+          .map((i) => i.closest("label")?.querySelector("span")?.textContent ?? "");
+        sel.innerHTML = picked.length
+          ? `<strong>Selected (${picked.length}):</strong> ${picked.map(esc).join("; ")}`
+          : `<strong>Nothing selected:</strong> none of these applies.`;
+      };
+      form.addEventListener("change", show);
+      show();
+    }
     form.querySelector<HTMLElement>("input, textarea")?.focus();
   }
   document.getElementById("back")?.addEventListener("click", back);

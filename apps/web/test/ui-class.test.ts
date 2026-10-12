@@ -28,6 +28,15 @@ beforeAll(async () => {
 it("class only, smart lock: skips scope, ends with a conditional class and an offer to check scope", async () => {
   app().querySelector<HTMLButtonElement>('button.choice[data-mode="class"]')!.click(); await tick();
   expect(heading()).toContain("mainly for");
+  // Tick boxes: the selection is repeated next to Next and follows each change.
+  const sel = () => document.getElementById("selection")!.textContent!;
+  expect(sel()).toBe("Nothing selected: none of these applies.");
+  const box = [...app().querySelectorAll("label.opt")].find((x) => x.textContent!.trim().startsWith("protecting a home"))!
+    .querySelector("input") as HTMLInputElement;
+  box.checked = true; box.dispatchEvent(new Event("change", { bubbles: true }));
+  expect(sel()).toMatch(/^Selected \(1\): protecting a home/);
+  box.checked = false; box.dispatchEvent(new Event("change", { bubbles: true }));
+  expect(sel()).toBe("Nothing selected: none of these applies.");
   await pick(["protecting a home"]);    // purpose screen
   await pick("Yes");                    // protects physical security
   await pick("Yes");                    // residential
