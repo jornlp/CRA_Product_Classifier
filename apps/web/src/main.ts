@@ -33,6 +33,9 @@ function optionInfoHtml(info: CatInfo[], id: string, faq: FaqExample[] = []): st
     <article class="law">
       <p class="law-act">Implementing Regulation (EU) 2025/2392 · ${esc(CLASS_LABEL[c.class])}</p>
       <p class="law-title">${esc(c.title)}</p>
+      ${c.named_products.length ? `<div class="named"><p class="named-head">Examples named in the regulation</p>${
+        c.named_products.map((n) => `<p class="named-list">${esc(n.replace(/^This category includes but is not limited to /, "").replace(/^./, (x) => x.toUpperCase()))}</p>`).join("")}</div>` : ""}
+      <p class="named-head">What the regulation requires</p>
       <p class="law-desc">${(c.description_parts ?? [{ text: c.description }]).map((p) =>
         p.mark ? `<mark>${esc(p.text)}</mark>` : esc(p.text)).join("")}</p>
       <p class="muted small">Highlighted: the conditions this tool checks for this category.</p>

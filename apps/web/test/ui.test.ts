@@ -101,7 +101,9 @@ describe("screens: pest-control camera", () => {
     btn.click();
     expect(panel.hidden).toBe(false);
     expect(btn.getAttribute("aria-expanded")).toBe("true");
-    expect(panel.textContent).toContain("smart door locking devices, baby monitoring systems, alarm systems and home security cameras");
+    const named = panel.querySelector(".named")!;
+    expect(named.querySelector(".named-head")!.textContent).toBe("Examples named in the regulation");
+    expect(named.querySelector(".named-list")!.textContent).toBe("Smart door locking devices, baby monitoring systems, alarm systems and home security cameras.");
     const marked = [...panel.querySelectorAll("mark")].map((m) => m.textContent);
     expect(marked.join(" | ")).toContain("protect the physical security of consumers in a residential setting");
     expect(marked.join(" | ")).toContain("can be controlled or managed remotely from other systems");
