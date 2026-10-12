@@ -415,7 +415,7 @@ function render() {
 }
 
 initTheme();
-count("/", false);
+count(location.pathname, false);
 // Home: back to the start screen, keeping the answers so a check can be continued.
 for (const id of ["home", "home-btn"]) document.getElementById(id)?.addEventListener("click", () => { showAbout = false; state.mode = undefined; render(); });
 document.getElementById("about-btn")?.addEventListener("click", () => { showAbout = true; render(); });

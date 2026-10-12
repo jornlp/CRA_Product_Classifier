@@ -5,12 +5,15 @@
  */
 import { CONFIG } from "./config.js";
 
+/** Event names carry a prefix, since the GoatCounter site may also count other pages. */
+export const EVENT_PREFIX = "cra-classifier/";
+
 export function count(name: string, event = true): void {
   const url = CONFIG.COUNTER_URL;
   const nav = navigator as Navigator & { globalPrivacyControl?: boolean };
   if (nav.doNotTrack === "1" || nav.globalPrivacyControl === true) return;
   if (!url || !/^https?:$/.test(location.protocol) || /^(localhost|127\.|\[::1\]|$)/.test(location.hostname)) return;
-  const q = new URLSearchParams({ p: name, e: String(event), rnd: Math.random().toString(36).slice(2) });
+  const q = new URLSearchParams({ p: event ? EVENT_PREFIX + name : name, e: String(event), rnd: Math.random().toString(36).slice(2) });
   if (!event) {
     q.set("t", document.title);
     if (document.referrer) q.set("r", document.referrer);

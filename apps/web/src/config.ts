@@ -9,7 +9,7 @@ export const CONFIG = {
   REPO_URL: "https://github.com/jornlp/CRA_Product_Classifier" as string | null,
   /** GoatCounter endpoint for anonymous page and event counts (see analytics.ts); null switches it off.
    *  Must be a full https://<code>.goatcounter.com/count URL: CI allows no other external URL. */
-  COUNTER_URL: null as string | null,
+  COUNTER_URL: "https://jlp.goatcounter.com/count" as string | null,
   /** Translated from the draft clause in the v3 report, section 13 (DR-04: use the fuller clause).
    *  v3 recommends review by a qualified lawyer before publication. */
   disclaimerVersion: "v3-13-en-1",
