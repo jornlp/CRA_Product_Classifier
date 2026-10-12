@@ -2221,7 +2221,8 @@
     }
    ],
    "stem": "My product is mainly for …",
-   "stem_warning": "Not for features it also has. An app with a login is not mainly for checking who someone is; a camera is not mainly for protecting a home unless that is what it is sold for."
+   "stem_warning": "Not for features it also has. An app with a login is not mainly for checking who someone is; a camera is not mainly for protecting a home unless that is what it is sold for.",
+   "stem_note": "The CRA applies to products in every sector, including sectors it does not mention, for example industrial machinery, trains and other transport, office equipment, education, hospitals, banking and payments, and consumer products. Only the exclusions in Article 2 take a product out. The class depends on what the product is mainly for, not on its sector. If it is mainly for none of the purposes below, tick nothing: that gives the default class, which still carries all CRA requirements."
   },
   "STORES_PASSWORDS_CORE": {
    "question": "Is storing passwords, on the device or on a server, what this product is for?",

@@ -46,7 +46,9 @@ export function aboutHtml(o: { lawAsOf: string; ruleSet: string; sources: Record
     <li>Whether a product with a medical purpose that is not certified as a medical device falls under the medical device rules.</li>
   </ul>
   <h3>Your data</h3>
-  <p>Everything runs in your browser. Nothing you enter is sent anywhere. Only your colour scheme choice is remembered, in this browser.</p>
+  <p>Everything runs in your browser. Nothing you enter is sent anywhere. No cookies, no tracking, no accounts. Only your colour scheme choice is remembered, in this browser.</p>${CONFIG.COUNTER_URL
+    ? `<p>To see whether the tool is used, page views and a few steps (a check started, a result reached, a report saved) are counted anonymously with GoatCounter, which is hosted in the EU and uses no cookies. Your answers and results are never sent. Nothing is counted if your browser asks not to be tracked (Do Not Track or Global Privacy Control).</p>`
+    : ""}
   <h3>Licence and errors</h3>
   <p>Code under Apache-2.0; rules and test cases under CC BY 4.0. If you find an error, please report it${CONFIG.REPO_URL
     ? ` as an issue at <a href="${esc(CONFIG.REPO_URL)}/issues">${esc(CONFIG.REPO_URL.replace(/^https?:\/\//, ""))}</a>`

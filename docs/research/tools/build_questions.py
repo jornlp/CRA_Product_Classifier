@@ -183,6 +183,13 @@ def option_info(cls, register=None):
 STEMS = {"PURPOSE_SCREEN": ("My product is mainly for …",
                             "Not for features it also has. An app with a login is not mainly for checking who someone is; "
                             "a camera is not mainly for protecting a home unless that is what it is sold for.")}
+# Shown above the stem: the list is about purpose, not sector, and the sectors named are examples only.
+STEM_NOTES = {"PURPOSE_SCREEN":
+    "The CRA applies to products in every sector, including sectors it does not mention, for example industrial "
+    "machinery, trains and other transport, office equipment, education, hospitals, banking and payments, and consumer "
+    "products. Only the exclusions in Article 2 take a product out. The class depends on what the product is mainly for, "
+    "not on its sector. If it is mainly for none of the purposes below, tick nothing: that gives the default class, "
+    "which still carries all CRA requirements."}
 GROUPS = {"PURPOSE_SCREEN": [
     ("Security software", ["IDENTITY", "PASSWORDS", "MALWARE", "VPN", "SIEM", "PKI", "FIREWALL"]),
     ("System software", ["OS", "BOOT", "BROWSER", "VIRTUALISATION"]),
@@ -383,6 +390,8 @@ def build():
                                      for c, t, qt in FAQ_EXAMPLES.get(o["value"], [])]
         if fid in STEMS:
             q["stem"], q["stem_warning"] = STEMS[fid]
+        if fid in STEM_NOTES:
+            q["stem_note"] = STEM_NOTES[fid]
         if fid in GROUPS:
             grp = {o: g for g, opts in GROUPS[fid] for o in opts}
             missing = [o["value"] for o in q["options"] if o["value"] not in grp]

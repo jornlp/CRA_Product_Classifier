@@ -16,6 +16,7 @@ import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
 import { reportMarkdown, routeLabel, markdownToHtml } from "./report.js";
 import { aboutHtml } from "./about.js";
+import { count } from "./analytics.js";
 
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
@@ -57,7 +58,7 @@ function lawHtml(l: Legal): string {
   </article>`;
 }
 type Question = { question: string; kind: string; why_we_ask: string; legal_basis?: Legal[]; hint?: string; options?: Option[]; evidence?: string;
-  stem?: string; stem_warning?: string };
+  stem?: string; stem_warning?: string; stem_note?: string };
 const QUESTIONS = (qs as { questions: Record<string, Question> }).questions;
 const CATEGORIES = (qs as { categories: Record<string, { title: string; class: string }> }).categories;
 type Example = { answer: string; kind: string; source: string; text: string; quote?: string; item?: string; category?: string; case?: string };
@@ -161,7 +162,7 @@ function questionHtml(phase: Phase, fid: string): string {
           ${optionInfoHtml(o.info, `info-${i}`, o.faq_examples)}`
       : `<label class="opt"><input type="checkbox" name="a" value="${i}"${checked(o.value)}> <span>${esc(o.label)}</span></label>`;
     const opts = q.options ?? [];
-    const stem = q.stem ? `<div class="stem"><p class="stem-text">${esc(q.stem)}</p>${q.stem_warning ? `<p class="stem-warning">${esc(q.stem_warning)}</p>` : ""}</div>` : "";
+    const stem = (q.stem_note ? `<p class="stem-note">${esc(q.stem_note)}</p>` : "") + (q.stem ? `<div class="stem"><p class="stem-text">${esc(q.stem)}</p>${q.stem_warning ? `<p class="stem-warning">${esc(q.stem_warning)}</p>` : ""}</div>` : "");
     if (opts.some((o) => o.group)) {
       // Grouped, and every group open: an unticked option counts as "no", so each must be seen.
       const groups = [...new Set(opts.map((o) => o.group!))];
@@ -359,8 +360,14 @@ function download(format: "md" | "json") {
 
 // ------------------------------------------------------------------ main loop
 
+/** Events already counted for the current check, so a re-render does not count twice. */
+let counted = new Set<string>();
+function countOnce(name: string) { if (!counted.has(name)) { counted.add(name); count(name); } }
+function restart() { state = fresh(); counted = new Set(); render(); }
+
 function render() {
   if (showAbout) {
+    countOnce("about");
     app.innerHTML = aboutHtml({ lawAsOf: RULES.law_as_of, ruleSet: RULES.rule_set_version, sources: RULES.sources, lastCheck: lawStatus?.checked_at });
     document.getElementById("about-close")?.addEventListener("click", () => { showAbout = false; render(); });
     window.scrollTo(0, 0);
@@ -372,9 +379,10 @@ function render() {
   if (cur.phase === "start") {
     app.innerHTML = header + startHtml();
     app.querySelectorAll<HTMLButtonElement>("button.choice").forEach((b) =>
-      b.addEventListener("click", () => { state.mode = b.dataset.mode as Mode; render(); }));
-    document.getElementById("start-again")?.addEventListener("click", () => { state = fresh(); render(); });
+      b.addEventListener("click", () => { state.mode = b.dataset.mode as Mode; countOnce(`start-${state.mode}`); render(); }));
+    document.getElementById("start-again")?.addEventListener("click", restart);
   } else if (cur.phase === "result") {
+    countOnce(`result-${state.mode}`);
     app.innerHTML = header + resultHtml();
     document.getElementById("to-class")?.addEventListener("click", () => { state.mode = "full"; render(); });
     document.getElementById("to-full")?.addEventListener("click", () => { state.mode = "full"; render(); });
@@ -382,9 +390,10 @@ function render() {
     if (fmt) fmt.value = "pdf";  // default, set explicitly
     document.getElementById("save")?.addEventListener("click", () => {
       const f = (document.getElementById("save-format") as HTMLSelectElement).value;
+      countOnce(`save-${f}`);
       if (f === "pdf") printReport(); else download(f as "md" | "json");
     });
-    document.getElementById("restart")?.addEventListener("click", () => { state = fresh(); render(); });
+    document.getElementById("restart")?.addEventListener("click", restart);
   } else {
     app.innerHTML = header + `<div class="layout">${questionHtml(cur.phase, cur.fid!)}</div>`;
     const form = document.getElementById("q") as HTMLFormElement;
@@ -406,6 +415,7 @@ function render() {
 }
 
 initTheme();
+count("/", false);
 // Home: back to the start screen, keeping the answers so a check can be continued.
 for (const id of ["home", "home-btn"]) document.getElementById(id)?.addEventListener("click", () => { showAbout = false; state.mode = undefined; render(); });
 document.getElementById("about-btn")?.addEventListener("click", () => { showAbout = true; render(); });
