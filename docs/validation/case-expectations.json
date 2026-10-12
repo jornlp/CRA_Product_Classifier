@@ -2331,6 +2331,66 @@
    "expected_class": "CRITICAL",
    "pairs_with": "MP-27",
    "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "LIFE-09",
+   "section": "H",
+   "scenario": "Unit placed in 2026; change after 11-12-2027 modifies the intended purpose",
+   "decisive_fact": "Art. 3(30) second limb",
+   "expected_behaviour": "Substantial modification: main requirements apply from the change. The purpose limb is decidable, unlike limb (a)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "LIFE-08",
+   "source": "B1c Art. 3(30), 69, 71; B16; WP7 timeline trial"
+  },
+  {
+   "id": "LIFE-10",
+   "section": "H",
+   "scenario": "Same purpose change, but made before 11-12-2027",
+   "decisive_fact": "change date vs Art. 69(2)",
+   "expected_behaviour": "Transition holds: Art. 69(2) counts only substantial modifications 'from that date'",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "LIFE-09",
+   "source": "B1c Art. 3(30), 69, 71; B16; WP7 timeline trial"
+  },
+  {
+   "id": "LIFE-11",
+   "section": "H",
+   "scenario": "Certificate under other legislation that expires before 11-06-2028",
+   "decisive_fact": "earlier expiry",
+   "expected_behaviour": "Validity ends at the certificate's own expiry, not 11-06-2028 (Art. 69(1) 'unless they expire before that date')",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "LIFE-07",
+   "source": "B1c Art. 3(30), 69, 71; B16; WP7 timeline trial"
+  },
+  {
+   "id": "RED-03",
+   "section": "H",
+   "scenario": "RED-covered radio equipment placed on the market before 1-8-2025",
+   "decisive_fact": "placed before the delegated act applied",
+   "expected_behaviour": "RED DA cybersecurity requirements do not apply to those units",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "RED-01",
+   "source": "B1c Art. 3(30), 69, 71; B16; WP7 timeline trial"
+  },
+  {
+   "id": "RED-04",
+   "section": "H",
+   "scenario": "RED-covered radio equipment, placing date unknown",
+   "decisive_fact": "date UNKNOWN",
+   "expected_behaviour": "RED DA and main requirements UNRESOLVED; Art. 14 still stated as applying, since Art. 69(3) does not depend on the placing date",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "LIFE-06",
+   "source": "B1c Art. 3(30), 69, 71; B16; WP7 timeline trial"
   }
  ],
  "review_round_1": {

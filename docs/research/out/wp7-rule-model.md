@@ -208,12 +208,47 @@ Recommendation: **Apache-2.0 for code, CC BY 4.0 for rules and cases**, since th
 an informational public tool that others can check and build on. This is not a legal opinion on
 licensing.
 
-## 10. Open after WP7
+## 10. Timeline trial
 
-- Apply the §4.1 fact register changes to `wp2-fact-register.json` (WP2 revision).
-- Write the JSON Schema for rules and for output (v4 §5.3 asks for one; §5 above gives its fields).
+Timeline rules (v4 §8.1 P0, a separate sub-engine) were trialled with
+`docs/research/wp7-spike/timeline.py`: four obligations, the dated toy cross-reference, and 19
+fixtures (all pass).
+
+| Obligation | Keyed on | Source |
+|---|---|---|
+| Art. 14 reporting | assessment date only; **never the placing date** (Art. 69(3)) | B1c |
+| Main requirements | placing date of the **units**, then the date and nature of any change | Art. 69(2), 3(30) |
+| Certificates under other legislation | certificate expiry, capped at 11.6.2028 | Art. 69(1) |
+| RED DA cybersecurity | placing date from 1.8.2025; after 11.12.2027 still applies, with the announced repeal as an open note | B16 |
+
+What it established:
+
+- **The placing date belongs to units, not types.** The register's `FIRST_PLACED_ON_MARKET` asked
+  for the type's launch, which protects no later unit (`TYPE-02`, Blue Guide 2.2). Replaced by
+  `UNITS_PLACED_ON_MARKET`, with a hint to assess shipped stock and future production separately.
+- **One unknown date does not make everything unknown.** With the placing date unknown, Art. 14
+  still applies, while the main requirements and RED DA are UNRESOLVED (`LIFE-06`, `RED-04`). This
+  is why v4 forbids a single "CRA applies from" field.
+- **Substantial modification is half decidable.** The purpose limb of Art. 3(30) is a fact the
+  user can give (`LIFE-09`). The Annex I limb is not decidable here, so any change that may affect
+  security yields UNRESOLVED with a review flag (`LIFE-05`, `LIFE-08`); only "purpose unchanged and
+  no effect on security" yields TRANSITION (`LIFE-04`). And the change only counts from 11.12.2027
+  (`LIFE-10`).
+- **Dated cross-references resolve on the assessment date**, and the output cites whichever act
+  the reference resolved to (`A3-05`/`A3-06`).
+
+Five trial fixtures became catalogue cases (`LIFE-09`, `LIFE-10`, `LIFE-11`, `RED-03`, `RED-04`),
+and three date facts were added to the register (`UNITS_PLACED_ON_MARKET`, `CHANGE_AT`,
+`OTHER_LEGISLATION_CERTIFICATE`).
+
+## 11. Open after WP7
+
+- ~~Apply the §4.1 fact register changes~~ — done, register v2.
+- ~~JSON Schema for rules and output~~ — done: `docs/research/out/schemas/rule-set.schema.json` and
+  `assessment-output.schema.json`, tested by `wp7-spike/test_schemas.py` (trial outputs valid;
+  nine deliberately broken documents rejected, including the AC-02/AC-03 violations).
 - Encode the remaining 20 categories. The trial shows the format holds for the hardest shapes, so
   the rest should be routine, but each still needs its WP5 condition notes read first.
-- Scope and timeline rules were not trialled. Scope uses the same condition logic. The timeline
-  per obligation is a separate sub-engine (v4 §8.1 P0) and needs its own short trial with the
-  `LIFE`, `TYPE` and `RED` cases.
+- ~~Timeline trial~~ — done, §10.
+- Scope rules were not trialled. They use the same condition logic as categories, and the
+  exclusions in Art. 2 are the main new shape (`EXC` cases).

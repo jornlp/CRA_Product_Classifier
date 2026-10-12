@@ -143,6 +143,11 @@ Role does not change the technical class (v4 §3.3).
 | RED-01 | Internet-connected radio equipment placed on the market between 1 Aug 2025 and 10 Dec 2027 | in RED DA scope, placed before the CRA applies | CRA essential requirements do not yet apply (Art. 69(2)), **but the output must say the RED Delegated Regulation's cybersecurity requirements already do**. Silence here is falsely reassuring | FAQ | H |
 | RED-02 | The same radio equipment placed on the market on or after 11 Dec 2027 | placed after the CRA applies | CRA essential requirements apply. The Commission *aims* to repeal the RED Delegated Regulation from that date — an intention, not a fact, so the tool must not assert the repeal | FAQ | H |
 | LIFE-07 | Product holds an EU type-examination certificate under other harmonisation legislation | Art. 69(1) | Certificate valid until 11 June 2028 unless it expires earlier or that legislation says otherwise — a fourth date the plan omitted | new | H |
+| LIFE-09 | Unit placed in 2026; change after 11-12-2027 modifies the intended purpose | Art. 3(30) second limb | Substantial modification: main requirements apply from the change. The purpose limb is decidable, unlike limb (a). Pairs with `LIFE-08` | WP7 | H |
+| LIFE-10 | Same purpose change, but made before 11-12-2027 | change date vs Art. 69(2) | Transition holds: Art. 69(2) counts only substantial modifications 'from that date'. Pairs with `LIFE-09` | WP7 | H |
+| LIFE-11 | Certificate under other legislation that expires before 11-06-2028 | earlier expiry | Validity ends at the certificate's own expiry, not 11-06-2028 (Art. 69(1) 'unless they expire before that date'). Pairs with `LIFE-07` | WP7 | H |
+| RED-03 | RED-covered radio equipment placed on the market before 1-8-2025 | placed before the delegated act applied | RED DA cybersecurity requirements do not apply to those units. Pairs with `RED-01` | WP7 | H |
+| RED-04 | RED-covered radio equipment, placing date unknown | date UNKNOWN | RED DA and main requirements UNRESOLVED; Art. 14 still stated as applying, since Art. 69(3) does not depend on the placing date. Pairs with `LIFE-06` | WP7 | H |
 
 ## I. Open source
 
@@ -343,7 +348,7 @@ that override a condition as worded.
 | E. Annex III candidates | 10 |
 | F. Annex IV (critical) candidates | 8 |
 | G. Economic role | 6 |
-| H. Lifecycle and timeline | 10 |
+| H. Lifecycle and timeline | 15 |
 | I. Open source | 3 |
 | J. Engine properties (meta-cases) | 8 |
 | K. Overlap with the AI Act | 6 |
@@ -352,7 +357,7 @@ that override a condition as worded.
 | N. Cases from the official FAQ | 10 |
 | O. Adjacent regimes that do not exclude | 5 |
 | P. Condition-level minimal pairs (WP5) | 28 |
-| **Total** | **189** |
+| **Total** | **194** |
 
 All 11 v4 IDs are preserved: `RAT-01…04`, `WTR-01…03`, `LIFE-01…03`, `SRC-01`,
 `OTHER-01`. AC-05 references these by name.

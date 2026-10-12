@@ -114,7 +114,10 @@
    "worked_example": {
     "yes": "The date the first unit was supplied to a customer or distributor in the EU.",
     "no": "The date development finished, or the date of the press release."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "UNITS_PLACED_ON_MARKET",
+   "superseded_why": "The CRA applies to individual units, not product types (Blue Guide 2.2, TYPE-02). A type's first launch date protects no later unit."
   },
   {
    "fact_id": "CHANGE_AFTER_PLACING",
@@ -1171,6 +1174,50 @@
     "no": "A fitness app that stores the user's own workouts."
    },
    "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "UNITS_PLACED_ON_MARKET",
+   "question": "When are, or were, the units you are assessing placed on the market? Each unit counts on its own.",
+   "kind": "date-or-range",
+   "why_we_ask": "Art. 69(2) and 71(2): units placed before 11.12.2027 are exempt from the main requirements unless substantially modified; units placed later must comply, however long the type has been sold (TYPE-01/02). RED DA: units placed from 1.8.2025.",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Units shipped from January 2028 on: 2028-01 onward.",
+    "no": "'We launched this model in 2024' - that is the type's launch, not the units' placing date."
+   },
+   "revision": "v2 (WP7 timeline trial)",
+   "question_hint": "If you are asking about both stock already shipped and future production, assess them separately.",
+   "replaces": "FIRST_PLACED_ON_MARKET"
+  },
+  {
+   "fact_id": "CHANGE_AT",
+   "question": "When was the change made, or when will it be?",
+   "kind": "date",
+   "why_we_ask": "Art. 69(2): only substantial modifications made from 11.12.2027 bring earlier units under the main requirements (LIFE-10).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Firmware 3.0 rolled out to installed units in March 2028.",
+    "no": "No change since placing: leave empty."
+   },
+   "revision": "v2 (WP7 timeline trial)"
+  },
+  {
+   "fact_id": "OTHER_LEGISLATION_CERTIFICATE",
+   "question": "Does the product hold an EU type-examination certificate or approval decision covering cybersecurity under other EU harmonisation legislation? If so, when does it expire?",
+   "kind": "bool+date",
+   "why_we_ask": "Art. 69(1): such certificates stay valid until 11.6.2028, or their earlier expiry, unless that legislation provides otherwise (LIFE-07, LIFE-11).",
+   "categories_discriminated": [],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A certificate under other harmonisation legislation covering cybersecurity requirements, expiring 2029.",
+    "no": "A test report or a self-declaration: not a certificate."
+   },
+   "revision": "v2 (WP7 timeline trial)"
   }
  ],
  "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",

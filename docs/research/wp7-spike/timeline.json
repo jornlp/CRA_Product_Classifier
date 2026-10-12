@@ -1,0 +1,27 @@
+{
+ "artifact": "wp7-spike-timeline",
+ "note": "Timeline trial: one rule per obligation, each keyed on the dates it actually depends on. Statuses follow the assessment-output schema.",
+ "dates": {
+  "CRA_ART14": "2026-09-11",
+  "CRA_APPLICATION": "2027-12-11",
+  "CERT_VALIDITY_END": "2028-06-11",
+  "RED_DA_APPLICATION": "2025-08-01",
+  "TOY_REG_APPLICATION": "2030-08-01"
+ },
+ "obligations": [
+  {"obligation": "CRA_ART_14_REPORTING", "provision": "Art. 14; Art. 69(3); Art. 71(2)", "status": "AUTHOR_VERIFIED",
+   "logic": "From 11.9.2026 for every in-scope product, including units placed before 11.12.2027 (Art. 69(3)). Does not depend on the placing date."},
+  {"obligation": "CRA_ESSENTIAL_REQUIREMENTS", "provision": "Art. 69(2); Art. 71(2); Art. 3(30)", "status": "AUTHOR_VERIFIED",
+   "logic": "Keyed on the placing date of the UNITS assessed, not of the product type. Units placed before 11.12.2027: exempt unless substantially modified from that date. Substantial modification: limb (b) purpose change is decidable; limb (a) effect on Annex I Part I compliance is not decidable by the MVP (LIFE-08)."},
+  {"obligation": "OTHER_LEGISLATION_CERTIFICATE", "provision": "Art. 69(1)", "status": "AUTHOR_VERIFIED",
+   "logic": "Existing EU type-examination certificates on cybersecurity under other harmonisation legislation stay valid until 11.6.2028, or earlier expiry, unless that legislation says otherwise."},
+  {"obligation": "RED_DA_CYBERSECURITY", "provision": "Del. Reg. (EU) 2022/30, Art. 1 and 3", "status": "AUTHOR_INTERPRETATION",
+   "logic": "Radio equipment within the delegated act's limbs, placed on or after 1.8.2025. Still applies after 11.12.2027 as long as it is in force: the Commission has announced an aim to repeal it, which is not a repeal (RED-02). eurlex_watch watches 32022R0030."}
+ ],
+ "dated_references": [
+  {"rule_condition": "CAT-III-I-18 C1", "quote": "covered by Directive 2009/48/EC",
+   "resolves": [{"before": "2030-08-01", "to": "Directive 2009/48/EC"},
+                {"on_or_after": "2030-08-01", "to": "Regulation (EU) 2025/2509, via its Art. 56 correlation clause"}],
+   "date_basis": "assessment_date", "test_ids": ["A3-05", "A3-06"]}
+ ]
+}
