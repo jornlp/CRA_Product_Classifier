@@ -26,7 +26,7 @@ function walk(answers: Record<string, unknown>, date = "2026-10-12", mode: FlowS
 }
 
 const inScope = { PURPOSE_SCREEN: [] as string[], PRODUCT_KIND: "HARDWARE", MARKET_STATUS: "MADE_AVAILABLE", COMMERCIAL_ACTIVITY: true,
-  DATA_INTERFACE_PRESENT: true, CONNECTION_INTENDED: true, EXCLUSION_SCREEN: [], CORE_FUNCTION: "",
+  DATA_INTERFACE_PRESENT: true, CONNECTION_INTENDED: true, EXCLUSION_SCREEN: [],
   IC_TYPE: "NOT_AN_IC", STORES_PASSWORDS_CORE: false, HIGH_RISK_AI_BASIS: "NONE", EHR_SYSTEM: false,
   UNITS_PLACED_ON_MARKET: "2028-03-01", RADIO_EQUIPMENT_RED_DA: "YES", OTHER_LEGISLATION_CERTIFICATE: false };
 
@@ -104,14 +104,14 @@ describe("check modes (scope only, class only, full) and continuing", () => {
   it("class only: asks no scope and no date questions", () => {
     const r = walk(lock, "2026-10-12", "class");
     for (const q of ["PRODUCT_KIND", "MARKET_STATUS", "EXCLUSION_SCREEN", "UNITS_PLACED_ON_MARKET"]) expect(r.asked).not.toContain(q);
-    expect(r.asked[0]).toBe("CORE_FUNCTION");
+    expect(r.asked[0]).toBe("PURPOSE_SCREEN");
     expect(r.cls.categories["III-I-17"].value).toBe("TRUE");
   });
   it("continuing from scope to the full check asks nothing twice", () => {
     const first = walk(lock, "2026-10-12", "scope");
     const second = walk(lock, "2026-10-12", "full", first.st);
     expect(second.asked.filter((q) => first.asked.includes(q))).toEqual([]);
-    expect(second.asked[0]).toBe("CORE_FUNCTION");
+    expect(second.asked[0]).toBe("PURPOSE_SCREEN");
     expect(second.asked).toContain("UNITS_PLACED_ON_MARKET");
   });
   it("continuing from class to the full check asks only scope and dates", () => {
@@ -121,4 +121,9 @@ describe("check modes (scope only, class only, full) and continuing", () => {
     expect(second.asked).toContain("PRODUCT_KIND");
     expect(second.asked).not.toContain("PROTECTS_PHYSICAL_SECURITY");
   });
+});
+
+it("never asks for a free-text description: it is for the user's records only", () => {
+  const r = walk({ ...inScope });
+  expect(r.asked).not.toContain("CORE_FUNCTION");
 });

@@ -5,7 +5,7 @@
 import { scope, nextScopeQuestions, nextClassificationQuestions, nextTimelineQuestions } from "../../../packages/engine/src/index.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts } from "../../../packages/engine/src/index.js";
 
-export type Phase = "start" | "scope" | "core" | "class" | "routes" | "timeline" | "result";
+export type Phase = "start" | "scope" | "class" | "routes" | "timeline" | "result";
 /**
  * What the user asked for (v4 3.1: three independently reported results).
  *   scope: does the CRA apply?            class: which class, assuming it applies?
@@ -22,7 +22,6 @@ export function nextStep(r: Rules, st: FlowState): { phase: Phase; fid?: string 
     if (sq) return { phase: "scope", fid: sq };
     if (st.mode === "scope" || scope(r.scope, st.facts).status !== "IN_SCOPE") return { phase: "result" };
   }
-  if (!st.done.has("CORE_FUNCTION")) return { phase: "core", fid: "CORE_FUNCTION" };
   const cq = nextClassificationQuestions(r.classification, st.facts)[0];
   if (cq) return { phase: "class", fid: cq };
   for (const fid of ["HIGH_RISK_AI_BASIS", "EHR_SYSTEM"]) if (!(fid in st.facts)) return { phase: "routes", fid };
@@ -34,16 +33,14 @@ export function nextStep(r: Rules, st: FlowState): { phase: Phase; fid?: string 
 
 /** Record an answer. The units' placing date feeds both the timeline and the conformity routes. */
 export function record(st: FlowState, phase: Phase, fid: string, value: unknown) {
-  if (phase === "core") st.done.add("CORE_FUNCTION");
-  else if (phase === "timeline") {
+  if (phase === "timeline") {
     st.tfacts[fid] = value;
     if (fid === "UNITS_PLACED_ON_MARKET") st.facts.UNITS_PLACED_ON_MARKET = { value, provenance: "USER_CONFIRMED" };
   } else st.facts[fid] = { value, provenance: "USER_CONFIRMED" };
 }
 
 export function unrecord(st: FlowState, phase: Phase, fid: string) {
-  if (phase === "core") st.done.delete("CORE_FUNCTION");
-  else if (phase === "timeline") {
+  if (phase === "timeline") {
     delete st.tfacts[fid];
     if (fid === "UNITS_PLACED_ON_MARKET") delete st.facts.UNITS_PLACED_ON_MARKET;
   } else delete st.facts[fid];

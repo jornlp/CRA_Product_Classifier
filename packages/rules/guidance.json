@@ -29,53 +29,6 @@
   }
  },
  "questions": {
-  "CORE_FUNCTION": {
-   "hint": "Describe what the product is for, as a buyer would. A product can contain a component that does something else without that becoming its core function.",
-   "examples": [
-    {
-     "answer": "NO",
-     "kind": "OFFICIAL_GUIDANCE",
-     "source": "B7",
-     "item": "FAQ 3.4",
-     "text": "A smartphone contains an operating system and a password manager, but is not itself an operating system or a password manager.",
-     "quote": "as a smartphone's core functionality is not that of an operating system or of a password manager, it is generally not to be considered to have the core functionality of an operating system or of a password manager"
-    },
-    {
-     "answer": "NO",
-     "kind": "OFFICIAL_GUIDANCE",
-     "source": "B7",
-     "item": "FAQ 3.4",
-     "text": "Security orchestration (SOAR) software can do what a SIEM does, but its core function is different, so it is generally not a SIEM.",
-     "quote": "SOAR software is generally not to be considered to have the core functionality of \"security information and event management (SIEM) systems\""
-    },
-    {
-     "answer": "YES",
-     "kind": "OFFICIAL_GUIDANCE",
-     "source": "B7",
-     "item": "FAQ 3.4",
-     "text": "A router that also has a firewall is still a router: extra functions do not take away its core function.",
-     "quote": "Products with digital elements often also incorporate components that have the functionality of another important or critical product with digital elements, such as an operating system integrating browser functionality, or a router integrating firewall functionality"
-    },
-    {
-     "answer": "NO",
-     "kind": "OFFICIAL_GUIDANCE",
-     "source": "B7",
-     "item": "FAQ 3.3",
-     "text": "A news app with an embedded browser component is not a browser.",
-     "quote": "integrating an embedded browser as a component of a news app for use in smartphones does not in itself render the news app subject to the conformity assessment procedure"
-    }
-   ],
-   "lookalikes": [
-    {
-     "term": "security",
-     "text": "Appears in product names and marketing for products with no security core function. A name is not evidence."
-    },
-    {
-     "term": "secure by design",
-     "text": "A design claim, not a statement of what the product is for."
-    }
-   ]
-  },
   "CONNECTION_INTENDED": {
    "hint": "Any data connection counts: cable, USB, radio, or through another device. It does not have to be the internet.",
    "examples": [
@@ -455,6 +408,14 @@
      "source": "CASE",
      "case": "WTR-01",
      "text": "A water meter that measures and sends its readings: it is not a gateway linking a metering system to the utility."
+    },
+    {
+     "answer": "NONE",
+     "kind": "OFFICIAL_GUIDANCE",
+     "source": "B7",
+     "item": "FAQ 3.4",
+     "text": "Security orchestration (SOAR) software can do what a SIEM does, but its core function is different, so it is generally not a SIEM.",
+     "quote": "SOAR software is generally not to be considered to have the core functionality of \"security information and event management (SIEM) systems\""
     }
    ],
    "lookalikes": [

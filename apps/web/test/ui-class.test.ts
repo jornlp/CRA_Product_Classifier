@@ -27,8 +27,7 @@ beforeAll(async () => {
 
 it("class only, smart lock: skips scope, ends with a conditional class and an offer to check scope", async () => {
   app().querySelector<HTMLButtonElement>('button.choice[data-mode="class"]')!.click(); await tick();
-  expect(heading()).toContain("what is this product for");
-  await pick([]);                       // core function (free text, left empty)
+  expect(heading()).toContain("mainly for");
   await pick(["Protecting a home"]);    // purpose screen
   await pick("Yes");                    // protects physical security
   await pick("Yes");                    // residential

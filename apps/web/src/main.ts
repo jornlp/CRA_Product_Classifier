@@ -50,20 +50,23 @@ const SOURCE_LABEL: Record<string, string> = {
 
 // ------------------------------------------------------------------ state
 
-interface State { facts: Facts; tfacts: Record<string, unknown>; core: string; history: { phase: Phase; fid: string }[]; done: Set<string>; mode?: Mode }
+interface State {
+  facts: Facts; tfacts: Record<string, unknown>; history: { phase: Phase; fid: string }[]; done: Set<string>; mode?: Mode;
+  /** For the user's own records only; never used in the assessment. */
+  record: { product: string; description: string };
+}
 const today = new Date().toISOString().slice(0, 10);
 let state: State = fresh();
 let lawStatus: LawStatus | null = null;
 const RULESET = { scope: SCOPE, classification: RULES, timeline: TIMELINE };
 
 function fresh(): State {
-  return { facts: {}, tfacts: { ASSESSMENT_DATE: today }, core: "", history: [], done: new Set() };
+  return { facts: {}, tfacts: { ASSESSMENT_DATE: today }, history: [], done: new Set(), record: { product: "", description: "" } };
 }
 const current = () => nextStep(RULESET, state);
 
 function answer(fid: string, phase: Phase, value: unknown) {
   state.history.push({ phase, fid });
-  if (phase === "core") state.core = String(value ?? "");
   record(state, phase, fid, value);
   render();
 }
@@ -71,7 +74,6 @@ function answer(fid: string, phase: Phase, value: unknown) {
 function back() {
   const last = state.history.pop();
   if (!last) { state.mode = undefined; render(); return; }
-  if (last.phase === "core") state.core = "";
   unrecord(state, last.phase, last.fid);
   render();
 }
@@ -81,8 +83,8 @@ function back() {
 const app = document.getElementById("app")!;
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 const PHASE_LABEL: Record<Phase, string> = {
-  start: "", scope: "1 · Does the CRA apply?", core: "2 · What is the product for?", class: "3 · Which class?",
-  routes: "4 · Overlaps with other laws", timeline: "5 · When do obligations apply?", result: "Result",
+  start: "", scope: "1 · Does the CRA apply?", class: "2 · Which class?",
+  routes: "3 · Overlaps with other laws", timeline: "4 · When do obligations apply?", result: "Result",
 };
 
 function optionLabel(fid: string, value: string): string {
@@ -125,8 +127,7 @@ function questionHtml(phase: Phase, fid: string): string {
     control = `<label class="opt"><span>Date</span> <input type="date" name="d"></label>`
       + (q.options ?? []).map((o, i) => `<label class="opt"><input type="radio" name="a" value="${i}"> <span>${esc(o.label)}</span></label>`).join("");
   } else if (q.kind === "text") {
-    control = `<textarea name="t" rows="3" placeholder="For example: a camera that detects when a rodent is caught and sends an alert to the pest controller"></textarea>
-      <p class="muted small">Optional, recorded in the export. The next questions test what your answer here means.</p>`;
+    control = `<textarea name="t" rows="3"></textarea>`;
   } else {
     control = (q.options ?? []).map((o, i) => `
       <label class="opt"><input type="radio" name="a" value="${i}" required> <span>${esc(o.label)}</span></label>`).join("");
@@ -197,7 +198,7 @@ function assemble() {
   });
   // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
   if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
-  return { out: { ...out, check: mode, core_function: state.core, timeline_facts: state.tfacts }, s, res };
+  return { out: { ...out, check: mode, for_your_records: state.record, timeline_facts: state.tfacts }, s, res };
 }
 
 function resultHtml(): string {
@@ -256,6 +257,11 @@ function resultHtml(): string {
     <section class="box"><p>Rules reflect the law as of <strong>${esc(out.law_as_of)}</strong>; this version is valid until ${esc(out.valid_until)}.
       ${lawStatus ? `Last checked against EUR-Lex on ${esc(lawStatus.checked_at)}.` : ""}</p>
       <p class="muted small">${esc(CONFIG.disclaimer)}</p>
+      <fieldset class="records"><legend><h3>For your records (optional)</h3></legend>
+        <p class="muted small">Added to the download only. It plays no part in the assessment, and nothing leaves your browser.</p>
+        <label>Product name <input type="text" id="rec-product" value="${esc(state.record.product)}"></label>
+        <label>Description <textarea id="rec-description" rows="2">${esc(state.record.description)}</textarea></label>
+      </fieldset>
       <div class="nav"><button type="button" id="back" class="secondary">Back</button>
       <button type="button" id="export">Download result (JSON)</button>
       <button type="button" id="restart" class="secondary">Start again</button></div></section>`;
@@ -263,6 +269,8 @@ function resultHtml(): string {
 }
 
 function download() {
+  state.record.product = (document.getElementById("rec-product") as HTMLInputElement | null)?.value ?? state.record.product;
+  state.record.description = (document.getElementById("rec-description") as HTMLTextAreaElement | null)?.value ?? state.record.description;
   const { out } = assemble();
   const blob = new Blob([JSON.stringify(out, null, 1)], { type: "application/json" });
   const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: `${out.assessment_id}.json` });

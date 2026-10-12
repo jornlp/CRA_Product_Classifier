@@ -78,10 +78,6 @@ describe("screens: pest-control camera", () => {
     expect(heading()).toContain("Tick all that apply");
     await answer([]);    // no exclusion
   });
-  it("asks for the core function in the user's own words", async () => {
-    expect(app().querySelector("textarea")).not.toBeNull();
-    await answer({ text: "Detects a trapped rodent and alerts the pest controller" });
-  });
   it("asks what the product is mainly for, with binding, FAQ and worked examples", async () => {
     expect(heading()).toContain("mainly for");
     const guide = app().querySelector("aside.guide")!.textContent!;
@@ -111,6 +107,10 @@ describe("screens: pest-control camera", () => {
     expect(text).toContain("rules for 6 of 26 categories");
     expect(text).toContain("you indicated the product is not mainly for this");
     expect(text).toContain("not legal advice");
+  });
+  it("offers optional record fields that are not part of the assessment", () => {
+    expect(app().querySelector("#rec-product")).not.toBeNull();
+    expect(app().textContent).toContain("plays no part in the assessment");
   });
   it("result shows when obligations apply", () => {
     expect(app().textContent).toContain("cra art 14 reporting");

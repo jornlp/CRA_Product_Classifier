@@ -225,7 +225,7 @@ def build():
     types.update({k: ("bool" if v.get("values") == [True, False] else v.get("type", "enum")) for k, v in scope["facts"].items()})
     timeline = ["UNITS_PLACED_ON_MARKET", "CHANGE_AT", "CHANGE_AFFECTS_PURPOSE", "CHANGE_AFFECTS_ANNEX_I",
                 "RADIO_EQUIPMENT_RED_DA", "OTHER_LEGISLATION_CERTIFICATE"]
-    used = list(dict.fromkeys(list(scope["facts"]) + ["CORE_FUNCTION"] + list(cls["facts"]) + timeline))
+    used = list(dict.fromkeys(list(scope["facts"]) + list(cls["facts"]) + timeline))
     out = {}
     for fid in used:
         if fid not in reg:
