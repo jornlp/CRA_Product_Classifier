@@ -163,6 +163,8 @@ classification-adjacent, not merely informational.
 | AI-02 | Same, but the product is an Annex III important product under Art. 32(2)(a)/(b) or 32(3) | class + AI Act internal-control route | Art. 12(3) derogation: CRA conformity procedures apply for the CRA essential requirements | new | H |
 | AI-03 | Same, but an Annex IV critical product | class + AI Act internal-control route | Art. 12(3) derogation applies | new | H |
 | AI-04 | Product embeds an AI component but its core function is not that of a high-risk AI system | AI as component | No change to class or route; the component rule applies as elsewhere | new | H |
+| AI-05 | AI-enabled machine whose AI system is high-risk under Art. 6(1) **only via the Machinery Regulation**, now in Section B of AI Act Annex I | Annex I Section B | CRA class unchanged. AI Act Art. 2(2) (as amended by 2026/1744) applies only Art. 6(1), 60a and 102–112, so the Art. 43 procedure that CRA Art. 12(2) points to does not apply. Engine must **not** assert the Art. 43 route; flag for expert review | new | H |
+| AI-06 | High-risk AI product (via Annex I) placed on the market between 11-12-2027 and 2-8-2028 | date vs AI Act Art. 113(c)(ii) | AI Act Chapter III, incl. Art. 6, applies to Annex I systems only from 2-8-2028. Whether the product is "classified as high-risk … pursuant to Article 6" for CRA Art. 12 in that window is unresolved. Engine must date-qualify the route, never state it unconditionally | new | H |
 
 ## N. Cases from the official FAQ
 
@@ -186,7 +188,7 @@ and a living document, so each case records the version it came from (v14).
 ## O. Adjacent regimes that do not exclude
 
 Other law applying alongside the CRA. The engine flags these as pointers; it does not assess them
-(v4 section 2.3). The two exceptions are RED and the AI Act, which change a CRA answer.
+(v4 section 2.3). The exceptions are RED, the AI Act and the EHDS, which change a CRA answer (the EHDS via CRA Art. 32(5a)).
 
 | ID | Scenario | Decisive fact | Expected engine property | Src | St |
 |---|---|---|---|---|---|
@@ -194,6 +196,7 @@ Other law applying alongside the CRA. The engine flags these as pointers; it doe
 | OVL-02 | Consumer product with digital elements carrying risks beyond cybersecurity | consumer product, non-cyber risks | **Not excluded.** GPSR applies alongside for the other risks. Pointer only | FAQ | H |
 | OVL-03 | Connected product that is also a connected product under the Data Act | data-access obligations exist | **Not excluded.** Arts. 4 and 5 obligations must be considered within the manufacturer's CRA risk assessment. Pointer, with that link stated | FAQ | H |
 | OVL-04 | Product whose maker claims an adjacent regime means the CRA does not apply | adjacent vs exclusion | The CRA applies. An adjacent regime is not an exclusion; only Art. 2(2)–(7) and an applicable Art. 2(5) delegated act exclude | new | H |
+| EHR-01 | Product with digital elements classified as an EHR system under Reg. (EU) 2025/327 | EHR system status | CRA class unchanged. Conformity with CRA Annex I is demonstrated via the EHDS Chapter III procedure (CRA Art. 32(5a), inserted by EHDS Art. 104, from 26-3-2027) | new | H |
 
 ## J. Engine properties (meta-cases)
 
@@ -303,12 +306,12 @@ to be excluded with a reason.
 | H. Lifecycle and timeline | 10 |
 | I. Open source | 3 |
 | J. Engine properties (meta-cases) | 8 |
-| K. Overlap with the AI Act | 4 |
+| K. Overlap with the AI Act | 6 |
 | L. Per-category coverage (minimal pairs) | 52 |
 | M. Cases from real product shapes | 6 |
 | N. Cases from the official FAQ | 10 |
-| O. Adjacent regimes that do not exclude | 4 |
-| **Total** | **158** |
+| O. Adjacent regimes that do not exclude | 5 |
+| **Total** | **161** |
 
 All 11 v4 IDs are preserved: `RAT-01…04`, `WTR-01…03`, `LIFE-01…03`, `SRC-01`,
 `OTHER-01`. AC-05 references these by name.

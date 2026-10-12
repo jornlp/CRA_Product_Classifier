@@ -122,6 +122,18 @@ Record the access date — these are living documents.
 - B7 — official CRA FAQ, 66pp (`B7_orcwg-official-CRA-FAQ_captured-2026-10-12.pdf`)
 - ORC WG structured data in `docs/research/out/orcwg/`: FAQ v12 and v14 Markdown, `official-guidance.json` (366 KB), `craReferences.json`, `eu-reg.json`. Mirror copies — useful as WP1/WP2 input, never as citation authority.
 
+## P1b — OBTAINED 2026-10-12 (second batch). Hashes in CHECKSUMS.txt.
+
+| Code | Document | Finding |
+|---|---|---|
+| B11c | AI Act, consolidated 001.001 (27.7.2026), amended by **Reg. (EU) 2026/1744** | Supersedes B11 for any rule. Three changes reach the CRA: (1) Art. 113(c) — high-risk obligations apply from **2.12.2027** (Art. 6(2)/Annex III) and **2.8.2028** (Art. 6(1)/Annex I); (2) Machinery Reg. 2023/1230 moved to **Annex I Section B**, so under new Art. 2(2) only Art. 6(1), 60a and 102–112 apply to such AI systems — Art. 43 does not; (3) new Art. 42(3): high-risk AI within the CRA meeting CRA Art. 12(1) conditions is deemed compliant with AI Act Art. 15. Cases `AI-05`, `AI-06` |
+| B17c | Machinery Reg., consolidated 002.001 (27.7.2026), amended by 2024/2748 and 2026/1744 | New Art. 8 power: delegated acts adding AI requirements to Annex III, applying by 2.8.2028. Adjacent regime only |
+| B18 | EHDS Reg. (EU) 2025/327, OJ text | Verified the CRA amendment verbatim: Art. 13(4) and 31(3) replaced, **Art. 32(5a) inserted** — EHR systems demonstrate conformity with CRA Annex I via EHDS Chapter III. Applies 26.3.2027, before CRA conformity obligations apply, so always operative for them. Case `EHR-01` |
+| B19c | Reg. (EU) No 168/2013, consolidated 2.8.2026 (M1–M5) | L-category scope (Art. 2, 4) and L1e-A "powered cycle … cycles designed to pedal" intact; 2025/1535 carve-back still meaningful. Does not yet include CRA Annex II amendment (from 11.12.2027) or 2026/1738 |
+| B20 | SWD(2026) 590 — subsidiarity grid for the Public Procurement Act proposal | **Not the proposal itself.** Confirms COM(2026) 590 amends Reg. 2024/2847 among many acts; which CRA provisions is not stated here. Likely procurement-related, but unverified — `52026PC0590` still needed |
+
+Duplicates of B1c and B14 were downloaded again; hashes matched, so they were removed.
+
 ## P2 — discovery routes and prior art
 
 Not authority. Reinstated from v3 per DR-01.

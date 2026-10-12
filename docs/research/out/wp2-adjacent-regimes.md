@@ -25,7 +25,7 @@ Each is confirmed from the official FAQ unless noted.
 | **Machinery Regulation (EU) 2023/1230** | Product is machinery or a related product | Applies from **20 Jan 2027**. Its Annex III ss. 1.1.9 and 1.2.1 address cybersecurity risks affecting safety. Both sets of requirements apply; CRA recital 53 governs the interplay, including conformity assessment | FAQ |
 | **GPSR (EU) 2023/988** | Consumer product with risks beyond cybersecurity | Applies alongside for the non-cyber risks, absent product-specific legislation | FAQ |
 | **Data Act (EU) 2023/2854** | Product is also a connected product or related service | Arts. 4 and 5 data-access obligations must be **considered within the CRA risk assessment** | FAQ |
-| **EHDS (EU) 2025/327** | EHR systems | Amends CRA Art. 32 from 26 Mar 2027 — pending, not yet consolidated | B1 currency note |
+| **EHDS (EU) 2025/327** | EHR systems | **Changes a CRA answer.** Inserts CRA Art. 32(5a): EHR systems use the EHDS Chapter III conformity procedure; replaces Art. 13(4), 31(3). From 26 Mar 2027 — verified verbatim in B18 Art. 104. Case `EHR-01` | B18 |
 | **NIS 2 / CER** | The *operator* is an essential or important entity | Nothing. Obligations attach to the operator, not the product. Needed only to explain why | B9, B10 |
 
 ## What the engine does

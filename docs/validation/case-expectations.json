@@ -1821,6 +1821,39 @@
    "expected_class": "NOT_ASSERTED",
    "status": "AUTHOR_VERIFIED",
    "review_change": "From the official FAQ overlap sections; the CRA is not excluded by any of these."
+  },
+  {
+   "id": "AI-05",
+   "section": "K",
+   "scenario": "AI-enabled machine whose AI system is high-risk under Art. 6(1) only via the Machinery Regulation, now in Section B of AI Act Annex I",
+   "decisive_fact": "Annex I Section B",
+   "expected_behaviour": "CRA class unchanged; Art. 43 route of CRA Art. 12(2) not asserted (AI Act Art. 2(2) as amended by 2026/1744 excludes Art. 43); flagged for expert review",
+   "status": "OPEN_QUESTION",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "source": "B11c Art. 2(2), Annex I Section B point 21"
+  },
+  {
+   "id": "AI-06",
+   "section": "K",
+   "scenario": "High-risk AI product (via Annex I) placed on the market between 11-12-2027 and 2-8-2028",
+   "decisive_fact": "date vs AI Act Art. 113(c)(ii)",
+   "expected_behaviour": "Conformity route date-qualified; whether CRA Art. 12 applies in the window is not resolved",
+   "status": "OPEN_QUESTION",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "source": "B11c Art. 113(c)"
+  },
+  {
+   "id": "EHR-01",
+   "section": "O",
+   "scenario": "Product with digital elements classified as an EHR system under Reg. (EU) 2025/327",
+   "decisive_fact": "EHR system status",
+   "expected_behaviour": "CRA class unchanged; conformity with CRA Annex I via EHDS Chapter III procedure (CRA Art. 32(5a), from 26-3-2027)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "source": "B18 Art. 104(3)"
   }
  ],
  "review_round_1": {
