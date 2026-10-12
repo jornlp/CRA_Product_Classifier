@@ -136,6 +136,21 @@ Not authority. Reinstated from v3 per DR-01.
   2025-12-21. Both reports warn the Annexes can be amended; AC-09 depends on catching this.
 - Whether B1 has acquired a consolidated version with amendments.
 
+**Run 2026-10-12** — EUR-Lex "Relationship between documents" on `32024R2847`:
+
+| Relation | Act | Effect on the tool |
+|---|---|---|
+| Corrected by | R(01) EN, R(02), R(04) all languages; R(03) FR/HU, R(05) SK, R(06) FR, R(07) DE | EN-relevant three are in B1c. Others are other language versions only |
+| Modified by | 2025/327 (EHDS): Art. 13(4), 31(3) replaced; 32(5a) added; from 26.3.2027 | Already recorded above. Pending |
+| Completed by | 2025/1535, from 18.11.2025 | B14, verified. Art. 2(5) exclusion |
+| Completed by | 2026/881, from 10.5.2026 | Notification-dissemination deferral (Art. 16 area). No scope or class effect |
+| Amendment proposed by | **COM(2026) 590** (`52026PC0590`) | **Unread.** Not law, but if it moves dates or Annexes the tool must warn. Fetch |
+| Cited | 2024/482 (EUCC scheme) | Supports the Common Criteria certification proxies. P2 |
+
+No delegated act under Art. 7(3), 8(1) or 8(2) is listed. The 2025/2392 implementing act is
+not listed under "Completed by"; EUR-Lex shows implementing acts via the separate
+"implementing acts based on this document" search, which should be run as well.
+
 ## Not documents — WP4 benchmark targets
 
 Run against the catalogue cases, record screens and outcomes:
