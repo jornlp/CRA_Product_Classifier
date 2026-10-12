@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "test": "npm run typecheck && vitest run",
-    "typecheck": "tsc -p packages/engine --noEmit",
+    "typecheck": "tsc -p packages/engine --noEmit && tsc -p apps/web --noEmit",
     "verify:research": "cd docs/research/wp7-spike && python3 evaluate.py --verify && python3 scope.py && python3 timeline.py"
   },
   "devDependencies": {

@@ -1,0 +1,34 @@
+# Every push and pull request: the engine must still match the reference outputs, the schemas must
+# still reject broken documents, and every rule quote must still be verbatim in the held sources.
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install
+        run: npm ci --legacy-peer-deps
+      - name: Type check and tests (golden fixtures, schemas)
+        run: npm test
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify rules against held sources (quotes, category list, open-question references)
+        run: npm run verify:research
+      - name: Build the site
+        run: npm run build -w @cra/web
+      - name: No external requests in the built site (AC-07)
+        run: |
+          if grep -rEo 'https?://[^"'"'"' )]+' apps/web/dist --include='*.js' --include='*.html'; then
+            echo "The built site references an external URL. Assessment data must never leave the browser." >&2
+            exit 1
+          fi

@@ -1,0 +1,57 @@
+# Weekly check of EUR-Lex for changes to the acts the rules depend on (DR-05, AC-09).
+#   Exit 0: no changes. Exit 1: changes needing review -> an issue that @-mentions the owner.
+#   Exit 2: the check itself failed (network, baseline) -> the run fails, which GitHub also notifies.
+# The status file is committed every run, so the site can mark affected results, and so the
+# repository stays active: GitHub disables schedules in public repos after 60 days without activity.
+name: law-watch
+on:
+  schedule:
+    - cron: "17 6 * * 1"   # Mondays 06:17 UTC
+  workflow_dispatch:
+permissions:
+  contents: write
+  issues: write
+concurrency: law-watch
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check EUR-Lex against the baseline
+        id: check
+        run: |
+          set +e
+          python3 docs/research/tools/eurlex_watch.py check --report report.md --json apps/web/public/law-status.json
+          code=$?
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          if [ "$code" -gt 1 ]; then exit "$code"; fi
+          exit 0
+      - name: Open an issue, or comment on the open one
+        if: steps.check.outputs.code == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OWNER: ${{ github.repository_owner }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          {
+            printf '@%s the weekly EUR-Lex check found changes that may affect the rules.\n\n' "$OWNER"
+            printf 'Affected results now show a LAW_CHANGED warning on the site. To clear it: read the new text, update and re-verify the rules, record the outcome in docs/legal/sources/MANIFEST.md, then run `python3 docs/research/tools/eurlex_watch.py accept` and commit the new baseline.\n\nRun: %s\n\n' "$RUN_URL"
+            cat report.md
+          } > body.md
+          gh label create law-change --color B60205 --description "EUR-Lex change affecting the rules" 2>/dev/null || true
+          existing=$(gh issue list --label law-change --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file body.md
+          else
+            gh issue create --title "EUR-Lex: change affecting the rules ($(date -u +%F))" --label law-change --body-file body.md
+          fi
+      - name: Publish the status with the site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add apps/web/public/law-status.json
+          git commit -m "law-watch: status $(date -u +%F)" || exit 0
+          git push

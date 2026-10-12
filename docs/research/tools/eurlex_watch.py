@@ -10,8 +10,10 @@ ranked by whether it can touch a provision a rule or case relies on.
 This finds changes. It does not decide what they mean: every HIGH or MEDIUM item
 needs the new text read and verified before a rule changes (DR-04).
 
+Exit codes: 0 no changes, 1 changes needing review, 2 the check itself failed (network, baseline).
+
 Usage:
-  eurlex_watch.py check   [--report FILE]   # diff against baseline; exit 1 if HIGH/MEDIUM
+  eurlex_watch.py check   [--report FILE] [--json FILE]   # diff against baseline; exit 1 if HIGH/MEDIUM
   eurlex_watch.py accept                    # after review: store current state as baseline
   eurlex_watch.py fetch CELEX --out DIR     # download a document (XHTML) for review
 
@@ -74,7 +76,8 @@ def sparql(query, timeout=180):
                 return json.load(r)["results"]["bindings"]
         except Exception as e:  # network hiccups: retry, then fail loudly
             if attempt == 2:
-                sys.exit(f"SPARQL query failed: {e}")
+                print(f"SPARQL query failed: {e}", file=sys.stderr)
+                sys.exit(2)  # the check itself failed; distinct from 1 = changes found
 
 
 def values(celexes):
@@ -276,7 +279,8 @@ def cmd_check(args):
     acts = {a["celex"]: a for a in watch["acts"]}
     baseline = Path(args.baseline)
     if not baseline.exists():
-        sys.exit(f"No baseline at {baseline}. Review the current state, then run 'accept'.")
+        print(f"No baseline at {baseline}. Review the current state, then run 'accept'.", file=sys.stderr)
+        sys.exit(2)
     base = json.loads(baseline.read_text())["links"]
     now = current_state(watch)
     cur = now["links"]
@@ -313,6 +317,19 @@ def cmd_check(args):
     print(report)
     if args.report:
         Path(args.report).write_text(report)
+    if args.json:
+        # Machine-readable status for the site (DR-05): results whose rules cite an affected
+        # source show a LAW_CHANGED warning. Only HIGH and MEDIUM findings count.
+        serious = [f for f in findings if f[0] in ("HIGH", "MEDIUM")]
+        Path(args.json).write_text(json.dumps({
+            "checked_at": now["generated"],
+            "baseline": json.loads(baseline.read_text())["generated"],
+            "status": "CHANGES_FOUND" if serious or removed else "NO_CHANGES",
+            "affected_sources": sorted({acts[f[2]["target"]].get("source", "") for f in serious} - {"", "not held"}),
+            "findings": [{"severity": sev, "act": acts[l["target"]]["label"], "celex": l["target"],
+                          "relation": RELATIONS[l["relation"]], "by": l["src"], "why": why}
+                         for sev, kind, l, why, cases in serious],
+        }, indent=1, ensure_ascii=False) + "\n")
     return 1 if any(f[0] in ("HIGH", "MEDIUM") for f in findings) or removed else 0
 
 
@@ -346,7 +363,8 @@ def cmd_fetch(args):
     elif status == 200:
         docs = [(RESOURCE + args.celex, (status, body))]
     else:
-        sys.exit(f"{args.celex}: HTTP {status}")
+        print(f"{args.celex}: HTTP {status}", file=sys.stderr)
+        sys.exit(2)
     safe = re.sub(r"[^A-Za-z0-9_.-]", "_", args.celex)
     for i, (url, (st, data)) in enumerate(docs, 1):
         if st != 200:
@@ -361,7 +379,7 @@ def cmd_fetch(args):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    c = sub.add_parser("check"); c.add_argument("--report")
+    c = sub.add_parser("check"); c.add_argument("--report"); c.add_argument("--json")
     a = sub.add_parser("accept")
     for p in (c, a):
         p.add_argument("--baseline", default=str(BASELINE))
