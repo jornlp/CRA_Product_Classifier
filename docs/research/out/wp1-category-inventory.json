@@ -62,7 +62,8 @@
    "cases": [
     "CAT-02P",
     "CAT-02N"
-   ]
+   ],
+   "wp5_condition_logic": "C2 is descriptive ('typically include'), not a condition. Only C1 decides. See MP-01."
   },
   {
    "id": "III-I-03",
@@ -78,7 +79,8 @@
    "cases": [
     "CAT-03P",
     "CAT-03N"
-   ]
+   ],
+   "wp5_condition_logic": "C2 is illustrative ('including activities such as'), not a condition. Only C1 (stores passwords, as core functionality) decides. See MP-02, CAT-03N."
   },
   {
    "id": "III-I-04",
@@ -125,7 +127,8 @@
    "cases": [
     "CAT-06P",
     "CAT-06N"
-   ]
+   ],
+   "wp5_condition_logic": "The description includes 'dedicated configuration management systems', so C1 (monitoring) is not strictly required alongside C2. Treat C1 OR C2-with-configuration as sufficient (AUTHOR_INTERPRETATION). See MP-04."
   },
   {
    "id": "III-I-07",
@@ -159,7 +162,8 @@
    "cases": [
     "CAT-08P",
     "CAT-08N"
-   ]
+   ],
+   "wp5_condition_logic": "The description includes 'single-stage ... boot loaders', so C3 (selecting boot options) is not strictly required. See MP-07."
   },
   {
    "id": "III-I-09",
@@ -197,7 +201,8 @@
    ],
    "review_round_1": {
     "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
-   }
+   },
+   "wp5_condition_logic": "Physical (C2) and virtual (C3) are alternative limbs. See MP-09."
   },
   {
    "id": "III-I-11",
@@ -236,7 +241,8 @@
    ],
    "review_round_1": {
     "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
-   }
+   },
+   "wp5_condition_logic": "Three alternative limbs; each has its own required qualifier: modem 'intended for the connection to the Internet' (MP-10), switch 'management plane' (MP-11)."
   },
   {
    "id": "III-I-13",
@@ -370,7 +376,8 @@
    ],
    "review_round_1": {
     "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
-   }
+   },
+   "wp5_condition_logic": "C3 has two alternative limbs: social interaction OR location tracking (MP-15). C1 and C2 are required (MP-16, MP-17)."
   },
   {
    "id": "III-I-19",
@@ -392,7 +399,8 @@
     "regularly or continuously senses and processes information relevant to the user's health",
     "excluding products within the scope of Reg. 2017/745 or 2017/746",
     "OR is a wearable intended for use by and for individuals under 14"
-   ]
+   ],
+   "wp5_condition_logic": "C4 is an alternative limb with no health-sensing condition (MP-18)."
   },
   {
    "id": "III-II-01",
@@ -411,7 +419,8 @@
    ],
    "review_round_1": {
     "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
-   }
+   },
+   "wp5_condition_logic": "Hypervisor and container runtime are alternative limbs (MP-20). Whether an orchestrator is a runtime is open (MP-21)."
   },
   {
    "id": "III-II-02",
@@ -432,7 +441,8 @@
     "IDS: monitors traffic that has entered the environment and detects intrusion",
     "IPS: an IDS that actively responds",
     "NOTE: no industrial-use condition exists"
-   ]
+   ],
+   "wp5_condition_logic": "C4 is a note, not a condition. Firewall, IDS and IPS are alternative limbs (MP-22)."
   },
   {
    "id": "III-II-03",
@@ -484,7 +494,8 @@
    "cases": [
     "CAT-24P",
     "CAT-24N"
-   ]
+   ],
+   "wp5_condition_logic": "CAT-24N fails C2 and C3 together; MP-27 isolates C3."
   },
   {
    "id": "IV-02",
@@ -555,7 +566,8 @@
    ],
    "review_round_1": {
     "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
-   }
+   },
+   "wp5_condition_logic": "C2 is descriptive ('typically'). CAT-26N fails C1 and C3 together; MP-26 isolates C3, MP-25 the boundary with III-II-04."
   }
  ],
  "next_actions": [

@@ -727,12 +727,13 @@
   {
    "id": "AI-01",
    "section": "K",
-   "scenario": "In-scope product that is also a high-risk AI system under Art. 6 of Reg. 2024/1689, `DEFAULT` class",
+   "scenario": "In-scope product that is also a high-risk AI system under Art. 6(2)/Annex III of Reg. 2024/1689, DEFAULT class, placed on the market on or after 2-12-2027",
    "decisive_fact": "high-risk AI status",
-   "expected_behaviour": "CRA class unchanged; conformity route is the AI Act's Art. 43 procedure (Art. 12(2))",
+   "expected_behaviour": "CRA class unchanged; conformity route is the AI Act's Art. 43 procedure (Art. 12(2)). Annex I products and earlier dates: see AI-05/AI-06",
    "status": "AUTHOR_VERIFIED",
    "expected_scope": "IN",
-   "expected_class": "NOT_ASSERTED"
+   "expected_class": "NOT_ASSERTED",
+   "source": "B1c Art. 12(2); B11c Art. 113(c)(i)"
   },
   {
    "id": "AI-02",
@@ -1079,9 +1080,9 @@
    "id": "CAT-03N",
    "section": "L",
    "scenario": "Notes application with one encrypted field, no password generation, sharing or application integration",
-   "decisive_fact": "fails at least one decisive condition",
-   "expected_behaviour": "category excluded, with the failing condition recorded",
-   "status": "AUTHOR_VERIFIED",
+   "decisive_fact": "core functionality is note-taking, not storing passwords",
+   "expected_behaviour": "category excluded: the product's core functionality is not storing passwords (C1). Missing generation/sharing/integration is NOT the reason; those are illustrative (see MP-02)",
+   "status": "AUTHOR_INTERPRETATION",
    "expected_scope": "IN",
    "expected_category": {
     "id": "III-I-03",
@@ -1854,6 +1855,482 @@
    "expected_scope": "IN",
    "expected_class": "NOT_ASSERTED",
    "source": "B18 Art. 104(3)"
+  },
+  {
+   "id": "MP-01",
+   "section": "P",
+   "scenario": "Embedded web view that loads and renders remote web pages but has script execution disabled",
+   "decisive_fact": "C2 is descriptive ('typically')",
+   "expected_behaviour": "Candidate. Script execution is something browsers 'typically include', not a condition; accessing and rendering server-hosted web content (C1) is what matters. Pairs with CAT-02N, which fails C1",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-02",
+    "matches": true,
+    "condition": "C2 is descriptive ('typically')"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-02N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-02",
+   "section": "P",
+   "scenario": "Password vault that stores passwords locally but offers no generation, sharing or application integration",
+   "decisive_fact": "C2 is illustrative ('including activities such as')",
+   "expected_behaviour": "Candidate. Storing passwords (C1) is the defining function; generation, sharing and integration are listed examples. CAT-03N is excluded because note-taking, not password storage, is its core function",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-03",
+    "matches": true,
+    "condition": "C2 is illustrative ('including activities such as')"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-03N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-03",
+   "section": "P",
+   "scenario": "Tool that only quarantines and removes files already flagged as malicious by another product",
+   "decisive_fact": "C2 limb alone",
+   "expected_behaviour": "Candidate via the 'removes or quarantines' limb, without its own detection",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-04",
+    "matches": true,
+    "condition": "C2 limb alone"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-04N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-04",
+   "section": "P",
+   "scenario": "Dedicated configuration management system that pushes configuration to routers and switches but does not monitor them",
+   "decisive_fact": "inclusion list vs C1 (monitoring)",
+   "expected_behaviour": "Candidate. The description names 'dedicated configuration management systems' as included, so monitoring is not treated as strictly required. Inventory conditions C1+C2 read as conjunctive and need the same note",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-06",
+    "matches": true,
+    "condition": "inclusion list vs C1 (monitoring)"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-06N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-05",
+   "section": "P",
+   "scenario": "Observability platform that collects and correlates data from many sources for application performance, with no security use",
+   "decisive_fact": "C3 security purpose",
+   "expected_behaviour": "Category excluded; fails C3 only (actionable information 'for security-related purposes')",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-07",
+    "matches": false,
+    "condition": "C3 security purpose"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-07P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-06",
+   "section": "P",
+   "scenario": "Standalone tool that analyses the logs of a single firewall and raises security alerts",
+   "decisive_fact": "C1 multiple sources",
+   "expected_behaviour": "Category excluded; fails C1 only (data from multiple sources)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-07",
+    "matches": false,
+    "condition": "C1 multiple sources"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-07P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-07",
+   "section": "P",
+   "scenario": "Single-stage boot loader that initialises hardware and loads one fixed kernel, with no boot option selection",
+   "decisive_fact": "inclusion list vs C3 (selecting boot options)",
+   "expected_behaviour": "Candidate. The description names single-stage boot loaders as included, so selecting boot options is not treated as strictly required",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-08",
+    "matches": true,
+    "condition": "inclusion list vs C3 (selecting boot options)"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-08N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-08",
+   "section": "P",
+   "scenario": "Key vault managing symmetric keys and secrets, with no digital certificates involved",
+   "decisive_fact": "C3: keys associated with certificates",
+   "expected_behaviour": "Category excluded. Key lifecycle counts only for keys 'associated with such digital certificates' within a PKI",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-09",
+    "matches": false,
+    "condition": "C3: keys associated with certificates"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-09P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-09",
+   "section": "P",
+   "scenario": "Virtual network interface driver for VPN or container networking, placed on the market as a standalone product",
+   "decisive_fact": "virtual limb (C3)",
+   "expected_behaviour": "Candidate via the virtual network interface limb",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-10",
+    "matches": true,
+    "condition": "virtual limb (C3)"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-10N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-10",
+   "section": "P",
+   "scenario": "Industrial modem providing a point-to-point serial link over a leased line, not used for IP-based Internet communication",
+   "decisive_fact": "modem limb: intended for connection to the Internet",
+   "expected_behaviour": "Modem limb excluded: not 'intended for the connection to the Internet' nor converting signals 'for IP-based communication'",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-12",
+    "matches": false,
+    "condition": "modem limb: intended for connection to the Internet"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-12P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-11",
+   "section": "P",
+   "scenario": "Unmanaged desktop Ethernet switch with no management plane",
+   "decisive_fact": "switch limb: management plane",
+   "expected_behaviour": "Switch limb excluded: switches in this category 'have a management plane'",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-12",
+    "matches": false,
+    "condition": "switch limb: management plane"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-12P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-12",
+   "section": "P",
+   "scenario": "System-on-chip with integrated memory and a TEE that secures the host device",
+   "decisive_fact": "C1: external vs integrated memory",
+   "expected_behaviour": "Class I either way. Whether it is a microprocessor (external memory) or a microcontroller (integrated memory) need not be resolved for the class; the engine may list both with that reason",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-13 / III-I-14",
+    "matches": true,
+    "condition": "C1: external vs integrated memory"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-13P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-13",
+   "section": "P",
+   "scenario": "Voice assistant appliance for office meeting rooms that controls room equipment and online calendars",
+   "decisive_fact": "C3 residential settings",
+   "expected_behaviour": "Category excluded; fails 'in residential settings' only",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-16",
+    "matches": false,
+    "condition": "C3 residential settings"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-16P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-14",
+   "section": "P",
+   "scenario": "Smart door lock operated only by Bluetooth from a phone nearby, with no hub, cloud or other remote path",
+   "decisive_fact": "C3 remote control or management",
+   "expected_behaviour": "Unresolved whether control by a nearby phone app is control 'remotely from other systems'. Engine must not decide; review flag",
+   "status": "OPEN_QUESTION",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-17",
+    "matches": "UNRESOLVED",
+    "condition": "C3 remote control or management"
+   },
+   "expected_class": "UNRESOLVED",
+   "pairs_with": "LOCK-01",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-15",
+   "section": "P",
+   "scenario": "Internet-connected toy with GPS location tracking and no microphone, speaker, camera or keyboard",
+   "decisive_fact": "location-tracking limb",
+   "expected_behaviour": "Candidate via the location-tracking limb. Pairs with CAT-18N (proximity only)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-18",
+    "matches": true,
+    "condition": "location-tracking limb"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-18N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-16",
+   "section": "P",
+   "scenario": "Internet-connected collectible figure with microphone and speaker, designed and marketed for adult collectors",
+   "decisive_fact": "C1 toy under Directive 2009/48/EC",
+   "expected_behaviour": "Category excluded if not a toy within the Directive (not designed or intended for play by children under 14). The toy test is a judgement; record the reason",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-18",
+    "matches": false,
+    "condition": "C1 toy under Directive 2009/48/EC"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-18P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-17",
+   "section": "P",
+   "scenario": "Walkie-talkie toy pair with microphone and speaker communicating only with each other by radio, never with the Internet",
+   "decisive_fact": "C2 Internet communication",
+   "expected_behaviour": "Category excluded; fails 'communicate on the public Internet, whether directly or via other equipment'",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-18",
+    "matches": false,
+    "condition": "C2 Internet communication"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-18P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-18",
+   "section": "P",
+   "scenario": "Child GPS smartwatch with calling but no health sensing, for children under 14",
+   "decisive_fact": "children's wearable limb (C4)",
+   "expected_behaviour": "Candidate via the children's wearable limb, which has no health-monitoring condition",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-19",
+    "matches": true,
+    "condition": "children's wearable limb (C4)"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-19P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-19",
+   "section": "P",
+   "scenario": "Adult smartwatch showing notifications only, with no sensors for health or body metrics",
+   "decisive_fact": "C2 health sensing",
+   "expected_behaviour": "Category excluded; fails C2 and the children's limb does not apply",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-19",
+    "matches": false,
+    "condition": "C2 health sensing"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-19P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-20",
+   "section": "P",
+   "scenario": "Container runtime managing container execution and lifecycle on a single host, placed on the market as a product",
+   "decisive_fact": "container runtime limb",
+   "expected_behaviour": "Candidate via the container runtime limb",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-01",
+    "matches": true,
+    "condition": "container runtime limb"
+   },
+   "expected_class": "IMPORTANT_II",
+   "pairs_with": "CAT-20N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-21",
+   "section": "P",
+   "scenario": "Multi-host container orchestration control plane that schedules containers but delegates execution to runtimes on each node",
+   "decisive_fact": "container runtime: single host, manages execution",
+   "expected_behaviour": "Unresolved whether an orchestrator is a container runtime system ('on a single host operating system', 'manage the execution'). Engine must not decide; review flag",
+   "status": "OPEN_QUESTION",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-01",
+    "matches": "UNRESOLVED",
+    "condition": "container runtime: single host, manages execution"
+   },
+   "expected_class": "UNRESOLVED",
+   "pairs_with": "MP-20",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-22",
+   "section": "P",
+   "scenario": "Host-based intrusion detection system that only detects and alerts",
+   "decisive_fact": "IDS limb without prevention",
+   "expected_behaviour": "Candidate via the IDS limb; active response is needed only for IPS",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-02",
+    "matches": true,
+    "condition": "IDS limb without prevention"
+   },
+   "expected_class": "IMPORTANT_II",
+   "pairs_with": "A3-01",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-23",
+   "section": "P",
+   "scenario": "Network traffic analytics for bandwidth planning that neither restricts traffic nor detects intrusions",
+   "decisive_fact": "C1/C2 purpose",
+   "expected_behaviour": "Category excluded; fails both firewall and IDS limbs",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-02",
+    "matches": false,
+    "condition": "C1/C2 purpose"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "MP-22",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-24",
+   "section": "P",
+   "scenario": "Microcontroller with security functions for the host, no tamper resistance and no AVA_VAN claim",
+   "decisive_fact": "condition chain after CAT-23N",
+   "expected_behaviour": "Excluded from III-II-04 (CAT-23N) but candidate for III-I-14; the class falls to Class I, not to DEFAULT",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-14",
+    "matches": true,
+    "condition": "condition chain after CAT-23N"
+   },
+   "expected_class": "IMPORTANT_I",
+   "pairs_with": "CAT-23N",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-25",
+   "section": "P",
+   "scenario": "Tamper-resistant microcontroller designed to AVA_VAN.4",
+   "decisive_fact": "AVA_VAN boundary (III-II-04 vs IV-03)",
+   "expected_behaviour": "IV-03 candidate (secure element), not III-II-04, which covers AVA_VAN 2 or 3 only. Pairs with CAT-23P at AVA_VAN 2",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-03",
+    "matches": true,
+    "condition": "AVA_VAN boundary (III-II-04 vs IV-03)"
+   },
+   "expected_class": "CRITICAL",
+   "pairs_with": "CAT-23P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-26",
+   "section": "P",
+   "scenario": "Tamper-resistant microcontroller designed to AVA_VAN.3",
+   "decisive_fact": "C3 only (AVA_VAN.4)",
+   "expected_behaviour": "IV-03 excluded on C3 alone; lands in III-II-04. Single-condition replacement for CAT-26N, which fails two conditions",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-03",
+    "matches": false,
+    "condition": "C3 only (AVA_VAN.4)"
+   },
+   "expected_class": "IMPORTANT_II",
+   "pairs_with": "CAT-26P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-27",
+   "section": "P",
+   "scenario": "Multi-component industrial computer storing keys in software, with no tamper-evident or tamper-resistant enclosure",
+   "decisive_fact": "C3 only (physical envelope)",
+   "expected_behaviour": "IV-01 excluded on C3 alone. Single-condition replacement for CAT-24N, which fails two conditions",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-01",
+    "matches": false,
+    "condition": "C3 only (physical envelope)"
+   },
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "CAT-24P",
+   "source": "B2 technical description; WP5 condition audit"
+  },
+  {
+   "id": "MP-28",
+   "section": "P",
+   "scenario": "Payment terminal with a tamper-responsive enclosure around multiple discrete components",
+   "decisive_fact": "named example",
+   "expected_behaviour": "Candidate; physical payment terminals are named in the description",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-01",
+    "matches": true,
+    "condition": "named example"
+   },
+   "expected_class": "CRITICAL",
+   "pairs_with": "MP-27",
+   "source": "B2 technical description; WP5 condition audit"
   }
  ],
  "review_round_1": {

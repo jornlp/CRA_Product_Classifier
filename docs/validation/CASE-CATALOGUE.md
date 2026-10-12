@@ -159,7 +159,7 @@ classification-adjacent, not merely informational.
 
 | ID | Scenario | Decisive fact | Expected engine property | Src | St |
 |---|---|---|---|---|---|
-| AI-01 | In-scope product that is also a high-risk AI system under Art. 6 of Reg. 2024/1689, `DEFAULT` class | high-risk AI status | CRA class unchanged; conformity route is the AI Act's Art. 43 procedure (Art. 12(2)) | new | H |
+| AI-01 | In-scope product that is also a high-risk AI system under **Art. 6(2)/Annex III** of Reg. 2024/1689, `DEFAULT` class, placed on the market on or after 2-12-2027 | high-risk AI status | CRA class unchanged; conformity route is the AI Act's Art. 43 procedure (Art. 12(2)). Annex I (Section A/B) and earlier dates are `AI-05`/`AI-06` | new | H |
 | AI-02 | Same, but the product is an Annex III important product under Art. 32(2)(a)/(b) or 32(3) | class + AI Act internal-control route | Art. 12(3) derogation: CRA conformity procedures apply for the CRA essential requirements | new | H |
 | AI-03 | Same, but an Annex IV critical product | class + AI Act internal-control route | Art. 12(3) derogation applies | new | H |
 | AI-04 | Product embeds an AI component but its core function is not that of a high-risk AI system | AI as component | No change to class or route; the component rule applies as elsewhere | new | H |
@@ -244,7 +244,7 @@ to be excluded with a reason.
 | CAT-02P | III-I-02 | Embedded browser component intended for integration into another application | matches the decisive conditions | candidate for this category | new | H |
 | CAT-02N | III-I-02 | In-app help viewer that renders only local static HTML with no web protocol support or script execution | fails at least one decisive condition | category excluded, with the failing condition recorded | new | H |
 | CAT-03P | III-I-03 | Hardware-based password manager | matches the decisive conditions | candidate for this category | new | H |
-| CAT-03N | III-I-03 | Notes application with one encrypted field, no password generation, sharing or application integration | fails at least one decisive condition | category excluded, with the failing condition recorded | new | H |
+| CAT-03N | III-I-03 | Notes application with one encrypted field, no password generation, sharing or application integration | core functionality is note-taking, not storing passwords | category excluded on C1 (core function). Missing generation/sharing is **not** the reason — those are illustrative (`MP-02`) | new | H |
 | CAT-04P | III-I-04 | Rootkit detection tool | matches the decisive conditions | candidate for this category | new | H |
 | CAT-04N | III-I-04 | File integrity monitor that reports changes but neither detects malicious code nor removes it | fails at least one decisive condition | category excluded, with the failing condition recorded | new | H |
 | CAT-05P | III-I-05 | VPN gateway appliance | matches the decisive conditions | candidate for this category | new | H |
@@ -292,6 +292,46 @@ to be excluded with a reason.
 | CAT-26P | IV-03 | Trusted Platform Module designed to AVA_VAN.4 | matches the decisive conditions | candidate for this category | new | H |
 | CAT-26N | IV-03 | Microcontroller with cryptographic functions designed below AVA_VAN.4 and without tamper resistance | fails at least one decisive condition | category excluded, with the failing condition recorded | new | H |
 
+## P. Condition-level minimal pairs (WP5)
+
+Section L gives every category one positive and one negative. WP5's bar is higher: every
+decisive **condition** needs a case that turns on it alone. These cases close the gaps found by
+the condition audit in `docs/research/out/wp5-condition-coverage.md`: alternative limbs with no
+positive, required conditions with no single-condition negative, descriptive wording ("typically",
+"including activities such as") that must **not** be treated as a condition, and inclusion lists
+that override a condition as worded.
+
+| ID | Category | Scenario | Condition tested | Expected engine property | Src | St |
+|---|---|---|---|---|---|---|
+| MP-01 | III-I-02 | Embedded web view that loads and renders remote web pages but has script execution disabled | C2 is descriptive ('typically') | Candidate. Script execution is something browsers 'typically include', not a condition; accessing and rendering server-hosted web content (C1) is what matters. Pairs with CAT-02N, which fails C1. Pairs with `CAT-02N` | WP5 | H |
+| MP-02 | III-I-03 | Password vault that stores passwords locally but offers no generation, sharing or application integration | C2 is illustrative ('including activities such as') | Candidate. Storing passwords (C1) is the defining function; generation, sharing and integration are listed examples. CAT-03N is excluded because note-taking, not password storage, is its core function. Pairs with `CAT-03N` | WP5 | H |
+| MP-03 | III-I-04 | Tool that only quarantines and removes files already flagged as malicious by another product | C2 limb alone | Candidate via the 'removes or quarantines' limb, without its own detection. Pairs with `CAT-04N` | WP5 | H |
+| MP-04 | III-I-06 | Dedicated configuration management system that pushes configuration to routers and switches but does not monitor them | inclusion list vs C1 (monitoring) | Candidate. The description names 'dedicated configuration management systems' as included, so monitoring is not treated as strictly required. Inventory conditions C1+C2 read as conjunctive and need the same note. Pairs with `CAT-06N` | WP5 | H |
+| MP-05 | III-I-07 | Observability platform that collects and correlates data from many sources for application performance, with no security use | C3 security purpose | Category excluded; fails C3 only (actionable information 'for security-related purposes'). Pairs with `CAT-07P` | WP5 | H |
+| MP-06 | III-I-07 | Standalone tool that analyses the logs of a single firewall and raises security alerts | C1 multiple sources | Category excluded; fails C1 only (data from multiple sources). Pairs with `CAT-07P` | WP5 | H |
+| MP-07 | III-I-08 | Single-stage boot loader that initialises hardware and loads one fixed kernel, with no boot option selection | inclusion list vs C3 (selecting boot options) | Candidate. The description names single-stage boot loaders as included, so selecting boot options is not treated as strictly required. Pairs with `CAT-08N` | WP5 | H |
+| MP-08 | III-I-09 | Key vault managing symmetric keys and secrets, with no digital certificates involved | C3: keys associated with certificates | Category excluded. Key lifecycle counts only for keys 'associated with such digital certificates' within a PKI. Pairs with `CAT-09P` | WP5 | H |
+| MP-09 | III-I-10 | Virtual network interface driver for VPN or container networking, placed on the market as a standalone product | virtual limb (C3) | Candidate via the virtual network interface limb. Pairs with `CAT-10N` | WP5 | H |
+| MP-10 | III-I-12 | Industrial modem providing a point-to-point serial link over a leased line, not used for IP-based Internet communication | modem limb: intended for connection to the Internet | Modem limb excluded: not 'intended for the connection to the Internet' nor converting signals 'for IP-based communication'. Pairs with `CAT-12P` | WP5 | H |
+| MP-11 | III-I-12 | Unmanaged desktop Ethernet switch with no management plane | switch limb: management plane | Switch limb excluded: switches in this category 'have a management plane'. Pairs with `CAT-12P` | WP5 | H |
+| MP-12 | III-I-13 / III-I-14 | System-on-chip with integrated memory and a TEE that secures the host device | C1: external vs integrated memory | Class I either way. Whether it is a microprocessor (external memory) or a microcontroller (integrated memory) need not be resolved for the class; the engine may list both with that reason. Pairs with `CAT-13P` | WP5 | H |
+| MP-13 | III-I-16 | Voice assistant appliance for office meeting rooms that controls room equipment and online calendars | C3 residential settings | Category excluded; fails 'in residential settings' only. Pairs with `CAT-16P` | WP5 | H |
+| MP-14 | III-I-17 | Smart door lock operated only by Bluetooth from a phone nearby, with no hub, cloud or other remote path | C3 remote control or management | Unresolved whether control by a nearby phone app is control 'remotely from other systems'. Engine must not decide; review flag. Pairs with `LOCK-01` | WP5 | H |
+| MP-15 | III-I-18 | Internet-connected toy with GPS location tracking and no microphone, speaker, camera or keyboard | location-tracking limb | Candidate via the location-tracking limb. Pairs with CAT-18N (proximity only). Pairs with `CAT-18N` | WP5 | H |
+| MP-16 | III-I-18 | Internet-connected collectible figure with microphone and speaker, designed and marketed for adult collectors | C1 toy under Directive 2009/48/EC | Category excluded if not a toy within the Directive (not designed or intended for play by children under 14). The toy test is a judgement; record the reason. Pairs with `CAT-18P` | WP5 | H |
+| MP-17 | III-I-18 | Walkie-talkie toy pair with microphone and speaker communicating only with each other by radio, never with the Internet | C2 Internet communication | Category excluded; fails 'communicate on the public Internet, whether directly or via other equipment'. Pairs with `CAT-18P` | WP5 | H |
+| MP-18 | III-I-19 | Child GPS smartwatch with calling but no health sensing, for children under 14 | children's wearable limb (C4) | Candidate via the children's wearable limb, which has no health-monitoring condition. Pairs with `CAT-19P` | WP5 | H |
+| MP-19 | III-I-19 | Adult smartwatch showing notifications only, with no sensors for health or body metrics | C2 health sensing | Category excluded; fails C2 and the children's limb does not apply. Pairs with `CAT-19P` | WP5 | H |
+| MP-20 | III-II-01 | Container runtime managing container execution and lifecycle on a single host, placed on the market as a product | container runtime limb | Candidate via the container runtime limb. Pairs with `CAT-20N` | WP5 | H |
+| MP-21 | III-II-01 | Multi-host container orchestration control plane that schedules containers but delegates execution to runtimes on each node | container runtime: single host, manages execution | Unresolved whether an orchestrator is a container runtime system ('on a single host operating system', 'manage the execution'). Engine must not decide; review flag. Pairs with `MP-20` | WP5 | H |
+| MP-22 | III-II-02 | Host-based intrusion detection system that only detects and alerts | IDS limb without prevention | Candidate via the IDS limb; active response is needed only for IPS. Pairs with `A3-01` | WP5 | H |
+| MP-23 | III-II-02 | Network traffic analytics for bandwidth planning that neither restricts traffic nor detects intrusions | C1/C2 purpose | Category excluded; fails both firewall and IDS limbs. Pairs with `MP-22` | WP5 | H |
+| MP-24 | III-I-14 (fallback) | Microcontroller with security functions for the host, no tamper resistance and no AVA_VAN claim | condition chain after CAT-23N | Excluded from III-II-04 (CAT-23N) but candidate for III-I-14; the class falls to Class I, not to DEFAULT. Pairs with `CAT-23N` | WP5 | H |
+| MP-25 | IV-03 | Tamper-resistant microcontroller designed to AVA_VAN.4 | AVA_VAN boundary (III-II-04 vs IV-03) | IV-03 candidate (secure element), not III-II-04, which covers AVA_VAN 2 or 3 only. Pairs with CAT-23P at AVA_VAN 2. Pairs with `CAT-23P` | WP5 | H |
+| MP-26 | IV-03 | Tamper-resistant microcontroller designed to AVA_VAN.3 | C3 only (AVA_VAN.4) | IV-03 excluded on C3 alone; lands in III-II-04. Single-condition replacement for CAT-26N, which fails two conditions. Pairs with `CAT-26P` | WP5 | H |
+| MP-27 | IV-01 | Multi-component industrial computer storing keys in software, with no tamper-evident or tamper-resistant enclosure | C3 only (physical envelope) | IV-01 excluded on C3 alone. Single-condition replacement for CAT-24N, which fails two conditions. Pairs with `CAT-24P` | WP5 | H |
+| MP-28 | IV-01 | Payment terminal with a tamper-responsive enclosure around multiple discrete components | named example | Candidate; physical payment terminals are named in the description. Pairs with `MP-27` | WP5 | H |
+
 ## Coverage summary
 
 | Family | Cases |
@@ -311,7 +351,8 @@ to be excluded with a reason.
 | M. Cases from real product shapes | 6 |
 | N. Cases from the official FAQ | 10 |
 | O. Adjacent regimes that do not exclude | 5 |
-| **Total** | **161** |
+| P. Condition-level minimal pairs (WP5) | 28 |
+| **Total** | **189** |
 
 All 11 v4 IDs are preserved: `RAT-01…04`, `WTR-01…03`, `LIFE-01…03`, `SRC-01`,
 `OTHER-01`. AC-05 references these by name.
