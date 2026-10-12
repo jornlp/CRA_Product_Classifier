@@ -109,8 +109,8 @@ function back() {
 const app = document.getElementById("app")!;
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 const PHASE_LABEL: Record<Phase, string> = {
-  start: "", scope: "1 · Does the CRA apply?", class: "2 · Which class?",
-  routes: "3 · Overlaps with other laws", timeline: "4 · When do obligations apply?", result: "Result",
+  start: "", scope: "Does the CRA apply?", class: "Which class?",
+  routes: "Overlaps with other laws", timeline: "When do obligations apply?", result: "Result",
 };
 
 function optionLabel(fid: string, value: string): string {
