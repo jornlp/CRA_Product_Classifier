@@ -19,7 +19,19 @@ import { reportMarkdown, routeLabel } from "./report.js";
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
 const TIMELINE = tl as unknown as TimelineRules;
-type Option = { value: unknown; label: string; group?: string };
+type CatInfo = { category: string; title: string; class: string; named_products: string[]; description: string };
+type Option = { value: unknown; label: string; group?: string; info?: CatInfo[] };
+
+/** What an option on the purpose screen covers, straight from the implementing regulation. */
+function optionInfoHtml(info: CatInfo[], id: string): string {
+  return `<div class="opt-info" id="${id}" hidden>${info.map((c) => `
+    <article class="law">
+      <p class="law-act">Implementing Regulation (EU) 2025/2392 · ${esc(CLASS_LABEL[c.class])}</p>
+      <p class="law-title">${esc(c.title)}</p>
+      ${c.named_products.map((n) => `<p class="law-line"><span class="law-label"></span><span>${esc(n)}</span></p>`).join("")}
+      <details><summary>Full official description</summary><p>${esc(c.description)}</p></details>
+    </article>`).join("")}</div>`;
+}
 type LawLine = { label: string; level: number; parts: { text: string; mark?: boolean }[] };
 type Legal = { ref: string; quote?: string; text?: { act: string; heading: string; lines: LawLine[] } | null };
 
@@ -129,7 +141,11 @@ function questionHtml(phase: Phase, fid: string): string {
   const hint = q.hint ?? g?.hint;
   let control = "";
   if (q.kind === "multi-enum") {
-    const box = (o: Option, i: number) => `<label class="opt"><input type="checkbox" name="a" value="${i}"${checked(o.value)}> <span>${esc(o.label)}</span></label>`;
+    const box = (o: Option, i: number) => o.info?.length
+      ? `<div class="opt-row"><label class="opt"><input type="checkbox" name="a" value="${i}"${checked(o.value)}> <span>${esc(o.label)}</span></label>
+          <button type="button" class="info-btn" aria-expanded="false" aria-controls="info-${i}" title="What the regulation says about this">ⓘ<span class="sr-only"> What the regulation says about this</span></button></div>
+          ${optionInfoHtml(o.info, `info-${i}`)}`
+      : `<label class="opt"><input type="checkbox" name="a" value="${i}"${checked(o.value)}> <span>${esc(o.label)}</span></label>`;
     const opts = q.options ?? [];
     const stem = q.stem ? `<div class="stem"><p class="stem-text">${esc(q.stem)}</p>${q.stem_warning ? `<p class="stem-warning">${esc(q.stem_warning)}</p>` : ""}</div>` : "";
     if (opts.some((o) => o.group)) {
@@ -328,6 +344,12 @@ function render() {
       const a = readAnswer(form, cur.fid!);
       if (a.ok) answer(cur.fid!, cur.phase, a.value);
     });
+    form.querySelectorAll<HTMLButtonElement>("button.info-btn").forEach((b) => b.addEventListener("click", () => {
+      const panel = document.getElementById(b.getAttribute("aria-controls")!)!;
+      const open = b.getAttribute("aria-expanded") === "true";
+      b.setAttribute("aria-expanded", String(!open));
+      panel.hidden = open;
+    }));
     form.querySelector<HTMLElement>("input, textarea")?.focus();
   }
   document.getElementById("back")?.addEventListener("click", back);

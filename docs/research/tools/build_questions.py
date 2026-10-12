@@ -92,6 +92,38 @@ LABELS = {
                            "ANNEX_I_SECTION_A": "High-risk because of a product law in Annex I, Section A, of the AI Act",
                            "ANNEX_I_SECTION_B": "High-risk because of a product law in Annex I, Section B (for example machinery)"},
 }
+OPTION_INFO_FOR = {"PURPOSE_SCREEN"}
+
+
+def option_info(cls):
+    """For each purpose option: the categories it rules out when unticked (read from the rules:
+    facts it settles, plus categories that build on those), with the official title, class,
+    named products ('includes but is not limited to') and full description, verbatim from B2."""
+    screen = next(d for d in cls["derive"] if d.get("screen") == "PURPOSE_SCREEN")
+    inv = {c["id"]: c for c in json.loads((ROOT / "docs/research/out/wp1-category-inventory.json").read_text())["categories"]}
+    by_fact = {}
+    for cat in cls["categories"]:
+        for c in cat["conditions"].values():
+            if "fact" in c:
+                by_fact.setdefault(c["fact"], set()).add(cat["category"])
+    refs = {cat["category"]: {c["category"] for c in cat["conditions"].values() if "category" in c} for cat in cls["categories"]}
+    out = {}
+    for opt, sets in screen["unticked_sets"].items():
+        cats = set().union(*(by_fact.get(f, set()) for f in sets))
+        cats |= {k for k, v in refs.items() if v & cats}
+        info = []
+        for cid in cls["category_ids"]:
+            if cid not in cats:
+                continue
+            c = inv[cid]
+            desc = _clean(c["technical_description"])
+            named = re.findall(r"This category includes but is not limited to [^.]*\.", desc)
+            cls_name = "CRITICAL" if cid.startswith("IV") else "IMPORTANT_II" if cid.startswith("III-II") else "IMPORTANT_I"
+            info.append({"category": cid, "title": c["title"], "class": cls_name, "named_products": named, "description": desc})
+        out[opt] = info
+    return out
+
+
 # A multi-select whose options continue a sentence; the stem stays visible above the options.
 STEMS = {"PURPOSE_SCREEN": ("My product is mainly for …",
                             "Not for features it also has. An app with a login is not mainly for checking who someone is; "
@@ -288,6 +320,10 @@ def build():
         if fid in ("UNITS_PLACED_ON_MARKET", "CHANGE_AT"):
             q["kind"] = "date"
             q["options"] = [NOT_SURE] if fid == "UNITS_PLACED_ON_MARKET" else [{"value": "", "label": "No change since placing"}, NOT_SURE]
+        if fid in OPTION_INFO_FOR:
+            info = option_info(cls)
+            for o in q.get("options", []):
+                o["info"] = info.get(o["value"], [])
         if fid in STEMS:
             q["stem"], q["stem_warning"] = STEMS[fid]
         if fid in GROUPS:

@@ -94,6 +94,20 @@ describe("screens: pest-control camera", () => {
     expect(guide).not.toContain("our interpretation");
     expect(guide).toContain("Words that mislead");
   });
+  it("each purpose option has an ⓘ that opens the official text, without ticking the option", async () => {
+    const row = [...app().querySelectorAll(".opt-row")].find((r) => r.textContent!.includes("protecting a home"))!;
+    const btn = row.querySelector<HTMLButtonElement>("button.info-btn")!;
+    const panel = document.getElementById(btn.getAttribute("aria-controls")!)!;
+    expect(panel.hidden).toBe(true);
+    btn.click();
+    expect(panel.hidden).toBe(false);
+    expect(btn.getAttribute("aria-expanded")).toBe("true");
+    expect(panel.textContent).toContain("smart door locking devices, baby monitoring systems, alarm systems and home security cameras");
+    expect(panel.textContent).toContain("Important, Class I");
+    expect(row.querySelector<HTMLInputElement>("input")!.checked).toBe(false);
+    btn.click();
+    expect(panel.hidden).toBe(true);
+  });
   it("ticking nothing on the purpose screen skips every category question", async () => {
     await answer([]);
     expect(heading()).toContain("high-risk AI system");
