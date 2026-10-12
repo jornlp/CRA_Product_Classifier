@@ -162,7 +162,7 @@ Not authority. Reinstated from v3 per DR-01.
 | Modified by | 2025/327 (EHDS): Art. 13(4), 31(3) replaced; 32(5a) added; from 26.3.2027 | Already recorded above. Pending |
 | Completed by | 2025/1535, from 18.11.2025 | B14, verified. Art. 2(5) exclusion |
 | Completed by | 2026/881, from 10.5.2026 | Notification-dissemination deferral (Art. 16 area). No scope or class effect |
-| Amendment proposed by | **COM(2026) 590** (`52026PC0590`) | **Unread.** Not law, but if it moves dates or Annexes the tool must warn. Fetch |
+| Amendment proposed by | COM(2026) 590 (`52026PC0590`) | Read (B21): deletes CRA Art. 5 only. No scope, class or route effect |
 | Cited | 2024/482 (EUCC scheme) | Supports the Common Criteria certification proxies. P2 |
 
 No delegated act under Art. 7(3), 8(1) or 8(2) is listed. The 2025/2392 implementing act is
