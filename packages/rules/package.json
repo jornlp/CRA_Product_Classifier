@@ -1,1 +1,6 @@
-{ "name": "@cra/rules", "private": true, "description": "Rule data. Legal content only; verified against held sources (DR-04, AC-01 amended)." }
+{
+  "name": "@cra/rules",
+  "private": true,
+  "description": "Rule data. Legal content only; verified against held sources (DR-04, AC-01 amended).",
+  "license": "CC-BY-4.0"
+}

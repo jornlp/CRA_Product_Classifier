@@ -1,1 +1,6 @@
-{ "name": "@cra/schemas", "private": true, "description": "JSON Schemas for rule sets and assessment output (WP7)." }
+{
+  "name": "@cra/schemas",
+  "private": true,
+  "description": "JSON Schemas for rule sets and assessment output (WP7).",
+  "license": "Apache-2.0"
+}

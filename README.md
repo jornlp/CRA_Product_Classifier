@@ -8,6 +8,19 @@ conformity assessment or a guarantee of compliance (DR-04).
 The tool is time-boxed (DR-05): every result states the law it rests on, and after the end date
 results carry a prominent marker. A weekly check of EUR-Lex flags changes in the law.
 
+Results can be saved as PDF, Markdown or JSON. Everything runs in the browser; nothing entered is
+sent anywhere. Code is Apache-2.0, rules and test cases are CC BY 4.0: see [LICENSING.md](LICENSING.md).
+
+**Disclaimer.** This tool is an informational aid for a preliminary assessment of applicability and
+product classification under the EU Cyber Resilience Act. It does not provide legal advice, a binding
+interpretation, a conformity assessment, certification, or any guarantee that a product meets all
+legal requirements. Its outcome depends on the accuracy and completeness of the information entered,
+and on the version of the legal sources and decision rules shown. Users remain responsible for their
+own assessment and should consult a qualified adviser or competent authority when in doubt. To the
+extent permitted by applicable law, the tool and its content are provided without warranties, and the
+liability of its providers and contributors is limited. Nothing in this notice excludes liability
+that cannot be excluded by law.
+
 ## Layout
 
 | Path | What |

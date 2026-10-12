@@ -3,5 +3,9 @@
   "private": true,
   "type": "module",
   "description": "Static front end. Runs the engine in the browser; no data leaves the page (AC-07).",
-  "scripts": { "build": "vite build", "dev": "vite" }
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite"
+  },
+  "license": "Apache-2.0"
 }

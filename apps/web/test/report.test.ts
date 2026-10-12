@@ -33,3 +33,15 @@ it("answers are shown as the labels the user saw, not internal codes", () => {
   expect(md).toContain("On sale or supplied in the EU");
   expect(md).not.toMatch(/\| MADE_AVAILABLE \|/);
 });
+
+import { markdownToHtml } from "../src/report.js";
+it("the same report renders to HTML for Save as PDF", () => {
+  const html = markdownToHtml(md);
+  expect(html).toContain("<h1>CRA assessment: RatWatch 2</h1>");
+  expect(html).toContain("<h2>Class</h2>");
+  expect(html).toContain("<strong>The CRA applies to this product.</strong>");
+  expect(html).toMatch(/<table><thead><tr><th>Question<\/th><th>Answer<\/th><\/tr><\/thead>/);
+  expect(html).toContain("<em>(you indicated the product is not mainly for this)</em>");
+  expect(html).toContain("<em>Not legal advice.</em>");
+  expect(html).not.toMatch(/<script/i);
+});

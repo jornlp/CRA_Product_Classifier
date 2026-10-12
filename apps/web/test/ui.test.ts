@@ -41,8 +41,9 @@ describe("screens: pest-control camera", () => {
   it("first asks what the user wants to know, with three checks", async () => {
     expect(heading()).toBe("What do you want to know?");
     const choices = [...app().querySelectorAll<HTMLButtonElement>("button.choice")];
-    expect(choices.map((b) => b.dataset.mode)).toEqual(["scope", "class", "full"]);
-    choices[2].click(); await tick();
+    expect(choices.map((b) => b.dataset.mode)).toEqual(["scope", "class"]);
+    expect(choices[1].textContent).toContain("Class only");
+    choices[0].click(); await tick();
   });
   it("starts with the product kind, and shows why we ask", () => {
     expect(heading()).toContain("hardware, software, or an online service");
@@ -80,6 +81,10 @@ describe("screens: pest-control camera", () => {
     await answer("Yes"); // connection intended
     expect(heading()).toContain("Tick all that apply");
     await answer([]);    // no exclusion
+  });
+  it("the scope result offers to continue to the class and the dates", async () => {
+    expect(app().textContent).toContain("The CRA applies to this product.");
+    app().querySelector<HTMLButtonElement>("#to-class")!.click(); await tick();
   });
   it("asks what the product is mainly for, with the stem and its warning always visible", async () => {
     expect(heading()).toContain("mainly for");
@@ -141,20 +146,33 @@ describe("screens: pest-control camera", () => {
     expect(app().querySelector(".verdict:nth-of-type(1)")).not.toBeNull();
     expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("Default");
     expect(text).toContain("you indicated the product is not mainly for this");
-    expect(text).toContain("not legal advice");
+    expect(text).toContain("does not provide legal advice");
+  });
+  it("Save has a format list (JSON, Markdown, PDF last), PDF by default; PDF prints the report, not the screen", () => {
+    const sel = app().querySelector<HTMLSelectElement>("#save-format")!;
+    expect([...sel.options].map((o) => o.value)).toEqual(["json", "md", "pdf"]);
+    expect(sel.value).toBe("pdf");
+    const print = vi.fn();
+    window.print = print;
+    app().querySelector<HTMLButtonElement>("#save")!.click();
+    expect(print).toHaveBeenCalledOnce();
+    const root = document.getElementById("print-root")!;
+    expect(root.querySelector("h1")!.textContent).toMatch(/^CRA assessment/);
+    expect(root.textContent).toContain("Your answers");
+    expect(root.textContent).toContain("Nothing in this notice excludes liability that cannot be excluded by law.");
   });
   it("offers optional record fields that are not part of the assessment", () => {
     expect(app().querySelector("#rec-product")).not.toBeNull();
     expect(app().textContent).toContain("plays no part in the assessment");
   });
+  it("result shows when obligations apply", () => {
+    expect(app().textContent).toContain("cra art 14 reporting");
+  });
   it("Home returns to the start screen and keeps the answers; choosing the check again resumes at the result", async () => {
     document.getElementById("home-btn")!.click(); await tick();
     expect(heading()).toBe("What do you want to know?");
     expect(app().querySelector("#start-again")).not.toBeNull();
-    app().querySelector<HTMLButtonElement>('button.choice[data-mode="full"]')!.click(); await tick();
+    app().querySelector<HTMLButtonElement>('button.choice[data-mode="scope"]')!.click(); await tick();
     expect(app().textContent).toContain("The CRA applies to this product.");
-  });
-  it("result shows when obligations apply", () => {
-    expect(app().textContent).toContain("cra art 14 reporting");
   });
 });

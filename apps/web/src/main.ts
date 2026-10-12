@@ -14,7 +14,8 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, routeLabel } from "./report.js";
+import { reportMarkdown, routeLabel, markdownToHtml } from "./report.js";
+import { aboutHtml } from "./about.js";
 
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
@@ -83,6 +84,7 @@ interface State {
 const today = new Date().toISOString().slice(0, 10);
 let state: State = fresh();
 let lawStatus: LawStatus | null = null;
+let showAbout = false;
 const RULESET = { scope: SCOPE, classification: RULES, timeline: TIMELINE };
 
 function fresh(): State {
@@ -220,9 +222,8 @@ function startHtml(): string {
   return `<section class="start">
     <h2>What do you want to know?</h2>
     <div class="choices">
-      ${opt("scope", "Does the CRA apply to my product?", "About six questions: what you supply, to whom, and whether it connects to anything.")}
-      ${opt("class", "Which class is my product?", "For when you already know the CRA applies. The result is stated as \u201cif the CRA applies\u201d.")}
-      ${opt("full", "Full check", "Whether the CRA applies, the class, and when each obligation applies.")}
+      ${opt("scope", "Does the CRA apply to my product?", "About six questions: what you supply, to whom, and whether it connects to anything. From the result you can continue to the class and the dates.")}
+      ${opt("class", "Class only", "Which class is my product? For when you already know the CRA applies. The result is stated as \u201cif the CRA applies\u201d.")}
     </div>
     <p class="muted small">You can continue a partial check later without answering again.</p>
     ${state.history.length ? `<div class="nav"><button type="button" id="start-again" class="secondary">Start again (clear my answers)</button></div>` : ""}
@@ -246,7 +247,7 @@ function assemble() {
   });
   // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
   if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
-  return { out: { ...out, check: mode, for_your_records: state.record, timeline_facts: state.tfacts }, s, res };
+  return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, check: mode, for_your_records: state.record, timeline_facts: state.tfacts }, s, res };
 }
 
 function resultHtml(): string {
@@ -264,7 +265,7 @@ function resultHtml(): string {
         <div class="nav"><button type="button" id="to-full">Check whether the CRA applies</button></div></section>`
     : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeText[s.status])}</p>
       <ul>${s.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
-      ${mode === "scope" && s.status === "IN_SCOPE" ? `<div class="nav"><button type="button" id="to-class">Continue: which class?</button></div>` : ""}</section>`);
+      ${mode === "scope" && s.status === "IN_SCOPE" ? `<div class="nav"><button type="button" id="to-class">Continue: which class, and when?</button></div>` : ""}</section>`);
   if ((mode === "full" && s.status === "IN_SCOPE") || mode === "class") {
     const cat = (id: string) => `${esc(CATEGORIES[id]?.title ?? id)} <span class="muted">(${esc(id)})</span>`;
     const stated = c.status === "UNRESOLVED" ? `Not determined. At least: ${CLASS_LABEL[c.class_floor]}` : CLASS_LABEL[c.status];
@@ -311,10 +312,36 @@ function resultHtml(): string {
         <label>Description <textarea id="rec-description" rows="2">${esc(state.record.description)}</textarea></label>
       </fieldset>
       <div class="nav"><button type="button" id="back" class="secondary">Back</button>
-      <button type="button" id="export-md">Download report (Markdown)</button>
-      <button type="button" id="export" class="secondary">Download data (JSON)</button>
+      <span class="save">
+        <button type="button" id="save">Save</button>
+        <label class="sr-only" for="save-format">Format</label>
+        <select id="save-format" aria-label="Format">
+          <option value="json">JSON (data)</option>
+          <option value="md">Markdown (report)</option>
+          <option value="pdf" selected>PDF (report)</option>
+        </select>
+      </span>
       <button type="button" id="restart" class="secondary">Start again</button></div></section>`;
   return body;
+}
+
+function readRecord() {
+  state.record.product = (document.getElementById("rec-product") as HTMLInputElement | null)?.value ?? state.record.product;
+  state.record.description = (document.getElementById("rec-description") as HTMLTextAreaElement | null)?.value ?? state.record.description;
+}
+
+/** Save as PDF: print the report (not the screen) with the browser's own PDF output. */
+function printReport() {
+  readRecord();
+  const { out, res } = assemble();
+  const md = reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer });
+  let root = document.getElementById("print-root");
+  if (!root) { root = Object.assign(document.createElement("div"), { id: "print-root" }); document.body.appendChild(root); }
+  root.innerHTML = markdownToHtml(md);
+  const title = document.title;
+  document.title = state.record.product.trim() || `CRA assessment ${today}`;  // default PDF file name
+  window.addEventListener("afterprint", () => { document.title = title; }, { once: true });
+  window.print();
 }
 
 function download(format: "md" | "json") {
@@ -333,6 +360,12 @@ function download(format: "md" | "json") {
 // ------------------------------------------------------------------ main loop
 
 function render() {
+  if (showAbout) {
+    app.innerHTML = aboutHtml({ lawAsOf: RULES.law_as_of, ruleSet: RULES.rule_set_version, sources: RULES.sources, lastCheck: lawStatus?.checked_at });
+    document.getElementById("about-close")?.addEventListener("click", () => { showAbout = false; render(); });
+    window.scrollTo(0, 0);
+    return;
+  }
   const cur = current();
   const n = RULES.categories.length;
   const header = `<p class="muted pilot">${n < 26 ? `Pilot. Rules for ${n} of 26 categories. ` : "Preview: rules not yet independently reviewed. "}Informational only; not legal advice.</p>`;
@@ -345,8 +378,12 @@ function render() {
     app.innerHTML = header + resultHtml();
     document.getElementById("to-class")?.addEventListener("click", () => { state.mode = "full"; render(); });
     document.getElementById("to-full")?.addEventListener("click", () => { state.mode = "full"; render(); });
-    document.getElementById("export")?.addEventListener("click", () => download("json"));
-    document.getElementById("export-md")?.addEventListener("click", () => download("md"));
+    const fmt = document.getElementById("save-format") as HTMLSelectElement | null;
+    if (fmt) fmt.value = "pdf";  // default, set explicitly
+    document.getElementById("save")?.addEventListener("click", () => {
+      const f = (document.getElementById("save-format") as HTMLSelectElement).value;
+      if (f === "pdf") printReport(); else download(f as "md" | "json");
+    });
     document.getElementById("restart")?.addEventListener("click", () => { state = fresh(); render(); });
   } else {
     app.innerHTML = header + `<div class="layout">${questionHtml(cur.phase, cur.fid!)}</div>`;
@@ -370,7 +407,8 @@ function render() {
 
 initTheme();
 // Home: back to the start screen, keeping the answers so a check can be continued.
-for (const id of ["home", "home-btn"]) document.getElementById(id)?.addEventListener("click", () => { state.mode = undefined; render(); });
+for (const id of ["home", "home-btn"]) document.getElementById(id)?.addEventListener("click", () => { showAbout = false; state.mode = undefined; render(); });
+document.getElementById("about-btn")?.addEventListener("click", () => { showAbout = true; render(); });
 (async () => {
   try {
     const r = await fetch("./law-status.json", { cache: "no-store" });

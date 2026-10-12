@@ -158,6 +158,27 @@ pest-control camera as important and the water meter as important or critical
 for these users is a reasoned "this category does not apply", which is the lenient answer and so
 the one the evidence gate governs.
 
+### DR-06 — Release package: licences, disclaimer, About, export formats, start screen
+
+Decided 12 October 2026 by the project lead.
+
+- **Licences:** Apache-2.0 for code, CC BY 4.0 for rules, questions, guidance, cases and research
+  documents (`LICENSING.md`). Legal texts are not ours: © European Union, reuse under Commission
+  Decision 2011/833/EU.
+- **Disclaimer:** the v3 §13 draft clause, translated, with its liability limitation stated directly
+  (there are no separate terms of use) and its carve-out kept: nothing excludes liability that cannot
+  be excluded by law. v3 recommends a lawyer's review before publication; that remains advisable.
+- **About page** in the app: what the tool does and does not do, how it works, sources, validity,
+  open legal questions, privacy, licence, how to report errors.
+- **Export (AC-06):** one Save button with a format list: JSON (data), Markdown (report), PDF
+  (report, default). PDF uses the browser's own print-to-PDF of the same report, so it needs no
+  library and nothing leaves the browser. AC-06's "PDF and JSON" is met, with Markdown added.
+- **Start screen:** two choices, "Does the CRA apply?" (continuing to class and dates from its
+  result) and "Class only". The separate full check was dropped as redundant.
+- **Not done before publication:** independent technical review of the rules (DR-04, §8.2), and
+  comprehension testing with users (WP6, AC-08). The site says "Preview: rules not yet
+  independently reviewed".
+
 ## Items reinstated from v3 that v4 dropped
 
 - **Rules-as-Code prior art** — Catala, LegalRuleML, OpenFisca, OECD Law as Code. The

@@ -98,3 +98,40 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
   L.push("---", "", `_${ctx.disclaimer}_`, "");
   return L.join("\n");
 }
+
+/**
+ * Render the report's own Markdown as HTML, for printing to PDF. Only the subset reportMarkdown
+ * produces is supported: headings, tables, lists, block quotes, rules, bold and italic.
+ */
+export function markdownToHtml(md: string): string {
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+  const inline = (s: string) => esc(s)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/(^|[\s(])_(.+?)_(?=$|[\s.,;:)])/g, "$1<em>$2</em>");
+  const cells = (row: string) => row.trim().replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map((c) => c.trim().replace(/\\\|/g, "|"));
+  const out: string[] = [];
+  const lines = md.split("\n");
+  for (let i = 0; i < lines.length; i++) {
+    const l = lines[i];
+    if (/^### /.test(l)) out.push(`<h3>${inline(l.slice(4))}</h3>`);
+    else if (/^## /.test(l)) out.push(`<h2>${inline(l.slice(3))}</h2>`);
+    else if (/^# /.test(l)) out.push(`<h1>${inline(l.slice(2))}</h1>`);
+    else if (l === "---") out.push("<hr>");
+    else if (l.startsWith("|")) {
+      const rows: string[] = [];
+      while (i < lines.length && lines[i].startsWith("|")) rows.push(lines[i++]);
+      i--;
+      const [head, , ...body] = rows;
+      const h = cells(head);
+      const thead = h.some((c) => c) ? `<thead><tr>${h.map((c) => `<th>${inline(c)}</th>`).join("")}</tr></thead>` : "";
+      out.push(`<table>${thead}<tbody>${body.map((r) => `<tr>${cells(r).map((c) => `<td>${inline(c)}</td>`).join("")}</tr>`).join("")}</tbody></table>`);
+    } else if (l.startsWith("- ")) {
+      const items: string[] = [];
+      while (i < lines.length && lines[i].startsWith("- ")) items.push(lines[i++].slice(2));
+      i--;
+      out.push(`<ul>${items.map((x) => `<li>${inline(x)}</li>`).join("")}</ul>`);
+    } else if (l.startsWith("> ")) out.push(`<blockquote>${inline(l.slice(2))}</blockquote>`);
+    else if (l.trim()) out.push(`<p>${inline(l)}</p>`);
+  }
+  return out.join("\n");
+}
