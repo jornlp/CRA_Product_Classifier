@@ -10,7 +10,7 @@ from pathlib import Path
 from evaluate import combine, eval_match, AND_ORDER, OR_ORDER, T, F, U, C, O
 
 HERE = Path(__file__).parent
-SPEC = json.loads((HERE / "scope.json").read_text())
+SPEC = json.loads((HERE.parents[2] / "packages/rules/scope.json").read_text())
 RANK = SPEC["provenance_rank"]
 
 

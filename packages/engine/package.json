@@ -1,0 +1,7 @@
+{
+  "name": "@cra/engine",
+  "private": true,
+  "type": "module",
+  "description": "Pure, deterministic rule engine. Knows the logic, not the law: all legal content is in @cra/rules.",
+  "main": "src/index.ts"
+}

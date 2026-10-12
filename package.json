@@ -1,0 +1,25 @@
+{
+  "name": "cra-scope-classifier",
+  "private": true,
+  "description": "Informational CRA scope and classification tool. Not legal advice (DR-04).",
+  "type": "module",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "test": "npm run typecheck && vitest run",
+    "typecheck": "tsc -p packages/engine --noEmit",
+    "verify:research": "cd docs/research/wp7-spike && python3 evaluate.py --verify && python3 scope.py && python3 timeline.py"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.0",
+    "ajv": "8.20.0",
+    "typescript": "6.0.3",
+    "vite": "8.3.1",
+    "vitest": "5.0.2"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

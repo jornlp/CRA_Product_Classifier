@@ -1,0 +1,603 @@
+{
+ "generated_by": "docs/research/wp7-spike/export_fixtures.py",
+ "reference_engine": "Python trial (WP7)",
+ "fixtures": {
+  "obligations": [
+   {
+    "case": "LIFE-01",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "2026-03-01"
+    },
+    "expect": {
+     "CRA_ART_14_REPORTING": "APPLIES",
+     "CRA_ESSENTIAL_REQUIREMENTS": "TRANSITION"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "LIFE-03",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-04-01",
+     "UNITS_PLACED_ON_MARKET": "2028-03-01"
+    },
+    "expect": {
+     "CRA_ART_14_REPORTING": "APPLIES",
+     "CRA_ESSENTIAL_REQUIREMENTS": "APPLIES"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "APPLIES",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed on or after 11.12.2027; earlier placement of the same type gives no protection",
+       "applies_from": "2027-12-11"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "LIFE-06",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "UNKNOWN"
+    },
+    "expect": {
+     "CRA_ART_14_REPORTING": "APPLIES",
+     "CRA_ESSENTIAL_REQUIREMENTS": "UNRESOLVED"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "UNRESOLVED",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "placing date of the units unknown",
+       "applies_from": "2027-12-11",
+       "open_questions": [
+        "When are or were these units placed on the market?"
+       ]
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "TYPE-01",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "2027-06-01",
+     "TYPE_FIRST_LAUNCHED": "2027-06-01"
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "TRANSITION"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "TYPE-02",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-03-01",
+     "UNITS_PLACED_ON_MARKET": "2028-02-01",
+     "TYPE_FIRST_LAUNCHED": "2027-06-01"
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "APPLIES"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "APPLIES",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed on or after 11.12.2027; earlier placement of the same type gives no protection",
+       "applies_from": "2027-12-11"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "LIFE-02",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-03-01",
+     "UNITS_PLACED_ON_MARKET": "2026-05-01",
+     "CHANGE_AT": "2028-02-01",
+     "CHANGE_AFFECTS_PURPOSE": false,
+     "CHANGE_AFFECTS_ANNEX_I": "UNKNOWN"
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "UNRESOLVED"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "UNRESOLVED",
+       "provision": "Art. 69(2); Art. 71(2); Art. 3(30)",
+       "basis": "effect on Annex I Part I compliance unknown; unchanged purpose alone does not settle it (LIFE-08)",
+       "open_questions": [
+        "Is the change a substantial modification under Art. 3(30)?"
+       ]
+      }
+     ],
+     "flags": [
+      "SUBSTANTIAL_MODIFICATION_REVIEW"
+     ]
+    }
+   },
+   {
+    "case": "LIFE-04",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-03-01",
+     "UNITS_PLACED_ON_MARKET": "2026-05-01",
+     "CHANGE_AT": "2028-02-01",
+     "CHANGE_AFFECTS_PURPOSE": false,
+     "CHANGE_AFFECTS_ANNEX_I": "NO"
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "TRANSITION"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: purpose unchanged and no effect on security properties reported"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "LIFE-05",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-03-01",
+     "UNITS_PLACED_ON_MARKET": "2026-05-01",
+     "CHANGE_AT": "2028-02-01",
+     "CHANGE_AFFECTS_PURPOSE": false,
+     "CHANGE_AFFECTS_ANNEX_I": "YES"
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "UNRESOLVED"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "UNRESOLVED",
+       "provision": "Art. 69(2); Art. 71(2); Art. 3(30)",
+       "basis": "change affects security properties; whether it affects compliance with Annex I Part I (Art. 3(30), first limb) cannot be decided here: review flag",
+       "open_questions": [
+        "Is the change a substantial modification under Art. 3(30)?"
+       ]
+      }
+     ],
+     "flags": [
+      "SUBSTANTIAL_MODIFICATION_REVIEW"
+     ]
+    }
+   },
+   {
+    "case": "LIFE-08",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-03-01",
+     "UNITS_PLACED_ON_MARKET": "2026-05-01",
+     "CHANGE_AT": "2028-02-01",
+     "CHANGE_AFFECTS_PURPOSE": false
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "UNRESOLVED"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "UNRESOLVED",
+       "provision": "Art. 69(2); Art. 71(2); Art. 3(30)",
+       "basis": "effect on Annex I Part I compliance unknown; unchanged purpose alone does not settle it (LIFE-08)",
+       "open_questions": [
+        "Is the change a substantial modification under Art. 3(30)?"
+       ]
+      }
+     ],
+     "flags": [
+      "SUBSTANTIAL_MODIFICATION_REVIEW"
+     ]
+    }
+   },
+   {
+    "case": "LIFE-09",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-03-01",
+     "UNITS_PLACED_ON_MARKET": "2026-05-01",
+     "CHANGE_AT": "2028-02-01",
+     "CHANGE_AFFECTS_PURPOSE": true
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "APPLIES"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "APPLIES",
+       "provision": "Art. 69(2); Art. 71(2); Art. 3(30)",
+       "basis": "change modifies the intended purpose (Art. 3(30), second limb)",
+       "applies_from": "2028-02-01"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "LIFE-10",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-03-01",
+     "UNITS_PLACED_ON_MARKET": "2026-05-01",
+     "CHANGE_AT": "2027-06-01",
+     "CHANGE_AFFECTS_PURPOSE": true
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "TRANSITION"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: change made before 11.12.2027; Art. 69(2) counts only changes from that date"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "LIFE-07",
+    "facts": {
+     "ASSESSMENT_DATE": "2027-12-20",
+     "UNITS_PLACED_ON_MARKET": "2026-05-01",
+     "OTHER_LEGISLATION_CERTIFICATE": true,
+     "CERTIFICATE_EXPIRY": "2029-01-01"
+    },
+    "expect": {
+     "OTHER_LEGISLATION_CERTIFICATE": "TRANSITION"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      },
+      {
+       "obligation": "OTHER_LEGISLATION_CERTIFICATE",
+       "status": "TRANSITION",
+       "provision": "Art. 69(1)",
+       "basis": "certificate remains valid until 2028-06-11, unless the other legislation provides otherwise",
+       "open_questions": [
+        "Does the other legislation set a different validity?"
+       ]
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "LIFE-11",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-03-01",
+     "UNITS_PLACED_ON_MARKET": "2026-05-01",
+     "OTHER_LEGISLATION_CERTIFICATE": true,
+     "CERTIFICATE_EXPIRY": "2028-01-01"
+    },
+    "expect": {
+     "OTHER_LEGISLATION_CERTIFICATE": "NOT_APPLICABLE"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      },
+      {
+       "obligation": "OTHER_LEGISLATION_CERTIFICATE",
+       "status": "NOT_APPLICABLE",
+       "provision": "Art. 69(1)",
+       "basis": "certificate remains valid until 2028-01-01, unless the other legislation provides otherwise",
+       "open_questions": [
+        "Does the other legislation set a different validity?"
+       ]
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "RED-01",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "2026-01-10",
+     "RADIO_EQUIPMENT_RED_DA": "YES"
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "TRANSITION",
+     "RED_DA_CYBERSECURITY": "APPLIES"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      },
+      {
+       "obligation": "RED_DA_CYBERSECURITY",
+       "status": "APPLIES",
+       "provision": "Del. Reg. (EU) 2022/30",
+       "basis": "radio equipment within the delegated act, placed on or after 1.8.2025",
+       "applies_from": "2025-08-01"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "RED-02",
+    "facts": {
+     "ASSESSMENT_DATE": "2028-02-01",
+     "UNITS_PLACED_ON_MARKET": "2028-01-10",
+     "RADIO_EQUIPMENT_RED_DA": "YES"
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "APPLIES",
+     "RED_DA_CYBERSECURITY": "APPLIES"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "APPLIES",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed on or after 11.12.2027; earlier placement of the same type gives no protection",
+       "applies_from": "2027-12-11"
+      },
+      {
+       "obligation": "RED_DA_CYBERSECURITY",
+       "status": "APPLIES",
+       "provision": "Del. Reg. (EU) 2022/30",
+       "basis": "radio equipment within the delegated act, placed on or after 1.8.2025",
+       "applies_from": "2025-08-01",
+       "open_questions": [
+        "The Commission aims to repeal the delegated act from 11.12.2027; no repeal is in force. Re-check."
+       ]
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "RED-03",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "2025-03-01",
+     "RADIO_EQUIPMENT_RED_DA": "YES"
+    },
+    "expect": {
+     "RED_DA_CYBERSECURITY": "NOT_APPLICABLE"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      },
+      {
+       "obligation": "RED_DA_CYBERSECURITY",
+       "status": "NOT_APPLICABLE",
+       "provision": "Del. Reg. (EU) 2022/30",
+       "basis": "units placed before 1.8.2025",
+       "applies_from": "2025-08-01"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "RED-04",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "UNKNOWN",
+     "RADIO_EQUIPMENT_RED_DA": "YES"
+    },
+    "expect": {
+     "CRA_ART_14_REPORTING": "APPLIES",
+     "RED_DA_CYBERSECURITY": "UNRESOLVED"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "UNRESOLVED",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "placing date of the units unknown",
+       "applies_from": "2027-12-11",
+       "open_questions": [
+        "When are or were these units placed on the market?"
+       ]
+      },
+      {
+       "obligation": "RED_DA_CYBERSECURITY",
+       "status": "UNRESOLVED",
+       "provision": "Del. Reg. (EU) 2022/30",
+       "basis": "placing date of the units unknown",
+       "applies_from": "2025-08-01"
+      }
+     ],
+     "flags": []
+    }
+   }
+  ],
+  "dated_references": [
+   {
+    "case": "A3-05",
+    "assessment_date": "2029-01-01",
+    "golden": "Directive 2009/48/EC"
+   },
+   {
+    "case": "A3-06",
+    "assessment_date": "2030-09-01",
+    "golden": "Regulation (EU) 2025/2509, via its Art. 56 correlation clause"
+   }
+  ]
+ }
+}

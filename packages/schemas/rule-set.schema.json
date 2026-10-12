@@ -10,7 +10,8 @@
   "class_order",
   "categories_total",
   "facts",
-  "categories"
+  "categories",
+  "category_ids"
  ],
  "properties": {
   "artifact": {
@@ -26,10 +27,6 @@
    "additionalProperties": {
     "$ref": "#/$defs/source"
    }
-  },
-  "law_version": {
-   "description": "Deprecated by WP7 5: use sources. Kept for the trial.",
-   "type": "object"
   },
   "note": {
    "type": "string"
@@ -63,6 +60,22 @@
    "type": "array",
    "items": {
     "$ref": "#/$defs/routeRule"
+   }
+  },
+  "law_as_of": {
+   "description": "Date of the latest legal source check behind this rule set (DR-05).",
+   "type": "string",
+   "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+  },
+  "category_ids": {
+   "description": "All 26 Annex III/IV category ids, in Annex order. Categories without a rule are reported as uncovered (AC-03).",
+   "type": "array",
+   "minItems": 26,
+   "maxItems": 26,
+   "uniqueItems": true,
+   "items": {
+    "type": "string",
+    "pattern": "^(III-I|III-II|IV)-\\d{2}$"
    }
   }
  },

@@ -12,11 +12,11 @@ from pathlib import Path
 import jsonschema
 
 ROOT = Path(__file__).resolve().parents[3]
-SCHEMAS = ROOT / "docs/research/out/schemas"
+SCHEMAS = ROOT / "packages/schemas"
 R = jsonschema.Draft202012Validator(json.loads((SCHEMAS / "rule-set.schema.json").read_text()))
 O = jsonschema.Draft202012Validator(json.loads((SCHEMAS / "assessment-output.schema.json").read_text()))
 out_dir = Path(sys.argv[1])
-rules = json.loads((Path(__file__).parent / "rules.json").read_text())
+rules = json.loads((ROOT / "packages/rules/classification.json").read_text())
 fails = 0
 
 errs = list(R.iter_errors(rules))

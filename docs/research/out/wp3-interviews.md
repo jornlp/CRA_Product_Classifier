@@ -28,7 +28,10 @@ Two manufacturers, the two cases v4 was built around, had classified their own p
 1. Which category each thought applied, and on what basis: product name, a tool, a consultant, the
    Annex text.
 2. Whether they used any of the existing tools.
-3. Whether the water meter has gateway functions, or a separate gateway exists, and who sells it.
+3. ~~Whether the water meter has gateway functions~~ — **answered: no gateway function.** It measures
+   and transmits only, so `WTR-01` applies with confirmed facts: IV-02 is excluded on its gateway
+   conditions, and the open question in `A4-02` does not arise. "Critical" was wrong; whether it is
+   important depends on the other categories, settled by the engine like any product.
 4. What they planned as a consequence: notified body, certification, delay.
 
 These decide whether `RAT-01` and `WTR-01` can run as fixtures with confirmed facts (WP3 done-when).

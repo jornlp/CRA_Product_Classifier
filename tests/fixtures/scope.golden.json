@@ -1,0 +1,1400 @@
+{
+ "generated_by": "docs/research/wp7-spike/export_fixtures.py",
+ "reference_engine": "Python trial (WP7)",
+ "fixtures": [
+  {
+   "case": "SCP-01",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-02",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "NOT_EU",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "not applicable: MARKET — \"made available on the market\""
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-03",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "UNKNOWN",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "UNKNOWN: applicability MARKET"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-04",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-05",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-06",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "not applicable: no intended or reasonably foreseeable data connection (Art. 2(1))"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-07",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "UNKNOWN: applicability CONN_FORESEEABLE"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-08",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "EXHIBITION_ONLY",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "not applicable: MARKET — \"made available on the market\""
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-09",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "PLANNED",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies",
+     "prospective: applies from first making available on the EU market"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "BND-03",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "REMOTE_DATA_PROCESSING",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "BND-04",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "SAAS_ONLY",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "not applicable: PDE — \"a software or hardware product and its remote data processing solutions\""
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "BND-06",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "SPARE_PART"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "SPARE_PART": {
+     "value": "IDENTICAL_SAME_SPEC",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "excluded: Art. 2(6) (SPARE_PART)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "BND-07",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "SPARE_PART"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "SPARE_PART": {
+     "value": "DIFFERENT_SPEC",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-01",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "MEDICAL"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "MEDICAL_STATUS": {
+     "value": "CE_MARKED_MDR_IVDR",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "excluded: Art. 2(2)(a)(b) (MEDICAL)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-02",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-03",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "MEDICAL"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "MEDICAL_STATUS": {
+     "value": "MEDICAL_PURPOSE_NOT_CERTIFIED",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "OPEN: exclusion MEDICAL (EXC-03: whether MDR/IVDR applies turns on qualification as a medical device, which this tool does not assess)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-04",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "VEHICLE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "VEHICLE_2019_2144": {
+     "value": "COMPONENT_UNCLEAR",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "OPEN: exclusion VEHICLE (EXC-04: whether Reg. 2019/2144 applies to this component)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-05",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "DEFENCE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "DEFENCE_STATUS": {
+     "value": "EXCLUSIVELY_DEFENCE_OR_NATSEC",
+     "provenance": "DOCUMENT_SUPPORTED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "excluded: Art. 2(7) (DEFENCE)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-14",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "DEFENCE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "DEFENCE_STATUS": {
+     "value": "EXCLUSIVELY_DEFENCE_OR_NATSEC",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "UNKNOWN: exclusion DEFENCE (Art. 2(7))"
+    ],
+    "trace": [
+     "DEFENCE_STATUS=EXCLUSIVELY_DEFENCE_OR_NATSEC gives the permissive result but is USER_CONFIRMED; needs DOCUMENT_SUPPORTED"
+    ]
+   }
+  },
+  {
+   "case": "EXC-06",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "OTHER_UNIDENTIFIED"
+     ],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "UNKNOWN: exclusion SCREEN_UNIDENTIFIED (Art. 2)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-07",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "AVIATION"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVIATION_2018_1139": {
+     "value": "IN_SCOPE_NOT_CERTIFIED",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-08",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "OTHER_SECTORAL"
+     ],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-09",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "DEFENCE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "DEFENCE_STATUS": {
+     "value": "DUAL_USE",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-10",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "DEFENCE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "DEFENCE_STATUS": {
+     "value": "EXCLUSIVELY_DEFENCE_OR_NATSEC",
+     "provenance": "DOCUMENT_SUPPORTED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "excluded: Art. 2(7) (DEFENCE)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-11",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "L_CATEGORY"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "L_CATEGORY_168_2013": {
+     "value": "L_CATEGORY",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "excluded: Art. 2(5); Del. Reg. (EU) 2025/1535 Art. 1 (L_CATEGORY)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-12",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "L_CATEGORY"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "L_CATEGORY_168_2013": {
+     "value": "L1E_DESIGNED_TO_PEDAL",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-13",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "MARINE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARINE_2014_90": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "excluded: Art. 2(4) (MARINE)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "OSS-01",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "not applicable: COMMERCIAL — \"in the course of a commercial activity, whether in return for payment or free of charge\""
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "OSS-02",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "OWN-01",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "OWN_USE_ONLY",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "not applicable: MARKET — \"made available on the market\""
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "OWN-02",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "UG-03",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "UG-06",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "VEHICLE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "VEHICLE_2019_2144": {
+     "value": "NOT_APPLICABLE",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "GATE-03",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "MEDICAL"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "MEDICAL_STATUS": {
+     "value": "CE_MARKED_MDR_IVDR",
+     "provenance": "USER_CONFIRMED"
+    },
+    "DEFENCE_STATUS": {
+     "value": "UNKNOWN",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "excluded: Art. 2(2)(a)(b) (MEDICAL)"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "GATE-04",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "NOT_EU",
+     "provenance": "LLM_DRAFT"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "UNKNOWN: applicability MARKET"
+    ],
+    "trace": [
+     "MARKET_STATUS=NOT_EU gives the permissive result but is LLM_DRAFT; needs USER_CONFIRMED"
+    ]
+   }
+  }
+ ]
+}

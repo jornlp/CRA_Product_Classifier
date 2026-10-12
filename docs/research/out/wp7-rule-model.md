@@ -282,8 +282,8 @@ archives (`ARCH-01`) and the steward role (`OSS-03`). They are obligations and r
 ## 11. Open after WP7
 
 - ~~Apply the §4.1 fact register changes~~ — done, register v2.
-- ~~JSON Schema for rules and output~~ — done: `docs/research/out/schemas/rule-set.schema.json` and
-  `assessment-output.schema.json`, tested by `wp7-spike/test_schemas.py` (trial outputs valid;
+- ~~JSON Schema for rules and output~~ — done: `packages/schemas/rule-set.schema.json` and
+  `packages/schemas/assessment-output.schema.json`, tested by `wp7-spike/test_schemas.py` (trial outputs valid;
   nine deliberately broken documents rejected, including the AC-02/AC-03 violations).
 - Encode the remaining 20 categories. The trial shows the format holds for the hardest shapes, so
   the rest should be routine, but each still needs its WP5 condition notes read first.

@@ -131,18 +131,21 @@ visible instead of hidden.
   because a class without a scope result means nothing, but it is not where effort goes.
 - **Every result states the law it rests on.** Output carries `law_as_of` (the date of the latest
   source checked) and `valid_until`, shown to the user next to the result, not only in the export.
-- **After `valid_until` the tool stops classifying.** It shows that it is archived and no longer
-  maintained, and points to the research. A tool that keeps answering after its law has moved is the
-  "project stops but tool keeps circulating" risk in v4 §9.
-- **Until then, `eurlex_watch` runs on a schedule**, and a HIGH finding in the validity window is
-  shown as a warning on affected results, even if nobody updates the rules.
+- **After `valid_until` the tool keeps working, with a prominent marker** (decided by the project
+  lead, same day: do not block). Every result then carries a warning that the end date has passed
+  and the rules may no longer match the law, with the date of the last legal check. Blocking was
+  rejected because an outdated but clearly marked answer, with its citations, is still more useful
+  than none; the marker carries the risk instead.
+- **`eurlex_watch` runs weekly in CI**, during and after the validity window. A HIGH or MEDIUM
+  finding opens an issue that notifies the repository owner, and is published with the site so
+  affected results show a warning, even if nobody updates the rules.
 
 **Staying open to option 1** costs nothing extra if the build keeps what is already designed for a
 maintainer: rule versioning and changelog (WP7 §7), the watchlist and baseline, mechanical quote
 verification, fixtures per rule. A future owner then extends `valid_until`; they do not rebuild.
 
-**Open parameter: the end date.** Recommendation: **twelve months after release, and no later than
-31 March 2028.** That covers the run-up to the CRA's application on 11.12.2027, when classification
+**End date: twelve months after release** (decided by the project lead). The recommendation had also
+capped it at 31 March 2028: That covers the run-up to the CRA's application on 11.12.2027, when classification
 questions peak, and stops before a cluster of changes the tool would not track: the end of Art. 69(1)
 certificate validity (11.6.2028), the AI Act's Annex I high-risk date (2.8.2028), and the expected
 harmonised standards and the RED delegated act's announced repeal.

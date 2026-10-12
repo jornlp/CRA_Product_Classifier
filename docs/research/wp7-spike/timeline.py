@@ -9,7 +9,7 @@ import json, sys
 from pathlib import Path
 
 HERE = Path(__file__).parent
-SPEC = json.loads((HERE / "timeline.json").read_text())
+SPEC = json.loads((HERE.parents[2] / "packages/rules/timeline.json").read_text())
 D = SPEC["dates"]
 UNK = "UNKNOWN"
 

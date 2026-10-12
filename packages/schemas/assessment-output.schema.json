@@ -19,7 +19,8 @@
   "reassessment_recommended",
   "disclaimer_version",
   "law_as_of",
-  "valid_until"
+  "valid_until",
+  "validity_warnings"
  ],
  "properties": {
   "assessment_id": {
@@ -332,10 +333,42 @@
    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
   },
   "valid_until": {
-   "description": "End of the tool's validity (DR-05). After this date the tool must not issue a classification.",
+   "description": "End of the tool's validity window (DR-05). After it, results are still given but carry a PAST_END_DATE warning.",
    "type": "string",
    "format": "date",
    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+  },
+  "validity_warnings": {
+   "description": "Shown prominently with the result (DR-05). PAST_END_DATE once valid_until has passed; LAW_CHANGED when the scheduled EUR-Lex check found a change affecting a rule this result used.",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "kind",
+     "detail"
+    ],
+    "properties": {
+     "kind": {
+      "enum": [
+       "PAST_END_DATE",
+       "LAW_CHANGED"
+      ]
+     },
+     "detail": {
+      "type": "string"
+     },
+     "rules": {
+      "type": "array",
+      "items": {
+       "type": "string"
+      }
+     },
+     "since": {
+      "type": "string"
+     }
+    },
+    "additionalProperties": false
+   }
   }
  },
  "additionalProperties": false,
@@ -404,10 +437,6 @@
      }
     }
    }
-  },
-  {
-   "description": "DR-05: an assessment made after valid_until is not a valid output. JSON Schema cannot compare dates; the engine refuses to classify, and its tests check this.",
-   "properties": {}
   }
  ],
  "$defs": {

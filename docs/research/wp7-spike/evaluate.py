@@ -143,6 +143,12 @@ def route(spec, facts, result):
     return out
 
 
+def verify_category_ids(spec):
+    """The rule set's category list must equal the verified WP1 inventory, in order."""
+    inv = json.loads((ROOT / "docs/research/out/wp1-category-inventory.json").read_text())
+    return [] if spec["category_ids"] == [c["id"] for c in inv["categories"]] else ["category_ids differ from the WP1 inventory"]
+
+
 def verify_open_refs(spec):
     """Every condition that can yield OPEN must cite the recorded open question (not expressible in JSON Schema)."""
     return [f"{cat['rule_id']} {cid}: maps to OPEN without open_ref"
@@ -152,8 +158,7 @@ def verify_open_refs(spec):
 
 def to_output(fx, spec, res, routes):
     """Render a result in the assessment-output schema (docs/research/out/schemas)."""
-    inv = json.loads((ROOT / "docs/research/out/wp1-category-inventory.json").read_text())
-    all_cats = [c["id"] for c in inv["categories"]]
+    all_cats = spec["category_ids"]
     cls_of = lambda cid: "CRITICAL" if cid.startswith("IV") else "IMPORTANT_II" if cid.startswith("III-II") else "IMPORTANT_I"
     order = spec["class_order"]
     encoded = {c["category"]: c for c in spec["categories"]}
@@ -162,11 +167,6 @@ def to_output(fx, spec, res, routes):
     blocking = [{"category": k, "value": r["value"]} for k, r in res["categories"].items()
                 if r["value"] not in (T, F) and order.index(r["class"]) > order.index(floor)]
     blocking += [{"category": c, "value": "NOT_COVERED"} for c in uncovered if order.index(cls_of(c)) > order.index(floor)]
-    checksums = {}
-    for line in (ROOT / "docs/legal/sources/CHECKSUMS.txt").read_text().splitlines():
-        if line.strip():
-            h, name = line.split(None, 1)
-            checksums[name.split("_")[0]] = h
     reasons, nextq = [], []
     for k, r in res["categories"].items():
         if r["value"] in (U, C, O) and order.index(r["class"]) > order.index(floor):
@@ -184,8 +184,8 @@ def to_output(fx, spec, res, routes):
         reasons.append({"kind": "EVIDENCE_BELOW_REQUIREMENT", "detail": t})
     return {
         "assessment_id": fx["case"], "assessed_at": "2026-10-12", "rule_set_version": spec["rule_set_version"],
-        "law_as_of": "2026-10-12", "valid_until": "2027-10-12",
-        "sources": [{"code": c, "id": i, "sha256": checksums[c]} for c, i in spec["law_version"].items() if c in checksums],
+        "law_as_of": spec["law_as_of"], "valid_until": "2027-10-12", "validity_warnings": [],
+        "sources": [{"code": c, "id": v["id"], "sha256": v["sha256"]} for c, v in spec["sources"].items()],
         "facts": [{"fact_id": k, "value": v["value"], "provenance": v.get("provenance", "USER_CONFIRMED")} for k, v in fx["facts"].items()],
         "scope": {"status": "IN_SCOPE", "reasons": ["assumed in trial"], "assumed": True},
         "classification": {
@@ -214,7 +214,7 @@ def verify_quotes(spec):
 
 
 def main():
-    spec = json.loads((HERE / "rules.json").read_text())
+    spec = json.loads((ROOT / "packages/rules/classification.json").read_text())
     fixtures = json.loads((HERE / "fixtures.json").read_text())["fixtures"]
     fails = 0
     if "--verify" in sys.argv:
@@ -222,6 +222,9 @@ def main():
         print(f"Quote verification: {'all conditions verbatim' if not bad else 'FAILED'}")
         for b in bad:
             print("  not found:", b)
+        fails += len(bad)
+        bad = verify_category_ids(spec)
+        print(f"Category list: {'matches the verified inventory' if not bad else 'FAILED'}")
         fails += len(bad)
         bad = verify_open_refs(spec)
         print(f"OPEN references: {'all cited' if not bad else 'FAILED'}")

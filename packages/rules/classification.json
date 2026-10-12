@@ -1,11 +1,28 @@
 {
  "artifact": "wp7-spike-rules",
  "rule_set_version": "0.0.1-spike",
- "law_version": {
-  "B1c": "02024R2847-20241120",
-  "B2": "32025R2392",
-  "B11c": "02024R1689-20260727",
-  "B18": "32025R0327"
+ "law_as_of": "2026-10-12",
+ "sources": {
+  "B1c": {
+   "id": "02024R2847-20241120",
+   "sha256": "b72428a6133baef95ce09a05885532b480029796aecf6e90e9ab0790c72fbd72",
+   "file": "docs/legal/sources/B1c_reg-2024-2847_CRA_consolidated-000.003_20241120.pdf"
+  },
+  "B2": {
+   "id": "32025R2392",
+   "sha256": "fac0a59b6cad2f1c7878c561e066b0d47514fb7fc2dcb708cdd1285073aecdf3",
+   "file": "docs/legal/sources/B2_impl-reg-2025-2392_tech-descriptions_OJ-2025-12-01.pdf"
+  },
+  "B11c": {
+   "id": "02024R1689-20260727",
+   "sha256": "1ccd38d1c78482cf2053b70110115adcc5080700acc8bd7bead8cb3579143ccf",
+   "file": "docs/legal/sources/B11c_reg-2024-1689_AI-act_consolidated-001.001_20260727.pdf"
+  },
+  "B18": {
+   "id": "32025R0327",
+   "sha256": "2969e359baba367ae97724029791c3ca8c1f5f9c5e0a4867b2f6f48f6f1e5cd0",
+   "file": "docs/legal/sources/B18_reg-2025-327_EHDS.pdf"
+  }
  },
  "note": "Trial encoding for WP7. Six categories and two conformity routes, chosen because each stresses a different part of the model. Not product rules.",
  "class_order": [
@@ -15,6 +32,34 @@
   "CRITICAL"
  ],
  "categories_total": 26,
+ "category_ids": [
+  "III-I-01",
+  "III-I-02",
+  "III-I-03",
+  "III-I-04",
+  "III-I-05",
+  "III-I-06",
+  "III-I-07",
+  "III-I-08",
+  "III-I-09",
+  "III-I-10",
+  "III-I-11",
+  "III-I-12",
+  "III-I-13",
+  "III-I-14",
+  "III-I-15",
+  "III-I-16",
+  "III-I-17",
+  "III-I-18",
+  "III-I-19",
+  "III-II-01",
+  "III-II-02",
+  "III-II-03",
+  "III-II-04",
+  "IV-01",
+  "IV-02",
+  "IV-03"
+ ],
  "facts": {
   "STORES_PASSWORDS_CORE": {
    "type": "bool",
