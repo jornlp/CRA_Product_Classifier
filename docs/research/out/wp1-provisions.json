@@ -1,0 +1,312 @@
+{
+ "artifact": "wp1-provisions",
+ "source": "B1c_reg-2024-2847_CRA_consolidated-000.003_20241120.pdf",
+ "source_sha256": "e3ecaabddf6e321fa04097d15dfcccc7309d0fe5896240ab7625a27d74ab1b0a",
+ "law_version": "Regulation (EU) 2024/2847, consolidated version 000.003 of 20.11.2024 (incorporates corrigenda of 5.12.2024, 2.7.2025 and 17.10.2025)",
+ "extraction": "programmatic slice between article headings from the EUR-Lex consolidated text; consolidation markers and page furniture removed; no hand transcription",
+ "articles": {
+  "1": {
+   "article": 1,
+   "title": "Subject matter",
+   "footnotes": {},
+   "paragraphs": {
+    "_lead": "This Regulation lays down: (a) rules for the making available on the market of products with digital elements to ensure the cybersecurity of such products; (b) essential cybersecurity requirements for the design, development and production of products with digital elements, and obligations for economic operators in relation to those products with respect to cybersecurity; (c) essential cybersecurity requirements for the vulnerability handling processes put in place by manufacturers to ensure the cybersecurity of products with digital elements during the time the products are expected to be in use, and obligations for economic operators in relation to those processes; (d) rules on market surveillance, including monitoring, and enforcement of the rules and requirements referred to in this Article."
+   },
+   "source_lines": [
+    32,
+    48
+   ]
+  },
+  "2": {
+   "article": 2,
+   "title": "Scope",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "This Regulation applies to products with digital elements made available on the market, the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection to a device or network.",
+    "2": "This Regulation does not apply to products with digital elements to which the following Union legal acts apply: (a) Regulation (EU) 2017/745; (b) Regulation (EU) 2017/746; (c) Regulation (EU) 2019/2144.",
+    "3": "This Regulation does not apply to products with digital elements that have been certified in accordance with Regulation (EU) 2018/1139.",
+    "4": "This Regulation does not apply to equipment that falls within the scope of Directive 2014/90/EU of the European Parliament and of the Council (1).",
+    "5": "The application of this Regulation to products with digital elements covered by other Union rules laying down requirements that address all or some of the risks covered by the essential cybersecurity requirements set out in Annex I may be limited or excluded where: (a) such limitation or exclusion is consistent with the overall regulatory framework that applies to those products; and (b) the sectoral rules achieve the same or a higher level of protection as that provided for by this Regulation. The Commission is empowered to adopt delegated acts in accordance with Article 61 to supplement this Regulation by specifying whether such limitation or exclusion is necessary, the products and rules concerned, as well as the scope of the limitation, if relevant.",
+    "6": "This Regulation does not apply to spare parts that are made available on the market to replace identical components in products with digital elements and that are manufactured according to the same specifications as the components that they are intended to replace.",
+    "7": "This Regulation does not apply to products with digital elements developed or modified exclusively for national security or defence purposes or to products specifically designed to process classified information.",
+    "8": "The obligations laid down in this Regulation shall not entail the supply of information the disclosure of which would be contrary to the essential interests of Member States’ national security, public security or defence."
+   },
+   "source_lines": [
+    49,
+    98
+   ]
+  },
+  "3": {
+   "article": 3,
+   "title": "Definitions",
+   "footnotes": {
+    "1": "Directive 2014/90/EU of the European Parliament and of the Council of 23 July 2014 on marine equipment and repealing Council Directive 96/98/EC (OJ L 257, 28.8.2014, p. 146)."
+   },
+   "paragraphs": {},
+   "source_lines": [
+    99,
+    293
+   ],
+   "preamble": "For the purposes of this Regulation, the following definitions apply:",
+   "definitions": {
+    "1": "‘product with digital elements’ means a software or hardware product and its remote data processing solutions, including software or hardware components being placed on the market separately;",
+    "2": "‘remote data processing’ means data processing at a distance for which the software is designed and developed by the manufacturer, or under the responsibility of the manufacturer, and the absence of which would prevent the product with digital elements from performing one of its functions;",
+    "3": "‘cybersecurity’ means cybersecurity as defined in Article 2, point (1), of Regulation (EU) 2019/881;",
+    "4": "‘software’ means the part of an electronic information system which consists of computer code;",
+    "5": "‘hardware’ means a physical electronic information system, or parts thereof capable of processing, storing or transmitting digital data;",
+    "6": "‘component’ means software or hardware intended for integration into an electronic information system;",
+    "7": "‘electronic information system’ means a system, including elec­ trical or electronic equipment, capable of processing, storing or transmitting digital data;",
+    "8": "‘logical connection’ means a virtual representation of a data connection implemented through a software interface;",
+    "9": "‘physical connection’ means a connection between electronic information systems or components implemented using physical means, including through electrical, optical or mechanical interfaces, wires or radio waves;",
+    "10": "‘indirect connection’ means a connection to a device or network, which does not take place directly but rather as part of a larger system that is directly connectable to such device or network;",
+    "11": "‘end-point’ means any device that is connected to a network and serves as an entry point to that network;",
+    "12": "‘economic operator’ means the manufacturer, the authorised repre­ sentative, the importer, the distributor, or other natural or legal person who is subject to obligations in relation to the manufacture of products with digital elements or to the making available of products with digital elements on the market in accordance with this Regulation;",
+    "13": "‘manufacturer’ means a natural or legal person who develops or manufactures products with digital elements or has products with digital elements designed, developed or manufactured, and markets them under its name or trademark, whether for payment, monet­ isation or free of charge;",
+    "14": "‘open-source software steward’ means a legal person, other than a manufacturer, that has the purpose or objective of systematically providing support on a sustained basis for the development of specific products with digital elements, qualifying as free and open-source software and intended for commercial activities, and that ensures the viability of those products;",
+    "15": "‘authorised representative’ means a natural or legal person estab­ lished within the Union who has received a written mandate from a manufacturer to act on its behalf in relation to specified tasks;",
+    "16": "‘importer’ means a natural or legal person established in the Union who places on the market a product with digital elements that bears the name or trademark of a natural or legal person estab­ lished outside the Union;",
+    "17": "‘distributor’ means a natural or legal person in the supply chain, other than the manufacturer or the importer, that makes a product with digital elements available on the Union market without affecting its properties;",
+    "18": "‘consumer’ means a natural person who acts for purposes which are outside that person’s trade, business, craft or profession;",
+    "19": "‘microenterprises’, ‘small enterprises’ and ‘medium-sized enter­ prises’ mean, respectively, microenterprises, small enterprises and medium-sized enterprises as defined in the Annex to Recommen­ dation 2003/361/EC;",
+    "20": "‘support period’ means the period during which a manufacturer is required to ensure that vulnerabilities of a product with digital elements are handled effectively and in accordance with the essential cybersecurity requirements set out in Part II of Annex I;",
+    "21": "‘placing on the market’ means the first making available of a product with digital elements on the Union market;",
+    "22": "‘making available on the market’ means the supply of a product with digital elements for distribution or use on the Union market in the course of a commercial activity, whether in return for payment or free of charge;",
+    "23": "‘intended purpose’ means the use for which a product with digital elements is intended by the manufacturer, including the specific context and conditions of use, as specified in the information supplied by the manufacturer in the instructions for use, promo­ tional or sales materials and statements, as well as in the technical documentation;",
+    "24": "‘reasonably foreseeable use’ means use that is not necessarily the intended purpose supplied by the manufacturer in the instructions for use, promotional or sales materials and statements, as well as in the technical documentation, but which is likely to result from reasonably foreseeable human behaviour or technical operations or interactions;",
+    "25": "‘reasonably foreseeable misuse’ means the use of a product with digital elements in a way that is not in accordance with its intended purpose, but which may result from reasonably fore­ seeable human behaviour or interaction with other systems;",
+    "26": "‘notifying authority’ means the national authority responsible for setting up and carrying out the necessary procedures for the assessment, designation and notification of conformity assessment bodies and for their monitoring;",
+    "27": "‘conformity assessment’ means the process of verifying whether the essential cybersecurity requirements set out in Annex I have been fulfilled;",
+    "28": "‘conformity assessment body’ means a conformity assessment body as defined in Article 2, point (13), of Regulation (EC) No 765/2008;",
+    "29": "‘notified body’ means a conformity assessment body designated in accordance with Article 43 and other relevant Union harmonisation legislation;",
+    "30": "‘substantial modification’ means a change to the product with digital elements following its placing on the market, which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I or which results in a modification to the intended purpose for which the product with digital elements has been assessed;",
+    "31": "‘CE marking’ means a marking by which a manufacturer indicates that a product with digital elements and the processes put in place by the manufacturer are in conformity with the essential cyberse­ curity requirements set out in Annex I and other applicable Union harmonisation legislation providing for its affixing;",
+    "32": "‘Union harmonisation legislation’ means Union legislation listed in Annex I to Regulation (EU) 2019/1020 and any other Union legis­ lation harmonising the conditions for the marketing of products to which that Regulation applies;",
+    "33": "‘market surveillance authority’ means a market surveillance authority as defined in Article 3, point (4), of Regulation (EU) 2019/1020;",
+    "34": "‘international standard’ means an international standard as defined in Article 2, point (1)(a), of Regulation (EU) No 1025/2012;",
+    "35": "‘European standard’ means a European standard as defined in Article 2, point (1)(b), of Regulation (EU) No 1025/2012;",
+    "36": "‘harmonised standard’ means a harmonised standard as defined in Article 2, point (1)(c), of Regulation (EU) No 1025/2012;",
+    "37": "‘cybersecurity risk’ means the potential for loss or disruption caused by an incident and is to be expressed as a combination of the magnitude of such loss or disruption and the likelihood of occurrence of the incident;",
+    "38": "‘significant cybersecurity risk’ means a cybersecurity risk which, based on its technical characteristics, can be assumed to have a high likelihood of an incident that could lead to a severe negative impact, including by causing considerable material or non-material loss or disruption;",
+    "39": "‘software bill of materials’ means a formal record containing details and supply chain relationships of components included in the software elements of a product with digital elements;",
+    "40": "‘vulnerability’ means a weakness, susceptibility or flaw of a product with digital elements that can be exploited by a cyber threat;",
+    "41": "‘exploitable vulnerability’ means a vulnerability that has the potential to be effectively used by an adversary under practical operational conditions;",
+    "42": "‘actively exploited vulnerability’ means a vulnerability for which there is reliable evidence that a malicious actor has exploited it in a system without permission of the system owner;",
+    "43": "‘incident’ means an incident as defined in Article 6, point (6), of Directive (EU) 2022/2555;",
+    "44": "‘incident having an impact on the security of the product with digital elements’ means an incident that negatively affects or is capable of negatively affecting the ability of a product with digital elements to protect the availability, authenticity, integrity or confi­ dentiality of data or functions;",
+    "45": "‘near miss’ means a near miss as defined in Article 6, point (5), of Directive (EU) 2022/2555;",
+    "46": "‘cyber threat’ means a cyber threat as defined in Article 2, point (8), of Regulation (EU) 2019/881;",
+    "47": "‘personal data’ means personal data as defined in Article 4, point (1), of Regulation (EU) 2016/679;",
+    "48": "‘free and open-source software’ means software the source code of which is openly shared and which is made available under a free and open-source licence which provides for all rights to make it freely accessible, usable, modifiable and redistributable;",
+    "49": "‘recall’ means recall as defined in Article 3, point (22), of Regu­ lation (EU) 2019/1020;",
+    "50": "‘withdrawal’ means withdrawal as defined in Article 3, point (23), of Regulation (EU) 2019/1020;",
+    "51": "‘CSIRT designated as coordinator’ means a CSIRT designated as coordinator pursuant to Article 12(1) of Directive (EU) 2022/2555."
+   }
+  },
+  "7": {
+   "article": 7,
+   "title": "Important products with digital elements",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products with digital elements and shall be subject to the conformity assessment procedures referred to in Article 32(2) and (3). The integration of a product with digital elements which has the core functionality of a product category set out in Annex III shall not in itself render the product in which it is integrated subject to the conformity assessment procedures referred to in Article 32(2) and (3).",
+    "2": "The categories of products with digital elements referred to in paragraph 1 of this Article, divided into classes I and II as set out in Annex III, meet at least one of the following criteria: (a) the product with digital elements primarily performs functions critical to the cybersecurity of other products, networks or services, including securing authentication and access, intrusion prevention and detection, end-point security or network protection; (b) the product with digital elements performs a function which carries a significant risk of adverse effects in terms of its intensity and ability to disrupt, control or cause damage to a large number of other products or to the health, security or safety of its users through direct manipulation, such as a central system function, including network management, configuration control, virtualisation or processing of personal data.",
+    "3": "The Commission is empowered to adopt delegated acts in accordance with Article 61 to amend Annex III by including in the list a new category within each class of the categories of products with digital elements and specifying its definition, moving a category of products from one class to the other or withdrawing an existing category from that list. When assessing the need to amend the list set out in Annex III, the Commission shall take into account the cybersecurity-related functionalities or the function and the level of cybersecurity risk posed by the products with digital elements as set out by the criteria referred to in paragraph 2 of this Article. The delegated acts referred to in the first subparagraph of this paragraph shall, where appropriate, provide for a minimum transitional period of 12 months, in particular where a new category of important products with digital elements is added to class I or II or is moved from class I to II as set out in Annex III, before the relevant conformity assessment procedures as referred to in Article 32(2) and (3) start applying, unless a shorter transitional period is justified on imperative grounds of urgency.",
+    "4": "By 11 December 2025, the Commission shall adopt an implemen­ ting act specifying the technical description of the categories of products with digital elements under classes I and II as set out in Annex III and the technical description of the categories of products with digital elements as set out in Annex IV. That implementing act shall be adopted in accordance with the examination procedure referred to in Article 62(2)."
+   },
+   "source_lines": [
+    356,
+    415
+   ]
+  },
+  "8": {
+   "article": 8,
+   "title": "Critical products with digital elements",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "The Commission is empowered to adopt delegated acts in accordance with Article 61 to supplement this Regulation to determine which products with digital elements that have the core func­ tionality of a product category that is set out in Annex IV to this Regulation are to be required to obtain a European cybersecurity cer­ tificate at assurance level at least ‘substantial’ under a European cybersecurity certification scheme adopted pursuant to Regulation (EU) 2019/881, to demonstrate conformity with the essential cybersecurity requirements set out in Annex I to this Regu­ lation or parts thereof, provided that a European cybersecurity certifi­ cation scheme covering those categories of products with digital elements has been adopted pursuant to Regulation (EU) 2019/881 and is available to manufacturers. Those delegated acts shall specify the required assurance level that shall be proportionate to the level of cybersecurity risk associated with the products with digital elements and shall take account of their intended purpose, including the critical dependency on them by essential entities as referred to in Article 3(1) of Directive (EU) 2022/2555. Before adopting such delegated acts, the Commission shall carry out an assessment of the potential market impact of the envisaged measures and shall carry out consultations with relevant stakeholders, including the European Cybersecurity Certification Group established under Regulation (EU) 2019/881. The assessment shall take into account the readiness and the capacity level of the Member States for the implemen­ tation of the relevant European cybersecurity certification scheme. Where no delegated acts as referred to in the first subparagraph of this paragraph have been adopted, products with digital elements which have the core functionality of a product category as set out in Annex IV shall be subject to the conformity assessment procedures referred to in Article 32(3). The delegated acts referred to in the first subparagraph shall provide for a minimum transitional period of six months, unless a shorter tran­ sitional period is justified for imperative reasons of urgency.",
+    "2": "The Commission is empowered to adopt delegated acts in accordance with Article 61 to amend Annex IV by adding or with­ drawing categories of critical products with digital elements. When determining such categories of critical products with digital elements and the required assurance level, in accordance with paragraph 1 of this Article, the Commission shall take into account the criteria referred to in Article 7(2) and ensure that the categories of products with digital elements meet at least one of the following criteria: (a) there is a critical dependency of essential entities as referred to in Article 3 of Directive (EU) 2022/2555 on the category of products with digital elements; (b) incidents and exploited vulnerabilities concerning the category of products with digital elements could lead to serious disruptions of critical supply chains across the internal market. Before adopting such delegated acts, the Commission shall carry out an assessment of the type referred to in paragraph 1. The delegated acts referred to in the first subparagraph shall provide for a minimum transitional period of six months, unless a shorter tran­ sitional period is justified for imperative reasons of urgency."
+   },
+   "source_lines": [
+    416,
+    484
+   ]
+  },
+  "12": {
+   "article": 12,
+   "title": "High-risk AI systems",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "Without prejudice to the requirements relating to accuracy and robustness set out in Article 15 of Regulation (EU) 2024/1689, products with digital elements which fall within the scope of this Regu­ lation and which are classified as high-risk AI systems pursuant to Article 6 of that Regulation shall be deemed to comply with the cybersecurity requirements set out in Article 15 of that Regulation where: (a) those products fulfil the essential cybersecurity requirements set out in Part I of Annex I; (b) the processes put in place by the manufacturer comply with the essential cybersecurity requirements set out in Part II of Annex I; and (c) the achievement of the level of cybersecurity protection required under Article 15 of Regulation (EU) 2024/1689 is demonstrated in the EU declaration of conformity issued under this Regulation.",
+    "2": "For the products with digital elements and cybersecurity requirements referred to in paragraph 1 of this Article, the relevant conformity assessment procedure provided for in Article 43 of Regu­ lation (EU) 2024/1689 shall apply. For the purposes of that assessment, notified bodies which are competent to control the conformity of the high-risk AI systems under Regulation (EU) 2024/1689 shall also be competent to control the conformity of high-risk AI systems which fall within the scope of this Regulation with the requirements set out in Annex I to this Regulation, provided that the compliance of those notified bodies with the requirements laid down in Article 39 of this Regulation has been assessed in the context of the notification procedure under Regulation (EU) 2024/1689.",
+    "3": "By way of derogation from paragraph 2 of this Article, important products with digital elements as listed in Annex III to this Regulation, which are subject to the conformity assessment procedures referred to in Article 32(2), points (a) and (b), and Article 32(3) of this Regulation and critical products with digital elements as listed in Annex IV to this Regulation which are required to obtain a European cybersecurity cer­ tificate pursuant to Article 8(1) of this Regulation or, absent that, which are subject to the conformity assessment procedures referred to in Article 32(3) of this Regulation, and which are classified as high-risk AI systems pursuant to Article 6 of Regulation (EU) 2024/1689, and to which the conformity assessment procedure based on internal control as referred to in Annex VI to Regulation (EU) 2024/1689 applies, shall be subject to the conformity assessment procedures provided for in this Regulation in so far as the essential cybersecurity requirements set out in this Regulation are concerned.",
+    "4": "Manufacturers of products with digital elements as referred to in paragraph 1 of this Article may participate in the AI regulatory sandboxes referred to in Article 57 of Regulation (EU) 2024/1689. CHAPTER II OBLIGATIONS OF ECONOMIC OPERATORS AND PROVISIONS IN RELATION TO FREE AND OPEN-SOURCE SOFTWARE"
+   },
+   "source_lines": [
+    547,
+    608
+   ],
+   "why_extracted": "Overrides the Art. 32 conformity route for products that are also high-risk AI systems under Art. 6 of Reg. (EU) 2024/1689. Art. 12(2): the AI Act's Art. 43 procedure applies as a rule. Art. 12(3): by derogation, CRA procedures apply for CRA essential requirements where the product is an Annex III important product under Art. 32(2)(a)/(b) or 32(3), or an Annex IV critical product, AND the AI Act's internal-control route (its Annex VI) would otherwise apply. The applicable conformity route is therefore a function of the CRA classification - which couples this article directly to the tool's output."
+  },
+  "13": {
+   "article": 13,
+   "title": "Obligations of manufacturers",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "When placing a product with digital elements on the market, manufacturers shall ensure that it has been designed, developed and produced in accordance with the essential cybersecurity requirements set out in Part I of Annex I.",
+    "2": "For the purpose of complying with paragraph 1, manufacturers shall undertake an assessment of the cybersecurity risks associated with a product with digital elements and take the outcome of that assessment into account during the planning, design, development, production, delivery and maintenance phases of the product with digital elements with a view to minimising cybersecurity risks, preventing incidents and minimising their impact, including in relation to the health and safety of users.",
+    "3": "The cybersecurity risk assessment shall be documented and updated as appropriate during a support period to be determined in accordance with paragraph 8 of this Article. That cybersecurity risk assessment shall comprise at least an analysis of cybersecurity risks based on the intended purpose and reasonably foreseeable use, as well as the conditions of use, of the product with digital elements, such as the operational environment or the assets to be protected, taking into account the length of time the product is expected to be in use. The cybersecurity risk assessment shall indicate whether and, if so in what manner, the security requirements set out in Part I, point (2), of Annex I are applicable to the relevant product with digital elements and how those requirements are implemented as informed by the cybersecurity risk assessment. It shall also indicate how the manu­ facturer is to apply Part I, point (1), of Annex I and the vulnerability handling requirements set out in Part II of Annex I.",
+    "4": "When placing a product with digital elements on the market, the manufacturer shall include the cybersecurity risk assessment referred to in paragraph 3 of this Article in the technical documentation required pursuant to Article 31 and Annex VII. For products with digital elements as referred to in Article 12, which are also subject to other Union legal acts, the cybersecurity risk assessment may be part of the risk assessment required by those Union legal acts. Where certain essential cybersecurity requirements are not applicable to the product with digital elements, the manufacturer shall include a clear justification to that effect in that technical documentation.",
+    "5": "For the purpose of complying with paragraph 1, manufacturers shall exercise due diligence when integrating components sourced from third parties so that those components do not compromise the cybersecurity of the product with digital elements, including when inte­ grating components of free and open-source software that have not been made available on the market in the course of a commercial activity.",
+    "6": "Manufacturers shall, upon identifying a vulnerability in a component, including in an open source-component, which is inte­ grated in the product with digital elements report the vulnerability to the person or entity manufacturing or maintaining the component, and address and remediate the vulnerability in accordance with the vulner­ ability handling requirements set out in Part II of Annex I. Where manufacturers have developed a software or hardware modification to address the vulnerability in that component, they shall share the relevant code or documentation with the person or entity manufacturing or main­ taining the component, where appropriate in a machine-readable format.",
+    "7": "The manufacturers shall systematically document, in a manner that is proportionate to the nature and the cybersecurity risks, relevant cybersecurity aspects concerning the products with digital elements, including vulnerabilities of which they become aware and any relevant information provided by third parties, and shall, where applicable, update the cybersecurity risk assessment of the products.",
+    "8": "Manufacturers shall ensure, when placing a product with digital elements on the market, and for the support period, that vulnerabilities of that product, including its components, are handled effectively and in accordance with the essential cybersecurity requirements set out in Part II of Annex I. Manufacturers shall determine the support period so that it reflects the length of time during which the product is expected to be in use, taking into account, in particular, reasonable user expectations, the nature of the product, including its intended purpose, as well as relevant Union law determining the lifetime of products with digital elements. When determining the support period, manufacturers may also take into account the support periods of products with digital elements offering a similar functionality placed on the market by other manufacturers, the availability of the operating environment, the support periods of inte­ grated components that provide core functions and are sourced from third parties as well as relevant guidance provided by the dedicated administrative cooperation group (ADCO) established pursuant to Article 52(15) and the Commission. The matters to be taken into account in order to determine the support period shall be considered in a manner that ensures proportionality. Without prejudice to the second subparagraph, the support period shall be at least five years. Where the product with digital elements is expected to be in use for less than five years, the support period shall correspond to the expected use time. Taking into account ADCO recommendations as referred to in Article 52(16), the Commission may adopt delegated acts in accordance with Article 61 to supplement this Regulation by specifying the minimum support period for specific product categories where the market surveillance data suggests inadequate support periods. Manufacturers shall include the information that was taken into account to determine the support period of a product with digital elements in the technical documentation as set out in Annex VII. Manufacturers shall have appropriate policies and procedures, including coordinated vulnerability disclosure policies, referred to in Part II, point (5), of Annex I to process and remediate potential vulnerabilities in the product with digital elements reported from internal or external sources.",
+    "9": "Manufacturers shall ensure that each security update, as referred to in Part II, point (8), of Annex I, which has been made available to users during the support period, remains available after it has been issued for a minimum of 10 years or for the remainder of the support period, whichever is longer.",
+    "10": "Where a manufacturer has placed subsequent substantially modified versions of a software product on the market, that manu­ facturer may ensure compliance with the essential cybersecurity requirement set out in Part II, point (2), of Annex I only for the version that it has last placed on the market, provided that the users of the versions that were previously placed on the market have access to the version last placed on the market free of charge and do not incur additional costs to adjust the hardware and software environment in which they use the original version of that product.",
+    "11": "Manufacturers may maintain public software archives enhancing user access to historical versions. In those cases, users shall be clearly informed in an easily accessible manner about risks associated with using unsupported software.",
+    "12": "Before placing a product with digital elements on the market, manufacturers shall draw up the technical documentation referred to in Article 31. They shall carry out the chosen conformity assessment procedures as referred to in Article 32 or have them carried out. Where compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I and of the processes put in place by the manufacturer with the essential cybersecurity requirements set out in Part II of Annex I has been demonstrated by that conformity assessment procedure, manufacturers shall draw up the EU declaration of conformity in accordance with Article 28 and affix the CE marking in accordance with Article 30.",
+    "13": "Manufacturers shall keep the technical documentation and the EU declaration of conformity at the disposal of the market surveillance authorities for at least 10 years after the product with digital elements has been placed on the market or for the support period, whichever is longer.",
+    "14": "Manufacturers shall ensure that procedures are in place for products with digital elements that are part of a series of production to remain in conformity with this Regulation. Manufacturers shall adequately take into account changes in the development and production process or in the design or characteristics of the product with digital elements and changes in the harmonised standards, European cyberse­ curity certification schemes or common specifications as referred to in Article 27 by reference to which the conformity of the product with digital elements is declared or by application of which its conformity is verified.",
+    "15": "Manufacturers shall ensure that their products with digital elements bear a type, batch or serial number or other element allowing their identification, or, where that is not possible, that that information is provided on their packaging or in a document accom­ panying the product with digital elements.",
+    "16": "Manufacturers shall indicate the name, registered trade name or registered trademark of the manufacturer, and the postal address, email address or other digital contact details, as well as, where applicable, the website where the manufacturer can be contacted, on the product with digital elements, on its packaging or in a document accompanying the product with digital elements. That information shall also be included in the information and instructions to the user set out in Annex II. The contact details shall be in a language which can be easily understood by users and market surveillance authorities.",
+    "17": "For the purposes of this Regulation, manufacturers shall designate a single point of contact to enable users to communicate directly and rapidly with them, including in order to facilitate reporting on vulnerabilities of the product with digital elements. Manufacturers shall ensure that the single point of contact is easily identifiable by the users. They shall also include the single point of contact in the information and instructions to the user set out in Annex II. The single point of contact shall allow users to choose their preferred means of communication and shall not limit such means to automated tools.",
+    "18": "Manufacturers shall ensure that products with digital elements are accompanied by the information and instructions to the user set out in Annex II, in paper or electronic form. Such information and instructions shall be provided in a language which can be easily understood by users and market surveillance authorities. They shall be clear, understandable, intelligible and legible. They shall allow for the secure installation, operation and use of products with digital elements. Manufacturers shall keep the information and instructions to the user set out in Annex II at the disposal of users and market surveillance authorities for at least 10 years after the product with digital elements has been placed on the market or for the support period, whichever is longer. Where such information and instructions are provided online, manu­ facturers shall ensure that they are accessible, user-friendly and available online for at least 10 years after the product with digital elements has been placed on the market or for the support period, whichever is longer.",
+    "19": "Manufacturers shall ensure that the end date of the support period referred to in paragraph 8, including at least the month and the year, is clearly and understandably specified at the time of purchase in an easily accessible manner and, where applicable, on the product with digital elements, its packaging or by digital means. Where technically feasible in light of the nature of the product with digital elements, manufacturers shall display a notification to users informing them that their product with digital elements has reached the end of its support period.",
+    "20": "Manufacturers shall either provide a copy of the EU declaration of conformity or a simplified EU declaration of conformity with the product with digital elements. Where a simplified EU declaration of conformity is provided, it shall contain the exact internet address at which the full EU declaration of conformity can be accessed.",
+    "21": "From the placing on the market and for the support period, manufacturers who know or have reason to believe that the product with digital elements or the processes put in place by the manufacturer are not in conformity with the essential cybersecurity requirements set out in Annex I shall immediately take the corrective measures necessary to bring that product with digital elements or the manufacturer’s processes into conformity, or to withdraw or recall the product, as appropriate.",
+    "22": "Manufacturers shall, upon a reasoned request from a market surveillance authority, provide that authority, in a language which can be easily understood by that authority, with all the information and documentation, in paper or electronic form, necessary to demonstrate the conformity of the product with digital elements and of the processes put in place by the manufacturer with the essential cybersecurity requirements set out in Annex I. Manufacturers shall cooperate with that authority, at its request, on any measures taken to eliminate the cybersecurity risks posed by the product with digital elements which they have placed on the market.",
+    "23": "A manufacturer that ceases its operations and, as a result, is not able to comply with this Regulation shall inform, before the cessation of operations takes effect, the relevant market surveillance authorities as well as, by any means available and to the extent possible, the users of the relevant products with digital elements placed on the market, of the impending cessation of operations.",
+    "24": "The Commission may, by means of implementing acts taking into account European or international standards and best practices, specify the format and elements of the software bill of materials referred to in Part II, point (1), of Annex I. Those implementing acts shall be adopted in accordance with the examination procedure referred to in Article 62(2).",
+    "25": "In order to assess the dependence of Member States and of the Union as a whole on software components and in particular on components qualifying as free and open-source software, ADCO may decide to conduct a Union wide dependency assessment for specific categories of products with digital elements. For that purpose, market surveillance authorities may request manufacturers of such categories of products with digital elements to provide the relevant software bills of materials as referred to in Part II, point (1), of Annex I. On the basis of such information, the market surveillance authorities may provide ADCO with anonymised and aggregated information about software dependencies. ADCO shall submit a report on the results of the dependency assessment to the Cooperation Group established pursuant to Article 14 of Directive (EU) 2022/2555."
+   },
+   "source_lines": [
+    609,
+    907
+   ]
+  },
+  "14": {
+   "article": 14,
+   "title": "Reporting obligations of manufacturers",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "A manufacturer shall notify any actively exploited vulnerability contained in the product with digital elements that it becomes aware of simultaneously to the CSIRT designated as coordinator, in accordance with paragraph 7 of this Article, and to ENISA. The manu­ facturer shall notify that actively exploited vulnerability via the single reporting platform established pursuant to Article 16.",
+    "2": "For the purposes of the notification referred to in paragraph 1, the manufacturer shall submit: (a) an early warning notification of an actively exploited vulnerability, without undue delay and in any event within 24 hours of the manu­ facturer becoming aware of it, indicating, where applicable, the Member States on the territory of which the manufacturer is aware that their product with digital elements has been made available; (b) unless the relevant information has already been provided, a vulner­ ability notification, without undue delay and in any event within 72 hours of the manufacturer becoming aware of the actively exploited vulnerability, which shall provide general information, as available, about the product with digital elements concerned, the general nature of the exploit and of the vulnerability concerned as well as any corrective or mitigating measures taken, and corrective or mitigating measures that users can take, and which shall also indicate, where applicable, how sensitive the manufacturer considers the notified information to be; (c) unless the relevant information has already been provided, a final report, no later than 14 days after a corrective or mitigating measure is available, including at least the following: (i) a description of the vulnerability, including its severity and impact; (ii) where available, information concerning any malicious actor that has exploited or that is exploiting the vulnerability; (iii) details about the security update or other corrective measures that have been made available to remedy the vulnerability.",
+    "3": "A manufacturer shall notify any severe incident having an impact on the security of the product with digital elements that it becomes aware of simultaneously to the CSIRT designated as coordinator, in accordance with paragraph 7 of this Article, and to ENISA. The manu­ facturer shall notify that incident via the single reporting platform estab­ lished pursuant to Article 16.",
+    "4": "For the purposes of the notification referred to in paragraph 3, the manufacturer shall submit: (a) an early warning notification of a severe incident having an impact on the security of the product with digital elements, without undue delay and in any event within 24 hours of the manufacturer becoming aware of it, including at least whether the incident is suspected of being caused by unlawful or malicious acts, which shall also indicate, where applicable, the Member States on the territory of which the manufacturer is aware that their product with digital elements has been made available; (b) unless the relevant information has already been provided, an incident notification, without undue delay and in any event within 72 hours of the manufacturer becoming aware of the incident, which shall provide general information, where available, about the nature of the incident, an initial assessment of the incident, as well as any corrective or mitigating measures taken, and corrective or mitigating measures that users can take, and which shall also indicate, where applicable, how sensitive the manufacturer considers the notified information to be; (c) unless the relevant information has already been provided, a final report, within one month after the submission of the incident notifi­ cation under point (b), including at least the following: (i) a detailed description of the incident, including its severity and impact; (ii) the type of threat or root cause that is likely to have triggered the incident; (iii) applied and ongoing mitigation measures.",
+    "5": "For the purposes of paragraph 3, an incident having an impact on the security of the product with digital elements shall be considered to be severe where: (a) it negatively affects or is capable of negatively affecting the ability of a product with digital elements to protect the availability, auth­ enticity, integrity or confidentiality of sensitive or important data or functions; or (b) it has led or is capable of leading to the introduction or execution of malicious code in a product with digital elements or in the network and information systems of a user of the product with digital elements.",
+    "6": "Where necessary, the CSIRT designated as coordinator initially receiving the notification may request manufacturers to provide an inter­ mediate report on relevant status updates about the actively exploited vulnerability or severe incident having an impact on the security of the product with digital elements.",
+    "7": "The notifications referred to in paragraphs 1 and 3 of this Article shall be submitted via the single reporting platform referred to in Article 16 using one of the electronic notification end-points referred to in Article 16(1). The notification shall be submitted using the elec­ tronic notification end-point of the CSIRT designated as coordinator of the Member State where the manufacturers have their main estab­ lishment in the Union and shall be simultaneously accessible to ENISA. For the purposes of this Regulation, a manufacturer shall be considered to have its main establishment in the Union in the Member State where the decisions related to the cybersecurity of its products with digital elements are predominantly taken. If such a Member State cannot be determined, the main establishment shall be considered to be in the Member State where the manufacturer concerned has the establishment with the highest number of employees in the Union. Where a manufacturer has no main establishment in the Union, it shall submit the notifications referred to in paragraphs 1 and 3 using the electronic notification end-point of the CSIRT designated as coordinator in the Member State determined pursuant to the following order and based on the information available to the manufacturer: (a) the Member State in which the authorised representative acting on behalf of the manufacturer for the highest number of products with digital elements of that manufacturer is established; (b) the Member State in which the importer placing on the market the highest number of products with digital elements of that manu­ facturer is established; (c) the Member State in which the distributor making available on the market the highest number of products with digital elements of that manufacturer is established; (d) the Member State in which the highest number of users of products with digital elements of that manufacturer are located. In relation to the third subparagraph, point (d), a manufacturer may submit notifications related to any subsequent actively exploited vulner­ ability or severe incident having an impact on the security of the product with digital elements to the same CSIRT designated as coor­ dinator to which it first reported.",
+    "8": "After becoming aware of an actively exploited vulnerability or a severe incident having an impact on the security of the product with digital elements, the manufacturer shall inform the impacted users of the product with digital elements, and where appropriate all users, of that vulnerability or incident and, where necessary, of any risk mitigation and corrective measures that the users can deploy to mitigate the impact of that vulnerability or incident, where appropriate in a structured, machine-readable format that is easily automatically processable. Where the manufacturer fails to inform the users of the product with digital elements in a timely manner, the notified CSIRTs designated as coordinators may provide such information to the users when considered to be proportionate and necessary for preventing or mitigating the impact of that vulnerability or incident.",
+    "9": "By 11 December 2025, the Commission shall adopt delegated acts in accordance with Article 61 of this Regulation to supplement this Regulation by specifying the terms and conditions for applying the cybersecurity-related grounds in relation to delaying the dissemination of notifications as referred to in Article 16(2) of this Regulation. The Commission shall cooperate with the CSIRTs network established pursuant to Article 15 of Directive (EU) 2022/2555 and ENISA in preparing the draft delegated acts.",
+    "10": "The Commission may, by means of implementing acts, specify further the format and procedures of the notifications referred to in this Article as well as in Articles 15 and 16. Those implementing acts shall be adopted in accordance with the examination procedure referred to in Article 62(2). The Commission shall cooperate with the CSIRTs network and ENISA in preparing those draft implementing acts."
+   },
+   "source_lines": [
+    908,
+    1078
+   ]
+  },
+  "32": {
+   "article": 32,
+   "title": "Conformity assessment procedures for products with digital elements",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "The manufacturer shall perform a conformity assessment of the product with digital elements and the processes put in place by the manufacturer to determine whether the essential cybersecurity requirements set out in Annex I are met. The manufacturer shall demon­ strate conformity with the essential cybersecurity requirements by using any of the following procedures: (a) the internal control procedure (based on module A) set out in Annex VIII; (b) the EU-type examination procedure (based on module B) set out in Annex VIII followed by conformity to EU-type based on internal production control (based on module C) set out in Annex VIII; (c) a conformity assessment based on full quality assurance (based on module H) set out in Annex VIII; or (d) where available and applicable, a European cybersecurity certifi­ cation scheme pursuant to Article 27(9).",
+    "2": "Where, in assessing the compliance of an important product with digital elements that falls under class I as set out in Annex III and the processes put in place by its manufacturer with the essential cyberse­ curity requirements set out in Annex I, the manufacturer has not applied or has applied only in part harmonised standards, common specifi­ cations or European cybersecurity certification schemes at assurance level at least ‘substantial’ as referred to in Article 27, or where such harmonised standards, common specifications or European cybersecurity certification schemes do not exist, the product with digital elements concerned and the processes put in place by the manufacturer shall be submitted with regard to those essential cybersecurity requirements to either of the following procedures: (a) the EU-type examination procedure (based on module B) set out in Annex VIII followed by conformity to EU-type based on internal production control (based on module C) set out in Annex VIII; or (b) a conformity assessment based on full quality assurance (based on module H) set out in Annex VIII.",
+    "3": "Where the product is an important product with digital elements that falls under class II as set out in Annex III, the manufacturer shall demonstrate conformity with the essential cybersecurity requirements set out in Annex I by using any of the following procedures: (a) EU-type examination procedure (based on module B) set out in Annex VIII followed by conformity to EU-type based on internal production control (based on module C) set out in Annex VIII; (b) a conformity assessment based on full quality assurance (based on module H) set out in Annex VIII; or (c) where available and applicable, a European cybersecurity certifi­ cation scheme pursuant to Article 27(9) of this Regulation at assurance level at least ‘substantial’ pursuant to Regulation (EU) 2019/881.",
+    "4": "Critical products with digital elements listed in Annex IV shall demonstrate conformity with the essential cybersecurity requirements set out in Annex I by using one of the following procedures: (a) a European cybersecurity certification scheme in accordance with Article 8(1); or (b) where the conditions in Article 8(1) are not met, any of the procedures referred to in paragraph 3 of this Article.",
+    "5": "Manufacturers of products with digital elements qualifying as free and open-source software, which fall under the categories set out in Annex III, shall be able to demonstrate conformity with the essential cybersecurity requirements set out in Annex I by using one of the procedures referred to in paragraph 1 of this Article, provided that the technical documentation referred to in Article 31 is made available to the public at the time of the placing on the market of those products.",
+    "6": "The specific interests and needs of microenterprises and small and medium-sized enterprises, including start-ups, shall be taken into account when setting the fees for conformity assessment procedures and those fees shall be reduced proportionately to their specific interests and needs."
+   },
+   "source_lines": [
+    1823,
+    1897
+   ]
+  },
+  "69": {
+   "article": 69,
+   "title": "Transitional provisions",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "EU type-examination certificates and approval decisions issued regarding cybersecurity requirements for products with digital elements that are subject to Union harmonisation legislation other than this Regulation shall remain valid until 11 June 2028, unless they expire before that date, or unless otherwise specified in such other Union harmonisation legislation, in which case they shall remain valid as referred to in that legislation.",
+    "2": "Products with digital elements that have been placed on the market before 11 December 2027 shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification.",
+    "3": "By way of derogation from paragraph 2 of this Article, the obli­ gations laid down in Article 14 shall apply to all products with digital elements that fall within the scope of this Regulation that have been placed on the market before 11 December 2027."
+   },
+   "source_lines": [
+    3226,
+    3245
+   ]
+  },
+  "71": {
+   "article": 71,
+   "title": "Entry into force and application",
+   "footnotes": {},
+   "paragraphs": {
+    "1": "This Regulation shall enter into force on the twentieth day following that of its publication in the Official Journal of the European Union.",
+    "2": "This Regulation shall apply from 11 December 2027. However, Article 14 shall apply from 11 September 2026 and Chapter IV (Articles 35 to 51) shall apply from 11 June 2026. This Regulation shall be binding in its entirety and directly applicable in all Member States."
+   },
+   "source_lines": [
+    3262,
+    3276
+   ]
+  }
+ },
+ "currency_warning": {
+  "status": "CURRENT - CONFIRMED. EUR-Lex metadata (search export, 2026-10-12) states for CELEX 32024R2847: 'Latest consolidated version: 20/11/2024' and 'Current consolidated version: 20/11/2024'. Consolidation 000.003 is therefore the newest that exists.",
+  "checked_on": "2026-10-12",
+  "corrigenda_applied": [
+   "OJ L 90780, 5.12.2024 (title)",
+   "OJ L 90555, 2.7.2025 (Art. 64(10))",
+   "OJ L 90828, 17.10.2025 (Art. 67)"
+  ],
+  "diff_result": "Articles 1,2,3,7,8,13,14,32,69,71 compared against the original OJ text: no substantive differences. The corrigenda touch the title, Art. 64(10) and Art. 67, none of which are in this set.",
+  "not_yet_consolidated": [
+   {
+    "act": "Regulation (EU) 2025/327 (EHDS), Art. 104",
+    "reported_effect": "inserts CRA Art. 32(5a); extends Art. 13(4) and 31(3)",
+    "status": "CONFIRMED PENDING. EUR-Lex gives Reg. (EU) 2025/327 entry into force 25.03.2025, application 26.03.2027 (further partial applications 2029, 2031, 2035). The CRA amendment therefore bites from 26.03.2027, after which a new CRA consolidation should appear."
+   }
+  ],
+  "no_evidence_found_of": [
+   "delegated act amending Annex III or Annex IV",
+   "Art. 8(1) act requiring a European cybersecurity certificate"
+  ],
+  "design_implication": "law_version needs an application-date dimension, not just a version string: an assessment of a product placed in 2028 may need a different consolidation from one made today.",
+  "eurlex_dates_of_effect": [
+   "2024-12-10 entry into force (Art. 71.1)",
+   "2026-06-11 partial application (Art. 71.2)",
+   "2026-09-11 partial application (Art. 71.2)",
+   "2027-12-11 application (Art. 71.2)"
+  ],
+  "new_watch_items": [
+   {
+    "act": "Regulation (EU) 2025/2509 on the safety of toys, repealing Directive 2009/48/EC",
+    "oj": "OJ L, 2025/2509, 12.12.2025",
+    "dates": "entry into force and partial application 01.01.2026; full application 01.08.2030",
+    "why": "CRA Annex III Class I item 18 defines its category by reference to Directive 2009/48/EC. That Directive is repealed by this Regulation. Affects category III-I-18.",
+    "action": "RESOLVED. Art. 56 provides the correlation clause; references to Directive 2009/48/EC are construed as references to the Regulation per its Annex VIII correlation table. Repeal takes effect 01.08.2030."
+   },
+   {
+    "act": "COM(2026) 11 - proposal for a Cybersecurity Act 2, repealing Regulation (EU) 2019/881",
+    "why": "CRA Art. 3(3) takes its definition of 'cybersecurity' from Reg. 2019/881, and Art. 8(1) hangs the Annex IV certificate requirement on certification schemes adopted under it. A repeal would move both anchors.",
+    "status": "proposal only; EESC opinion C/2026/3549 of 22.07.2026"
+   },
+   {
+    "act": "COM(2026) 13 - proposal amending NIS 2 (Dir. 2022/2555)",
+    "why": "Only relevant to the explanatory text separating CRA 'critical product' from NIS 2 critical-entity status.",
+    "status": "proposal only"
+   }
+  ],
+  "guidance_status": {
+   "finding": "B3 IS A DRAFT, NOT YET IN APPLICATION.",
+   "source": "C(2026) 5252 final, 27.7.2026 - 'Communication to the Commission: Approval of the content of the draft Communication ... on guidance on the application of Regulation (EU) 2024/2847'. The ACT document states verbatim:",
+   "quote": "The guidance in the Annex to the Communication will be formally adopted by the Commission at a later date, when all language versions are available. It is only from that moment that it will apply.",
+   "consequence": "The 84-page guidance we hold is the DRAFT annexed to the approval communication. It has not been formally adopted and does not yet apply. Anything cited from it must be marked DRAFT and re-verified against the adopted version once published in all language versions.",
+   "legal_basis": "CRA Art. 26 requires the Commission to publish guidance assisting economic operators, with particular focus on microenterprises and SMEs. An adopted version will therefore follow.",
+   "watch": "Adopted version of the Commission guidance on the application of Reg. (EU) 2024/2847 - check each release.",
+   "also_confirms": [
+    "CRA entered into force 10 December 2024",
+    "Chapter IV applies from 11 June 2026",
+    "Article 14 reporting applies from 11 September 2026",
+    "the Regulation applies in its entirety from 11 December 2027"
+   ]
+  }
+ }
+}
