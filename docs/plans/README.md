@@ -147,8 +147,13 @@ questions peak, and stops before a cluster of changes the tool would not track: 
 certificate validity (11.6.2028), the AI Act's Annex I high-risk date (2.8.2028), and the expected
 harmonised standards and the RED delegated act's announced repeal.
 
-**Unchanged:** DR-04 positioning, AC-02 as the release-blocking criterion, and WP3. Two short
-interviews should still confirm that target users need classification help before Phase 1 starts.
+**Unchanged:** DR-04 positioning and AC-02 as the release-blocking criterion.
+
+**WP3 condition met** (same day): interviews found both v4 manufacturers had over-classified, the
+pest-control camera as important and the water meter as important or critical
+(`docs/research/out/wp3-interviews.md`). The need is confirmed. Its direction matters: the value
+for these users is a reasoned "this category does not apply", which is the lenient answer and so
+the one the evidence gate governs.
 
 ## Items reinstated from v3 that v4 dropped
 
