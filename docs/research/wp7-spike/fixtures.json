@@ -1,0 +1,2529 @@
+{
+ "artifact": "wp7-spike-fixtures",
+ "note": "Fact sets for catalogue cases. GATE-xx and AI-06b are spike-only. Facts not relevant to a case are set to a neutral FALSE so the spike's own categories settle.",
+ "fixtures": [
+  {
+   "case": "CAT-03P",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I"
+   }
+  },
+  {
+   "case": "CAT-03N",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT",
+    "failing": [
+     "III-I-03",
+     [
+      "C1"
+     ]
+    ]
+   }
+  },
+  {
+   "case": "MP-02",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I"
+   },
+   "note": "no generation/sharing: descriptive text is not evaluated"
+  },
+  {
+   "case": "CAT-17P",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NETWORK_REMOTE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I"
+   }
+  },
+  {
+   "case": "RAT-01",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NETWORK_REMOTE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT",
+    "failing": [
+     "III-I-17",
+     [
+      "C1",
+      "C4"
+     ]
+    ]
+   }
+  },
+  {
+   "case": "RAT-02",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NETWORK_REMOTE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I"
+   }
+  },
+  {
+   "case": "RAT-04",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": "CONFLICTING",
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NETWORK_REMOTE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "UNRESOLVED",
+    "floor": "DEFAULT"
+   }
+  },
+  {
+   "case": "LOCK-02",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NETWORK_REMOTE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT",
+    "failing": [
+     "III-I-17",
+     [
+      "C2",
+      "C4"
+     ]
+    ]
+   }
+  },
+  {
+   "case": "CORE-06",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NETWORK_REMOTE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I"
+   }
+  },
+  {
+   "case": "MP-14",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "PROXIMITY_ONLY",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "UNRESOLVED",
+    "floor": "DEFAULT"
+   }
+  },
+  {
+   "case": "GATE-01",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "LLM_DRAFT"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NETWORK_REMOTE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "UNRESOLVED",
+    "floor": "DEFAULT"
+   },
+   "note": "spike-only: RAT-01 with the core-function answer drafted by an LLM, not confirmed"
+  },
+  {
+   "case": "CAT-14P",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "MICROCONTROLLER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I"
+   }
+  },
+  {
+   "case": "MP-24",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "MICROCONTROLLER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I"
+   }
+  },
+  {
+   "case": "CAT-23P",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "MICROCONTROLLER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": 2,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_II"
+   }
+  },
+  {
+   "case": "CAT-23N",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "MICROCONTROLLER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I",
+    "failing": [
+     "III-II-04",
+     [
+      "C3"
+     ]
+    ]
+   }
+  },
+  {
+   "case": "MP-25",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "MICROCONTROLLER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": 4,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "CRITICAL"
+   }
+  },
+  {
+   "case": "MP-26",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "MICROCONTROLLER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": 3,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_II",
+    "failing": [
+     "IV-03",
+     [
+      "C3"
+     ]
+    ]
+   }
+  },
+  {
+   "case": "GATE-02",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "MICROCONTROLLER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "UNKNOWN",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "UNRESOLVED",
+    "floor": "IMPORTANT_I"
+   },
+   "note": "spike-only: AVA_VAN level unknown"
+  },
+  {
+   "case": "CAT-25P",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "ELECTRICITY",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "CRITICAL"
+   }
+  },
+  {
+   "case": "WTR-01",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "WATER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT"
+   }
+  },
+  {
+   "case": "A4-02",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "WATER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "UNRESOLVED",
+    "floor": "DEFAULT"
+   }
+  },
+  {
+   "case": "A4-04",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "GAS",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "CRITICAL"
+   }
+  },
+  {
+   "case": "AI-01",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "ANNEX_III",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT",
+    "route": [
+     "AI_ACT_ART_43"
+    ]
+   }
+  },
+  {
+   "case": "AI-02",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "ANNEX_III",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "IMPORTANT_I",
+    "route": [
+     "CRA_ART_32_VIA_ART_12_3"
+    ]
+   }
+  },
+  {
+   "case": "AI-05",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "ANNEX_I_SECTION_B",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT",
+    "route": [
+     "OPEN"
+    ]
+   }
+  },
+  {
+   "case": "AI-06",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "ANNEX_I_SECTION_A",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT",
+    "route": [
+     "OPEN"
+    ]
+   }
+  },
+  {
+   "case": "AI-06b",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "ANNEX_I_SECTION_A",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-09-01",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT",
+    "route": [
+     "AI_ACT_ART_43"
+    ]
+   },
+   "note": "spike-only: AI-06 after 2-8-2028"
+  },
+  {
+   "case": "EHR-01",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "NOT_AN_IC",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "DEFAULT",
+    "route": [
+     "EHDS_CHAPTER_III"
+    ]
+   }
+  }
+ ]
+}

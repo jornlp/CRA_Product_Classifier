@@ -123,3 +123,49 @@ Screenshots, not paraphrase.
 It needs no legal reviewer, no second assessor and no further downloads. It is the evidence for
 v4's own off-ramp — stop after Discovery if existing tools suffice — and it will also tell us
 which of our 81 cases are genuinely discriminating, which is WP5 input either way.
+
+## Priority set for Layer 2: the special cases
+
+Running all 189 cases through each tool by hand is not realistic. Ordinary cases (a VPN gateway,
+a SIEM) tell us little, because any tool with a category list gets them right. The value is in the
+**special cases**: each one below is built to expose a specific, predictable failure. Run these
+first. They are the WP4 "20 highest-value" set.
+
+| # | Case | Expected (our reference) | Failure it exposes |
+|---|---|---|---|
+| **Keyword traps** — matching a word instead of the core function | | | |
+| 1 | `RAT-01` rat-trap camera, pest monitoring | not III-I-17 | "camera" → smart-home security |
+| 2 | `CORE-01` pet camera for behaviour analysis | not III-I-17 | same trap, consumer product |
+| 3 | `WTR-01` connected water meter, no gateway | not IV-02 | "smart meter" → critical |
+| 4 | `A4-03` called "smart meter gateway", lacks the functions | not IV-02 | product name taken as evidence |
+| 5 | `CAT-11N` smartphone with an operating system | not III-I-11 | component treated as core function (FAQ §3.4) |
+| 6 | `CAT-21N` router with a built-in firewall | III-I-12 router, not III-II-02 | feature promoted to class (B2 recital 4) |
+| **Invented or dropped conditions** | | | |
+| 7 | `A3-01` / `CAT-21P` consumer firewall | Class II | invented "industrial use" qualifier |
+| 8 | `LOCK-02` smart lock for office access | not III-I-17 | "in a residential setting" dropped |
+| 9 | `MP-25` / `MP-26` tamper-resistant MCU at AVA_VAN.4 vs .3 | critical vs Class II | AVA_VAN boundary; "at least" dropped |
+| 10 | `MP-02` password vault without a generator | III-I-03 | illustrative wording read as a condition |
+| **Scope edges** | | | |
+| 11 | `SCP-04` device whose only data path is USB to a PC | in scope | "connected" read as "internet-connected" |
+| 12 | `BND-04` standalone SaaS, no device | out of scope | services treated as products |
+| 13 | `EXC-07` avionics not certified under 2018/1139 | in scope | exclusion applied without certification |
+| 14 | `EXC-09` dual-use civil and defence product | in scope | defence exclusion without exclusivity |
+| 15 | `EXC-12` speed pedelec (L1e designed to pedal) | in scope | the carve-back from the 2025/1535 vehicle exclusion |
+| 16 | `EXC-02` / `EXC-03` camera toothbrush, hygiene vs diagnosis | in scope / MDR exclusion candidate | intended purpose decides the medical exclusion |
+| **Uncertainty handling** | | | |
+| 17 | `RAT-04` documents describe both pest and home security | unresolved, review | tool silently picks one answer |
+| 18 | `SCP-03` EU market activity unknown | unresolved | unknown treated as "no" |
+| 19 | `A4-02` water gateway with the full function set | unresolved (open question) | tool resolves an open question either way |
+| **Time** | | | |
+| 20 | `TYPE-02` further units of a type placed after 11-12-2027 | must comply | CRA applied per product type, not per unit |
+| 21 | `LIFE-04` routine security update | not a substantial modification | every update treated as substantial |
+| 22 | `RED-01` radio product during the RED delegated act period | RED DA applies now | RED overlap ignored |
+| 23 | `AI-05` AI-enabled machinery | route not stated | the AI Act route applied regardless of the 2026 amendment |
+
+**What to record per case**, beyond the outcome: whether the tool reports uncertainty at all,
+whether it gives a reason or source, and the date run, since the tools change. Cases 17–19 are
+the most telling: a tool that never says "unresolved" is giving certainty the law does not
+support. That is the AC-02 failure, seen from the outside.
+
+**Not suitable for the online tools:** the remaining WP5 condition pairs (section P) need facts
+these tools do not ask for. Their value is in testing our own engine.

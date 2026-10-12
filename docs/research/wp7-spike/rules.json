@@ -1,0 +1,539 @@
+{
+ "artifact": "wp7-spike-rules",
+ "rule_set_version": "0.0.1-spike",
+ "law_version": {
+  "B1c": "02024R2847-20241120",
+  "B2": "32025R2392",
+  "B11c": "02024R1689-20260727",
+  "B18": "32025R0327"
+ },
+ "note": "Trial encoding for WP7. Six categories and two conformity routes, chosen because each stresses a different part of the model. Not product rules.",
+ "class_order": [
+  "DEFAULT",
+  "IMPORTANT_I",
+  "IMPORTANT_II",
+  "CRITICAL"
+ ],
+ "categories_total": 26,
+ "facts": {
+  "STORES_PASSWORDS_CORE": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "PROTECTS_PHYSICAL_SECURITY": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "RESIDENTIAL_SETTING": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "CONTROL_PATH": {
+   "type": "enum",
+   "values": [
+    "NETWORK_REMOTE",
+    "PROXIMITY_ONLY",
+    "NONE"
+   ],
+   "evidence": "DOCUMENT"
+  },
+  "CENTRAL_CONTROL_OF_SECURITY": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "IC_TYPE": {
+   "type": "enum",
+   "values": [
+    "MICROCONTROLLER",
+    "MICROPROCESSOR",
+    "ASIC",
+    "FPGA",
+    "NOT_AN_IC"
+   ],
+   "evidence": "DOCUMENT"
+  },
+  "SECURITY_FUNCTION": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "SECURES_BEYOND_ITSELF": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "TAMPER_PROTECTION": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "AVA_VAN_LEVEL": {
+   "type": "enum",
+   "values": [
+    "NONE",
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "evidence": "DOCUMENT",
+   "proxy": "Common Criteria certificate (positive only)"
+  },
+  "METERING_COMMUNICATION": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "COLLECTS_METER_DATA": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "CRYPTO_SUPPORT": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "FIREWALLING": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "CONTROLS_OTHER_DEVICES": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "METERED_COMMODITY": {
+   "type": "enum",
+   "values": [
+    "ELECTRICITY",
+    "GAS",
+    "HEAT",
+    "WATER",
+    "NONE"
+   ],
+   "evidence": "DOCUMENT"
+  },
+  "ADVANCED_SECURITY_CORE": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "HIGH_RISK_AI_BASIS": {
+   "type": "enum",
+   "values": [
+    "NONE",
+    "ANNEX_III",
+    "ANNEX_I_SECTION_A",
+    "ANNEX_I_SECTION_B"
+   ],
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "EHR_SYSTEM": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "PLACED_ON_MARKET": {
+   "type": "date",
+   "evidence": "MANUFACTURER_ONLY"
+  }
+ },
+ "categories": [
+  {
+   "rule_id": "CAT-III-I-03",
+   "category": "III-I-03",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_INTERPRETATION",
+   "law_ref": {
+    "source": "B2",
+    "item": "Annex, Class I point 3"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "STORES_PASSWORDS_CORE",
+     "is": true,
+     "quote": "store passwords, locally on a device or on a remote server"
+    }
+   },
+   "match": "C1",
+   "descriptive": [
+    {
+     "quote": "including activities such as generation of passwords as well as password sharing",
+     "why": "illustrative; WP5 finding 1"
+    }
+   ],
+   "test_ids": [
+    "CAT-03P",
+    "CAT-03N",
+    "MP-02"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-17",
+   "category": "III-I-17",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "Annex, Class I point 17"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "PROTECTS_PHYSICAL_SECURITY",
+     "is": true,
+     "quote": "protect the physical security of consumers"
+    },
+    "C2": {
+     "fact": "RESIDENTIAL_SETTING",
+     "is": true,
+     "quote": "in a residential setting"
+    },
+    "C3": {
+     "fact": "CONTROL_PATH",
+     "map": {
+      "NETWORK_REMOTE": "TRUE",
+      "PROXIMITY_ONLY": "OPEN",
+      "NONE": "FALSE"
+     },
+     "quote": "can be controlled or managed remotely from other systems",
+     "open_ref": "MP-14"
+    },
+    "C4": {
+     "fact": "CENTRAL_CONTROL_OF_SECURITY",
+     "is": true,
+     "quote": "centrally control such products"
+    }
+   },
+   "match": {
+    "any": [
+     {
+      "all": [
+       "C1",
+       "C2",
+       "C3"
+      ]
+     },
+     {
+      "all": [
+       "C4",
+       "C2"
+      ]
+     }
+    ]
+   },
+   "test_ids": [
+    "CAT-17P",
+    "CAT-17N",
+    "RAT-01",
+    "RAT-02",
+    "RAT-04",
+    "LOCK-02",
+    "CORE-06",
+    "MP-14"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-14",
+   "category": "III-I-14",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "Annex, Class I point 14"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "IC_TYPE",
+     "in": [
+      "MICROCONTROLLER"
+     ],
+     "quote": "integrated circuits that carry out central processing functions integrating memory"
+    },
+    "C2": {
+     "fact": "SECURITY_FUNCTION",
+     "is": true,
+     "quote": "They additionally provide security-related functionalities"
+    },
+    "C3": {
+     "fact": "SECURES_BEYOND_ITSELF",
+     "is": true,
+     "quote": "beyond the microcontroller itself"
+    }
+   },
+   "match": {
+    "all": [
+     "C1",
+     "C2",
+     "C3"
+    ]
+   },
+   "test_ids": [
+    "CAT-14P",
+    "CAT-14N",
+    "MP-24"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-II-04",
+   "category": "III-II-04",
+   "class": "IMPORTANT_II",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "Annex, Class II point 4"
+   },
+   "conditions": {
+    "C1": {
+     "category": "III-I-14",
+     "quote": "microcontrollers with security-related functionalities referred to in Table 'Class I', point 14"
+    },
+    "C2": {
+     "fact": "TAMPER_PROTECTION",
+     "is": true,
+     "quote": "including tamper evidence, resistance or response"
+    },
+    "C3": {
+     "fact": "AVA_VAN_LEVEL",
+     "in": [
+      2,
+      3
+     ],
+     "quote": "designed to provide protection of AVA_VAN level 2 or 3"
+    }
+   },
+   "match": {
+    "all": [
+     "C1",
+     "C2",
+     "C3"
+    ]
+   },
+   "test_ids": [
+    "CAT-23P",
+    "CAT-23N",
+    "MP-25",
+    "MP-26"
+   ]
+  },
+  {
+   "rule_id": "CAT-IV-03",
+   "category": "IV-03",
+   "class": "CRITICAL",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "Annex, Critical point 3"
+   },
+   "conditions": {
+    "C1a": {
+     "fact": "IC_TYPE",
+     "in": [
+      "MICROCONTROLLER",
+      "MICROPROCESSOR"
+     ],
+     "quote": "Secure elements are microcontrollers or microprocessors"
+    },
+    "C1b": {
+     "fact": "SECURITY_FUNCTION",
+     "is": true,
+     "quote": "with security-related functionalities"
+    },
+    "C1c": {
+     "fact": "TAMPER_PROTECTION",
+     "is": true,
+     "quote": "including tamper evidence, resistance or response"
+    },
+    "C3": {
+     "fact": "AVA_VAN_LEVEL",
+     "in": [
+      4,
+      5
+     ],
+     "quote": "designed to provide protection of at least AVA_VAN.4"
+    }
+   },
+   "match": {
+    "all": [
+     "C1a",
+     "C1b",
+     "C1c",
+     "C3"
+    ]
+   },
+   "descriptive": [
+    {
+     "quote": "They typically store, process, or manage cryptographic operations or sensitive data",
+     "why": "'typically': not a condition"
+    }
+   ],
+   "test_ids": [
+    "CAT-26P",
+    "CAT-26N",
+    "MP-25",
+    "MP-26"
+   ]
+  },
+  {
+   "rule_id": "CAT-IV-02",
+   "category": "IV-02",
+   "class": "CRITICAL",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "Annex, Critical point 2"
+   },
+   "coverage": "operative-for-exclusion",
+   "conditions": {
+    "G1": {
+     "fact": "METERING_COMMUNICATION",
+     "is": true,
+     "quote": "control communication between components in or connected to smart metering systems"
+    },
+    "G2": {
+     "fact": "COLLECTS_METER_DATA",
+     "is": true,
+     "quote": "collect, process and store meter or personal data"
+    },
+    "G3": {
+     "fact": "CRYPTO_SUPPORT",
+     "is": true,
+     "quote": "supporting specific cryptographic needs"
+    },
+    "G4": {
+     "fact": "FIREWALLING",
+     "is": true,
+     "quote": "incorporate firewalling functionalities"
+    },
+    "G5": {
+     "fact": "CONTROLS_OTHER_DEVICES",
+     "is": true,
+     "quote": "provide the means to control other devices"
+    },
+    "G6": {
+     "fact": "METERED_COMMODITY",
+     "map": {
+      "ELECTRICITY": "TRUE",
+      "GAS": "TRUE",
+      "HEAT": "TRUE",
+      "WATER": "FALSE",
+      "NONE": "FALSE"
+     },
+     "quote": "other sources of energy such as gas or heat",
+     "status": "AUTHOR_INTERPRETATION"
+    },
+    "L2": {
+     "fact": "ADVANCED_SECURITY_CORE",
+     "map": {
+      "TRUE": "OPEN",
+      "FALSE": "FALSE"
+     },
+     "quote": "other devices for advanced security purposes, including for secure cryptoprocessing",
+     "where": "title",
+     "open_ref": "wp1-open-question-IV-02.md"
+    }
+   },
+   "match": {
+    "any": [
+     {
+      "all": [
+       "G1",
+       "G2",
+       "G3",
+       "G4",
+       "G5",
+       "G6"
+      ]
+     },
+     "L2"
+    ]
+   },
+   "test_ids": [
+    "CAT-25P",
+    "CAT-25N",
+    "WTR-01",
+    "A4-01",
+    "A4-02",
+    "A4-04",
+    "A4-06"
+   ]
+  }
+ ],
+ "routes": [
+  {
+   "rule_id": "ROUTE-ART12",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": [
+    {
+     "source": "B1c",
+     "item": "Art. 12(2)-(3)"
+    },
+    {
+     "source": "B11c",
+     "item": "Art. 2(2), Art. 113(c)"
+    }
+   ],
+   "fact": "HIGH_RISK_AI_BASIS",
+   "cases": [
+    {
+     "when": {
+      "is": "NONE"
+     },
+     "route": "CRA_ART_32"
+    },
+    {
+     "when": {
+      "is": "ANNEX_III"
+     },
+     "route": "AI_ACT_ART_43",
+     "unless_class_in": [
+      "IMPORTANT_I",
+      "IMPORTANT_II",
+      "CRITICAL"
+     ],
+     "unless_route": "CRA_ART_32_VIA_ART_12_3",
+     "note": "Art. 12(3) applies only where the AI Act's internal-control route (Annex VI) applies; spike assumes it does"
+    },
+    {
+     "when": {
+      "is": "ANNEX_I_SECTION_A",
+      "date_fact": "PLACED_ON_MARKET",
+      "on_or_after": "2028-08-02"
+     },
+     "route": "AI_ACT_ART_43"
+    },
+    {
+     "when": {
+      "is": "ANNEX_I_SECTION_A",
+      "date_fact": "PLACED_ON_MARKET",
+      "before": "2028-08-02"
+     },
+     "route": "OPEN",
+     "open_ref": "AI-06"
+    },
+    {
+     "when": {
+      "is": "ANNEX_I_SECTION_B"
+     },
+     "route": "OPEN",
+     "open_ref": "AI-05"
+    }
+   ]
+  },
+  {
+   "rule_id": "ROUTE-ART32-5A",
+   "status": "AUTHOR_VERIFIED",
+   "effective_from": "2027-03-26",
+   "law_ref": [
+    {
+     "source": "B18",
+     "item": "Art. 104(3)"
+    }
+   ],
+   "fact": "EHR_SYSTEM",
+   "cases": [
+    {
+     "when": {
+      "is": true
+     },
+     "route": "EHDS_CHAPTER_III"
+    }
+   ],
+   "displaces": [
+    "CRA_ART_32"
+   ]
+  }
+ ]
+}
