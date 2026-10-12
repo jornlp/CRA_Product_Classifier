@@ -2391,6 +2391,42 @@
    "expected_class": "NOT_ASSERTED",
    "pairs_with": "LIFE-06",
    "source": "B1c Art. 3(30), 69, 71; B16; WP7 timeline trial"
+  },
+  {
+   "id": "EXC-13",
+   "section": "B",
+   "scenario": "Connected navigation equipment within the scope of Directive 2014/90/EU (marine equipment)",
+   "decisive_fact": "Art. 2(4)",
+   "expected_behaviour": "Excluded by Art. 2(4). Previously the only Art. 2 exclusion with no case",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "EXC-12",
+   "source": "B1c Art. 2; WP7 scope trial"
+  },
+  {
+   "id": "EXC-14",
+   "section": "B",
+   "scenario": "Defence exclusion claimed by the user, with no supporting document",
+   "decisive_fact": "evidence for a permissive answer",
+   "expected_behaviour": "No exclusion yet: UNRESOLVED with a request for evidence. The exclusion is the permissive answer, so it needs documentary support (as EXC-05 says)",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "UNRESOLVED",
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "EXC-05",
+   "source": "B1c Art. 2; WP7 scope trial"
+  },
+  {
+   "id": "SCP-09",
+   "section": "A",
+   "scenario": "Product in development; sale on the EU market planned, not yet started",
+   "decisive_fact": "prospective assessment",
+   "expected_behaviour": "IN_SCOPE, stated as prospective: applies from first making available. Pairs with SCP-08, where no sale is decided",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "pairs_with": "SCP-08",
+   "source": "B1c Art. 2; WP7 scope trial"
   }
  ],
  "review_round_1": {

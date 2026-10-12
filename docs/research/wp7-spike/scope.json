@@ -1,0 +1,310 @@
+{
+ "artifact": "wp7-spike-scope",
+ "note": "Scope trial: Art. 2(1) applicability and the Art. 2(2)-(7) exclusions. Exclusions point the other way from categories: an exclusion being TRUE is the permissive outcome, so that is the value that needs evidence.",
+ "provenance_rank": {
+  "DOCUMENT_SUPPORTED": 3,
+  "USER_CONFIRMED": 2,
+  "LLM_DRAFT": 1,
+  "DEFAULTED": 0
+ },
+ "facts": {
+  "PRODUCT_KIND": {
+   "values": [
+    "HARDWARE",
+    "SOFTWARE",
+    "REMOTE_DATA_PROCESSING",
+    "SAAS_ONLY"
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "MARKET_STATUS": {
+   "values": [
+    "MADE_AVAILABLE",
+    "PLANNED",
+    "EXHIBITION_ONLY",
+    "OWN_USE_ONLY",
+    "NOT_EU"
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "COMMERCIAL_ACTIVITY": {
+   "values": [
+    true,
+    false
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "DATA_INTERFACE_PRESENT": {
+   "values": [
+    true,
+    false
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "CONNECTION_INTENDED": {
+   "values": [
+    true,
+    false
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "CONNECTION_FORESEEABLE": {
+   "values": [
+    true,
+    false
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "EXCLUSION_SCREEN": {
+   "type": "multi-enum",
+   "values": [
+    "MEDICAL",
+    "VEHICLE",
+    "AVIATION",
+    "MARINE",
+    "L_CATEGORY",
+    "SPARE_PART",
+    "DEFENCE",
+    "OTHER_SECTORAL",
+    "OTHER_UNIDENTIFIED"
+   ],
+   "requires": "USER_CONFIRMED",
+   "note": "Answered as one list: 'which of these apply, if any?' An empty list means none. Unticked options are answered 'no'."
+  },
+  "MEDICAL_STATUS": {
+   "values": [
+    "CE_MARKED_MDR_IVDR",
+    "MEDICAL_PURPOSE_NOT_CERTIFIED",
+    "NONE"
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "VEHICLE_2019_2144": {
+   "values": [
+    "APPLIES",
+    "COMPONENT_UNCLEAR",
+    "NOT_APPLICABLE"
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "AVIATION_2018_1139": {
+   "values": [
+    "CERTIFIED",
+    "IN_SCOPE_NOT_CERTIFIED",
+    "NOT_APPLICABLE"
+   ],
+   "requires": "DOCUMENT_SUPPORTED"
+  },
+  "MARINE_2014_90": {
+   "values": [
+    true,
+    false
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "L_CATEGORY_168_2013": {
+   "values": [
+    "L_CATEGORY",
+    "L1E_DESIGNED_TO_PEDAL",
+    "NOT_APPLICABLE"
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "SPARE_PART": {
+   "values": [
+    "IDENTICAL_SAME_SPEC",
+    "DIFFERENT_SPEC",
+    "NOT_A_SPARE_PART"
+   ],
+   "requires": "USER_CONFIRMED"
+  },
+  "DEFENCE_STATUS": {
+   "values": [
+    "EXCLUSIVELY_DEFENCE_OR_NATSEC",
+    "DESIGNED_FOR_CLASSIFIED",
+    "DUAL_USE",
+    "NONE"
+   ],
+   "requires": "DOCUMENT_SUPPORTED"
+  }
+ },
+ "derive": [
+  {
+   "screen": "EXCLUSION_SCREEN",
+   "unticked_sets": {
+    "MEDICAL": {
+     "MEDICAL_STATUS": "NONE"
+    },
+    "VEHICLE": {
+     "VEHICLE_2019_2144": "NOT_APPLICABLE"
+    },
+    "AVIATION": {
+     "AVIATION_2018_1139": "NOT_APPLICABLE"
+    },
+    "MARINE": {
+     "MARINE_2014_90": false
+    },
+    "L_CATEGORY": {
+     "L_CATEGORY_168_2013": "NOT_APPLICABLE"
+    },
+    "SPARE_PART": {
+     "SPARE_PART": "NOT_A_SPARE_PART"
+    },
+    "DEFENCE": {
+     "DEFENCE_STATUS": "NONE"
+    }
+   },
+   "why": "The screen is one question over an OR-joined list: every option the user leaves unticked is an answered 'no' (WP7 4.1). Only ticked options open a follow-up question."
+  },
+  {
+   "if": {
+    "DATA_INTERFACE_PRESENT": false
+   },
+   "then": {
+    "CONNECTION_INTENDED": false,
+    "CONNECTION_FORESEEABLE": false
+   },
+   "why": "No data interface of any kind: no connection can be intended or foreseen (SCP-06)."
+  }
+ ],
+ "applicability": {
+  "law_ref": "Art. 2(1); Art. 3(1), 3(2), 3(22)",
+  "permissive_result": "FALSE",
+  "conditions": {
+   "PDE": {
+    "fact": "PRODUCT_KIND",
+    "map": {
+     "HARDWARE": "TRUE",
+     "SOFTWARE": "TRUE",
+     "REMOTE_DATA_PROCESSING": "TRUE",
+     "SAAS_ONLY": "FALSE"
+    },
+    "quote": "a software or hardware product and its remote data processing solutions"
+   },
+   "MARKET": {
+    "fact": "MARKET_STATUS",
+    "map": {
+     "MADE_AVAILABLE": "TRUE",
+     "PLANNED": "TRUE",
+     "EXHIBITION_ONLY": "FALSE",
+     "OWN_USE_ONLY": "FALSE",
+     "NOT_EU": "FALSE"
+    },
+    "quote": "made available on the market",
+    "note": "PLANNED is assessed prospectively: the answer holds from first making available"
+   },
+   "COMMERCIAL": {
+    "fact": "COMMERCIAL_ACTIVITY",
+    "is": true,
+    "quote": "in the course of a commercial activity, whether in return for payment or free of charge"
+   },
+   "CONN_INTENDED": {
+    "fact": "CONNECTION_INTENDED",
+    "is": true,
+    "quote": "the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection"
+   },
+   "CONN_FORESEEABLE": {
+    "fact": "CONNECTION_FORESEEABLE",
+    "is": true,
+    "quote": "reasonably foreseeable use"
+   }
+  },
+  "match": {
+   "all": [
+    "PDE",
+    "MARKET",
+    "COMMERCIAL",
+    {
+     "name": "connection",
+     "any": [
+      "CONN_INTENDED",
+      "CONN_FORESEEABLE"
+     ]
+    }
+   ]
+  }
+ },
+ "exclusions": {
+  "permissive_result": "TRUE",
+  "conditions": {
+   "MEDICAL": {
+    "fact": "MEDICAL_STATUS",
+    "map": {
+     "CE_MARKED_MDR_IVDR": "TRUE",
+     "MEDICAL_PURPOSE_NOT_CERTIFIED": "OPEN",
+     "NONE": "FALSE"
+    },
+    "law_ref": "Art. 2(2)(a)(b)",
+    "open_ref": "EXC-03: whether MDR/IVDR applies turns on qualification as a medical device, which this tool does not assess"
+   },
+   "VEHICLE": {
+    "fact": "VEHICLE_2019_2144",
+    "map": {
+     "APPLIES": "TRUE",
+     "COMPONENT_UNCLEAR": "OPEN",
+     "NOT_APPLICABLE": "FALSE"
+    },
+    "law_ref": "Art. 2(2)(c)",
+    "open_ref": "EXC-04: whether Reg. 2019/2144 applies to this component"
+   },
+   "AVIATION": {
+    "fact": "AVIATION_2018_1139",
+    "map": {
+     "CERTIFIED": "TRUE",
+     "IN_SCOPE_NOT_CERTIFIED": "FALSE",
+     "NOT_APPLICABLE": "FALSE"
+    },
+    "law_ref": "Art. 2(3)"
+   },
+   "MARINE": {
+    "fact": "MARINE_2014_90",
+    "is": true,
+    "law_ref": "Art. 2(4)"
+   },
+   "L_CATEGORY": {
+    "fact": "L_CATEGORY_168_2013",
+    "map": {
+     "L_CATEGORY": "TRUE",
+     "L1E_DESIGNED_TO_PEDAL": "FALSE",
+     "NOT_APPLICABLE": "FALSE"
+    },
+    "law_ref": "Art. 2(5); Del. Reg. (EU) 2025/1535 Art. 1"
+   },
+   "SPARE_PART": {
+    "fact": "SPARE_PART",
+    "map": {
+     "IDENTICAL_SAME_SPEC": "TRUE",
+     "DIFFERENT_SPEC": "FALSE",
+     "NOT_A_SPARE_PART": "FALSE"
+    },
+    "law_ref": "Art. 2(6)"
+   },
+   "DEFENCE": {
+    "fact": "DEFENCE_STATUS",
+    "map": {
+     "EXCLUSIVELY_DEFENCE_OR_NATSEC": "TRUE",
+     "DESIGNED_FOR_CLASSIFIED": "TRUE",
+     "DUAL_USE": "FALSE",
+     "NONE": "FALSE"
+    },
+    "law_ref": "Art. 2(7)"
+   },
+   "SCREEN_UNIDENTIFIED": {
+    "fact": "EXCLUSION_SCREEN",
+    "default": "FALSE",
+    "law_ref": "Art. 2",
+    "note": "An exclusion claimed without an instrument is not granted; the question is returned (EXC-06)",
+    "contains": "OTHER_UNIDENTIFIED",
+    "if_contains": "UNKNOWN"
+   },
+   "SCREEN_SECTORAL": {
+    "fact": "EXCLUSION_SCREEN",
+    "default": "FALSE",
+    "law_ref": "Art. 2(5)",
+    "note": "Only an applicable delegated act excludes; 2025/1535 is the only one, and it is modelled above (EXC-08)",
+    "contains": "OTHER_SECTORAL",
+    "if_contains": "FALSE"
+   }
+  }
+ }
+}

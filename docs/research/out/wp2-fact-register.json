@@ -35,7 +35,10 @@
    "worked_example": {
     "yes": "Sold through an EU distributor, or shipped to EU customers from outside.",
     "no": "Built and used only at your own sites, never supplied to anyone."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "MARKET_STATUS",
+   "superseded_why": "a yes/no cannot express planned sale (SCP-09), trade-fair display (SCP-08) or own use (OWN-01)"
   },
   {
    "fact_id": "COMMERCIAL_ACTIVITY",
@@ -61,7 +64,10 @@
    "worked_example": {
     "yes": "A meter that sends readings over radio to a collector; a device that syncs over USB.",
     "no": "A mechanical timer with no electronic interface of any kind."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "DATA_INTERFACE_PRESENT + CONNECTION_INTENDED",
+   "superseded_why": "capability and intended purpose are different tests; Art. 2(1) asks about intended or foreseeable use"
   },
   {
    "fact_id": "CONNECTION_FORESEEABLE",
@@ -88,7 +94,10 @@
     "yes": "A moped or quadricycle within Reg. (EU) No 168/2013 — excluded by Delegated Regulation (EU) 2025/1535.",
     "no": "A speed pedelec or other L1e vehicle designed to pedal — expressly carved back IN by that same Regulation."
    },
-   "delegated_act_rule": "Check whether an APPLICABLE delegated act covers this product, never whether any delegated act exists. As at 12 October 2026 the only one found under Art. 2(5) is Delegated Regulation (EU) 2025/1535. Re-check each release."
+   "delegated_act_rule": "Check whether an APPLICABLE delegated act covers this product, never whether any delegated act exists. As at 12 October 2026 the only one found under Art. 2(5) is Delegated Regulation (EU) 2025/1535. Re-check each release.",
+   "status": "SUPERSEDED",
+   "superseded_by": "EXCLUSION_SCREEN + one follow-up per ticked exclusion",
+   "superseded_why": "each exclusion has its own condition (certified, exclusively, identical spec, designed to pedal)"
   },
   {
    "fact_id": "MARKET_ROLE",
@@ -1218,6 +1227,240 @@
     "no": "A test report or a self-declaration: not a certificate."
    },
    "revision": "v2 (WP7 timeline trial)"
+  },
+  {
+   "fact_id": "PRODUCT_KIND",
+   "question": "Is what you place on the market hardware, software, or an online service?",
+   "kind": "enum",
+   "why_we_ask": "Art. 3(1), 3(2): products with digital elements are hardware or software, including remote data processing the product needs. A standalone online service is not (BND-03, BND-04).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A device with its companion cloud backend: HARDWARE plus REMOTE_DATA_PROCESSING.",
+    "no": "A web application with no product of yours behind it: SAAS_ONLY."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "HARDWARE",
+    "SOFTWARE",
+    "REMOTE_DATA_PROCESSING",
+    "SAAS_ONLY"
+   ]
+  },
+  {
+   "fact_id": "MARKET_STATUS",
+   "question": "Where is the product in its life on the EU market?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(1), 3(22): the CRA applies to products made available on the EU market. Planned sale is assessed prospectively (SCP-09); display at a trade fair (SCP-08) and own use (OWN-01) are not making available.",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "On sale in the EU, or due to go on sale: MADE_AVAILABLE or PLANNED.",
+    "no": "Used only inside your own company: OWN_USE_ONLY."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "MADE_AVAILABLE",
+    "PLANNED",
+    "EXHIBITION_ONLY",
+    "OWN_USE_ONLY",
+    "NOT_EU"
+   ],
+   "condition_values": {
+    "MADE_AVAILABLE": "TRUE",
+    "PLANNED": "TRUE (prospective)",
+    "EXHIBITION_ONLY": "FALSE",
+    "OWN_USE_ONLY": "FALSE",
+    "NOT_EU": "FALSE"
+   },
+   "replaces": "EU_MARKET_ACTIVITY"
+  },
+  {
+   "fact_id": "DATA_INTERFACE_PRESENT",
+   "question": "Does the product have any way to exchange data at all: network, radio, cable, USB, memory card, or a software interface?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(1), 3(8)-(10). If there is no interface of any kind, no connection can be intended or foreseen (SCP-06).",
+   "categories_discriminated": [],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A USB port used to read logs.",
+    "no": "A sealed device with no data interface of any kind."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "replaces": "DATA_CONNECTION"
+  },
+  {
+   "fact_id": "CONNECTION_INTENDED",
+   "question": "Is the product intended to exchange data with another device or network, directly or indirectly?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(1) 'intended purpose ... includes a direct or indirect logical or physical data connection'. Indirect counts: a sensor talking only to a hub (SCP-05). If the answer is no, CONNECTION_FORESEEABLE is asked (SCP-07).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Sends readings to a hub, or exchanges files with a PC over USB.",
+    "no": "A connector that exists but is documented as disabled and unused: then the foreseeable-use question decides."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "replaces": "DATA_CONNECTION"
+  },
+  {
+   "fact_id": "EXCLUSION_SCREEN",
+   "question": "Do any of these apply to the product? Tick all that apply, or none.",
+   "kind": "multi-enum",
+   "why_we_ask": "Art. 2(2)-(7) and Del. Reg. 2025/1535. One question over an OR-joined list: unticked options are answered 'no'. Each ticked option opens one follow-up, because each exclusion has its own condition.",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Ticks 'two- or three-wheel vehicle or quadricycle' for a connected moped.",
+    "no": "Ticks nothing: no exclusion applies."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "MEDICAL",
+    "VEHICLE",
+    "AVIATION",
+    "MARINE",
+    "L_CATEGORY",
+    "SPARE_PART",
+    "DEFENCE",
+    "OTHER_SECTORAL",
+    "OTHER_UNIDENTIFIED"
+   ],
+   "replaces": "EXCLUSION_CLAIMED"
+  },
+  {
+   "fact_id": "MEDICAL_STATUS",
+   "question": "Is it CE-marked as a medical or in vitro diagnostic device, or does it have a medical purpose without being certified as one?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(2)(a)(b). Only a product to which MDR/IVDR applies is excluded. A medical purpose without certification is a qualification question under MDR, outside this tool (EXC-03).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "CE-marked under Regulation (EU) 2017/745.",
+    "no": "A wellness device with no medical claim."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "CE_MARKED_MDR_IVDR",
+    "MEDICAL_PURPOSE_NOT_CERTIFIED",
+    "NONE"
+   ]
+  },
+  {
+   "fact_id": "VEHICLE_2019_2144",
+   "question": "Is it a vehicle, system or component type-approved under Regulation (EU) 2019/2144?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(2)(c). Applies to what that Regulation covers; equipment used to test vehicles is not covered (UG-06). Unclear component status goes to review (EXC-04).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "An in-vehicle system covered by the vehicle's type approval.",
+    "no": "Test equipment used in vehicle development."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "APPLIES",
+    "COMPONENT_UNCLEAR",
+    "NOT_APPLICABLE"
+   ]
+  },
+  {
+   "fact_id": "AVIATION_2018_1139",
+   "question": "Is it certified in accordance with Regulation (EU) 2018/1139?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(3) excludes only products certified under it; falling within its scope is not enough (EXC-07).",
+   "categories_discriminated": [],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED",
+   "worked_example": {
+    "yes": "An avionics unit with its certification documents.",
+    "no": "Ground equipment within the regulation's scope but not certified."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "CERTIFIED",
+    "IN_SCOPE_NOT_CERTIFIED",
+    "NOT_APPLICABLE"
+   ]
+  },
+  {
+   "fact_id": "MARINE_2014_90",
+   "question": "Is it marine equipment within the scope of Directive 2014/90/EU?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(4) (EXC-13).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Navigation equipment for ships, wheel-marked under the Directive.",
+    "no": "A consumer boat accessory outside that Directive."
+   },
+   "revision": "v2 (WP7 scope trial)"
+  },
+  {
+   "fact_id": "L_CATEGORY_168_2013",
+   "question": "Is it a two- or three-wheel vehicle or quadricycle under Regulation (EU) No 168/2013, or a system or component for one? Is it an L1e vehicle designed to pedal?",
+   "kind": "enum",
+   "why_we_ask": "Del. Reg. (EU) 2025/1535 excludes products under Reg. 168/2013, except L1e vehicles designed to pedal (EXC-11, EXC-12).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A connected moped: L_CATEGORY.",
+    "no": "A speed pedelec: L1E_DESIGNED_TO_PEDAL, which stays in scope."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "L_CATEGORY",
+    "L1E_DESIGNED_TO_PEDAL",
+    "NOT_APPLICABLE"
+   ]
+  },
+  {
+   "fact_id": "SPARE_PART",
+   "question": "Is it a spare part replacing an identical component, made to the same specifications?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(6). A replacement with improved or different specifications is not excluded (BND-06, BND-07).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Same board, same specifications, sold as a replacement.",
+    "no": "A replacement module with an upgraded radio."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "IDENTICAL_SAME_SPEC",
+    "DIFFERENT_SPEC",
+    "NOT_A_SPARE_PART"
+   ]
+  },
+  {
+   "fact_id": "DEFENCE_STATUS",
+   "question": "Was it developed or modified exclusively for national security or defence, or specifically designed to process classified information?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(7). Dual-use products are not excluded (EXC-09). Because exclusion is the permissive answer, it needs documentary support (EXC-05, EXC-14).",
+   "categories_discriminated": [],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED",
+   "worked_example": {
+    "yes": "A device built only under a defence contract, with the contract as evidence.",
+    "no": "A product sold to both civilian and military buyers: DUAL_USE."
+   },
+   "revision": "v2 (WP7 scope trial)",
+   "values": [
+    "EXCLUSIVELY_DEFENCE_OR_NATSEC",
+    "DESIGNED_FOR_CLASSIFIED",
+    "DUAL_USE",
+    "NONE"
+   ]
   }
  ],
  "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",

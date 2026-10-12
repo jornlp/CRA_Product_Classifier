@@ -95,7 +95,8 @@ once, but each answer must be stored per fact.** Fact register changes needed:
 IV-02's second limb map fact values to TRUE, FALSE **or OPEN**. Without that, the open questions
 WP1 and WP5 found have no place in the rules, and the author is forced to pick a side.
 
-**4.3 Evidence requirements belong in the engine.** Each fact carries its evidence expectation
+**4.3 Evidence requirements belong in the engine** (generalised in §10a: the gate applies to
+whichever result is permissive for that condition). Each fact carries its evidence expectation
 from WP2. A FALSE on a `MANUFACTURER_ONLY` fact that the user has not confirmed (for example an LLM
 draft) is evaluated as UNKNOWN. In the trial, `GATE-01` is `RAT-01` with the core-function answer
 drafted rather than confirmed: it correctly yields UNRESOLVED, not DEFAULT. This is how v4 §5.4's
@@ -241,6 +242,43 @@ Five trial fixtures became catalogue cases (`LIFE-09`, `LIFE-10`, `LIFE-11`, `RE
 and three date facts were added to the register (`UNITS_PLACED_ON_MARKET`, `CHANGE_AT`,
 `OTHER_LEGISLATION_CERTIFICATE`).
 
+## 10a. Scope trial
+
+Scope rules (Art. 2(1) applicability and the Art. 2(2)-(7) exclusions) were trialled with
+`docs/research/wp7-spike/scope.py`: 35 fixtures, all pass. Scope = applicability AND NOT any
+exclusion, using the same combinators as the categories.
+
+What it established:
+
+- **The evidence gate is about direction, not about FALSE.** For a category, the permissive
+  answer is FALSE (category ruled out). For an exclusion it is TRUE (product taken out of the CRA).
+  For applicability it is FALSE again. So §4.3 generalises: **each condition declares which result
+  is permissive, and only that result needs the fact's required evidence.** A defence exclusion
+  claimed without documents gives UNRESOLVED, not OUT (`EXC-14`); a "not on the EU market" answer
+  drafted by an LLM gives UNRESOLVED, not OUT (`GATE-04`).
+- **A screening question must be answered as a whole list.** The first run failed six fixtures:
+  ticking "spare part" left every *other* exclusion UNKNOWN, so the scope could never resolve. The
+  screen is one question over an OR-joined list ("which of these apply, if any?"), so every option
+  left unticked is an answered "no". Each ticked option opens its own follow-up, because each
+  exclusion has its own condition (certified, exclusively, identical specification, designed to
+  pedal). This is the AND/OR rule of §4.1 seen from the other side.
+- **One confirmed exclusion is enough.** OUT_OF_SCOPE holds even with another exclusion unknown
+  (`GATE-03`), because AND lets one FALSE decide.
+- **Two exclusions are qualification questions under other law**: whether MDR/IVDR applies to a
+  product with an uncertified medical purpose (`EXC-03`), and whether Reg. 2019/2144 covers a given
+  component (`EXC-04`). They map to OPEN with a reason, not to a guess either way.
+- **Scope must work prospectively.** Most users assess before launch. `MARKET_STATUS` replaces the
+  yes/no market question: PLANNED is in scope, stated as prospective (`SCP-09`); display at a trade
+  fair (`SCP-08`) and own use (`OWN-01`) are not making available.
+- **Capability is not intended purpose.** The register's `DATA_CONNECTION` asked whether the product
+  *can* exchange data; Art. 2(1) asks whether its intended or foreseeable use *includes* a
+  connection. Now two facts: an interface exists at all (if not, both connection tests are FALSE,
+  `SCP-06`), and a connection is intended (if not, foreseeable use decides, `SCP-07`).
+- **A gap found:** Art. 2(4), marine equipment, had no case. Added as `EXC-13`.
+
+Not trialled, because they are not scope: Art. 4(3) testing versions (`TEST-01/02`), Art. 13(11)
+archives (`ARCH-01`) and the steward role (`OSS-03`). They are obligations and roles, handled after scope.
+
 ## 11. Open after WP7
 
 - ~~Apply the §4.1 fact register changes~~ — done, register v2.
@@ -250,5 +288,7 @@ and three date facts were added to the register (`UNITS_PLACED_ON_MARKET`, `CHAN
 - Encode the remaining 20 categories. The trial shows the format holds for the hardest shapes, so
   the rest should be routine, but each still needs its WP5 condition notes read first.
 - ~~Timeline trial~~ — done, §10.
-- Scope rules were not trialled. They use the same condition logic as categories, and the
-  exclusions in Art. 2 are the main new shape (`EXC` cases).
+- ~~Scope trial~~ — done, §10a.
+- Everything the trials need is now in the engine contract. What remains before Phase 1 is
+  encoding the other 20 categories (reading each one's WP5 notes first), and the people-dependent
+  work: WP3 interviews, WP4 runs on the online tools, WP6 comprehension tests and a review round.

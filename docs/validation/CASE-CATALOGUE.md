@@ -38,6 +38,7 @@ ontwikkelrapport §5, `v4` from implementatiespecificatie §7.1, `new` added her
 | SCP-06 | Genuinely air-gapped device, no data interface of any kind | all connection paths FALSE | Scope may resolve negative, with each path recorded FALSE | new | H |
 | SCP-07 | Connection technically present but vendor says it is unused | intended vs foreseeable use | Foreseeable-use question; vendor claim alone not decisive | new | H |
 | SCP-08 | Prototype shown at a trade fair, not yet placed on market | market activity vs placing | Scope and timeline answered separately | new | H |
+| SCP-09 | Product in development; sale on the EU market planned, not yet started | prospective assessment | `IN_SCOPE`, stated as prospective: applies from first making available. Pairs with SCP-08, where no sale is decided | WP7 | H |
 
 ## B. Exclusions
 
@@ -51,9 +52,11 @@ Absence of a match is never an exclusion (v4 §5.2).
 | EXC-03 | EXC-02 variant marketed for gum-disease diagnosis | medical purpose claimed | Exclusion candidate + expert review flag | new | H |
 | EXC-04 | Component for a type-approved motor vehicle | Reg. 2019/2144 applies | Art. 2(2)(c) exclusion where that Regulation applies to the product | v3 | H |
 | EXC-05 | Device developed exclusively for military/classified use | national-security exclusion | Exclusion candidate; documentary evidence required | new | H |
+| EXC-14 | Defence exclusion claimed by the user, with no supporting document | evidence for a permissive answer | No exclusion yet: UNRESOLVED with a request for evidence. The exclusion is the permissive answer, so it needs documentary support (as EXC-05 says) | WP7 | H |
 | EXC-06 | Exclusion claimed but applicable instrument unidentified | exclusion basis UNKNOWN | No exclusion granted; question returned | new | H |
 | EXC-11 | Connected moped or quadricycle within Reg. (EU) No 168/2013 | an applicable Art. 2(5) delegated act exists | **Excluded** by Delegated Regulation (EU) 2025/1535 Art. 1 | new | H |
 | EXC-12 | Connected speed pedelec — an L1e vehicle designed to pedal | the carve-out from the carve-out | **Not excluded.** 2025/1535 Art. 1 second paragraph expressly keeps pedal-designed L1e vehicles in CRA scope | new | H |
+| EXC-13 | Connected navigation equipment within the scope of Directive 2014/90/EU (marine equipment) | Art. 2(4) | **Excluded** by Art. 2(4). Previously the only Art. 2 exclusion with no case | WP7 | H |
 | EXC-07 | Avionics product within scope of Reg. 2018/1139 but **not** certified under it | certification, not scope | Art. 2(3) excludes only products *certified in accordance with* 2018/1139 — scope alone is not enough | new | H |
 | EXC-08 | Sectoral rules claimed to cover the Annex I risks, with no delegated act covering this product | Art. 2(5) requires an **applicable** act | No exclusion. The test is whether an applicable delegated act covers this product, not whether any exist — one does (2025/1535), but not for this product | new | H |
 
@@ -341,8 +344,8 @@ that override a condition as worded.
 
 | Family | Cases |
 |---|---|
-| A. Scope, connectivity and market activity | 8 |
-| B. Exclusions | 10 |
+| A. Scope, connectivity and market activity | 9 |
+| B. Exclusions | 12 |
 | C. Product boundary | 8 |
 | D. Core function versus feature | 11 |
 | E. Annex III candidates | 10 |
@@ -357,7 +360,7 @@ that override a condition as worded.
 | N. Cases from the official FAQ | 10 |
 | O. Adjacent regimes that do not exclude | 5 |
 | P. Condition-level minimal pairs (WP5) | 28 |
-| **Total** | **194** |
+| **Total** | **197** |
 
 All 11 v4 IDs are preserved: `RAT-01…04`, `WTR-01…03`, `LIFE-01…03`, `SRC-01`,
 `OTHER-01`. AC-05 references these by name.
