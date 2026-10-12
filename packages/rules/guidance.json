@@ -223,32 +223,7 @@
   },
   "PURPOSE_SCREEN": {
    "hint": "Tick what the product is mainly for. Containing a function is not the same as being for it.",
-   "examples": [
-    {
-     "answer": "HOME_SECURITY",
-     "kind": "OFFICIAL_TEXT",
-     "source": "B2",
-     "category": "III-I-17",
-     "text": "Smart door locks, baby monitoring systems, alarm systems and home security cameras are named.",
-     "quote": "This category includes but is not limited to smart door locking devices, baby monitoring systems, alarm systems and home security cameras."
-    },
-    {
-     "answer": "NONE",
-     "kind": "OFFICIAL_GUIDANCE",
-     "source": "B7",
-     "item": "FAQ 3.4",
-     "text": "A smartphone contains an operating system and a password manager, but is not mainly for either.",
-     "quote": "as a smartphone's core functionality is not that of an operating system or of a password manager, it is generally not to be considered to have the core functionality of an operating system or of a password manager"
-    },
-    {
-     "answer": "NONE",
-     "kind": "OFFICIAL_GUIDANCE",
-     "source": "B7",
-     "item": "FAQ 3.4",
-     "text": "Security orchestration (SOAR) software can do what a SIEM does, but its core function is different, so it is generally not a SIEM.",
-     "quote": "SOAR software is generally not to be considered to have the core functionality of \"security information and event management (SIEM) systems\""
-    }
-   ],
+   "examples": [],
    "lookalikes": [
     {
      "term": "camera",
@@ -262,7 +237,8 @@
      "term": "login",
      "text": "An app with a login is not a password manager."
     }
-   ]
+   ],
+   "note": "Official examples for each option are behind the ⓘ next to it."
   }
  }
 }

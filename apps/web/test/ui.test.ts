@@ -83,16 +83,15 @@ describe("screens: pest-control camera", () => {
   });
   it("asks what the product is mainly for, with the stem and its warning always visible", async () => {
     expect(heading()).toContain("mainly for");
+    const guide = app().querySelector("aside.guide")!.textContent!;
+    expect(guide).toContain("Official examples for each option are behind the ⓘ");
+    expect(guide).toContain("Words that mislead");
+    expect(guide).not.toContain("None of these");
     expect(app().querySelector(".stem .stem-text")!.textContent).toBe("My product is mainly for …");
     expect(app().querySelector(".stem .stem-warning")!.textContent).toContain("An app with a login is not mainly for checking who someone is");
-    const groups = [...app().querySelectorAll(".group-name")].map((g) => g.textContent);
-    expect(groups).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy"]);
+    const groupNames = [...app().querySelectorAll(".group-name")].map((g) => g.textContent);
+    expect(groupNames).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy"]);
     expect(app().querySelectorAll("details .group").length).toBe(0); // no group is hidden
-    const guide = app().querySelector("aside.guide")!.textContent!;
-    expect(guide).toContain("Official text (binding)");
-    expect(guide).toContain("Commission FAQ");
-    expect(guide).not.toContain("our interpretation");
-    expect(guide).toContain("Words that mislead");
   });
   it("each purpose option has an ⓘ that opens the official text, without ticking the option", async () => {
     const row = [...app().querySelectorAll(".opt-row")].find((r) => r.textContent!.includes("protecting a home"))!;

@@ -55,7 +55,7 @@ type Question = { question: string; kind: string; why_we_ask: string; legal_basi
 const QUESTIONS = (qs as { questions: Record<string, Question> }).questions;
 const CATEGORIES = (qs as { categories: Record<string, { title: string; class: string }> }).categories;
 type Example = { answer: string; kind: string; source: string; text: string; quote?: string; item?: string; category?: string; case?: string };
-type Guide = { hint?: string; examples: Example[]; lookalikes: { term: string; text: string; case?: string }[] };
+type Guide = { hint?: string; note?: string; examples: Example[]; lookalikes: { term: string; text: string; case?: string }[] };
 const GUIDE = (guidance as { questions: Record<string, Guide> }).questions;
 
 const CLASS_LABEL: Record<string, string> = {
@@ -127,11 +127,14 @@ function guidanceHtml(fid: string): string {
   const la = g.lookalikes.length ? `
     <h3>Words that mislead</h3>
     <ul class="look">${g.lookalikes.map((l) => `<li><strong>"${esc(l.term)}"</strong>: ${esc(l.text)}</li>`).join("")}</ul>` : "";
-  return `
-    <aside class="guide" aria-label="Examples">
+  const exHtml = g.examples.length ? `
       <h3>Examples</h3>
       <p class="muted small">These illustrate the question. Answer about your product, not about which example looks closest.</p>
-      <ul class="examples">${ex}</ul>${la}
+      <ul class="examples">${ex}</ul>` : "";
+  const note = g.note ? `<p class="note">${esc(g.note)}</p>` : "";
+  if (!exHtml && !la && !note) return "";
+  return `
+    <aside class="guide" aria-label="Guidance">${note}${exHtml}${la}
     </aside>`;
 }
 
