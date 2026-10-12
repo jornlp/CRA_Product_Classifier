@@ -64,15 +64,22 @@ function condValue(rules: ScopeRules, cond: ScopeCondition, facts: Facts, permis
   return r;
 }
 
-export function scope(rules: ScopeRules, raw: Facts): { status: ScopeStatus; reasons: string[]; trace: string[] } {
+/** Condition values for scope, after derivation. Exposed for question selection. */
+export function scopeConditionValues(rules: ScopeRules, raw: Facts, trace: string[] = []) {
   const facts = derive(rules, raw);
-  const trace: string[] = [];
   const a = rules.applicability, e = rules.exclusions;
-  const av: Record<string, Value> = {};
-  for (const [k, c] of Object.entries(a.conditions)) av[k] = condValue(rules, c, facts, a.permissive_result, trace);
+  const applicability: Record<string, Value> = {};
+  for (const [k, c] of Object.entries(a.conditions)) applicability[k] = condValue(rules, c, facts, a.permissive_result, trace);
+  const exclusions: Record<string, Value> = {};
+  for (const [k, c] of Object.entries(e.conditions)) exclusions[k] = condValue(rules, c, facts, e.permissive_result, trace);
+  return { applicability, exclusions, facts };
+}
+
+export function scope(rules: ScopeRules, raw: Facts): { status: ScopeStatus; reasons: string[]; trace: string[] } {
+  const trace: string[] = [];
+  const { applicability: av, exclusions: ev, facts } = scopeConditionValues(rules, raw, trace);
+  const a = rules.applicability, e = rules.exclusions;
   const applicable = evalMatch(a.match, av);
-  const ev: Record<string, Value> = {};
-  for (const [k, c] of Object.entries(e.conditions)) ev[k] = condValue(rules, c, facts, e.permissive_result, trace);
   const excluded = combine(Object.values(ev), OR_ORDER);
   const result = combine([applicable, NOT(excluded)], AND_ORDER);
   const status: ScopeStatus = result === T ? "IN_SCOPE" : result === F ? "OUT_OF_SCOPE" : "UNRESOLVED";

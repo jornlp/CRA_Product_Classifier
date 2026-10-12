@@ -602,7 +602,11 @@
     "enabled": true,
     "verified_by": true,
     "verified_at": true,
-    "technical_reviewer": true
+    "technical_reviewer": true,
+    "date_fact": {
+     "description": "The date fact this route's dates are tested against (WP7 4.6).",
+     "type": "string"
+    }
    },
    "additionalProperties": false
   }

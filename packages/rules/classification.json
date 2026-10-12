@@ -171,7 +171,7 @@
    "type": "bool",
    "evidence": "MANUFACTURER_ONLY"
   },
-  "PLACED_ON_MARKET": {
+  "UNITS_PLACED_ON_MARKET": {
    "type": "date",
    "evidence": "MANUFACTURER_ONLY"
   }
@@ -534,7 +534,7 @@
     {
      "when": {
       "is": "ANNEX_I_SECTION_A",
-      "date_fact": "PLACED_ON_MARKET",
+      "date_fact": "UNITS_PLACED_ON_MARKET",
       "on_or_after": "2028-08-02"
      },
      "route": "AI_ACT_ART_43"
@@ -542,7 +542,7 @@
     {
      "when": {
       "is": "ANNEX_I_SECTION_A",
-      "date_fact": "PLACED_ON_MARKET",
+      "date_fact": "UNITS_PLACED_ON_MARKET",
       "before": "2028-08-02"
      },
      "route": "OPEN",
@@ -555,7 +555,8 @@
      "route": "OPEN",
      "open_ref": "AI-05"
     }
-   ]
+   ],
+   "date_fact": "UNITS_PLACED_ON_MARKET"
   },
   {
    "rule_id": "ROUTE-ART32-5A",
@@ -578,7 +579,8 @@
    ],
    "displaces": [
     "CRA_ART_32"
-   ]
+   ],
+   "date_fact": "UNITS_PLACED_ON_MARKET"
   }
  ]
 }

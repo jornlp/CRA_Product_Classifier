@@ -24,6 +24,8 @@ jobs:
           python-version: "3.12"
       - name: Verify rules against held sources (quotes, category list, open-question references)
         run: npm run verify:research
+      - name: Question texts match the fact register
+        run: python3 docs/research/tools/build_questions.py --check
       - name: Build the site
         run: npm run build -w @cra/web
       - name: No external requests in the built site (AC-07)

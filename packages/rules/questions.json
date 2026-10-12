@@ -1,0 +1,940 @@
+{
+ "artifact": "questions",
+ "generated_by": "docs/research/tools/build_questions.py",
+ "note": "Question wording comes from the WP2 fact register; edit it there and regenerate.",
+ "questions": {
+  "PRODUCT_KIND": {
+   "question": "Is what you place on the market hardware, software, or an online service?",
+   "kind": "enum",
+   "why_we_ask": "Art. 3(1), 3(2): products with digital elements are hardware or software, including remote data processing the product needs. A standalone online service is not (BND-03, BND-04).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "HARDWARE",
+     "label": "Hardware, with or without its own software"
+    },
+    {
+     "value": "SOFTWARE",
+     "label": "Software that users install or run"
+    },
+    {
+     "value": "REMOTE_DATA_PROCESSING",
+     "label": "A cloud service our own product needs in order to work"
+    },
+    {
+     "value": "SAAS_ONLY",
+     "label": "Only an online service, with no product of ours behind it"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "MARKET_STATUS": {
+   "question": "Where is the product in its life on the EU market?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(1), 3(22): the CRA applies to products made available on the EU market. Planned sale is assessed prospectively (SCP-09); display at a trade fair (SCP-08) and own use (OWN-01) are not making available.",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "MADE_AVAILABLE",
+     "label": "On sale or supplied in the EU"
+    },
+    {
+     "value": "PLANNED",
+     "label": "Planned for the EU market, not yet available"
+    },
+    {
+     "value": "EXHIBITION_ONLY",
+     "label": "Only shown at trade fairs or demonstrations so far"
+    },
+    {
+     "value": "OWN_USE_ONLY",
+     "label": "Used only inside our own organisation"
+    },
+    {
+     "value": "NOT_EU",
+     "label": "Not supplied in the EU, and not planned"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "COMMERCIAL_ACTIVITY": {
+   "question": "Is it supplied in the course of a commercial activity, whether paid or free of charge?",
+   "kind": "bool",
+   "why_we_ask": "Art. 3(22)",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "DATA_INTERFACE_PRESENT": {
+   "question": "Does the product have any way to exchange data at all: network, radio, cable, USB, memory card, or a software interface?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(1), 3(8)-(10). If there is no interface of any kind, no connection can be intended or foreseen (SCP-06).",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CONNECTION_INTENDED": {
+   "question": "Is the product intended to exchange data with another device or network, directly or indirectly?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(1) 'intended purpose ... includes a direct or indirect logical or physical data connection'. Indirect counts: a sensor talking only to a hub (SCP-05). If the answer is no, CONNECTION_FORESEEABLE is asked (SCP-07).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CONNECTION_FORESEEABLE": {
+   "question": "If no connection is intended, could one reasonably be foreseen in use?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(1) 'reasonably foreseeable use'",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "EXCLUSION_SCREEN": {
+   "question": "Do any of these apply to the product? Tick all that apply, or none.",
+   "kind": "multi-enum",
+   "why_we_ask": "Art. 2(2)-(7) and Del. Reg. 2025/1535. One question over an OR-joined list: unticked options are answered 'no'. Each ticked option opens one follow-up, because each exclusion has its own condition.",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "MEDICAL",
+     "label": "Medical or in vitro diagnostic device (Reg. 2017/745 or 2017/746)"
+    },
+    {
+     "value": "VEHICLE",
+     "label": "Motor vehicle, or a system or component type-approved under Reg. 2019/2144"
+    },
+    {
+     "value": "AVIATION",
+     "label": "Civil aviation product (Reg. 2018/1139)"
+    },
+    {
+     "value": "MARINE",
+     "label": "Marine equipment (Dir. 2014/90/EU)"
+    },
+    {
+     "value": "L_CATEGORY",
+     "label": "Two- or three-wheel vehicle or quadricycle (Reg. 168/2013), or a part for one"
+    },
+    {
+     "value": "SPARE_PART",
+     "label": "A spare part replacing an identical component"
+    },
+    {
+     "value": "DEFENCE",
+     "label": "Made exclusively for national security or defence, or to process classified information"
+    },
+    {
+     "value": "OTHER_SECTORAL",
+     "label": "Other sector rules that we think cover cybersecurity"
+    },
+    {
+     "value": "OTHER_UNIDENTIFIED",
+     "label": "Excluded for another reason we cannot name"
+    }
+   ]
+  },
+  "MEDICAL_STATUS": {
+   "question": "Is it CE-marked as a medical or in vitro diagnostic device, or does it have a medical purpose without being certified as one?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(2)(a)(b). Only a product to which MDR/IVDR applies is excluded. A medical purpose without certification is a qualification question under MDR, outside this tool (EXC-03).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "CE_MARKED_MDR_IVDR",
+     "label": "CE-marked as a medical or in vitro diagnostic device"
+    },
+    {
+     "value": "MEDICAL_PURPOSE_NOT_CERTIFIED",
+     "label": "Has a medical purpose but is not certified as a medical device"
+    },
+    {
+     "value": "NONE",
+     "label": "No medical purpose"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "VEHICLE_2019_2144": {
+   "question": "Is it a vehicle, system or component type-approved under Regulation (EU) 2019/2144?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(2)(c). Applies to what that Regulation covers; equipment used to test vehicles is not covered (UG-06). Unclear component status goes to review (EXC-04).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "APPLIES",
+     "label": "Covered by a type approval under Reg. 2019/2144"
+    },
+    {
+     "value": "COMPONENT_UNCLEAR",
+     "label": "A component; unclear whether that Regulation covers it"
+    },
+    {
+     "value": "NOT_APPLICABLE",
+     "label": "Not covered (for example equipment used to test vehicles)"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "AVIATION_2018_1139": {
+   "question": "Is it certified in accordance with Regulation (EU) 2018/1139?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(3) excludes only products certified under it; falling within its scope is not enough (EXC-07).",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": "CERTIFIED",
+     "label": "Certified under Reg. 2018/1139"
+    },
+    {
+     "value": "IN_SCOPE_NOT_CERTIFIED",
+     "label": "Within its scope but not certified"
+    },
+    {
+     "value": "NOT_APPLICABLE",
+     "label": "Not an aviation product"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "MARINE_2014_90": {
+   "question": "Is it marine equipment within the scope of Directive 2014/90/EU?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(4) (EXC-13).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "L_CATEGORY_168_2013": {
+   "question": "Is it a two- or three-wheel vehicle or quadricycle under Regulation (EU) No 168/2013, or a system or component for one? Is it an L1e vehicle designed to pedal?",
+   "kind": "enum",
+   "why_we_ask": "Del. Reg. (EU) 2025/1535 excludes products under Reg. 168/2013, except L1e vehicles designed to pedal (EXC-11, EXC-12).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "L_CATEGORY",
+     "label": "Yes, an L-category vehicle or a part for one"
+    },
+    {
+     "value": "L1E_DESIGNED_TO_PEDAL",
+     "label": "An L1e vehicle designed to pedal, such as a speed pedelec"
+    },
+    {
+     "value": "NOT_APPLICABLE",
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "SPARE_PART": {
+   "question": "Is it a spare part replacing an identical component, made to the same specifications?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(6). A replacement with improved or different specifications is not excluded (BND-06, BND-07).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "IDENTICAL_SAME_SPEC",
+     "label": "Replaces an identical component, same specifications"
+    },
+    {
+     "value": "DIFFERENT_SPEC",
+     "label": "A replacement with different or improved specifications"
+    },
+    {
+     "value": "NOT_A_SPARE_PART",
+     "label": "Not a spare part"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "DEFENCE_STATUS": {
+   "question": "Was it developed or modified exclusively for national security or defence, or specifically designed to process classified information?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(7). Dual-use products are not excluded (EXC-09). Because exclusion is the permissive answer, it needs documentary support (EXC-05, EXC-14).",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": "EXCLUSIVELY_DEFENCE_OR_NATSEC",
+     "label": "Exclusively for national security or defence"
+    },
+    {
+     "value": "DESIGNED_FOR_CLASSIFIED",
+     "label": "Specifically designed to process classified information"
+    },
+    {
+     "value": "DUAL_USE",
+     "label": "Also sold for civilian use"
+    },
+    {
+     "value": "NONE",
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CORE_FUNCTION": {
+   "question": "In one sentence, what is this product for? What would a buyer say it does?",
+   "kind": "text",
+   "why_we_ask": "Art. 7(1)/8(1): core functionality determines the category. B2 recital 2.",
+   "evidence": "DOCUMENT_LIKELY"
+  },
+  "STORES_PASSWORDS_CORE": {
+   "question": "Is storing passwords, on the device or on a server, what this product is for?",
+   "kind": "bool",
+   "why_we_ask": "III-I-03: 'store passwords, locally on a device or on a remote server'. Generation, sharing and filling are listed as examples, not conditions (WP5 MP-02).",
+   "evidence": "DOCUMENT_LIKELY",
+   "hint": "Generating, sharing or auto-filling passwords is typical but not required.",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "PROTECTS_PHYSICAL_SECURITY": {
+   "question": "Is the product's purpose to protect the physical security of people in that setting?",
+   "kind": "bool",
+   "why_we_ask": "III-I-17. Monitoring pests, energy or comfort is not physical security of consumers.",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "RESIDENTIAL_SETTING": {
+   "question": "Is it intended for use in a home, as opposed to an office, industrial or public setting?",
+   "kind": "bool",
+   "why_we_ask": "III-I-16, III-I-17",
+   "evidence": "MIXED",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "CONTROL_PATH": {
+   "question": "How can the product be controlled or managed from another system?",
+   "kind": "enum",
+   "why_we_ask": "III-I-17: 'can be controlled or managed remotely from other systems'. Control from a nearby phone only is an open question (WP5 MP-14).",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": "NETWORK_REMOTE",
+     "label": "From another system: an app over the internet, a hub or a cloud service"
+    },
+    {
+     "value": "PROXIMITY_ONLY",
+     "label": "Only from a phone or device standing next to it (for example Bluetooth)"
+    },
+    {
+     "value": "NONE",
+     "label": "Only on the device itself"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CENTRAL_CONTROL_OF_SECURITY": {
+   "question": "Does it centrally control products that protect physical security, such as locks or alarms?",
+   "kind": "bool",
+   "why_we_ask": "III-I-17, fourth limb",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "IC_TYPE": {
+   "question": "Is the product itself an integrated circuit? If so, which kind?",
+   "kind": "enum",
+   "why_we_ask": "III-I-13 (microprocessor: external memory), III-I-14 (microcontroller: integrated memory), III-I-15 (ASIC/FPGA), III-II-03/04, IV-03 (microcontroller or microprocessor).",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": "MICROCONTROLLER",
+     "label": "A microcontroller (memory integrated)"
+    },
+    {
+     "value": "MICROPROCESSOR",
+     "label": "A microprocessor (uses external memory)"
+    },
+    {
+     "value": "ASIC",
+     "label": "An ASIC"
+    },
+    {
+     "value": "FPGA",
+     "label": "An FPGA"
+    },
+    {
+     "value": "NOT_AN_IC",
+     "label": "No, it is not itself a chip"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "SECURITY_FUNCTION": {
+   "question": "Does the product provide any security-related functionality, such as encryption, authentication, secure key storage, random number generation or a trusted execution environment?",
+   "kind": "bool",
+   "why_we_ask": "Shared condition of III-I-13/14/15",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "SECURES_BEYOND_ITSELF": {
+   "question": "Does that security functionality aim to secure OTHER products, networks or services — beyond the chip itself?",
+   "kind": "bool",
+   "why_we_ask": "The decisive limiter in III-I-13/14/15. A chip protecting only its own operation is outside.",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "TAMPER_PROTECTION": {
+   "question": "Does it provide tamper evidence, tamper resistance or tamper response?",
+   "kind": "bool",
+   "why_we_ask": "III-II-03/04, IV-01, IV-03",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "AVA_VAN_LEVEL": {
+   "question": "What AVA_VAN level is it designed to provide, under the Common Criteria?",
+   "kind": "enum",
+   "why_we_ask": "III-II-03/04 require level 2 or 3 exactly; IV-03 requires AT LEAST AVA_VAN.4. Level 1 matters: it fails both (WP5 MP-24..26).",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": "NONE",
+     "label": "No AVA_VAN level"
+    },
+    {
+     "value": 1,
+     "label": "AVA_VAN.1"
+    },
+    {
+     "value": 2,
+     "label": "AVA_VAN.2"
+    },
+    {
+     "value": 3,
+     "label": "AVA_VAN.3"
+    },
+    {
+     "value": 4,
+     "label": "AVA_VAN.4"
+    },
+    {
+     "value": 5,
+     "label": "AVA_VAN.5"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "METERING_COMMUNICATION": {
+   "question": "Does it control communication between metering components and authorised third parties such as utilities?",
+   "kind": "bool",
+   "why_we_ask": "IV-02 gateway limb",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "COLLECTS_METER_DATA": {
+   "question": "Does it collect, process and store meter data or personal data?",
+   "kind": "bool",
+   "why_we_ask": "IV-02: 'collect, process and store meter or personal data'.",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CRYPTO_SUPPORT": {
+   "question": "Does it protect data and information flows by supporting specific cryptographic needs, such as encrypting and decrypting data for the metering system?",
+   "kind": "bool",
+   "why_we_ask": "IV-02: 'protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data'.",
+   "evidence": "DOCUMENT_LIKELY",
+   "hint": "This is about protecting the metering system's data flows, not only the device's own connection.",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "FIREWALLING": {
+   "question": "Does it incorporate firewalling functionality for the metering system?",
+   "kind": "bool",
+   "why_we_ask": "IV-02: 'incorporate firewalling functionalities'.",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CONTROLS_OTHER_DEVICES": {
+   "question": "Does it provide the means to control other devices?",
+   "kind": "bool",
+   "why_we_ask": "IV-02, III-I-16",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "METERED_COMMODITY": {
+   "question": "Which commodity does the metering system measure?",
+   "kind": "enum",
+   "why_we_ask": "IV-02 gateway limb: electricity is named, and gas or heat as 'other sources of energy'. Water is not an energy source (WP1; A4-02).",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": "ELECTRICITY",
+     "label": "Electricity"
+    },
+    {
+     "value": "GAS",
+     "label": "Gas"
+    },
+    {
+     "value": "HEAT",
+     "label": "Heat"
+    },
+    {
+     "value": "WATER",
+     "label": "Water"
+    },
+    {
+     "value": "NONE",
+     "label": "Not part of a metering system"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "ADVANCED_SECURITY_CORE": {
+   "question": "Is the product's core functionality an advanced security purpose, such as secure cryptoprocessing, as opposed to a feature it also has?",
+   "kind": "bool",
+   "why_we_ask": "IV-02 second limb: 'other devices for advanced security purposes, including for secure cryptoprocessing'. It has no technical description, so a TRUE answer leads to expert review, never to a match (WP1 open question).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "HIGH_RISK_AI_BASIS": {
+   "question": "Is the product a high-risk AI system under the AI Act, and on which basis?",
+   "kind": "enum",
+   "why_we_ask": "CRA Art. 12 sets the conformity route for high-risk AI. The AI Act as amended by Reg. 2026/1744 treats the bases differently: Annex III from 2.12.2027; Annex I Section A from 2.8.2028; Annex I Section B (e.g. machinery) outside Art. 43 (cases AI-01, AI-05, AI-06).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "NONE",
+     "label": "No high-risk AI system"
+    },
+    {
+     "value": "ANNEX_III",
+     "label": "High-risk under Annex III of the AI Act"
+    },
+    {
+     "value": "ANNEX_I_SECTION_A",
+     "label": "High-risk because of a product law in Annex I, Section A, of the AI Act"
+    },
+    {
+     "value": "ANNEX_I_SECTION_B",
+     "label": "High-risk because of a product law in Annex I, Section B (for example machinery)"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "EHR_SYSTEM": {
+   "question": "Is the product classified as an electronic health record (EHR) system under Regulation (EU) 2025/327?",
+   "kind": "bool",
+   "why_we_ask": "CRA Art. 32(5a), inserted by the EHDS: EHR systems follow the EHDS conformity procedure from 26.3.2027 (EHR-01).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "UNITS_PLACED_ON_MARKET": {
+   "question": "When are, or were, the units you are assessing placed on the market? Each unit counts on its own.",
+   "kind": "date",
+   "why_we_ask": "Art. 69(2) and 71(2): units placed before 11.12.2027 are exempt from the main requirements unless substantially modified; units placed later must comply, however long the type has been sold (TYPE-01/02). RED DA: units placed from 1.8.2025.",
+   "evidence": "MANUFACTURER_ONLY",
+   "hint": "If you are asking about both stock already shipped and future production, assess them separately.",
+   "options": [
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CHANGE_AT": {
+   "question": "When was the change made, or when will it be?",
+   "kind": "date",
+   "why_we_ask": "Art. 69(2): only substantial modifications made from 11.12.2027 bring earlier units under the main requirements (LIFE-10).",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "",
+     "label": "No change since placing"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CHANGE_AFFECTS_PURPOSE": {
+   "question": "Does that change modify the intended purpose for which the product was assessed?",
+   "kind": "bool",
+   "why_we_ask": "Art. 3(30) limb (b)",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CHANGE_AFFECTS_ANNEX_I": {
+   "question": "Does the change affect how secure the product is — for example how it authenticates users, protects stored or transmitted data, or delivers updates?",
+   "kind": "enum",
+   "why_we_ask": "Art. 3(30) limb (a): a change affecting compliance with the essential cybersecurity requirements in Annex I, Part I. The MVP cannot decide this, so it must be asked, and UNKNOWN must never be read as NO.",
+   "evidence": "MANUFACTURER_ONLY",
+   "options": [
+    {
+     "value": "YES",
+     "label": "Yes"
+    },
+    {
+     "value": "NO",
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "RADIO_EQUIPMENT_RED_DA": {
+   "question": "Is the product radio equipment that (a) can communicate over the internet, directly or via other equipment; (b) is internet-connected or in the childcare, toy or wearable categories AND can process personal data, traffic data or location data; or (c) is internet-connected and lets the user transfer money, monetary value or virtual currency?",
+   "kind": "enum",
+   "why_we_ask": "Delegated Regulation (EU) 2022/30 Art. 1, applying RED Art. 3(3)(d), (e) and (f). Its Art. 2 derogates: MDR/IVDR products are out entirely; products under Reg. 2018/1139, Reg. 2019/2144 or Dir. 2019/520 are out of limbs (e) and (f). Not a CRA scope question - radio equipment is fully in CRA scope - but these requirements have applied since 1 August 2025, so a CRA-only timeline answer would be falsely reassuring.",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": "YES",
+     "label": "Yes"
+    },
+    {
+     "value": "NO",
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "OTHER_LEGISLATION_CERTIFICATE": {
+   "question": "Does the product hold an EU type-examination certificate or approval decision covering cybersecurity under other EU harmonisation legislation? If so, when does it expire?",
+   "kind": "bool+date",
+   "why_we_ask": "Art. 69(1): such certificates stay valid until 11.6.2028, or their earlier expiry, unless that legislation provides otherwise (LIFE-07, LIFE-11).",
+   "evidence": "DOCUMENT_LIKELY",
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CERTIFICATE_EXPIRY": {
+   "question": "When does that certificate expire?",
+   "kind": "date",
+   "why_we_ask": "Art. 69(1): validity ends at the certificate's own expiry if that is before 11.6.2028.",
+   "follows": "OTHER_LEGISLATION_CERTIFICATE"
+  },
+  "ASSESSMENT_DATE": {
+   "question": "Assessment date",
+   "kind": "date",
+   "why_we_ask": "Which obligations already apply depends on the date of the assessment.",
+   "internal": true
+  }
+ }
+}

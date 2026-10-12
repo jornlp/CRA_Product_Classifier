@@ -20,7 +20,7 @@ export interface RouteCase {
   route: string; unless_class_in?: ClassName[]; unless_route?: string; open_ref?: string;
 }
 export interface RouteRule {
-  rule_id: string; fact: string; cases: RouteCase[]; effective_from?: string; displaces?: string[];
+  rule_id: string; fact: string; cases: RouteCase[]; effective_from?: string; displaces?: string[]; date_fact?: string;
 }
 export interface ClassificationRules {
   rule_set_version: string; law_as_of: string;
@@ -104,8 +104,8 @@ export interface RouteResult { rule: string; route: string; open_ref?: string; d
 export function route(rules: ClassificationRules, facts: Facts, result: ClassifyResult): RouteResult[] {
   const { status: cls, floor } = result;
   let out: RouteResult[] = [];
-  const placed = facts["PLACED_ON_MARKET"]?.value as string | undefined;
   for (const r of rules.routes) {
+    const placed = (r.date_fact ? facts[r.date_fact]?.value : undefined) as string | undefined;
     const [state, val] = factValue(r.fact, facts, rules, []);
     if (state !== "VALUE") continue;
     if (r.effective_from && (placed === undefined || placed < r.effective_from)) continue;

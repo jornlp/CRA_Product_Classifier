@@ -115,7 +115,7 @@ def route(spec, facts, result):
         state, val = fact_value(r["fact"], facts, spec, [])
         if state != "VALUE":
             continue
-        placed = facts.get("PLACED_ON_MARKET", {}).get("value")
+        placed = facts.get(r.get("date_fact", ""), {}).get("value")
         if r.get("effective_from") and (placed is None or placed < r["effective_from"]):
             continue
         for case in r["cases"]:

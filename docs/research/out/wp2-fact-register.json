@@ -1461,6 +1461,55 @@
     "DUAL_USE",
     "NONE"
    ]
+  },
+  {
+   "fact_id": "COLLECTS_METER_DATA",
+   "question": "Does it collect, process and store meter data or personal data?",
+   "kind": "bool",
+   "why_we_ask": "IV-02: 'collect, process and store meter or personal data'.",
+   "categories_discriminated": [
+    "IV-02"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Stores consumption readings and forwards them to the utility.",
+    "no": "Displays a reading but stores and processes nothing."
+   },
+   "revision": "v2 (added when building the screens; used by the WP7 trial rules)"
+  },
+  {
+   "fact_id": "CRYPTO_SUPPORT",
+   "question": "Does it protect data and information flows by supporting specific cryptographic needs, such as encrypting and decrypting data for the metering system?",
+   "kind": "bool",
+   "why_we_ask": "IV-02: 'protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data'.",
+   "categories_discriminated": [
+    "IV-02"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Encrypts and decrypts the metering system's communication with third parties.",
+    "no": "Uses TLS only for its own firmware downloads."
+   },
+   "revision": "v2 (added when building the screens; used by the WP7 trial rules)",
+   "question_hint": "This is about protecting the metering system's data flows, not only the device's own connection."
+  },
+  {
+   "fact_id": "FIREWALLING",
+   "question": "Does it incorporate firewalling functionality for the metering system?",
+   "kind": "bool",
+   "why_we_ask": "IV-02: 'incorporate firewalling functionalities'.",
+   "categories_discriminated": [
+    "IV-02"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Filters and restricts traffic between the home metering network and the outside.",
+    "no": "Has no traffic filtering of its own."
+   },
+   "revision": "v2 (added when building the screens; used by the WP7 trial rules)"
   }
  ],
  "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",
