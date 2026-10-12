@@ -1,0 +1,966 @@
+{
+ "artifact": "wp2-fact-register",
+ "version": 1,
+ "created": "2026-10-12",
+ "purpose": "The distinct facts behind WP1's 76 decisive conditions, phrased as questions a non-lawyer can answer. No question asks the user to pick an Annex category.",
+ "law_version": "2024/2847 consolidated 000.003 + 2025/2392",
+ "status": "DRAFT - unreviewed. Each question carries its source condition so a reviewer can check question -> condition -> official text in one pass.",
+ "evidence_expectation_legend": {
+  "DOCUMENT_LIKELY": "usually decidable from a datasheet",
+  "MANUFACTURER_ONLY": "requires knowledge the manufacturer holds; not evidenced from public documents",
+  "MIXED": "depends on the product"
+ },
+ "facts": [
+  {
+   "fact_id": "PRODUCT_BOUNDARY",
+   "question": "What exactly is placed on the market as one product? List what is sold together, and what is sold separately.",
+   "kind": "text",
+   "why_we_ask": "Art. 3(1): components placed on the market separately are products in their own right. Everything downstream depends on this.",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A sensor and its hub sold as one boxed kit = one product. The same hub also sold alone = a second product.",
+    "no": "Listing everything your company makes, rather than the one item being assessed."
+   }
+  },
+  {
+   "fact_id": "EU_MARKET_ACTIVITY",
+   "question": "Is the product made available on the EU market?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(1)",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Sold through an EU distributor, or shipped to EU customers from outside.",
+    "no": "Built and used only at your own sites, never supplied to anyone."
+   }
+  },
+  {
+   "fact_id": "COMMERCIAL_ACTIVITY",
+   "question": "Is it supplied in the course of a commercial activity, whether paid or free of charge?",
+   "kind": "bool",
+   "why_we_ask": "Art. 3(22)",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Supplied free of charge but as part of a paid support offering.",
+    "no": "A hobby project published with no commercial activity around it."
+   }
+  },
+  {
+   "fact_id": "DATA_CONNECTION",
+   "question": "Can the product exchange data with another device or network — directly or indirectly, by wire, radio, or a physical interface such as USB?",
+   "kind": "enum:YES/NO/UNKNOWN",
+   "why_we_ask": "Art. 2(1) with Art. 3(8)(9)(10). Not limited to internet connection.",
+   "categories_discriminated": [],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A meter that sends readings over radio to a collector; a device that syncs over USB.",
+    "no": "A mechanical timer with no electronic interface of any kind."
+   }
+  },
+  {
+   "fact_id": "CONNECTION_FORESEEABLE",
+   "question": "If no connection is intended, could one reasonably be foreseen in use?",
+   "kind": "bool",
+   "why_we_ask": "Art. 2(1) 'reasonably foreseeable use'",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A service port you document for installers, even if end users never use it.",
+    "no": "A sealed unit with no port and no radio."
+   }
+  },
+  {
+   "fact_id": "EXCLUSION_CLAIMED",
+   "question": "Is the product covered by MDR 2017/745, IVDR 2017/746, Reg. 2019/2144, certified under Reg. 2018/1139, within Dir. 2014/90/EU, a same-spec spare part, or exclusively for defence or classified information?",
+   "kind": "enum",
+   "why_we_ask": "Art. 2(2)-(7). Each limb is a separate question in the full assessment.",
+   "categories_discriminated": [],
+   "evidence_expectation": "MIXED",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A device that is a CE-marked medical device under Reg. 2017/745.",
+    "no": "A health-adjacent wearable with no medical intended purpose."
+   }
+  },
+  {
+   "fact_id": "MARKET_ROLE",
+   "question": "Are you the manufacturer, importer, distributor, integrator, or open-source steward?",
+   "kind": "enum",
+   "why_we_ask": "Art. 3(13)(14)(16)(17)",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "You design it, have it built, and sell it under your own brand - manufacturer.",
+    "no": "You resell it unchanged in its original packaging - distributor."
+   }
+  },
+  {
+   "fact_id": "FIRST_PLACED_ON_MARKET",
+   "question": "When was this product first made available on the EU market?",
+   "kind": "date",
+   "why_we_ask": "Art. 3(21), decisive for Art. 69(2)",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "The date the first unit was supplied to a customer or distributor in the EU.",
+    "no": "The date development finished, or the date of the press release."
+   }
+  },
+  {
+   "fact_id": "CHANGE_AFTER_PLACING",
+   "question": "Has the product changed since it was placed on the market?",
+   "kind": "bool",
+   "why_we_ask": "Art. 3(30)",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A firmware release that adds a feature after units shipped.",
+    "no": "A change made before any unit was supplied."
+   }
+  },
+  {
+   "fact_id": "CHANGE_AFFECTS_ANNEX_I",
+   "question": "Does the change affect how secure the product is — for example how it authenticates users, protects stored or transmitted data, or delivers updates?",
+   "kind": "enum:YES/NO/UNKNOWN",
+   "why_we_ask": "Art. 3(30) limb (a): a change affecting compliance with the essential cybersecurity requirements in Annex I, Part I. The MVP cannot decide this, so it must be asked, and UNKNOWN must never be read as NO.",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A change that alters how the product authenticates users or handles updates.",
+    "no": "A change to an icon or a translation string."
+   }
+  },
+  {
+   "fact_id": "CHANGE_AFFECTS_PURPOSE",
+   "question": "Does that change modify the intended purpose for which the product was assessed?",
+   "kind": "bool",
+   "why_we_ask": "Art. 3(30) limb (b)",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Adding remote unlocking to a device previously sold as a monitor.",
+    "no": "A performance optimisation with no new function."
+   }
+  },
+  {
+   "fact_id": "CORE_FUNCTION",
+   "question": "In one sentence, what is this product for? What would a buyer say it does?",
+   "kind": "text",
+   "why_we_ask": "Art. 7(1)/8(1): core functionality determines the category. B2 recital 2.",
+   "categories_discriminated": [],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "'It detects whether a trap has caught a rodent and tells the pest controller.'",
+    "no": "'It uses Linux, a camera and TLS.' - that is components, not purpose."
+   }
+  },
+  {
+   "fact_id": "CORE_VS_COMPONENT",
+   "question": "Does the product merely contain a component that performs one of these functions, or is that function what the product is for?",
+   "kind": "enum",
+   "why_we_ask": "B2 recital 4 and B7 section 3.4: a smartphone is not an operating system; a router with a firewall is still a router.",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A router that contains a firewall is still a router.",
+    "no": "Calling a smartphone an operating system because it runs one."
+   }
+  },
+  {
+   "fact_id": "SECURITY_FUNCTION",
+   "question": "Does the product provide any security-related functionality, such as encryption, authentication, secure key storage, random number generation or a trusted execution environment?",
+   "kind": "bool",
+   "why_we_ask": "Shared condition of III-I-13/14/15",
+   "categories_discriminated": [
+    "III-I-13",
+    "III-I-14",
+    "III-I-15"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "certification_proxy": {
+    "marker": "PSA Certified; SESIP",
+    "use": "POSITIVE ONLY. Evidence that security functionality exists and was evaluated. Absence proves nothing."
+   },
+   "worked_example": {
+    "yes": "Secure boot, key storage, a trusted execution environment.",
+    "no": "A password field in an app."
+   }
+  },
+  {
+   "fact_id": "SECURES_BEYOND_ITSELF",
+   "question": "Does that security functionality aim to secure OTHER products, networks or services — beyond the chip itself?",
+   "kind": "enum:YES/NO/UNKNOWN",
+   "why_we_ask": "The decisive limiter in III-I-13/14/15. A chip protecting only its own operation is outside.",
+   "categories_discriminated": [
+    "III-I-13",
+    "III-I-14",
+    "III-I-15"
+   ],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A chip that anchors the secure boot chain of the whole device.",
+    "no": "A chip whose crypto only verifies its own firmware image."
+   }
+  },
+  {
+   "fact_id": "IS_INTEGRATED_CIRCUIT",
+   "question": "Is the product an integrated circuit — a microprocessor, microcontroller, ASIC or FPGA?",
+   "kind": "enum",
+   "why_we_ask": "III-I-13/14/15, III-II-03/04",
+   "categories_discriminated": [
+    "III-I-13",
+    "III-I-14",
+    "III-I-15",
+    "III-II-03",
+    "III-II-04"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A microcontroller sold to device makers.",
+    "no": "A finished appliance that contains one."
+   }
+  },
+  {
+   "fact_id": "TAMPER_PROTECTION",
+   "question": "Does it provide tamper evidence, tamper resistance or tamper response?",
+   "kind": "bool",
+   "why_we_ask": "III-II-03/04, IV-01, IV-03",
+   "categories_discriminated": [
+    "III-II-03",
+    "III-II-04",
+    "IV-01",
+    "IV-03"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "certification_proxy": {
+    "marker": "FIPS 140-2/140-3 physical security level; PCI PTS HSM listing",
+    "use": "POSITIVE ONLY. Holding the certificate is strong evidence the condition is met. NOT holding it proves nothing - certification is not required for the category to apply. Inferring exclusion from absence would be a false negative of the AC-02 kind."
+   },
+   "worked_example": {
+    "yes": "An enclosure that zeroises keys when opened; an active shield.",
+    "no": "A warranty-void sticker."
+   }
+  },
+  {
+   "fact_id": "AVA_VAN_LEVEL",
+   "question": "What AVA_VAN level is it designed to provide, under the Common Criteria?",
+   "kind": "enum:NONE/2/3/4+/UNKNOWN",
+   "why_we_ask": "III-II-03/04 require level 2 or 3; IV-03 requires AT LEAST AVA_VAN.4",
+   "categories_discriminated": [
+    "III-II-03",
+    "III-II-04",
+    "IV-03"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "certification_proxy": {
+    "marker": "Common Criteria certificate stating EAL augmented with AVA_VAN.n (Common Criteria Portal, BSI, ANSSI)",
+    "use": "POSITIVE ONLY. Holding the certificate is strong evidence the condition is met. NOT holding it proves nothing - certification is not required for the category to apply. Inferring exclusion from absence would be a false negative of the AC-02 kind.",
+    "scheme_note": "Record the issuing scheme as well as the level. Newer evaluations rest on exact protection-profile conformance rather than an EAL number, and mutual recognition under the CCRA is capped below the levels these conditions cite, so a level 4 or 5 claim may rest on a national scheme."
+   },
+   "worked_example": {
+    "yes": "'EAL4+ augmented with AVA_VAN.5' on the certificate. Record the issuing scheme too.",
+    "no": "A vendor claim of being 'highly secure' with no certificate."
+   }
+  },
+  {
+   "fact_id": "PUBLIC_INTERNET",
+   "question": "Does it communicate on the public Internet, directly or via other equipment?",
+   "kind": "bool",
+   "why_we_ask": "III-I-16, III-I-18",
+   "categories_discriminated": [
+    "III-I-16",
+    "III-I-18"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Reaches a cloud service directly or through a hub.",
+    "no": "Talks only to a paired handset over Bluetooth, with no internet path."
+   }
+  },
+  {
+   "fact_id": "RESIDENTIAL_SETTING",
+   "question": "Is it intended for use in a home, as opposed to an office, industrial or public setting?",
+   "kind": "enum:YES/NO/BOTH/UNKNOWN",
+   "why_we_ask": "III-I-16, III-I-17",
+   "categories_discriminated": [
+    "III-I-16",
+    "III-I-17"
+   ],
+   "evidence_expectation": "MIXED",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Sold for homes, through consumer retail.",
+    "no": "Sold for office buildings. If both - say both; that is a real answer."
+   }
+  },
+  {
+   "fact_id": "REMOTE_MANAGEMENT",
+   "question": "Can it be controlled or managed remotely from another system?",
+   "kind": "bool",
+   "why_we_ask": "III-I-17",
+   "categories_discriminated": [
+    "III-I-17"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Controlled from an app while the user is away.",
+    "no": "Operated only by a button on the device."
+   }
+  },
+  {
+   "fact_id": "PROTECTS_PHYSICAL_SECURITY",
+   "question": "Is the product's purpose to protect the physical security of people in that setting?",
+   "kind": "enum:YES/NO/UNKNOWN",
+   "why_we_ask": "III-I-17. Monitoring pests, energy or comfort is not physical security of consumers.",
+   "categories_discriminated": [
+    "III-I-17"
+   ],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A lock, an alarm, an intruder camera.",
+    "no": "A device that monitors energy use, comfort or pests."
+   }
+  },
+  {
+   "fact_id": "CENTRAL_CONTROL_OF_SECURITY",
+   "question": "Does it centrally control products that protect physical security, such as locks or alarms?",
+   "kind": "bool",
+   "why_we_ask": "III-I-17, fourth limb",
+   "categories_discriminated": [
+    "III-I-17"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A hub or app that manages locks and alarms together.",
+    "no": "A hub that only manages lighting and heating."
+   }
+  },
+  {
+   "fact_id": "CRYPTO_CORE",
+   "question": "Is securely storing, processing or managing sensitive data, or performing cryptographic operations, what the product is FOR?",
+   "kind": "enum:YES/NO/UNKNOWN",
+   "why_we_ask": "IV-01, IV-03, and the IV-02 exclusion gate",
+   "categories_discriminated": [
+    "IV-01",
+    "IV-02",
+    "IV-03"
+   ],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A hardware security module; a secure element.",
+    "no": "A product that uses TLS like almost every connected product."
+   }
+  },
+  {
+   "fact_id": "DISCRETE_COMPONENTS_ENVELOPE",
+   "question": "Does it consist of multiple discrete components inside a hardware envelope that resists physical attack?",
+   "kind": "bool",
+   "why_we_ask": "IV-01",
+   "categories_discriminated": [
+    "IV-01"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "certification_proxy": {
+    "marker": "FIPS 140-2/140-3 physical security level 3 or 4",
+    "use": "POSITIVE ONLY. Holding the certificate is strong evidence the condition is met. NOT holding it proves nothing - certification is not required for the category to apply. Inferring exclusion from absence would be a false negative of the AC-02 kind."
+   },
+   "worked_example": {
+    "yes": "A payment terminal with a tamper-responsive enclosure.",
+    "no": "A single chip with no multi-component enclosure."
+   }
+  },
+  {
+   "fact_id": "CONTROLS_OTHER_DEVICES",
+   "question": "Does it provide the means to control other devices?",
+   "kind": "bool",
+   "why_we_ask": "IV-02, III-I-16",
+   "categories_discriminated": [
+    "IV-02",
+    "III-I-16"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Issues commands that change another device's state.",
+    "no": "Only reads from other devices."
+   }
+  },
+  {
+   "fact_id": "METERING_COMMUNICATION",
+   "question": "Does it control communication between metering components and authorised third parties such as utilities?",
+   "kind": "bool",
+   "why_we_ask": "IV-02 gateway limb",
+   "categories_discriminated": [
+    "IV-02"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "certification_proxy": {
+    "marker": "Certification under protection profile BSI-CC-PP-0073 and conformity with BSI TR-03109",
+    "use": "POSITIVE ONLY. Holding the certificate is strong evidence the condition is met. NOT holding it proves nothing - certification is not required for the category to apply. Inferring exclusion from absence would be a false negative of the AC-02 kind."
+   },
+   "worked_example": {
+    "yes": "Mediates between meters and the utility's systems.",
+    "no": "A meter that simply transmits its own readings."
+   }
+  },
+  {
+   "fact_id": "ENERGY_CARRIER",
+   "question": "Which commodity is metered?",
+   "kind": "enum:ELECTRICITY/GAS/HEAT/WATER/OTHER/NA",
+   "why_we_ask": "IV-02: B2 names electricity, extended to gas and heat. Water is not named.",
+   "categories_discriminated": [
+    "IV-02"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Electricity, gas, heat - named in the technical description.",
+    "no": "Water, which is not named; this is a known open question."
+   }
+  },
+  {
+   "fact_id": "AUTH_OR_ACCESS_CONTROL",
+   "question": "Does it authenticate or authorise people, devices or systems, or control their access to digital resources or physical locations?",
+   "kind": "bool",
+   "why_we_ask": "III-I-01",
+   "categories_discriminated": [
+    "III-I-01"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Single sign-on; a badge reader controlling a door.",
+    "no": "An app with a login screen that calls someone else's identity service."
+   }
+  },
+  {
+   "fact_id": "RENDERS_WEB_CONTENT",
+   "question": "Does it access, render and interact with web content over web protocols, with a browser engine and script execution?",
+   "kind": "bool",
+   "why_we_ask": "III-I-02",
+   "categories_discriminated": [
+    "III-I-02"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "An embedded browser component with an engine and script execution.",
+    "no": "A help screen rendering local static text."
+   }
+  },
+  {
+   "fact_id": "STORES_PASSWORDS",
+   "question": "Does it store passwords, and generate, share or integrate them with other applications?",
+   "kind": "bool",
+   "why_we_ask": "III-I-03",
+   "categories_discriminated": [
+    "III-I-03"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A vault that generates, stores and fills credentials.",
+    "no": "An app that remembers one login for itself."
+   }
+  },
+  {
+   "fact_id": "DETECTS_MALWARE",
+   "question": "Does it detect, search for, remove or quarantine malicious software?",
+   "kind": "bool",
+   "why_we_ask": "III-I-04",
+   "categories_discriminated": [
+    "III-I-04"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Scans for and quarantines malicious code.",
+    "no": "Reports that a file changed, without judging whether it is malicious."
+   }
+  },
+  {
+   "fact_id": "VPN_TUNNEL",
+   "question": "Does it establish an encrypted logical tunnel built from the resources of a physical or virtual network?",
+   "kind": "bool",
+   "why_we_ask": "III-I-05. Using TLS for its own traffic is not this.",
+   "categories_discriminated": [
+    "III-I-05"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A client or gateway establishing an encrypted tunnel.",
+    "no": "An app that uses TLS for its own traffic."
+   }
+  },
+  {
+   "fact_id": "MANAGES_NETWORK_ELEMENTS",
+   "question": "Does it monitor connected network elements AND control their network operations and configuration?",
+   "kind": "bool",
+   "why_we_ask": "III-I-06",
+   "categories_discriminated": [
+    "III-I-06"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Pushes configuration to switches and routers.",
+    "no": "Displays network status without changing anything."
+   }
+  },
+  {
+   "fact_id": "CORRELATES_SECURITY_DATA",
+   "question": "Does it collect data from multiple sources, correlate it, and present it as actionable security information?",
+   "kind": "bool",
+   "why_we_ask": "III-I-07. SOAR is generally not SIEM (B7 section 3.4).",
+   "categories_discriminated": [
+    "III-I-07"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Collects logs from many sources and correlates them into alerts.",
+    "no": "Stores logs for later search without correlation."
+   }
+  },
+  {
+   "fact_id": "MANAGES_BOOT",
+   "question": "Does it manage system startup — initialising hardware, loading the OS, selecting boot options?",
+   "kind": "bool",
+   "why_we_ask": "III-I-08",
+   "categories_discriminated": [
+    "III-I-08"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "UEFI firmware or a bootloader selecting and loading the OS.",
+    "no": "An updater that replaces a kernel file."
+   }
+  },
+  {
+   "fact_id": "MANAGES_CERT_LIFECYCLE",
+   "question": "Does it manage the lifecycle of digital certificates or their associated keys?",
+   "kind": "bool",
+   "why_we_ask": "III-I-09. Merely validating certificates is not this.",
+   "categories_discriminated": [
+    "III-I-09"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Issues, renews and revokes certificates.",
+    "no": "Validates certificates using the OS trust store."
+   }
+  },
+  {
+   "fact_id": "NETWORK_INTERFACE",
+   "question": "Does it connect a device to a network through an interface driver API — a network card, adapter or virtual interface?",
+   "kind": "bool",
+   "why_we_ask": "III-I-10",
+   "categories_discriminated": [
+    "III-I-10"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A network card or adapter with its driver interface.",
+    "no": "A USB storage controller."
+   }
+  },
+  {
+   "fact_id": "HARDWARE_ABSTRACTION",
+   "question": "Does it abstract the hardware and control the execution of other software?",
+   "kind": "bool",
+   "why_we_ask": "III-I-11",
+   "categories_discriminated": [
+    "III-I-11"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "An RTOS sold to device makers.",
+    "no": "A phone that runs one."
+   },
+   "certification_proxy": {
+    "marker": "NIAP General Purpose Operating System Protection Profile; BSI Operating System Protection Profile (OSPP)",
+    "use": "POSITIVE ONLY. Evidence the product was evaluated as an operating system. Absence proves nothing."
+   }
+  },
+  {
+   "fact_id": "ROUTES_OR_FORWARDS",
+   "question": "Does it route traffic between networks, modulate signals for IP communication, or forward packets with a management plane?",
+   "kind": "bool",
+   "why_we_ask": "III-I-12",
+   "categories_discriminated": [
+    "III-I-12"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A router, managed switch, modem or access point.",
+    "no": "A device that merely connects as a client."
+   }
+  },
+  {
+   "fact_id": "NATURAL_LANGUAGE_ASSISTANT",
+   "question": "Does it process natural-language requests and act on them by reaching services or controlling devices?",
+   "kind": "bool",
+   "why_we_ask": "III-I-16",
+   "categories_discriminated": [
+    "III-I-16"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Understands spoken requests and acts on them.",
+    "no": "Responds to a few fixed voice commands offline."
+   }
+  },
+  {
+   "fact_id": "IS_TOY",
+   "question": "Is it designed or intended for play by children under 14? Some products are not treated as toys even when children use them — for example playground equipment for public use, toy steam engines, and slings and catapults.",
+   "kind": "bool",
+   "why_we_ask": "III-I-18 via Directive 2009/48/EC Art. 2, including its Annex I list of products not considered toys. From 01.08.2030 the reference resolves to Reg. (EU) 2025/2509 by its Art. 56 correlation clause.",
+   "categories_discriminated": [
+    "III-I-18"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Designed for play by children under 14.",
+    "no": "A hobby kit marketed to adults."
+   }
+  },
+  {
+   "fact_id": "TOY_INTERACTIVE_OR_TRACKING",
+   "question": "Does it have social interactive features such as speaking or filming, or location tracking? Proximity detection alone does not count.",
+   "kind": "enum",
+   "why_we_ask": "III-I-18, including its express negative condition",
+   "categories_discriminated": [
+    "III-I-18"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A microphone and speaker for two-way interaction; location reporting.",
+    "no": "Proximity detection only - expressly not location tracking."
+   }
+  },
+  {
+   "fact_id": "WORN_ON_BODY",
+   "question": "Is it worn on the body, directly or via clothing or accessories?",
+   "kind": "bool",
+   "why_we_ask": "III-I-19",
+   "categories_discriminated": [
+    "III-I-19"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A wristband, smartwatch or smart garment.",
+    "no": "A device clipped to a bag but not worn on the body."
+   }
+  },
+  {
+   "fact_id": "HEALTH_MONITORING",
+   "question": "Does it regularly or continuously sense and process information relevant to the user's health?",
+   "kind": "bool",
+   "why_we_ask": "III-I-19",
+   "categories_discriminated": [
+    "III-I-19"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Continuous heart-rate or activity sensing.",
+    "no": "A watch that only tells the time."
+   }
+  },
+  {
+   "fact_id": "FOR_CHILDREN_UNDER_14",
+   "question": "Is it intended for use by and for individuals under 14?",
+   "kind": "bool",
+   "why_we_ask": "III-I-19, second limb",
+   "categories_discriminated": [
+    "III-I-19"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A child safety wearable.",
+    "no": "An adult fitness tracker."
+   }
+  },
+  {
+   "fact_id": "VIRTUALISATION",
+   "question": "Does it execute, manage or orchestrate virtual machines, or manage the lifecycle of containers?",
+   "kind": "bool",
+   "why_we_ask": "III-II-01",
+   "categories_discriminated": [
+    "III-II-01"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A type 1 hypervisor; a container runtime.",
+    "no": "A sandbox isolating a single process."
+   }
+  },
+  {
+   "fact_id": "FILTERS_OR_DETECTS_INTRUSION",
+   "question": "Does it monitor and restrict network traffic, or detect or respond to intrusions?",
+   "kind": "bool",
+   "why_we_ask": "III-II-02. No industrial-use condition exists.",
+   "categories_discriminated": [
+    "III-II-02"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A firewall or IPS, consumer or industrial - no industrial condition applies.",
+    "no": "A router that happens to include firewall features."
+   }
+  },
+  {
+   "fact_id": "IS_SECURE_ELEMENT",
+   "question": "Is it a secure element — a chip that stores or manages credentials — or a card containing one?",
+   "kind": "bool",
+   "why_we_ask": "IV-03",
+   "categories_discriminated": [
+    "IV-03"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A TPM, eUICC or payment card chip.",
+    "no": "A general microcontroller with a crypto library."
+   }
+  }
+ ],
+ "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",
+ "suggested_question_order": [
+  {
+   "fact_id": "IS_INTEGRATED_CIRCUIT",
+   "gates": 5
+  },
+  {
+   "fact_id": "TAMPER_PROTECTION",
+   "gates": 4
+  },
+  {
+   "fact_id": "AVA_VAN_LEVEL",
+   "gates": 3
+  },
+  {
+   "fact_id": "CRYPTO_CORE",
+   "gates": 3
+  },
+  {
+   "fact_id": "SECURES_BEYOND_ITSELF",
+   "gates": 3
+  },
+  {
+   "fact_id": "SECURITY_FUNCTION",
+   "gates": 3
+  },
+  {
+   "fact_id": "CONTROLS_OTHER_DEVICES",
+   "gates": 2
+  },
+  {
+   "fact_id": "PUBLIC_INTERNET",
+   "gates": 2
+  },
+  {
+   "fact_id": "RESIDENTIAL_SETTING",
+   "gates": 2
+  },
+  {
+   "fact_id": "AUTH_OR_ACCESS_CONTROL",
+   "gates": 1
+  },
+  {
+   "fact_id": "CENTRAL_CONTROL_OF_SECURITY",
+   "gates": 1
+  },
+  {
+   "fact_id": "CORRELATES_SECURITY_DATA",
+   "gates": 1
+  },
+  {
+   "fact_id": "DETECTS_MALWARE",
+   "gates": 1
+  },
+  {
+   "fact_id": "DISCRETE_COMPONENTS_ENVELOPE",
+   "gates": 1
+  },
+  {
+   "fact_id": "ENERGY_CARRIER",
+   "gates": 1
+  },
+  {
+   "fact_id": "FILTERS_OR_DETECTS_INTRUSION",
+   "gates": 1
+  },
+  {
+   "fact_id": "FOR_CHILDREN_UNDER_14",
+   "gates": 1
+  },
+  {
+   "fact_id": "HARDWARE_ABSTRACTION",
+   "gates": 1
+  },
+  {
+   "fact_id": "HEALTH_MONITORING",
+   "gates": 1
+  },
+  {
+   "fact_id": "IS_SECURE_ELEMENT",
+   "gates": 1
+  },
+  {
+   "fact_id": "IS_TOY",
+   "gates": 1
+  },
+  {
+   "fact_id": "MANAGES_BOOT",
+   "gates": 1
+  },
+  {
+   "fact_id": "MANAGES_CERT_LIFECYCLE",
+   "gates": 1
+  },
+  {
+   "fact_id": "MANAGES_NETWORK_ELEMENTS",
+   "gates": 1
+  },
+  {
+   "fact_id": "METERING_COMMUNICATION",
+   "gates": 1
+  },
+  {
+   "fact_id": "NATURAL_LANGUAGE_ASSISTANT",
+   "gates": 1
+  },
+  {
+   "fact_id": "NETWORK_INTERFACE",
+   "gates": 1
+  },
+  {
+   "fact_id": "PROTECTS_PHYSICAL_SECURITY",
+   "gates": 1
+  },
+  {
+   "fact_id": "REMOTE_MANAGEMENT",
+   "gates": 1
+  },
+  {
+   "fact_id": "RENDERS_WEB_CONTENT",
+   "gates": 1
+  },
+  {
+   "fact_id": "ROUTES_OR_FORWARDS",
+   "gates": 1
+  },
+  {
+   "fact_id": "STORES_PASSWORDS",
+   "gates": 1
+  },
+  {
+   "fact_id": "TOY_INTERACTIVE_OR_TRACKING",
+   "gates": 1
+  },
+  {
+   "fact_id": "VIRTUALISATION",
+   "gates": 1
+  },
+  {
+   "fact_id": "VPN_TUNNEL",
+   "gates": 1
+  },
+  {
+   "fact_id": "WORN_ON_BODY",
+   "gates": 1
+  },
+  {
+   "fact_id": "CHANGE_AFFECTS_ANNEX_I",
+   "gates": 0
+  },
+  {
+   "fact_id": "CHANGE_AFFECTS_PURPOSE",
+   "gates": 0
+  },
+  {
+   "fact_id": "CHANGE_AFTER_PLACING",
+   "gates": 0
+  },
+  {
+   "fact_id": "COMMERCIAL_ACTIVITY",
+   "gates": 0
+  },
+  {
+   "fact_id": "CONNECTION_FORESEEABLE",
+   "gates": 0
+  },
+  {
+   "fact_id": "CORE_FUNCTION",
+   "gates": 0
+  },
+  {
+   "fact_id": "CORE_VS_COMPONENT",
+   "gates": 0
+  },
+  {
+   "fact_id": "DATA_CONNECTION",
+   "gates": 0
+  },
+  {
+   "fact_id": "EU_MARKET_ACTIVITY",
+   "gates": 0
+  },
+  {
+   "fact_id": "EXCLUSION_CLAIMED",
+   "gates": 0
+  },
+  {
+   "fact_id": "FIRST_PLACED_ON_MARKET",
+   "gates": 0
+  },
+  {
+   "fact_id": "MARKET_ROLE",
+   "gates": 0
+  },
+  {
+   "fact_id": "PRODUCT_BOUNDARY",
+   "gates": 0
+  }
+ ]
+}
