@@ -150,6 +150,16 @@ Not authority. Reinstated from v3 per DR-01.
 
 ## P2 — amendment check, repeat every release
 
+**Automated:** `python3 docs/research/tools/eurlex_watch.py check` queries the Publications Office
+Cellar SPARQL endpoint (no registration) for every act in `docs/research/tools/eurlex-watchlist.json`
+and diffs against `docs/research/out/eurlex-baseline.json`. It ranks each new link: HIGH if it amends,
+completes or is adopted under a provision our rules use (article-level, from Cellar's location
+annotations), MEDIUM for proposals, case law and newer consolidations than we hold, LOW and INFO
+otherwise; it names the cases to recheck and exits 1 on any HIGH or MEDIUM. It does not judge
+meaning: read and verify the text, record the outcome here, then run `eurlex_watch.py accept`.
+`fetch CELEX --out DIR` downloads a document for review. When a rule starts depending on a
+new act or article, add it to the watchlist. Baseline taken 2026-10-12, after the review recorded above.
+
 - Any **delegated act under Art. 7(3)/8** further specifying Annex III/IV categories since
   2025-12-21. Both reports warn the Annexes can be amended; AC-09 depends on catching this.
 - Whether B1 has acquired a consolidated version with amendments.

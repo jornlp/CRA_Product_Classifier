@@ -1,0 +1,46 @@
+{
+  "artifact": "eurlex-watchlist",
+  "purpose": "Acts our rules depend on, the provisions we use from each, and the cases that test them. eurlex_watch.py uses this to decide which changes can affect a rule.",
+  "notes": [
+    "articles/annexes: provisions our rules or cases rely on. A change located elsewhere in the act is reported as LOW. A change with no location is treated as touching everything.",
+    "cases: case IDs or section letters (e.g. 'section:L') from docs/validation/case-expectations.json.",
+    "article_cases: per-article refinement for the CRA, so a hit names the cases that test that article.",
+    "held_consolidated: the consolidated version we hold in docs/legal/sources. A newer consolidation is reported for fetching."
+  ],
+  "acts": [
+    {
+      "celex": "32024R2847", "label": "CRA", "source": "B1c",
+      "held_consolidated": "02024R2847-20241120",
+      "articles_from": "docs/research/out/wp1-provisions.json",
+      "annexes": ["III", "IV"],
+      "article_cases": {
+        "1": ["section:A"], "2": ["section:B", "EXC-09", "EXC-10"], "3": ["section:A", "section:C", "section:G", "section:M"],
+        "7": ["section:D", "section:E", "section:L"], "8": ["section:F", "section:L"], "12": ["section:K"],
+        "13": ["section:H", "ARCH-01", "COMP-01"], "14": ["section:H"], "32": ["section:K", "EHR-01"],
+        "69": ["section:H", "TYPE-01", "TYPE-02"], "71": ["section:H"],
+        "III": ["section:D", "section:E", "section:L"], "IV": ["section:F", "section:L"]
+      },
+      "cases": ["*"]
+    },
+    {"celex": "32025R2392", "label": "Impl. Reg. 2025/2392 (technical descriptions)", "source": "B2", "articles": ["*"], "cases": ["section:D", "section:E", "section:F", "section:L"]},
+    {"celex": "32025R1535", "label": "Del. Reg. 2025/1535 (Art. 2(5) exclusion)", "source": "B14", "articles": ["*"], "cases": ["EXC-08", "EXC-11", "EXC-12"]},
+    {"celex": "32013R0168", "label": "Reg. 168/2013 (L-category vehicles)", "source": "B19c", "held_consolidated": "02013R0168-20260802", "articles": ["2", "4"], "annexes": ["I"], "cases": ["EXC-11", "EXC-12"]},
+    {"celex": "32024R1689", "label": "AI Act", "source": "B11c", "held_consolidated": "02024R1689-20260727", "articles": ["2", "6", "42", "43", "113"], "annexes": ["I", "III"], "cases": ["section:K"]},
+    {"celex": "32014L0053", "label": "RED", "source": "B15", "articles": ["3"], "cases": ["RED-01", "RED-02"]},
+    {"celex": "32022R0030", "label": "RED Delegated Reg. 2022/30", "source": "B16", "articles": ["*"], "cases": ["RED-01", "RED-02"]},
+    {"celex": "32025R0327", "label": "EHDS", "source": "B18", "articles": ["104", "105"], "cases": ["EHR-01"]},
+    {"celex": "32023R1230", "label": "Machinery Reg.", "source": "B17c", "held_consolidated": "02023R1230-20260727", "articles": ["8"], "annexes": ["III"], "cases": ["OVL-01", "AI-05"]},
+    {"celex": "32019L0944", "label": "Electricity Dir. (smart metering definition)", "source": "MANIFEST P1", "articles": ["2"], "cases": ["WTR-01", "WTR-02", "WTR-03", "A4-01", "A4-02", "A4-04"]},
+    {"celex": "32017R0745", "label": "MDR", "source": "not held", "articles": ["1", "2"], "cases": ["EXC-01", "EXC-02", "EXC-03", "CAT-19N"]},
+    {"celex": "32017R0746", "label": "IVDR", "source": "not held", "articles": ["1", "2"], "cases": ["EXC-01"]},
+    {"celex": "32019R2144", "label": "Vehicle General Safety Reg.", "source": "not held", "articles": ["*"], "cases": ["EXC-04", "UG-06"]},
+    {"celex": "32018R1139", "label": "EASA Basic Reg.", "source": "not held", "articles": ["2"], "cases": ["EXC-07"]},
+    {"celex": "32025R2509", "label": "Toy Safety Reg.", "source": "B12", "articles": ["56", "59"], "cases": ["A3-05", "A3-06"]},
+    {"celex": "32009L0048", "label": "Toy Safety Dir. (until 31.7.2030)", "source": "B13c", "articles": ["*"], "cases": ["A3-05", "A3-06"]},
+    {"celex": "32019R0881", "label": "Cybersecurity Act", "source": "B8", "articles": ["*"], "cases": ["section:F"]},
+    {"celex": "32024R0482", "label": "EUCC implementing reg.", "source": "not held", "articles": ["*"], "cases": ["section:F", "section:L"]},
+    {"celex": "32022L2555", "label": "NIS 2", "source": "B9", "articles": ["3"], "annexes": ["I", "II"], "cases": ["A4-05"]},
+    {"celex": "32023R0988", "label": "GPSR (pointer)", "source": "not held", "articles": [], "cases": ["OVL-02"]},
+    {"celex": "32023R2854", "label": "Data Act (pointer)", "source": "not held", "articles": ["4", "5"], "cases": ["OVL-03"]}
+  ]
+}
