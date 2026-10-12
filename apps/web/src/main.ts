@@ -14,6 +14,7 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
+import { reportMarkdown } from "./report.js";
 
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
@@ -263,17 +264,21 @@ function resultHtml(): string {
         <label>Description <textarea id="rec-description" rows="2">${esc(state.record.description)}</textarea></label>
       </fieldset>
       <div class="nav"><button type="button" id="back" class="secondary">Back</button>
-      <button type="button" id="export">Download result (JSON)</button>
+      <button type="button" id="export-md">Download report (Markdown)</button>
+      <button type="button" id="export" class="secondary">Download data (JSON)</button>
       <button type="button" id="restart" class="secondary">Start again</button></div></section>`;
   return body;
 }
 
-function download() {
+function download(format: "md" | "json") {
   state.record.product = (document.getElementById("rec-product") as HTMLInputElement | null)?.value ?? state.record.product;
   state.record.description = (document.getElementById("rec-description") as HTMLTextAreaElement | null)?.value ?? state.record.description;
-  const { out } = assemble();
-  const blob = new Blob([JSON.stringify(out, null, 1)], { type: "application/json" });
-  const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: `${out.assessment_id}.json` });
+  const { out, res } = assemble();
+  const body = format === "json" ? JSON.stringify(out, null, 1)
+    : reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer });
+  const blob = new Blob([body], { type: format === "json" ? "application/json" : "text/markdown" });
+  const name = (state.record.product.trim().replace(/[^\w-]+/g, "-").slice(0, 40) || out.assessment_id) + (format === "json" ? ".json" : ".md");
+  const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name });
   a.click();
   URL.revokeObjectURL(a.href);
 }
@@ -291,7 +296,8 @@ function render() {
     app.innerHTML = header + resultHtml();
     document.getElementById("to-class")?.addEventListener("click", () => { state.mode = "full"; render(); });
     document.getElementById("to-full")?.addEventListener("click", () => { state.mode = "full"; render(); });
-    document.getElementById("export")?.addEventListener("click", download);
+    document.getElementById("export")?.addEventListener("click", () => download("json"));
+    document.getElementById("export-md")?.addEventListener("click", () => download("md"));
     document.getElementById("restart")?.addEventListener("click", () => { state = fresh(); render(); });
   } else {
     app.innerHTML = header + `<div class="layout">${questionHtml(cur.phase, cur.fid!)}</div>`;
