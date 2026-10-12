@@ -13,11 +13,14 @@
 <body>
   <main>
     <header class="top">
-      <h1>CRA Scope &amp; Classifier</h1>
+      <h1><button type="button" id="home" class="home" aria-label="Home: back to the start">CRA Scope &amp; Classifier</button></h1>
+      <div class="topnav">
+      <button type="button" id="home-btn" class="secondary small-btn">Home</button>
       <div class="theme" role="group" aria-label="Colour scheme">
         <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
         <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
         <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      </div>
       </div>
     </header>
     <div id="app" aria-live="polite"></div>

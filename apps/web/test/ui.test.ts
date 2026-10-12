@@ -30,7 +30,7 @@ async function answer(label: string | string[] | { date: string } | { text: stri
 }
 
 beforeAll(async () => {
-  document.body.innerHTML = `<main><div id="app"></div></main>`;
+  document.body.innerHTML = `<main><button id="home-btn"></button><div id="app"></div></main>`;
   vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => status })));
   window.scrollTo = () => {};
   await import("../src/main.ts");
@@ -58,11 +58,14 @@ describe("screens: pest-control camera", () => {
     expect(law.querySelector(".law-label")!.textContent).toBe("(1)");
     expect(law.querySelector("mark")!.textContent).toContain("product with digital elements");
   });
-  it("Back undoes an answer", async () => {
+  it("Back undoes an answer, and shows the earlier choice again", async () => {
     await answer("Hardware");
     expect(heading()).toContain("life on the EU market");
     (app().querySelector("#back") as HTMLButtonElement).click(); await tick();
     expect(heading()).toContain("hardware, software, or an online service");
+    const picked = [...app().querySelectorAll<HTMLInputElement>("label.opt input")].filter((i) => i.checked);
+    expect(picked.length).toBe(1);
+    expect(picked[0].closest("label")!.textContent).toContain("Hardware");
     await answer("Hardware");
   });
   it("Next without an answer does not move on", async () => {
@@ -78,8 +81,10 @@ describe("screens: pest-control camera", () => {
     expect(heading()).toContain("Tick all that apply");
     await answer([]);    // no exclusion
   });
-  it("asks what the product is mainly for, with binding, FAQ and worked examples", async () => {
+  it("asks what the product is mainly for, with the stem and its warning always visible", async () => {
     expect(heading()).toContain("mainly for");
+    expect(app().querySelector(".stem .stem-text")!.textContent).toBe("My product is mainly for …");
+    expect(app().querySelector(".stem .stem-warning")!.textContent).toContain("An app with a login is not mainly for checking who someone is");
     const groups = [...app().querySelectorAll(".group-name")].map((g) => g.textContent);
     expect(groups).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy"]);
     expect(app().querySelectorAll("details .group").length).toBe(0); // no group is hidden
@@ -114,6 +119,13 @@ describe("screens: pest-control camera", () => {
   it("offers optional record fields that are not part of the assessment", () => {
     expect(app().querySelector("#rec-product")).not.toBeNull();
     expect(app().textContent).toContain("plays no part in the assessment");
+  });
+  it("Home returns to the start screen and keeps the answers; choosing the check again resumes at the result", async () => {
+    document.getElementById("home-btn")!.click(); await tick();
+    expect(heading()).toBe("What do you want to know?");
+    expect(app().querySelector("#start-again")).not.toBeNull();
+    app().querySelector<HTMLButtonElement>('button.choice[data-mode="full"]')!.click(); await tick();
+    expect(app().textContent).toContain("The CRA applies to this product.");
   });
   it("result shows when obligations apply", () => {
     expect(app().textContent).toContain("cra art 14 reporting");

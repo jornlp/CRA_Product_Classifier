@@ -34,7 +34,8 @@ function lawHtml(l: Legal): string {
       ln.parts.map((p) => (p.mark ? `<mark>${esc(p.text)}</mark>` : esc(p.text))).join("")}</span></p>`).join("")}
   </article>`;
 }
-type Question = { question: string; kind: string; why_we_ask: string; legal_basis?: Legal[]; hint?: string; options?: Option[]; evidence?: string };
+type Question = { question: string; kind: string; why_we_ask: string; legal_basis?: Legal[]; hint?: string; options?: Option[]; evidence?: string;
+  stem?: string; stem_warning?: string };
 const QUESTIONS = (qs as { questions: Record<string, Question> }).questions;
 const CATEGORIES = (qs as { categories: Record<string, { title: string; class: string }> }).categories;
 type Example = { answer: string; kind: string; source: string; text: string; quote?: string; item?: string; category?: string; case?: string };
@@ -55,6 +56,8 @@ interface State {
   facts: Facts; tfacts: Record<string, unknown>; history: { phase: Phase; fid: string }[]; done: Set<string>; mode?: Mode;
   /** For the user's own records only; never used in the assessment. */
   record: { product: string; description: string };
+  /** Last answer given to each question, so going back shows it again. */
+  remembered: Record<string, unknown>;
 }
 const today = new Date().toISOString().slice(0, 10);
 let state: State = fresh();
@@ -62,12 +65,13 @@ let lawStatus: LawStatus | null = null;
 const RULESET = { scope: SCOPE, classification: RULES, timeline: TIMELINE };
 
 function fresh(): State {
-  return { facts: {}, tfacts: { ASSESSMENT_DATE: today }, history: [], done: new Set(), record: { product: "", description: "" } };
+  return { facts: {}, tfacts: { ASSESSMENT_DATE: today }, history: [], done: new Set(), record: { product: "", description: "" }, remembered: {} };
 }
 const current = () => nextStep(RULESET, state);
 
 function answer(fid: string, phase: Phase, value: unknown) {
   state.history.push({ phase, fid });
+  state.remembered[fid] = value;
   record(state, phase, fid, value);
   render();
 }
@@ -115,31 +119,37 @@ function guidanceHtml(fid: string): string {
     </aside>`;
 }
 
+const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
+
 function questionHtml(phase: Phase, fid: string): string {
   const q = QUESTIONS[fid];
+  const prev = state.remembered[fid];
+  const checked = (v: unknown) => (Array.isArray(prev) ? prev.some((p) => same(p, v)) : prev !== undefined && same(prev, v)) ? " checked" : "";
   const g = GUIDE[fid];
   const hint = q.hint ?? g?.hint;
   let control = "";
   if (q.kind === "multi-enum") {
-    const box = (o: Option, i: number) => `<label class="opt"><input type="checkbox" name="a" value="${i}"> <span>${esc(o.label)}</span></label>`;
+    const box = (o: Option, i: number) => `<label class="opt"><input type="checkbox" name="a" value="${i}"${checked(o.value)}> <span>${esc(o.label)}</span></label>`;
     const opts = q.options ?? [];
+    const stem = q.stem ? `<div class="stem"><p class="stem-text">${esc(q.stem)}</p>${q.stem_warning ? `<p class="stem-warning">${esc(q.stem_warning)}</p>` : ""}</div>` : "";
     if (opts.some((o) => o.group)) {
       // Grouped, and every group open: an unticked option counts as "no", so each must be seen.
       const groups = [...new Set(opts.map((o) => o.group!))];
-      control = groups.map((g) => `<div class="group"><p class="group-name">${esc(g)}</p>${
+      control = stem + groups.map((g) => `<div class="group"><p class="group-name">${esc(g)}</p>${
         opts.map((o, i) => (o.group === g ? box(o, i) : "")).join("")}</div>`).join("");
     } else {
-      control = opts.map(box).join("");
+      control = stem + opts.map(box).join("");
     }
     control += `<p class="muted small">Tick nothing if none of these applies.</p>`;
   } else if (q.kind === "date") {
-    control = `<label class="opt"><span>Date</span> <input type="date" name="d"></label>`
-      + (q.options ?? []).map((o, i) => `<label class="opt"><input type="radio" name="a" value="${i}"> <span>${esc(o.label)}</span></label>`).join("");
+    const dateVal = typeof prev === "string" && /^\d{4}-\d{2}-\d{2}$/.test(prev) ? prev : "";
+    control = `<label class="opt"><span>Date</span> <input type="date" name="d" value="${esc(dateVal)}"></label>`
+      + (q.options ?? []).map((o, i) => `<label class="opt"><input type="radio" name="a" value="${i}"${dateVal ? "" : checked(o.value)}> <span>${esc(o.label)}</span></label>`).join("");
   } else if (q.kind === "text") {
-    control = `<textarea name="t" rows="3"></textarea>`;
+    control = `<textarea name="t" rows="3">${esc(typeof prev === "string" ? prev : "")}</textarea>`;
   } else {
     control = (q.options ?? []).map((o, i) => `
-      <label class="opt"><input type="radio" name="a" value="${i}" required> <span>${esc(o.label)}</span></label>`).join("");
+      <label class="opt"><input type="radio" name="a" value="${i}" required${checked(o.value)}> <span>${esc(o.label)}</span></label>`).join("");
   }
   return `
     <form id="q" class="question">
@@ -187,6 +197,7 @@ function startHtml(): string {
       ${opt("full", "Full check", "Whether the CRA applies, the class, and when each obligation applies.")}
     </div>
     <p class="muted small">You can continue a partial check later without answering again.</p>
+    ${state.history.length ? `<div class="nav"><button type="button" id="start-again" class="secondary">Start again (clear my answers)</button></div>` : ""}
   </section>`;
 }
 
@@ -301,6 +312,7 @@ function render() {
     app.innerHTML = header + startHtml();
     app.querySelectorAll<HTMLButtonElement>("button.choice").forEach((b) =>
       b.addEventListener("click", () => { state.mode = b.dataset.mode as Mode; render(); }));
+    document.getElementById("start-again")?.addEventListener("click", () => { state = fresh(); render(); });
   } else if (cur.phase === "result") {
     app.innerHTML = header + resultHtml();
     document.getElementById("to-class")?.addEventListener("click", () => { state.mode = "full"; render(); });
@@ -323,6 +335,8 @@ function render() {
 }
 
 initTheme();
+// Home: back to the start screen, keeping the answers so a check can be continued.
+for (const id of ["home", "home-btn"]) document.getElementById(id)?.addEventListener("click", () => { state.mode = undefined; render(); });
 (async () => {
   try {
     const r = await fetch("./law-status.json", { cache: "no-store" });

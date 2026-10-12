@@ -25,7 +25,7 @@ it("reads as a report: title, scope, class, reasons with the official wording, a
   expect(md).toContain("“protect the physical security of consumers”");
   expect(md).toContain("_(you indicated the product is not mainly for this)_");
   expect(md).toContain("## When obligations apply");
-  expect(md).toContain("| Which of these is your product mainly for? Tick all that apply, or none. | None of these |");
+  expect(md).toContain("| What is your product mainly for? Tick all that apply, or none. | None of these |");
   expect(md).toContain("## Sources");
   expect(md.trim().endsWith("_Not legal advice._")).toBe(true);
 });

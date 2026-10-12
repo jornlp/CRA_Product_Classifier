@@ -2252,7 +2252,7 @@
   },
   {
    "fact_id": "PURPOSE_SCREEN",
-   "question": "Which of these is your product mainly for? Tick all that apply, or none.",
+   "question": "What is your product mainly for? Tick all that apply, or none.",
    "kind": "multi-enum",
    "values": [
     "IDENTITY",

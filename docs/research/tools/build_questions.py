@@ -56,29 +56,29 @@ LABELS = {
     "AVA_VAN_LEVEL": {"NONE": "No AVA_VAN level", "1": "AVA_VAN.1", "2": "AVA_VAN.2", "3": "AVA_VAN.3", "4": "AVA_VAN.4", "5": "AVA_VAN.5"},
     "METERED_COMMODITY": {"ELECTRICITY": "Electricity", "GAS": "Gas", "HEAT": "Heat", "WATER": "Water", "OTHER": "Something else", "NONE": "Not part of a metering system"},
     "PURPOSE_SCREEN": {
-        "IDENTITY": "Checking who someone is, or controlling access: login, identity management, access readers",
-        "PASSWORDS": "Storing or managing passwords",
-        "MALWARE": "Finding, removing or quarantining malicious software (antivirus)",
-        "VPN": "Setting up VPN connections",
-        "SIEM": "Collecting and correlating security events (SIEM)",
-        "PKI": "Issuing or managing digital certificates (PKI)",
-        "FIREWALL": "Firewall, or detecting or preventing intrusions",
-        "OS": "Being an operating system",
-        "BOOT": "Starting up a system: firmware or boot loader",
-        "BROWSER": "Showing web content: a browser, or a browser component for other apps",
-        "VIRTUALISATION": "Running virtual machines or containers",
-        "ROUTING": "Routing or switching network traffic, or connecting to the internet: router, modem, switch, access point",
-        "NETWORK_INTERFACE": "Connecting a device to a network: network card, adapter, virtual network interface",
-        "NETWORK_MGMT": "Managing or configuring other network equipment",
-        "CHIP": "Being a chip built into other products: processor, controller, ASIC, FPGA, secure element",
-        "SECURITY_BOX": "Protecting keys or sensitive data in tamper-protected hardware: hardware security module, payment terminal, tachograph",
-        "CRYPTO_FOR_OTHERS": "Cryptographic processing or key protection for other systems",
-        "HOME_SECURITY": "Protecting a home or the people in it: locks, alarms, security cameras, baby monitors",
-        "HOME_CONTROL": "Controlling security devices in a home, such as locks or alarms: a hub or home automation app",
-        "VOICE_ASSISTANT": "A voice or chat assistant for the home that answers requests and controls devices or services",
-        "TOY": "A toy for children under 14",
-        "WEARABLE": "Something worn on the body: watch, band, ring, clothing",
-        "METERING": "Linking an energy metering system to the utility or other outside parties (a gateway)"},
+        "IDENTITY": "checking who someone is, or controlling their access: identity management, access readers, authentication",
+        "PASSWORDS": "storing and managing passwords (a password manager)",
+        "MALWARE": "finding, removing or quarantining malicious software (antivirus)",
+        "VPN": "setting up VPN connections",
+        "SIEM": "collecting and correlating security events (SIEM)",
+        "PKI": "issuing or managing digital certificates (PKI)",
+        "FIREWALL": "filtering network traffic or detecting intrusions (firewall, IDS, IPS)",
+        "OS": "being an operating system",
+        "BOOT": "starting up a system (firmware, boot loader)",
+        "BROWSER": "showing web content (a browser, or a browser component for other apps)",
+        "VIRTUALISATION": "running virtual machines or containers",
+        "ROUTING": "routing or switching network traffic, or connecting to the internet (router, modem, switch, access point)",
+        "NETWORK_INTERFACE": "connecting a device to a network (network card, adapter, virtual network interface)",
+        "NETWORK_MGMT": "managing or configuring other network equipment",
+        "CHIP": "being a chip built into other products (processor, controller, ASIC, FPGA, secure element)",
+        "SECURITY_BOX": "protecting keys or sensitive data in tamper-protected hardware (hardware security module, payment terminal, tachograph)",
+        "CRYPTO_FOR_OTHERS": "cryptographic processing or key protection for other systems",
+        "HOME_SECURITY": "protecting a home or the people in it (locks, alarms, security cameras, baby monitors)",
+        "HOME_CONTROL": "controlling security devices in a home, such as locks or alarms (a hub or home automation app)",
+        "VOICE_ASSISTANT": "being a voice or chat assistant for the home that answers requests and controls devices or services",
+        "TOY": "being played with by children under 14 (a toy)",
+        "WEARABLE": "being worn on the body (watch, band, ring, clothing)",
+        "METERING": "linking an energy metering system to the utility or other outside parties (a gateway)"},
     "NETWORK_DEVICE_ROLE": {"ROUTER": "Routes traffic between networks (router)", "INTERNET_MODEM": "Modem for connecting to the internet",
                             "OTHER_MODEM": "Modem for something else, such as a point-to-point serial link",
                             "MANAGED_SWITCH_OR_BRIDGE": "Switch with management (managed or smart switch), or a bridge such as a wireless access point",
@@ -92,6 +92,10 @@ LABELS = {
                            "ANNEX_I_SECTION_A": "High-risk because of a product law in Annex I, Section A, of the AI Act",
                            "ANNEX_I_SECTION_B": "High-risk because of a product law in Annex I, Section B (for example machinery)"},
 }
+# A multi-select whose options continue a sentence; the stem stays visible above the options.
+STEMS = {"PURPOSE_SCREEN": ("My product is mainly for …",
+                            "Not for features it also has. An app with a login is not mainly for checking who someone is; "
+                            "a camera is not mainly for protecting a home unless that is what it is sold for.")}
 GROUPS = {"PURPOSE_SCREEN": [
     ("Security software", ["IDENTITY", "PASSWORDS", "MALWARE", "VPN", "SIEM", "PKI", "FIREWALL"]),
     ("System software", ["OS", "BOOT", "BROWSER", "VIRTUALISATION"]),
@@ -284,6 +288,8 @@ def build():
         if fid in ("UNITS_PLACED_ON_MARKET", "CHANGE_AT"):
             q["kind"] = "date"
             q["options"] = [NOT_SURE] if fid == "UNITS_PLACED_ON_MARKET" else [{"value": "", "label": "No change since placing"}, NOT_SURE]
+        if fid in STEMS:
+            q["stem"], q["stem_warning"] = STEMS[fid]
         if fid in GROUPS:
             grp = {o: g for g, opts in GROUPS[fid] for o in opts}
             missing = [o["value"] for o in q["options"] if o["value"] not in grp]

@@ -1052,7 +1052,7 @@
    ]
   },
   "PURPOSE_SCREEN": {
-   "question": "Which of these is your product mainly for? Tick all that apply, or none.",
+   "question": "What is your product mainly for? Tick all that apply, or none.",
    "kind": "multi-enum",
    "why_we_ask": "To say a product is not in a listed category, the tool has to rule that category out. This question rules out the ones that clearly do not fit, so you are only asked about the ones that might. Tick what your product is mainly for, not every function it has: a smart lock that has an app with a login is not mainly for storing passwords.",
    "evidence": "MANUFACTURER_ONLY",
@@ -1088,120 +1088,122 @@
    "options": [
     {
      "value": "IDENTITY",
-     "label": "Checking who someone is, or controlling access: login, identity management, access readers",
+     "label": "checking who someone is, or controlling their access: identity management, access readers, authentication",
      "group": "Security software"
     },
     {
      "value": "PASSWORDS",
-     "label": "Storing or managing passwords",
+     "label": "storing and managing passwords (a password manager)",
      "group": "Security software"
     },
     {
      "value": "MALWARE",
-     "label": "Finding, removing or quarantining malicious software (antivirus)",
+     "label": "finding, removing or quarantining malicious software (antivirus)",
      "group": "Security software"
     },
     {
      "value": "VPN",
-     "label": "Setting up VPN connections",
+     "label": "setting up VPN connections",
      "group": "Security software"
     },
     {
      "value": "SIEM",
-     "label": "Collecting and correlating security events (SIEM)",
+     "label": "collecting and correlating security events (SIEM)",
      "group": "Security software"
     },
     {
      "value": "PKI",
-     "label": "Issuing or managing digital certificates (PKI)",
+     "label": "issuing or managing digital certificates (PKI)",
      "group": "Security software"
     },
     {
      "value": "FIREWALL",
-     "label": "Firewall, or detecting or preventing intrusions",
+     "label": "filtering network traffic or detecting intrusions (firewall, IDS, IPS)",
      "group": "Security software"
     },
     {
      "value": "OS",
-     "label": "Being an operating system",
+     "label": "being an operating system",
      "group": "System software"
     },
     {
      "value": "BOOT",
-     "label": "Starting up a system: firmware or boot loader",
+     "label": "starting up a system (firmware, boot loader)",
      "group": "System software"
     },
     {
      "value": "BROWSER",
-     "label": "Showing web content: a browser, or a browser component for other apps",
+     "label": "showing web content (a browser, or a browser component for other apps)",
      "group": "System software"
     },
     {
      "value": "VIRTUALISATION",
-     "label": "Running virtual machines or containers",
+     "label": "running virtual machines or containers",
      "group": "System software"
     },
     {
      "value": "ROUTING",
-     "label": "Routing or switching network traffic, or connecting to the internet: router, modem, switch, access point",
+     "label": "routing or switching network traffic, or connecting to the internet (router, modem, switch, access point)",
      "group": "Network equipment"
     },
     {
      "value": "NETWORK_INTERFACE",
-     "label": "Connecting a device to a network: network card, adapter, virtual network interface",
+     "label": "connecting a device to a network (network card, adapter, virtual network interface)",
      "group": "Network equipment"
     },
     {
      "value": "NETWORK_MGMT",
-     "label": "Managing or configuring other network equipment",
+     "label": "managing or configuring other network equipment",
      "group": "Network equipment"
     },
     {
      "value": "CHIP",
-     "label": "Being a chip built into other products: processor, controller, ASIC, FPGA, secure element",
+     "label": "being a chip built into other products (processor, controller, ASIC, FPGA, secure element)",
      "group": "Chips and hardware security"
     },
     {
      "value": "SECURITY_BOX",
-     "label": "Protecting keys or sensitive data in tamper-protected hardware: hardware security module, payment terminal, tachograph",
+     "label": "protecting keys or sensitive data in tamper-protected hardware (hardware security module, payment terminal, tachograph)",
      "group": "Chips and hardware security"
     },
     {
      "value": "CRYPTO_FOR_OTHERS",
-     "label": "Cryptographic processing or key protection for other systems",
+     "label": "cryptographic processing or key protection for other systems",
      "group": "Chips and hardware security"
     },
     {
      "value": "HOME_SECURITY",
-     "label": "Protecting a home or the people in it: locks, alarms, security cameras, baby monitors",
+     "label": "protecting a home or the people in it (locks, alarms, security cameras, baby monitors)",
      "group": "Home and personal products"
     },
     {
      "value": "HOME_CONTROL",
-     "label": "Controlling security devices in a home, such as locks or alarms: a hub or home automation app",
+     "label": "controlling security devices in a home, such as locks or alarms (a hub or home automation app)",
      "group": "Home and personal products"
     },
     {
      "value": "VOICE_ASSISTANT",
-     "label": "A voice or chat assistant for the home that answers requests and controls devices or services",
+     "label": "being a voice or chat assistant for the home that answers requests and controls devices or services",
      "group": "Home and personal products"
     },
     {
      "value": "TOY",
-     "label": "A toy for children under 14",
+     "label": "being played with by children under 14 (a toy)",
      "group": "Home and personal products"
     },
     {
      "value": "WEARABLE",
-     "label": "Something worn on the body: watch, band, ring, clothing",
+     "label": "being worn on the body (watch, band, ring, clothing)",
      "group": "Home and personal products"
     },
     {
      "value": "METERING",
-     "label": "Linking an energy metering system to the utility or other outside parties (a gateway)",
+     "label": "linking an energy metering system to the utility or other outside parties (a gateway)",
      "group": "Energy"
     }
-   ]
+   ],
+   "stem": "My product is mainly for …",
+   "stem_warning": "Not for features it also has. An app with a login is not mainly for checking who someone is; a camera is not mainly for protecting a home unless that is what it is sold for."
   },
   "STORES_PASSWORDS_CORE": {
    "question": "Is storing passwords, on the device or on a server, what this product is for?",
