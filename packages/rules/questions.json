@@ -7,23 +7,66 @@
    "question": "Is what you place on the market hardware, software, or an online service?",
    "kind": "enum",
    "why_we_ask": "The CRA covers products: hardware and software, including a cloud backend that your product needs in order to work. A purely online service with no product behind it is not covered.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "3",
      "def": "1",
      "quote": "‘product with digital elements’ means a software or hardware product and its remote data processing solutions",
-     "ref": "CRA Art. 3(1)"
+     "ref": "CRA Art. 3(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(1)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘product with digital elements’ means a software or hardware product and its remote data processing solutions",
+          "mark": true
+         },
+         {
+          "text": ", including software or hardware components being placed on the market separately;"
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "CRA",
      "art": "3",
      "def": "2",
      "quote": "the absence of which would prevent the product with digital elements from performing one of its functions",
-     "ref": "CRA Art. 3(2)"
+     "ref": "CRA Art. 3(2)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(2)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘remote data processing’ means data processing at a distance for which the software is designed and developed by the manufacturer, or under the responsibility of the manufacturer, and "
+         },
+         {
+          "text": "the absence of which would prevent the product with digital elements from performing one of its functions",
+          "mark": true
+         },
+         {
+          "text": ";"
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "HARDWARE",
@@ -51,23 +94,66 @@
    "question": "Where is the product in its life on the EU market?",
    "kind": "enum",
    "why_we_ask": "The CRA applies to products supplied on the EU market. If you plan to sell in the EU, we answer for the moment the product goes on sale. Showing a prototype at a fair, or using something only inside your own company, is not supplying it.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "1",
      "quote": "This Regulation applies to products with digital elements made available on the market",
-     "ref": "CRA Art. 2(1)"
+     "ref": "CRA Art. 2(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation applies to products with digital elements made available on the market",
+          "mark": true
+         },
+         {
+          "text": ", the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection to a device or network."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "CRA",
      "art": "3",
      "def": "22",
      "quote": "the supply of a product with digital elements for distribution or use on the Union market in the course of a commercial activity",
-     "ref": "CRA Art. 3(22)"
+     "ref": "CRA Art. 3(22)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(22)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘making available on the market’ means "
+         },
+         {
+          "text": "the supply of a product with digital elements for distribution or use on the Union market in the course of a commercial activity",
+          "mark": true
+         },
+         {
+          "text": ", whether in return for payment or free of charge;"
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "MADE_AVAILABLE",
@@ -99,22 +185,71 @@
    "question": "Is it supplied in the course of a commercial activity, whether paid or free of charge?",
    "kind": "bool",
    "why_we_ask": "The CRA only covers products supplied as part of a business activity. Giving something away for free can still count: what matters is whether you earn from it in some way, for example by charging for support, for a platform around it, or by requiring users' personal data. Truly non-commercial projects, such as most volunteer open-source work, are outside.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "3",
      "def": "22",
      "quote": "in the course of a commercial activity, whether in return for payment or free of charge",
-     "ref": "CRA Art. 3(22)"
+     "ref": "CRA Art. 3(22)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(22)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘making available on the market’ means the supply of a product with digital elements for distribution or use on the Union market "
+         },
+         {
+          "text": "in the course of a commercial activity, whether in return for payment or free of charge",
+          "mark": true
+         },
+         {
+          "text": ";"
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "RECITAL",
      "n": "15",
      "quote": "Supply in the course of a commercial activity might be characterised not only by charging a price for a product with digital elements, but also by charging a price for technical support services where this does not serve only the recuperation of actual costs, by an intention to monetise",
-     "ref": "CRA recital 15"
+     "ref": "CRA recital 15",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Recitals",
+      "lines": [
+       {
+        "label": "(15)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "… "
+         },
+         {
+          "text": "Supply in the course of a commercial activity might be characterised not only by charging a price for a product with digital elements, but also by charging a price for technical support services where this does not serve only the recuperation of actual costs, by an intention to monetise",
+          "mark": true
+         },
+         {
+          "text": ", for instance by providing a software platform through which the manufacturer monetises other services, by requiring as a condition for use the processing of personal data for reasons other than exclusively for improving the security, compatibility or interoperability of the software, or by accepting donations exceeding the costs associated with the design, development and provision of a product with digital elements."
+         },
+         {
+          "text": " …"
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -134,23 +269,69 @@
    "question": "Does the product have any way to exchange data at all: network, radio, cable, USB, memory card, or a software interface?",
    "kind": "bool",
    "why_we_ask": "The CRA covers products that can exchange data with something else. If your product has no way at all to exchange data (no network, radio, cable, USB, card slot or software interface), it is outside the CRA.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "1",
      "quote": "includes a direct or indirect logical or physical data connection to a device or network",
-     "ref": "CRA Art. 2(1)"
+     "ref": "CRA Art. 2(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation applies to products with digital elements made available on the market, the intended purpose or reasonably foreseeable use of which "
+         },
+         {
+          "text": "includes a direct or indirect logical or physical data connection to a device or network",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "CRA",
      "art": "3",
      "def": "9",
      "quote": "including through electrical, optical or mechanical interfaces, wires or radio waves",
-     "ref": "CRA Art. 3(9)"
+     "ref": "CRA Art. 3(9)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(9)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘physical connection’ means a connection between electronic information systems or components implemented using physical means, "
+         },
+         {
+          "text": "including through electrical, optical or mechanical interfaces, wires or radio waves",
+          "mark": true
+         },
+         {
+          "text": ";"
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -170,23 +351,69 @@
    "question": "Is the product intended to exchange data with another device or network, directly or indirectly?",
    "kind": "bool",
    "why_we_ask": "What counts is whether exchanging data is part of how the product is meant to be used. It does not have to be the internet: a USB cable, Bluetooth, or a link through another device all count.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "1",
      "quote": "the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection to a device or network",
-     "ref": "CRA Art. 2(1)"
+     "ref": "CRA Art. 2(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation applies to products with digital elements made available on the market, "
+         },
+         {
+          "text": "the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection to a device or network",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "CRA",
      "art": "3",
      "def": "10",
      "quote": "a connection to a device or network, which does not take place directly but rather as part of a larger system",
-     "ref": "CRA Art. 3(10)"
+     "ref": "CRA Art. 3(10)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(10)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘indirect connection’ means "
+         },
+         {
+          "text": "a connection to a device or network, which does not take place directly but rather as part of a larger system",
+          "mark": true
+         },
+         {
+          "text": " that is directly connectable to such device or network;"
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -206,16 +433,39 @@
    "question": "If no connection is intended, could one reasonably be foreseen in use?",
    "kind": "bool",
    "why_we_ask": "Even if you do not intend a connection, the CRA applies if users can reasonably be expected to connect the product anyway, for example through a port you have not disabled.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "1",
      "quote": "the intended purpose or reasonably foreseeable use of which includes",
-     "ref": "CRA Art. 2(1)"
+     "ref": "CRA Art. 2(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation applies to products with digital elements made available on the market, "
+         },
+         {
+          "text": "the intended purpose or reasonably foreseeable use of which includes",
+          "mark": true
+         },
+         {
+          "text": " a direct or indirect logical or physical data connection to a device or network."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -235,23 +485,93 @@
    "question": "Do any of these apply to the product? Tick all that apply, or none.",
    "kind": "multi-enum",
    "why_we_ask": "Some products are covered by other EU laws instead of the CRA. Tick only what applies; each exclusion has its own condition, which the next question checks. If none applies, tick nothing.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "2",
      "quote": "This Regulation does not apply to products with digital elements to which the following Union legal acts apply",
-     "ref": "CRA Art. 2(2)"
+     "ref": "CRA Art. 2(2)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "2.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation does not apply to products with digital elements to which the following Union legal acts apply",
+          "mark": true
+         },
+         {
+          "text": ":"
+         }
+        ]
+       },
+       {
+        "label": "(a)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2017/745;"
+         }
+        ]
+       },
+       {
+        "label": "(b)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2017/746;"
+         }
+        ]
+       },
+       {
+        "label": "(c)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2019/2144."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "CRA",
      "art": "2",
      "para": "6",
      "quote": "This Regulation does not apply to spare parts",
-     "ref": "CRA Art. 2(6)"
+     "ref": "CRA Art. 2(6)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "6.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation does not apply to spare parts",
+          "mark": true
+         },
+         {
+          "text": " that are made available on the market to replace identical components in products with digital elements and that are manufactured according to the same specifications as the components that they are intended to replace."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "MEDICAL",
@@ -295,16 +615,67 @@
    "question": "Is it CE-marked as a medical or in vitro diagnostic device, or does it have a medical purpose without being certified as one?",
    "kind": "enum",
    "why_we_ask": "Medical devices are excluded only if the medical device rules actually apply to them. A product with a medical purpose that is not certified as a medical device raises a question about those rules, which this tool cannot answer.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "2",
      "quote": "(a) Regulation (EU) 2017/745; (b) Regulation (EU) 2017/746",
-     "ref": "CRA Art. 2(2)"
+     "ref": "CRA Art. 2(2)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "2.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation does not apply to products with digital elements to which the following Union legal acts apply:"
+         }
+        ]
+       },
+       {
+        "label": "(a)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2017/745;",
+          "mark": true
+         }
+        ]
+       },
+       {
+        "label": "(b)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2017/746",
+          "mark": true
+         },
+         {
+          "text": ";"
+         }
+        ]
+       },
+       {
+        "label": "(c)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2019/2144."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "CE_MARKED_MDR_IVDR",
@@ -328,16 +699,66 @@
    "question": "Is it a vehicle, system or component type-approved under Regulation (EU) 2019/2144?",
    "kind": "enum",
    "why_we_ask": "Vehicles and their parts are excluded where the vehicle type-approval rules cover them. Equipment used to develop or test vehicles is not covered by those rules, so it stays under the CRA.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "2",
      "quote": "(c) Regulation (EU) 2019/2144",
-     "ref": "CRA Art. 2(2)"
+     "ref": "CRA Art. 2(2)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "2.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation does not apply to products with digital elements to which the following Union legal acts apply:"
+         }
+        ]
+       },
+       {
+        "label": "(a)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2017/745;"
+         }
+        ]
+       },
+       {
+        "label": "(b)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2017/746;"
+         }
+        ]
+       },
+       {
+        "label": "(c)",
+        "level": 1,
+        "point": true,
+        "parts": [
+         {
+          "text": "Regulation (EU) 2019/2144",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "APPLIES",
@@ -361,16 +782,36 @@
    "question": "Is it certified in accordance with Regulation (EU) 2018/1139?",
    "kind": "enum",
    "why_we_ask": "Aviation products are excluded only if they are actually certified under the EU aviation rules. Being the kind of product those rules cover is not enough.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "3",
      "quote": "This Regulation does not apply to products with digital elements that have been certified in accordance with Regulation (EU) 2018/1139",
-     "ref": "CRA Art. 2(3)"
+     "ref": "CRA Art. 2(3)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "3.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation does not apply to products with digital elements that have been certified in accordance with Regulation (EU) 2018/1139",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": "CERTIFIED",
@@ -394,16 +835,36 @@
    "question": "Is it marine equipment within the scope of Directive 2014/90/EU?",
    "kind": "bool",
    "why_we_ask": "Marine equipment covered by the EU marine equipment rules is excluded from the CRA.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "4",
      "quote": "This Regulation does not apply to equipment that falls within the scope of Directive 2014/90/EU",
-     "ref": "CRA Art. 2(4)"
+     "ref": "CRA Art. 2(4)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "4.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation does not apply to equipment that falls within the scope of Directive 2014/90/EU",
+          "mark": true
+         },
+         {
+          "text": " of the European Parliament and of the Council (1)."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -423,15 +884,38 @@
    "question": "Is it a two- or three-wheel vehicle or quadricycle under Regulation (EU) No 168/2013, or a system or component for one? Is it an L1e vehicle designed to pedal?",
    "kind": "enum",
    "why_we_ask": "Mopeds, motorcycles, three-wheelers and quadricycles are excluded by a separate act. Light vehicles designed to be pedalled, such as speed pedelecs, are not excluded.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "B14",
      "cite": "Delegated Regulation (EU) 2025/1535, Art. 1",
      "quote": "However, that exclusion shall not apply to L1e category vehicles designed to pedal",
-     "ref": "Delegated Regulation (EU) 2025/1535, Art. 1"
+     "ref": "Delegated Regulation (EU) 2025/1535, Art. 1",
+     "text": {
+      "act": "Delegated Regulation (EU) 2025/1535",
+      "heading": "Article 1",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "The application of Regulation (EU) 2024/2847 shall be excluded for products with digital elements falling within the scope of Regulation (EU) No 168/2013. "
+         },
+         {
+          "text": "However, that exclusion shall not apply to L1e category vehicles designed to pedal",
+          "mark": true
+         },
+         {
+          "text": " referred to in Article 3, point (94)(b), of Regulation (EU) No 168/2013."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "L_CATEGORY",
@@ -455,16 +939,39 @@
    "question": "Is it a spare part replacing an identical component, made to the same specifications?",
    "kind": "enum",
    "why_we_ask": "A spare part that replaces an identical component, made to the same specifications, is excluded. A replacement with different or improved specifications is a product in its own right.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "6",
      "quote": "spare parts that are made available on the market to replace identical components in products with digital elements and that are manufactured according to the same specifications as the components that they are intended to replace",
-     "ref": "CRA Art. 2(6)"
+     "ref": "CRA Art. 2(6)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "6.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation does not apply to "
+         },
+         {
+          "text": "spare parts that are made available on the market to replace identical components in products with digital elements and that are manufactured according to the same specifications as the components that they are intended to replace",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "IDENTICAL_SAME_SPEC",
@@ -488,16 +995,39 @@
    "question": "Was it developed or modified exclusively for national security or defence, or specifically designed to process classified information?",
    "kind": "enum",
    "why_we_ask": "Products made only for national security or defence are excluded. A product also sold for civilian use is not. Because this exclusion takes a product out of the CRA, you will need documents that show it.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "2",
      "para": "7",
      "quote": "developed or modified exclusively for national security or defence purposes or to products specifically designed to process classified information",
-     "ref": "CRA Art. 2(7)"
+     "ref": "CRA Art. 2(7)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "7.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation does not apply to products with digital elements "
+         },
+         {
+          "text": "developed or modified exclusively for national security or defence purposes or to products specifically designed to process classified information",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": "EXCLUSIVELY_DEFENCE_OR_NATSEC",
@@ -525,37 +1055,100 @@
    "question": "In one sentence, what is this product for? What would a buyer say it does?",
    "kind": "text",
    "why_we_ask": "The class depends on what the product is for, not on every function it contains. A smartphone contains an operating system, but it is not an operating system. Describe your product as a buyer would; the following questions test what that means.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "7",
      "para": "1",
      "quote": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
-     "ref": "CRA Art. 7(1)"
+     "ref": "CRA Art. 7(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 7: Important products with digital elements",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
+          "mark": true
+         },
+         {
+          "text": " with digital elements and shall be subject to the conformity assessment procedures referred to in Article 32(2) and (3). The integration of a product with digital elements which has the core functionality of a product category set out in Annex III shall not in itself render the product in which it is integrated subject to the conformity assessment procedures referred to in Article 32(2) and (3)."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "CRA",
      "art": "7",
      "para": "1",
      "quote": "The integration of a product with digital elements which has the core functionality of a product category set out in Annex III shall not in itself render the product in which it is integrated subject to",
-     "ref": "CRA Art. 7(1)"
+     "ref": "CRA Art. 7(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 7: Important products with digital elements",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products with digital elements and shall be subject to the conformity assessment procedures referred to in Article 32(2) and (3). "
+         },
+         {
+          "text": "The integration of a product with digital elements which has the core functionality of a product category set out in Annex III shall not in itself render the product in which it is integrated subject to",
+          "mark": true
+         },
+         {
+          "text": " the conformity assessment procedures referred to in Article 32(2) and (3)."
+         }
+        ]
+       }
+      ]
+     }
     }
-   ],
-   "evidence": "DOCUMENT_LIKELY"
+   ]
   },
   "STORES_PASSWORDS_CORE": {
    "question": "Is storing passwords, on the device or on a server, what this product is for?",
    "kind": "bool",
    "why_we_ask": "Password managers are a listed category. What counts is whether storing passwords is the product's purpose, not whether it has a password field.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-I-03",
      "quote": "Products with digital elements that store passwords, locally on a device or on a remote server",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-03"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-03",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 3: Password managers",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that store passwords, locally on a device or on a remote server",
+          "mark": true
+         },
+         {
+          "text": ", including activities such as generation of passwords as well as password sharing and integration with local or third-party applications for usage of passwords. This category includes but is not limited to local password managers, password managers provided as browser extensions, enterprise password managers as well as hardware-based password managers."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "hint": "Generating, sharing or auto-filling passwords is typical but not required.",
    "options": [
     {
@@ -580,15 +1173,38 @@
    "question": "Is the product's purpose to protect the physical security of people in that setting?",
    "kind": "bool",
    "why_we_ask": "Smart home security products are a listed category. What counts is whether the product's purpose is protecting people's physical security, for example against intruders. Watching pests, energy use or comfort does not count, even with a camera.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-I-17",
      "quote": "protect the physical security of consumers in a residential setting",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 17: Smart home products with security functionalities, including smart door locks, security cameras, baby monitoring systems and alarm systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that "
+         },
+         {
+          "text": "protect the physical security of consumers in a residential setting",
+          "mark": true
+         },
+         {
+          "text": " and which can be controlled or managed remotely from other systems, as well as hardware and software that centrally control such products. This category includes but is not limited to smart door locking devices, baby monitoring systems, alarm systems and home security cameras."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -612,15 +1228,38 @@
    "question": "Is it intended for use in a home, as opposed to an office, industrial or public setting?",
    "kind": "bool",
    "why_we_ask": "The smart home categories cover products for people's homes. The same device sold for offices, shops or hotels falls outside them, though the CRA itself still applies.",
+   "evidence": "MIXED",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-I-17",
      "quote": "in a residential setting",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 17: Smart home products with security functionalities, including smart door locks, security cameras, baby monitoring systems and alarm systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that protect the physical security of consumers "
+         },
+         {
+          "text": "in a residential setting",
+          "mark": true
+         },
+         {
+          "text": " and which can be controlled or managed remotely from other systems, as well as hardware and software that centrally control such products. This category includes but is not limited to smart door locking devices, baby monitoring systems, alarm systems and home security cameras."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MIXED",
    "options": [
     {
      "value": true,
@@ -644,15 +1283,38 @@
    "question": "How can the product be controlled or managed from another system?",
    "kind": "enum",
    "why_we_ask": "Smart home security products are covered when another system can control or manage them, such as an app over the internet or a home hub. Control only from a phone standing next to the device is a case the law does not clearly settle.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-I-17",
      "quote": "can be controlled or managed remotely from other systems",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 17: Smart home products with security functionalities, including smart door locks, security cameras, baby monitoring systems and alarm systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that protect the physical security of consumers in a residential setting and which "
+         },
+         {
+          "text": "can be controlled or managed remotely from other systems",
+          "mark": true
+         },
+         {
+          "text": ", as well as hardware and software that centrally control such products. This category includes but is not limited to smart door locking devices, baby monitoring systems, alarm systems and home security cameras."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": "NETWORK_REMOTE",
@@ -676,15 +1338,38 @@
    "question": "Does it centrally control products that protect physical security, such as locks or alarms?",
    "kind": "bool",
    "why_we_ask": "A hub or app that controls locks, alarms or security cameras in the home is in the same category as those products, even if it protects nothing itself.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-I-17",
      "quote": "as well as hardware and software that centrally control such products",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-17",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 17: Smart home products with security functionalities, including smart door locks, security cameras, baby monitoring systems and alarm systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that protect the physical security of consumers in a residential setting and which can be controlled or managed remotely from other systems, "
+         },
+         {
+          "text": "as well as hardware and software that centrally control such products",
+          "mark": true
+         },
+         {
+          "text": ". This category includes but is not limited to smart door locking devices, baby monitoring systems, alarm systems and home security cameras."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -708,21 +1393,67 @@
    "question": "Is the product itself an integrated circuit? If so, which kind?",
    "kind": "enum",
    "why_we_ask": "Several categories cover chips: microprocessors, microcontrollers and custom chips with security functions, and secure elements. If your product is not itself a chip, all of them are ruled out with one answer.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-I-14",
      "quote": "integrated circuits that carry out central processing functions integrating memory",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 14: Microcontrollers with security-related functionalities",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that are "
+         },
+         {
+          "text": "integrated circuits that carry out central processing functions integrating memory",
+          "mark": true
+         },
+         {
+          "text": " allowing the microcontroller to be programmable and typically also other peripherals, including microcode and other low-level firmware. They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation, trusted execution environment, or other hardware-based protection mechanisms, that aim to secure other products, networks or services beyond the microcontroller itself, such as secure boot chain, virtualization or secure communication interfaces."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "B2",
      "cat": "III-I-13",
      "quote": "integrated circuits that carry out central processing functions relying on external memory and peripherals",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-13"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-13",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 13: Microprocessors with security-related functionalities",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that are "
+         },
+         {
+          "text": "integrated circuits that carry out central processing functions relying on external memory and peripherals",
+          "mark": true
+         },
+         {
+          "text": ", including microcode and other low-level firmware. They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation, trusted execution environment, or other hardware-based protection mechanisms, that aim to secure other products, networks or services beyond the microprocessor itself, such as secure boot chain, virtualization or secure communication interfaces."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": "MICROCONTROLLER",
@@ -754,15 +1485,38 @@
    "question": "Does the product provide any security-related functionality, such as encryption, authentication, secure key storage, random number generation or a trusted execution environment?",
    "kind": "bool",
    "why_we_ask": "Chips are only in these categories if they provide security functions such as encryption, authentication, secure key storage or random number generation.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-I-14",
      "quote": "They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 14: Microcontrollers with security-related functionalities",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that are integrated circuits that carry out central processing functions integrating memory allowing the microcontroller to be programmable and typically also other peripherals, including microcode and other low-level firmware. "
+         },
+         {
+          "text": "They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation",
+          "mark": true
+         },
+         {
+          "text": ", trusted execution environment, or other hardware-based protection mechanisms, that aim to secure other products, networks or services beyond the microcontroller itself, such as secure boot chain, virtualization or secure communication interfaces."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -782,15 +1536,38 @@
    "question": "Does that security functionality aim to secure OTHER products, networks or services — beyond the chip itself?",
    "kind": "bool",
    "why_we_ask": "A chip only counts if its security functions protect other products, networks or services, such as a secure boot chain for the device it sits in. Protecting only its own internal operation does not count.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-I-14",
      "quote": "that aim to secure other products, networks or services beyond the microcontroller itself",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-14",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 14: Microcontrollers with security-related functionalities",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that are integrated circuits that carry out central processing functions integrating memory allowing the microcontroller to be programmable and typically also other peripherals, including microcode and other low-level firmware. They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation, trusted execution environment, or other hardware-based protection mechanisms, "
+         },
+         {
+          "text": "that aim to secure other products, networks or services beyond the microcontroller itself",
+          "mark": true
+         },
+         {
+          "text": ", such as secure boot chain, virtualization or secure communication interfaces."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -810,21 +1587,64 @@
    "question": "Does it provide tamper evidence, tamper resistance or tamper response?",
    "kind": "bool",
    "why_we_ask": "Tamper evidence, resistance or response against physical attack moves a chip into a higher class, and is required for secure elements.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-II-04",
      "quote": "including tamper evidence, resistance or response",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-04"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-04",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class II, point 4: Tamper-resistant microcontrollers",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that are microcontrollers with security-related functionalities referred to in Table 'Class I', point 14, of this Annex, "
+         },
+         {
+          "text": "including tamper evidence, resistance or response",
+          "mark": true
+         },
+         {
+          "text": ", and which additionally are designed to provide protection of AVA_VAN level 2 or 3, as set out in the Common Criteria and the Common Evaluation Methodology."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "B2",
      "cat": "IV-03",
      "quote": "Secure elements are microcontrollers or microprocessors with security-related functionalities, including tamper evidence, resistance or response",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-03"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-03",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 3: Smartcards or similar devices, including secure elements",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Secure elements are microcontrollers or microprocessors with security-related functionalities, including tamper evidence, resistance or response",
+          "mark": true
+         },
+         {
+          "text": ". They typically store, process, or manage cryptographic operations or sensitive data, such as identity credentials or payment credentials. Secure elements are designed to provide protection of at least AVA_VAN.4, as set out in the Common Criteria or the Common Evaluation Methodology. They can be discrete silicon or can be integrated into systems on chip (SoC). Secure elements can incorporate an application environment or an operating system, and can include one or more applications. This category includes but is not limited to Trusted Platform Modules (TPMs) and embedded Universal Integrated Circuit Card (UICC). Smartcards or similar devices are secure elements integrated into a carrier material, such as plastic or wood, in the shape of a card, or secure elements integrated into carrier materials taking other shapes. This category includes but is not limited to identity and travel documents, qualified signature cards, replaceable UICCs, physical payment cards, physical access cards, digital tachograph cards or wrist bands with integrated payment secure elements."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -844,21 +1664,67 @@
    "question": "What AVA_VAN level is it designed to provide, under the Common Criteria?",
    "kind": "enum",
    "why_we_ask": "AVA_VAN is the Common Criteria rating for resistance to attack. Level 2 or 3 makes a tamper-resistant chip Class II; level 4 or higher makes it a secure element, which is critical. A certificate is good evidence; not having one proves nothing.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "III-II-04",
      "quote": "designed to provide protection of AVA_VAN level 2 or 3",
-     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-04"
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-04",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class II, point 4: Tamper-resistant microcontrollers",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that are microcontrollers with security-related functionalities referred to in Table 'Class I', point 14, of this Annex, including tamper evidence, resistance or response, and which additionally are "
+         },
+         {
+          "text": "designed to provide protection of AVA_VAN level 2 or 3",
+          "mark": true
+         },
+         {
+          "text": ", as set out in the Common Criteria and the Common Evaluation Methodology."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "B2",
      "cat": "IV-03",
      "quote": "Secure elements are designed to provide protection of at least AVA_VAN.4",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-03"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-03",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 3: Smartcards or similar devices, including secure elements",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Secure elements are microcontrollers or microprocessors with security-related functionalities, including tamper evidence, resistance or response. They typically store, process, or manage cryptographic operations or sensitive data, such as identity credentials or payment credentials. "
+         },
+         {
+          "text": "Secure elements are designed to provide protection of at least AVA_VAN.4",
+          "mark": true
+         },
+         {
+          "text": ", as set out in the Common Criteria or the Common Evaluation Methodology. They can be discrete silicon or can be integrated into systems on chip (SoC). Secure elements can incorporate an application environment or an operating system, and can include one or more applications. This category includes but is not limited to Trusted Platform Modules (TPMs) and embedded Universal Integrated Circuit Card (UICC). Smartcards or similar devices are secure elements integrated into a carrier material, such as plastic or wood, in the shape of a card, or secure elements integrated into carrier materials taking other shapes. This category includes but is not limited to identity and travel documents, qualified signature cards, replaceable UICCs, physical payment cards, physical access cards, digital tachograph cards or wrist bands with integrated payment secure elements."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": "NONE",
@@ -894,15 +1760,38 @@
    "question": "Does it control communication between metering components and authorised third parties such as utilities?",
    "kind": "bool",
    "why_we_ask": "Smart meter gateways are critical products. A gateway controls the communication between the metering system and outside parties such as the utility. A meter that only sends its own readings is not a gateway.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "IV-02",
      "quote": "control communication between components in or connected to smart metering systems",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 2: Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and other devices for advanced security purposes, including for secure cryptoprocessing",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Smart meter gateways are products with digital elements that "
+         },
+         {
+          "text": "control communication between components in or connected to smart metering systems",
+          "mark": true
+         },
+         {
+          "text": " as defined in Article 2(23) of Directive (EU) 2019/944, and authorised third parties, such as utility providers. Smart meter gateways collect, process and store meter or personal data, protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data, incorporate firewalling functionalities and provide the means to control other devices. This category includes but is not limited to smart meter gateways related to smart metering systems measuring electricity as defined in Article 2(23) of Directive (EU) 2019/944. It may also include smart meter gateways used in other smart metering systems measuring consumption of other sources of energy such as gas or heat, provided that the gateway meets this description."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -922,15 +1811,38 @@
    "question": "Does it collect, process and store meter data or personal data?",
    "kind": "bool",
    "why_we_ask": "A smart meter gateway collects, processes and stores meter data or personal data. This is one of five functions that together make a gateway.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "IV-02",
      "quote": "collect, process and store meter or personal data",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 2: Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and other devices for advanced security purposes, including for secure cryptoprocessing",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Smart meter gateways are products with digital elements that control communication between components in or connected to smart metering systems as defined in Article 2(23) of Directive (EU) 2019/944, and authorised third parties, such as utility providers. Smart meter gateways "
+         },
+         {
+          "text": "collect, process and store meter or personal data",
+          "mark": true
+         },
+         {
+          "text": ", protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data, incorporate firewalling functionalities and provide the means to control other devices. This category includes but is not limited to smart meter gateways related to smart metering systems measuring electricity as defined in Article 2(23) of Directive (EU) 2019/944. It may also include smart meter gateways used in other smart metering systems measuring consumption of other sources of energy such as gas or heat, provided that the gateway meets this description."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -950,15 +1862,38 @@
    "question": "Does it protect data and information flows by supporting specific cryptographic needs, such as encrypting and decrypting data for the metering system?",
    "kind": "bool",
    "why_we_ask": "A smart meter gateway protects the metering system's data by encrypting and decrypting it. Using encryption only for the device's own connection is not this function.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "IV-02",
      "quote": "protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 2: Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and other devices for advanced security purposes, including for secure cryptoprocessing",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Smart meter gateways are products with digital elements that control communication between components in or connected to smart metering systems as defined in Article 2(23) of Directive (EU) 2019/944, and authorised third parties, such as utility providers. Smart meter gateways collect, process and store meter or personal data, "
+         },
+         {
+          "text": "protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data",
+          "mark": true
+         },
+         {
+          "text": ", incorporate firewalling functionalities and provide the means to control other devices. This category includes but is not limited to smart meter gateways related to smart metering systems measuring electricity as defined in Article 2(23) of Directive (EU) 2019/944. It may also include smart meter gateways used in other smart metering systems measuring consumption of other sources of energy such as gas or heat, provided that the gateway meets this description."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "hint": "This is about protecting the metering system's data flows, not only the device's own connection.",
    "options": [
     {
@@ -979,15 +1914,38 @@
    "question": "Does it incorporate firewalling functionality for the metering system?",
    "kind": "bool",
    "why_we_ask": "A smart meter gateway filters and restricts traffic for the metering system, like a firewall.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "IV-02",
      "quote": "incorporate firewalling functionalities",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 2: Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and other devices for advanced security purposes, including for secure cryptoprocessing",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Smart meter gateways are products with digital elements that control communication between components in or connected to smart metering systems as defined in Article 2(23) of Directive (EU) 2019/944, and authorised third parties, such as utility providers. Smart meter gateways collect, process and store meter or personal data, protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data, "
+         },
+         {
+          "text": "incorporate firewalling functionalities",
+          "mark": true
+         },
+         {
+          "text": " and provide the means to control other devices. This category includes but is not limited to smart meter gateways related to smart metering systems measuring electricity as defined in Article 2(23) of Directive (EU) 2019/944. It may also include smart meter gateways used in other smart metering systems measuring consumption of other sources of energy such as gas or heat, provided that the gateway meets this description."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -1007,15 +1965,38 @@
    "question": "Does it provide the means to control other devices?",
    "kind": "bool",
    "why_we_ask": "A smart meter gateway lets the metering system control other devices. A device that only measures and reports controls nothing.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "IV-02",
      "quote": "provide the means to control other devices",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 2: Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and other devices for advanced security purposes, including for secure cryptoprocessing",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Smart meter gateways are products with digital elements that control communication between components in or connected to smart metering systems as defined in Article 2(23) of Directive (EU) 2019/944, and authorised third parties, such as utility providers. Smart meter gateways collect, process and store meter or personal data, protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data, incorporate firewalling functionalities and "
+         },
+         {
+          "text": "provide the means to control other devices",
+          "mark": true
+         },
+         {
+          "text": ". This category includes but is not limited to smart meter gateways related to smart metering systems measuring electricity as defined in Article 2(23) of Directive (EU) 2019/944. It may also include smart meter gateways used in other smart metering systems measuring consumption of other sources of energy such as gas or heat, provided that the gateway meets this description."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -1035,21 +2016,67 @@
    "question": "Which commodity does the metering system measure?",
    "kind": "enum",
    "why_we_ask": "The gateway category names electricity, and gas or heat as other sources of energy. Water is not a source of energy, so a water gateway falls outside that part of the category.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "IV-02",
      "quote": "smart meter gateways related to smart metering systems measuring electricity",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 2: Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and other devices for advanced security purposes, including for secure cryptoprocessing",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Smart meter gateways are products with digital elements that control communication between components in or connected to smart metering systems as defined in Article 2(23) of Directive (EU) 2019/944, and authorised third parties, such as utility providers. Smart meter gateways collect, process and store meter or personal data, protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data, incorporate firewalling functionalities and provide the means to control other devices. This category includes but is not limited to "
+         },
+         {
+          "text": "smart meter gateways related to smart metering systems measuring electricity",
+          "mark": true
+         },
+         {
+          "text": " as defined in Article 2(23) of Directive (EU) 2019/944. It may also include smart meter gateways used in other smart metering systems measuring consumption of other sources of energy such as gas or heat, provided that the gateway meets this description."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "B2",
      "cat": "IV-02",
      "quote": "measuring consumption of other sources of energy such as gas or heat",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 2: Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and other devices for advanced security purposes, including for secure cryptoprocessing",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Smart meter gateways are products with digital elements that control communication between components in or connected to smart metering systems as defined in Article 2(23) of Directive (EU) 2019/944, and authorised third parties, such as utility providers. Smart meter gateways collect, process and store meter or personal data, protect data and information flows by supporting specific cryptographic needs, such as encryption and decryption of data, incorporate firewalling functionalities and provide the means to control other devices. This category includes but is not limited to smart meter gateways related to smart metering systems measuring electricity as defined in Article 2(23) of Directive (EU) 2019/944. It may also include smart meter gateways used in other smart metering systems "
+         },
+         {
+          "text": "measuring consumption of other sources of energy such as gas or heat",
+          "mark": true
+         },
+         {
+          "text": ", provided that the gateway meets this description."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": "ELECTRICITY",
@@ -1081,15 +2108,35 @@
    "question": "Is the product's core functionality an advanced security purpose, such as secure cryptoprocessing, as opposed to a feature it also has?",
    "kind": "bool",
    "why_we_ask": "The critical category also mentions other devices for advanced security purposes, such as secure cryptoprocessing, but the EU has not described them further. If your product's purpose is of that kind, the tool will flag it for expert review instead of deciding.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "B2",
      "cat": "IV-02",
      "quote": "other devices for advanced security purposes, including for secure cryptoprocessing",
-     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02"
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-02",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Annex IV, critical products, point 2",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and "
+         },
+         {
+          "text": "other devices for advanced security purposes, including for secure cryptoprocessing",
+          "mark": true
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -1113,22 +2160,46 @@
    "question": "Is the product a high-risk AI system under the AI Act, and on which basis?",
    "kind": "enum",
    "why_we_ask": "If your product is also a high-risk AI system, the AI Act can change which conformity procedure you use. The dates differ by basis, and for machinery the AI Act was changed in 2026 in a way the CRA does not yet reflect.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "12",
      "para": "2",
      "quote": "the relevant conformity assessment procedure provided for in Article 43",
-     "ref": "CRA Art. 12(2)"
+     "ref": "CRA Art. 12(2)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 12: High-risk AI systems",
+      "lines": [
+       {
+        "label": "2.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "For the products with digital elements and cybersecurity requirements referred to in paragraph 1 of this Article, "
+         },
+         {
+          "text": "the relevant conformity assessment procedure provided for in Article 43",
+          "mark": true
+         },
+         {
+          "text": " of Regulation (EU) 2024/1689 shall apply. For the purposes of that assessment, notified bodies which are competent to control the conformity of the high-risk AI systems under Regulation (EU) 2024/1689 shall also be competent to control the conformity of high-risk AI systems which fall within the scope of this Regulation with the requirements set out in Annex I to this Regulation, provided that the compliance of those notified bodies with the requirements laid down in Article 39 of this Regulation has been assessed in the context of the notification procedure under Regulation (EU) 2024/1689."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "AIACT",
      "cite": "Regulation (EU) 2024/1689, Art. 2(2) and Art. 113(c), as amended by Regulation (EU) 2026/1744",
      "quote": "",
-     "ref": "Regulation (EU) 2024/1689, Art. 2(2) and Art. 113(c), as amended by Regulation (EU) 2026/1744"
+     "ref": "Regulation (EU) 2024/1689, Art. 2(2) and Art. 113(c), as amended by Regulation (EU) 2026/1744",
+     "text": null
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "NONE",
@@ -1156,15 +2227,16 @@
    "question": "Is the product classified as an electronic health record (EHR) system under Regulation (EU) 2025/327?",
    "kind": "bool",
    "why_we_ask": "Electronic health record systems follow the conformity procedure of the European Health Data Space rules instead of the CRA's own procedure, from 26 March 2027.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "EHDS",
      "cite": "Regulation (EU) 2025/327, Art. 104, inserting CRA Art. 32(5a)",
      "quote": "",
-     "ref": "Regulation (EU) 2025/327, Art. 104, inserting CRA Art. 32(5a)"
+     "ref": "Regulation (EU) 2025/327, Art. 104, inserting CRA Art. 32(5a)",
+     "text": null
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -1184,23 +2256,63 @@
    "question": "When are, or were, the units you are assessing placed on the market? Each unit counts on its own.",
    "kind": "date",
    "why_we_ask": "The CRA's main requirements apply to units placed on the market from 11 December 2027. Units placed earlier are exempt unless they are substantially changed later. This is about the units you are asking about, not when the model was launched: later units of an older model must comply.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "69",
      "para": "2",
      "quote": "Products with digital elements that have been placed on the market before 11 December 2027 shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification",
-     "ref": "CRA Art. 69(2)"
+     "ref": "CRA Art. 69(2)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 69: Transitional provisions",
+      "lines": [
+       {
+        "label": "2.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that have been placed on the market before 11 December 2027 shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
     },
     {
      "src": "CRA",
      "art": "71",
      "para": "2",
      "quote": "This Regulation shall apply from 11 December 2027",
-     "ref": "CRA Art. 71(2)"
+     "ref": "CRA Art. 71(2)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 71: Entry into force and application",
+      "lines": [
+       {
+        "label": "2.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation shall apply from 11 December 2027",
+          "mark": true
+         },
+         {
+          "text": ". However, Article 14 shall apply from 11 September 2026 and Chapter IV (Articles 35 to 51) shall apply from 11 June 2026. This Regulation shall be binding in its entirety and directly applicable in all Member States."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "hint": "If you are asking about both stock already shipped and future production, assess them separately.",
    "options": [
     {
@@ -1213,16 +2325,39 @@
    "question": "When was the change made, or when will it be?",
    "kind": "date",
    "why_we_ask": "Only changes made from 11 December 2027 can bring earlier units under the main requirements.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "69",
      "para": "2",
      "quote": "only if, from that date, those products are subject to a substantial modification",
-     "ref": "CRA Art. 69(2)"
+     "ref": "CRA Art. 69(2)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 69: Transitional provisions",
+      "lines": [
+       {
+        "label": "2.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that have been placed on the market before 11 December 2027 shall be subject to the requirements set out in this Regulation "
+         },
+         {
+          "text": "only if, from that date, those products are subject to a substantial modification",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "",
@@ -1238,16 +2373,39 @@
    "question": "Does that change modify the intended purpose for which the product was assessed?",
    "kind": "bool",
    "why_we_ask": "A change that alters what the product is meant to be used for is a substantial modification, and brings the product under the CRA's main requirements.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "3",
      "def": "30",
      "quote": "which results in a modification to the intended purpose for which the product with digital elements has been assessed",
-     "ref": "CRA Art. 3(30)"
+     "ref": "CRA Art. 3(30)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(30)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘substantial modification’ means a change to the product with digital elements following its placing on the market, which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I or "
+         },
+         {
+          "text": "which results in a modification to the intended purpose for which the product with digital elements has been assessed",
+          "mark": true
+         },
+         {
+          "text": ";"
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": true,
@@ -1267,16 +2425,39 @@
    "question": "Does the change affect how secure the product is — for example how it authenticates users, protects stored or transmitted data, or delivers updates?",
    "kind": "enum",
    "why_we_ask": "A change that affects whether the product still meets the CRA's security requirements is also a substantial modification. That needs a security assessment, which this tool cannot do, so a change of this kind is flagged for review.",
+   "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "3",
      "def": "30",
      "quote": "which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I",
-     "ref": "CRA Art. 3(30)"
+     "ref": "CRA Art. 3(30)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(30)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘substantial modification’ means a change to the product with digital elements following its placing on the market, "
+         },
+         {
+          "text": "which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I",
+          "mark": true
+         },
+         {
+          "text": " or which results in a modification to the intended purpose for which the product with digital elements has been assessed;"
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "MANUFACTURER_ONLY",
    "options": [
     {
      "value": "YES",
@@ -1296,15 +2477,38 @@
    "question": "Is the product radio equipment that (a) can communicate over the internet, directly or via other equipment; (b) is internet-connected or in the childcare, toy or wearable categories AND can process personal data, traffic data or location data; or (c) is internet-connected and lets the user transfer money, monetary value or virtual currency?",
    "kind": "enum",
    "why_we_ask": "Before the CRA applies, radio products may already have cybersecurity rules under the radio equipment rules: since 1 August 2025, for internet-connected radio equipment, equipment handling personal data, and equipment that can transfer money.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "B16",
      "cite": "Delegated Regulation (EU) 2022/30, Art. 1",
      "quote": "radio equipment that can communicate itself over the internet",
-     "ref": "Delegated Regulation (EU) 2022/30, Art. 1"
+     "ref": "Delegated Regulation (EU) 2022/30, Art. 1",
+     "text": {
+      "act": "Delegated Regulation (EU) 2022/30",
+      "heading": "Article 1",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "The essential requirement set out in Article 3(3), point (d), of Directive 2014/53/EU shall apply to any "
+         },
+         {
+          "text": "radio equipment that can communicate itself over the internet",
+          "mark": true
+         },
+         {
+          "text": ", whether it communicates directly or via any other equipment (‘internet-connected radio equipment’). (10) Regulation (EU) 2019/2144 of the European Parliament and of the Council of 27 November 2019 on type-approval requirements for motor vehicles and their trailers, and systems, components and separate technical units intended for such vehicles, as regards their general safety and the protection of vehicle occupants and vulnerable road users, amending Regulation (EU) 2018/858 of the European Parliament and of the Council and repealing Regulations (EC) No 78/2009, (EC) No 79/2009 and (EC) No 661/2009 of the European Parliament and of the Council and Commission Regulations (EC) No 631/2009, (EU) No 406/2010, (EU) No 672/2010, (EU) No 1003/2010, (EU) No 1005/2010, (EU) No 1008/2010, (EU) No 1009/2010, (EU) No 19/2011, (EU) No 109/2011, (EU) No 458/2011, (EU) No 65/2012, (EU) No 130/2012, (EU) No 347/2012, (EU) No 351/2012, (EU) No 1230/2012 and (EU) 2015/166 (OJ L 325, 16.12.2019, p. 1). (11) Regulation (EU) 2018/1139 of the European Parliament and of the Council of 4 July 2018 on common rules in the field of civil aviation and establishing a European Union Aviation Safety Agency, and amending Regulations (EC) No 2111/2005, (EC) No 1008/2008, (EU) No 996/2010, (EU) No 376/2014 and Directives 2014/30/EU and 2014/53/EU of the European Parliament and of the Council, and repealing Regulations (EC) No 552/2004 and (EC) No 216/2008 of the European Parliament and of the Council and Council Regulation (EEC) No 3922/91 (OJ L 212, 22.8.2018, p. 1). (12) Directive (EU) 2019/520 of the European Parliament and of the Council of 19 March 2019 on the interoperability of electronic road toll systems and facilitating cross-border exchange of information on the failure to pay road fees in the Union (OJ L 91, 29.3.2019, p. 45). (13) Regulation (EU) No 1025/2012 of the European Parliament and of the Council of 25 October 2012 on European standardisation, amending Council Directives 89/686/EEC and 93/15/EEC and Directives 94/9/EC, 94/25/EC, 95/16/EC, 97/23/EC, 98/34/EC, 2004/22/EC, 2007/23/EC, 2009/23/EC and 2009/105/EC of the European Parliament and of the Council and repealing Council Decision 87/95/EEC and Decision No 1673/2006/EC of the European Parliament and of the Council (OJ L 316, 14.11.2012, p. 12). L L Official Journal of the European Union 12.1.2022"
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": "YES",
@@ -1324,16 +2528,39 @@
    "question": "Does the product hold an EU type-examination certificate or approval decision covering cybersecurity under other EU harmonisation legislation? If so, when does it expire?",
    "kind": "bool+date",
    "why_we_ask": "If your product already holds an EU type-examination certificate covering cybersecurity under other EU product rules, that certificate stays valid for a while under the CRA.",
+   "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
      "src": "CRA",
      "art": "69",
      "para": "1",
      "quote": "shall remain valid until 11 June 2028, unless they expire before that date",
-     "ref": "CRA Art. 69(1)"
+     "ref": "CRA Art. 69(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 69: Transitional provisions",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "EU type-examination certificates and approval decisions issued regarding cybersecurity requirements for products with digital elements that are subject to Union harmonisation legislation other than this Regulation "
+         },
+         {
+          "text": "shall remain valid until 11 June 2028, unless they expire before that date",
+          "mark": true
+         },
+         {
+          "text": ", or unless otherwise specified in such other Union harmonisation legislation, in which case they shall remain valid as referred to in that legislation."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
-   "evidence": "DOCUMENT_LIKELY",
    "options": [
     {
      "value": true,
@@ -1359,7 +2586,30 @@
      "art": "69",
      "para": "1",
      "quote": "shall remain valid until 11 June 2028, unless they expire before that date",
-     "ref": "CRA Art. 69(1)"
+     "ref": "CRA Art. 69(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 69: Transitional provisions",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "EU type-examination certificates and approval decisions issued regarding cybersecurity requirements for products with digital elements that are subject to Union harmonisation legislation other than this Regulation "
+         },
+         {
+          "text": "shall remain valid until 11 June 2028, unless they expire before that date",
+          "mark": true
+         },
+         {
+          "text": ", or unless otherwise specified in such other Union harmonisation legislation, in which case they shall remain valid as referred to in that legislation."
+         }
+        ]
+       }
+      ]
+     }
     }
    ],
    "follows": "OTHER_LEGISLATION_CERTIFICATE"

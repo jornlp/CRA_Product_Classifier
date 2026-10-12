@@ -72,6 +72,123 @@ EXTRA = {
 }
 
 
+# ------------------------------------------------------------------ legal text, laid out like law
+
+import re
+_PROV = json.loads((ROOT / "docs/research/out/wp1-provisions.json").read_text())["articles"]
+_REC = json.loads((ROOT / "docs/legal/extracted/B1-recitals.json").read_text())["recitals"]
+_INV = {c["id"]: c for c in json.loads((ROOT / "docs/research/out/wp1-category-inventory.json").read_text())["categories"]}
+_OTHER = {k: json.loads((ROOT / f"docs/legal/extracted/{k}-text.json").read_text())["text"] for k in ("B14", "B16")}
+ACTS = {"CRA": "Regulation (EU) 2024/2847 (Cyber Resilience Act)", "RECITAL": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+        "B2": "Implementing Regulation (EU) 2025/2392", "B14": "Delegated Regulation (EU) 2025/1535",
+        "B16": "Delegated Regulation (EU) 2022/30"}
+CLASS_PART = {"III-I": "Annex, Class I, point", "III-II": "Annex, Class II, point", "IV": "Annex, critical products, point"}
+
+
+def _clean(t):
+    return re.sub(r"\s+", " ", re.sub(r"\u00ad\s*", "", t)).strip()
+
+
+def _find(text, quote):
+    """Locate the quote in the text, tolerating whitespace and straight/curly quote marks."""
+    pat = ""
+    for ch in _clean(quote):
+        pat += r"\s+" if ch == " " else "['\u2018\u2019]" if ch in "'\u2018\u2019" else '["\u201c\u201d]' if ch in '"\u201c\u201d' else re.escape(ch)
+    m = re.search(pat, text)
+    if not m:
+        raise SystemExit(f"legal quote not found in its source: {quote[:70]!r}")
+    return m.start(), m.end()
+
+
+def _lines(text, label, hl):
+    """Split a provision into its intro and its points: (a), (b), ... at level 1 and (i), (ii), ...
+    at level 2, each on its own line without repeating its letter, carrying the highlighted span
+    into whichever lines it covers."""
+    marks = list(re.finditer(r"(?:(?<=[:;,]) |(?<=[:;]))\((?P<p>[a-z]|[ivx]{1,4})\) ", text))
+    cuts = [0] + [m.start() for m in marks] + [len(text)]
+    out = []
+    for i in range(len(cuts) - 1):
+        a, b = cuts[i], cuts[i + 1]
+        raw = text[a:b]
+        lead = len(raw) - len(raw.lstrip())
+        m = re.match(r"\((?P<p>[a-z]|[ivx]{1,4})\) ", raw[lead:]) if i else None
+        off = a + lead + (m.end() if m else 0)
+        end = a + len(raw.rstrip())
+        lo, hi = max(hl[0], off), min(hl[1], end)
+        parts = ([{"text": text[off:lo]}, {"text": text[lo:hi], "mark": True}, {"text": text[hi:end]}]
+                 if lo < hi else [{"text": text[off:end]}])
+        level = 0
+        if m:
+            p = m.group("p")
+            prev = out[-1]["label"] if out else ""
+            # "(i)" after "(h)" is the letter i; after a level-1 point it opens roman sub-points.
+            level = 2 if (re.fullmatch(r"[ivx]+", p) and not (p == "i" and prev == "(h)")) and len(p) >= 1 and any(o["level"] == 1 for o in out) else 1
+        out.append({"label": f"({m.group('p')})" if m else (label if i == 0 else ""), "level": level, "point": bool(m),
+                    "parts": [x for x in parts if x["text"]]})
+    return out
+
+
+def _excerpt(text, hl):
+    """For long texts (recitals, whole acts): the sentences around the quote, with ellipses."""
+    starts = [0] + [m.end() for m in re.finditer(r"(?<=[.;:])\s+(?=[A-Z(])", text)]
+    a = max(s for s in starts if s <= hl[0])
+    b = min([e for e in [m.start() + 1 for m in re.finditer(r"[.;](?=\s|$)", text)] if e >= hl[1]] + [len(text)])
+    return a, b
+
+
+def layout(l):
+    src = l["src"]
+    if src in ("AIACT", "EHDS"):
+        return None  # citation only: no extracted text held
+    if src == "CRA":
+        art = _PROV[l["art"]]
+        text = _clean(art["definitions"][l["def"]] if "def" in l else art["paragraphs"][l["para"]])
+        heading = f"Article {l['art']}: {art['title']}"
+        label = f"({l['def']})" if "def" in l else f"{l['para']}."
+        a, b = _find(text, l["quote"])
+        return {"act": ACTS[src], "heading": heading, "lines": _lines(text, label, (a, b))}
+    if src == "B2":
+        c = _INV[l["cat"]]
+        part = next(v for k, v in sorted(CLASS_PART.items(), key=lambda x: -len(x[0])) if l["cat"].startswith(k + "-"))
+        point = f"{part} {int(l['cat'].split('-')[-1])}"
+        text = _clean(c["technical_description"])
+        try:
+            a, b = _find(text, l["quote"])
+        except SystemExit:  # the quote is in the category title (as listed in the CRA's Annex), not its description
+            title = _clean(c["title"])
+            a, b = _find(title, l["quote"])
+            return {"act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)", "heading": point.replace("Annex,", "Annex IV,") if l["cat"].startswith("IV") else point,
+                    "lines": _lines(title, "", (a, b))}
+        return {"act": ACTS[src], "heading": f"{point}: {c['title']}", "lines": _lines(text, "", (a, b))}
+    if src == "RECITAL":
+        text = _clean(_REC[l["n"]])
+        a, b = _find(text, l["quote"])
+        x, y = _excerpt(text, (a, b))
+        sub = text[x:y]
+        lines = _lines(sub, f"({l['n']})", (a - x, b - x))
+        if x > 0:
+            lines[0]["parts"].insert(0, {"text": "… "})
+        if y < len(text):
+            lines[-1]["parts"].append({"text": " …"})
+        return {"act": ACTS[src], "heading": "Recitals", "lines": lines}
+    text = _clean(_OTHER[src])
+    a, b = _find(text, l["quote"])
+    arts = [m for m in re.finditer(r"Article (\d+) ", text) if m.start() <= a]
+    start = arts[-1].end() if arts else 0
+    nxt = re.search(r" Article \d+ ", text[b:])
+    end = b + nxt.start() if nxt else len(text)
+    # Only the numbered paragraph that contains the quote.
+    paras = [start] + [start + m.start() + 1 for m in re.finditer(r" \d+\. (?=[A-Z])", text[start:end])] + [end]
+    ps = max(x for x in paras[:-1] if x <= a)
+    pe = min(x for x in paras[1:] if x > ps)
+    body = text[ps:pe].strip()
+    pm = re.match(r"(\d+)\. ", body)
+    label = f"{pm.group(1)}." if pm else ""
+    shift = ps + (len(text[ps:pe]) - len(text[ps:pe].lstrip())) + (pm.end() if pm else 0)
+    body = body[pm.end():] if pm else body
+    return {"act": ACTS[src], "heading": f"Article {arts[-1].group(1)}" if arts else "", "lines": _lines(body, label, (a - shift, b - shift))}
+
+
 def options(fid, kind, rules_values, rules_type=None):
     if rules_type == "bool" and fid not in CODE_FACTS:
         opts = YES_NO
@@ -112,7 +229,8 @@ def build():
             sys.exit(f"{fid} has no plain-language 'user_why' in the fact register (DoD item 5). Add it, with its legal_basis.")
         kind = f["kind"]
         q = {"question": f["question"], "kind": "date" if kind.startswith("date") else kind.split(":")[0],
-             "why_we_ask": f["user_why"], "legal_basis": f.get("legal_basis", []), "evidence": f["evidence_expectation"]}
+             "why_we_ask": f["user_why"], "evidence": f["evidence_expectation"],
+             "legal_basis": [{**l, "text": layout(l)} for l in f.get("legal_basis", [])]}
         if f.get("question_hint"):
             q["hint"] = f["question_hint"]
         if kind.startswith("date") and fid == "UNITS_PLACED_ON_MARKET":
@@ -126,7 +244,8 @@ def build():
             q["kind"] = "date"
             q["options"] = [NOT_SURE] if fid == "UNITS_PLACED_ON_MARKET" else [{"value": "", "label": "No change since placing"}, NOT_SURE]
         out[fid] = q
-    out.update(EXTRA)
+    for k, v in EXTRA.items():
+        out[k] = {**v, "legal_basis": [{**l, "text": layout(l)} for l in v.get("legal_basis", [])]}
     inv = json.loads((ROOT / "docs/research/out/wp1-category-inventory.json").read_text())
     cls_of = lambda cid: "CRITICAL" if cid.startswith("IV") else "IMPORTANT_II" if cid.startswith("III-II") else "IMPORTANT_I"
     cats = {c["id"]: {"title": c["title"], "class": cls_of(c["id"])} for c in inv["categories"]}

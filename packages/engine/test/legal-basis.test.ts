@@ -38,3 +38,16 @@ for (const [fid, q] of Object.entries<any>(read("packages/rules/questions.json")
     }
   });
 }
+
+describe("legal text layout (generated from the held texts)", () => {
+  for (const [fid, q] of Object.entries<any>(read("packages/rules/questions.json").questions)) {
+    for (const l of q.legal_basis ?? []) {
+      if (!l.quote) continue;
+      it(`${fid} · ${l.ref}: the marked words are exactly the quote`, () => {
+        const marked = l.text.lines.flatMap((ln: any) => ln.parts.filter((p: any) => p.mark).map((p: any) => p.text)).join(" ");
+        const strip = (s: string) => norm(s).replace(/['"‘’“”]/g, "").replace(/\((?:[a-z]|[ivx]+)\) /g, "").replace(/[;:,.]$/, "");
+        expect(strip(marked)).toBe(strip(l.quote));
+      });
+    }
+  }
+});

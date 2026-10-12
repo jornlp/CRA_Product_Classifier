@@ -18,7 +18,20 @@ const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
 const TIMELINE = tl as unknown as TimelineRules;
 type Option = { value: unknown; label: string };
-type Legal = { ref: string; quote?: string };
+type LawLine = { label: string; level: number; parts: { text: string; mark?: boolean }[] };
+type Legal = { ref: string; quote?: string; text?: { act: string; heading: string; lines: LawLine[] } | null };
+
+/** A provision laid out as law: act, centred article heading, numbered lines, decisive words marked. */
+function lawHtml(l: Legal): string {
+  if (!l.text) return `<p class="law-cite"><strong>${esc(l.ref)}</strong> <span class="muted">(citation only; this tool does not hold the text)</span></p>`;
+  const [num, ...title] = l.text.heading.split(": ");
+  return `<article class="law">
+    <p class="law-act">${esc(l.text.act)}</p>
+    ${l.text.heading ? `<p class="law-num">${esc(num)}</p>${title.length ? `<p class="law-title">${esc(title.join(": "))}</p>` : ""}` : ""}
+    ${l.text.lines.map((ln) => `<p class="law-line lvl${ln.level}"><span class="law-label">${esc(ln.label)}</span><span>${
+      ln.parts.map((p) => (p.mark ? `<mark>${esc(p.text)}</mark>` : esc(p.text))).join("")}</span></p>`).join("")}
+  </article>`;
+}
 type Question = { question: string; kind: string; why_we_ask: string; legal_basis?: Legal[]; hint?: string; options?: Option[]; evidence?: string };
 const QUESTIONS = (qs as { questions: Record<string, Question> }).questions;
 const CATEGORIES = (qs as { categories: Record<string, { title: string; class: string }> }).categories;
@@ -127,8 +140,8 @@ function questionHtml(phase: Phase, fid: string): string {
       </fieldset>
       <details class="why"><summary>Why we ask</summary>
         <p>${esc(q.why_we_ask)}</p>
-        ${q.legal_basis?.length ? `<details class="legal"><summary>Legal basis</summary><ul>${q.legal_basis.map((l) =>
-          `<li><strong>${esc(l.ref)}</strong>${l.quote ? `<blockquote>${esc(l.quote)}</blockquote>` : ""}</li>`).join("")}</ul></details>` : ""}
+        ${q.legal_basis?.length ? `<details class="legal"><summary>Legal basis</summary>${q.legal_basis.map(lawHtml).join("")}
+          <p class="muted small">Highlighted: the words that decide this question.</p></details>` : ""}
       </details>
       <div class="nav">
         ${state.history.length ? `<button type="button" id="back" class="secondary">Back</button>` : ""}

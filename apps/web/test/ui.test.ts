@@ -45,7 +45,12 @@ describe("screens: pest-control camera", () => {
   it("explains why in plain words, with the legal wording one level down", () => {
     const why = app().querySelector("details.why")!;
     expect(why.querySelector("p")!.textContent!.length).toBeGreaterThan(60);
-    expect(why.querySelector("details.legal blockquote")!.textContent).toContain("product with digital elements");
+    const law = why.querySelector("details.legal article.law")!;
+    expect(law.querySelector(".law-act")!.textContent).toContain("Regulation (EU) 2024/2847");
+    expect(law.querySelector(".law-num")!.textContent).toBe("Article 3");
+    expect(law.querySelector(".law-title")!.textContent).toBe("Definitions");
+    expect(law.querySelector(".law-label")!.textContent).toBe("(1)");
+    expect(law.querySelector("mark")!.textContent).toContain("product with digital elements");
   });
   it("Back undoes an answer", async () => {
     await answer("Hardware");

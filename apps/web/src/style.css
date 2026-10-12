@@ -1,8 +1,8 @@
 :root { --bg: #fbfaf7; --fg: #1d1d1b; --muted: #5d5b55; --line: #dedad2; --card: #ffffff; --accent: #1f5f8b;
-        --warn-bg: #fff4d6; --warn: #6e4a00; --bind: #e6f0f7; --faq: #eef3e8; --case: #f3eef7; --rec: #f7f1e3; --on-accent: #ffffff; }
+        --warn-bg: #fff4d6; --warn: #6e4a00; --bind: #e6f0f7; --faq: #eef3e8; --case: #f3eef7; --rec: #f7f1e3; --on-accent: #ffffff; --mark: #fff0b3; --paper: #fffdf8; }
 @media (prefers-color-scheme: dark) {
   :root { --bg: #171715; --fg: #ecebe6; --muted: #a8a59c; --line: #34332f; --card: #201f1d; --accent: #7fb6dc;
-          --warn-bg: #3a2f12; --warn: #f2c96b; --bind: #1d2c37; --faq: #222b1c; --case: #2a2230; --rec: #2f2a1c; --on-accent: #0e1a22; }
+          --warn-bg: #3a2f12; --warn: #f2c96b; --bind: #1d2c37; --faq: #222b1c; --case: #2a2230; --rec: #2f2a1c; --on-accent: #0e1a22; --mark: #5a4a12; --paper: #1b1a18; }
 }
 body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.55 system-ui, sans-serif; }
 main { max-width: 64rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
@@ -39,3 +39,15 @@ table { width: 100%; border-collapse: collapse; font-size: .92rem; }
 th, td { text-align: left; vertical-align: top; padding: .45rem .4rem; border-bottom: 1px solid var(--line); }
 q { font-style: italic; }
 .legal { margin-top: .5rem; } .legal ul { padding-left: 1.1rem; margin: .4rem 0; } .why p { margin: .5rem 0; }
+
+/* Legal text, laid out like the Official Journal / EUR-Lex */
+.law { font-family: Georgia, "Times New Roman", serif; background: var(--paper); border: 1px solid var(--line);
+       border-radius: 8px; padding: .9rem 1.1rem; margin: .6rem 0; font-size: .95rem; line-height: 1.55; }
+.law-act { font-variant: small-caps; letter-spacing: .03em; color: var(--muted); margin: 0 0 .5rem; font-size: .85rem; }
+.law-num { text-align: center; font-style: italic; margin: .2rem 0 0; }
+.law-title { text-align: center; font-weight: bold; margin: 0 0 .7rem; }
+.law-line { display: grid; grid-template-columns: 2.4rem 1fr; margin: .25rem 0; }
+.law-line.lvl1 { margin-left: 2.4rem; } .law-line.lvl2 { margin-left: 4.8rem; }
+.law-label { color: var(--muted); }
+.law mark { background: var(--mark); color: inherit; padding: 0 .1rem; border-radius: 2px; }
+.law-cite { margin: .6rem 0; }
