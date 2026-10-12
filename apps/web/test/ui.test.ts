@@ -38,6 +38,12 @@ beforeAll(async () => {
 });
 
 describe("screens: pest-control camera", () => {
+  it("first asks what the user wants to know, with three checks", async () => {
+    expect(heading()).toBe("What do you want to know?");
+    const choices = [...app().querySelectorAll<HTMLButtonElement>("button.choice")];
+    expect(choices.map((b) => b.dataset.mode)).toEqual(["scope", "class", "full"]);
+    choices[2].click(); await tick();
+  });
   it("starts with the product kind, and shows why we ask", () => {
     expect(heading()).toContain("hardware, software, or an online service");
     expect(app().querySelector("details.why")).not.toBeNull();

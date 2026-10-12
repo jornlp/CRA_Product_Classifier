@@ -1,0 +1,44 @@
+// @vitest-environment happy-dom
+/** The classification-only check: no scope or date questions, and the class is stated as conditional. */
+import { beforeAll, expect, it, vi } from "vitest";
+import { readFileSync } from "node:fs";
+
+const status = JSON.parse(readFileSync(`${process.cwd()}/apps/web/public/law-status.json`, "utf8"));
+const app = () => document.getElementById("app")!;
+const heading = () => app().querySelector("h2")?.textContent ?? "";
+const tick = () => new Promise((r) => setTimeout(r, 0));
+async function pick(labels: string[] | string) {
+  const form = app().querySelector("form")!;
+  for (const l of Array.isArray(labels) ? labels : [labels]) {
+    const opt = [...form.querySelectorAll("label.opt")].find((x) => x.textContent!.trim().startsWith(l));
+    if (!opt) throw new Error(`no option "${l}" on "${heading()}"`);
+    (opt.querySelector("input") as HTMLInputElement).checked = true;
+  }
+  form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })); await tick();
+}
+
+beforeAll(async () => {
+  document.body.innerHTML = `<main><div id="app"></div></main>`;
+  vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => status })));
+  window.scrollTo = () => {};
+  await import("../src/main.ts");
+  await tick(); await tick();
+});
+
+it("class only, smart lock: skips scope, ends with a conditional class and an offer to check scope", async () => {
+  app().querySelector<HTMLButtonElement>('button.choice[data-mode="class"]')!.click(); await tick();
+  expect(heading()).toContain("what is this product for");
+  await pick([]);                       // core function (free text, left empty)
+  await pick(["Protecting a home"]);    // purpose screen
+  await pick("Yes");                    // protects physical security
+  await pick("Yes");                    // residential
+  await pick("From another system");    // control path
+  await pick("No high-risk AI system");
+  await pick("No");                     // EHR
+  const text = app().textContent!;
+  expect(text).toContain("Not checked.");
+  expect(text).toContain("If the CRA applies: not determined. At least: Important, Class I");
+  expect(text).not.toContain("cra art 14 reporting");
+  app().querySelector<HTMLButtonElement>("#to-full")!.click(); await tick();
+  expect(heading()).toContain("hardware, software, or an online service");
+});

@@ -6,10 +6,20 @@
   <title>CRA Scope &amp; Classifier</title>
   <meta name="description" content="Informational check of Cyber Resilience Act scope and product class. Not legal advice.">
   
+  <script>
+    try { var t = localStorage.getItem("cra-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
 </head>
 <body>
   <main>
-    <h1>CRA Scope &amp; Classifier</h1>
+    <header class="top">
+      <h1>CRA Scope &amp; Classifier</h1>
+      <div class="theme" role="group" aria-label="Colour scheme">
+        <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
+        <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+        <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      </div>
+    </header>
     <div id="app" aria-live="polite"></div>
     <noscript>This tool runs in your browser and needs JavaScript. Nothing you enter leaves this page.</noscript>
   </main>

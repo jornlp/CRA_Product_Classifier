@@ -5,18 +5,28 @@
 import { scope, nextScopeQuestions, nextClassificationQuestions, nextTimelineQuestions } from "../../../packages/engine/src/index.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts } from "../../../packages/engine/src/index.js";
 
-export type Phase = "scope" | "core" | "class" | "routes" | "timeline" | "result";
-export interface FlowState { facts: Facts; tfacts: Record<string, unknown>; done: Set<string> }
+export type Phase = "start" | "scope" | "core" | "class" | "routes" | "timeline" | "result";
+/**
+ * What the user asked for (v4 3.1: three independently reported results).
+ *   scope: does the CRA apply?            class: which class, assuming it applies?
+ *   full:  scope, then class and dates.   A partial check can be continued without losing answers.
+ */
+export type Mode = "scope" | "class" | "full";
+export interface FlowState { facts: Facts; tfacts: Record<string, unknown>; done: Set<string>; mode?: Mode }
 export interface Rules { scope: ScopeRules; classification: ClassificationRules; timeline: TimelineRules }
 
 export function nextStep(r: Rules, st: FlowState): { phase: Phase; fid?: string } {
-  const sq = nextScopeQuestions(r.scope, st.facts)[0];
-  if (sq) return { phase: "scope", fid: sq };
-  if (scope(r.scope, st.facts).status !== "IN_SCOPE") return { phase: "result" };
+  if (!st.mode) return { phase: "start" };
+  if (st.mode !== "class") {
+    const sq = nextScopeQuestions(r.scope, st.facts)[0];
+    if (sq) return { phase: "scope", fid: sq };
+    if (st.mode === "scope" || scope(r.scope, st.facts).status !== "IN_SCOPE") return { phase: "result" };
+  }
   if (!st.done.has("CORE_FUNCTION")) return { phase: "core", fid: "CORE_FUNCTION" };
   const cq = nextClassificationQuestions(r.classification, st.facts)[0];
   if (cq) return { phase: "class", fid: cq };
   for (const fid of ["HIGH_RISK_AI_BASIS", "EHR_SYSTEM"]) if (!(fid in st.facts)) return { phase: "routes", fid };
+  if (st.mode === "class") return { phase: "result" };  // dates come with the full check
   const tq = nextTimelineQuestions(r.timeline, st.tfacts)[0];
   if (tq) return { phase: "timeline", fid: tq };
   return { phase: "result" };

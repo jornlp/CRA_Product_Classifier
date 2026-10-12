@@ -10,9 +10,10 @@ import qs from "../../../packages/rules/questions.json";
 import guidance from "../../../packages/rules/guidance.json";
 import { classify, route, toOutput, scope, timeline, validityWarnings } from "../../../packages/engine/src/index.js";
 import { nextStep, record, unrecord } from "./flow.js";
-import type { Phase } from "./flow.js";
+import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
+import { initTheme } from "./theme.js";
 
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
@@ -49,7 +50,7 @@ const SOURCE_LABEL: Record<string, string> = {
 
 // ------------------------------------------------------------------ state
 
-interface State { facts: Facts; tfacts: Record<string, unknown>; core: string; history: { phase: Phase; fid: string }[]; done: Set<string> }
+interface State { facts: Facts; tfacts: Record<string, unknown>; core: string; history: { phase: Phase; fid: string }[]; done: Set<string>; mode?: Mode }
 const today = new Date().toISOString().slice(0, 10);
 let state: State = fresh();
 let lawStatus: LawStatus | null = null;
@@ -69,7 +70,7 @@ function answer(fid: string, phase: Phase, value: unknown) {
 
 function back() {
   const last = state.history.pop();
-  if (!last) return;
+  if (!last) { state.mode = undefined; render(); return; }
   if (last.phase === "core") state.core = "";
   unrecord(state, last.phase, last.fid);
   render();
@@ -80,7 +81,7 @@ function back() {
 const app = document.getElementById("app")!;
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 const PHASE_LABEL: Record<Phase, string> = {
-  scope: "1 · Does the CRA apply?", core: "2 · What is the product for?", class: "3 · Which class?",
+  start: "", scope: "1 · Does the CRA apply?", core: "2 · What is the product for?", class: "3 · Which class?",
   routes: "4 · Overlaps with other laws", timeline: "5 · When do obligations apply?", result: "Result",
 };
 
@@ -165,6 +166,20 @@ function readAnswer(form: HTMLFormElement, fid: string): { ok: boolean; value?: 
   return i === null ? { ok: false } : { ok: true, value: q.options![Number(i)].value };
 }
 
+function startHtml(): string {
+  const opt = (mode: Mode, title: string, text: string) =>
+    `<button type="button" class="choice" data-mode="${mode}"><strong>${esc(title)}</strong><span>${esc(text)}</span></button>`;
+  return `<section class="start">
+    <h2>What do you want to know?</h2>
+    <div class="choices">
+      ${opt("scope", "Does the CRA apply to my product?", "About six questions: what you supply, to whom, and whether it connects to anything.")}
+      ${opt("class", "Which class is my product?", "For when you already know the CRA applies. The result is stated as \u201cif the CRA applies\u201d.")}
+      ${opt("full", "Full check", "Whether the CRA applies, the class, and when each obligation applies.")}
+    </div>
+    <p class="muted small">You can continue a partial check later without answering again.</p>
+  </section>`;
+}
+
 // ------------------------------------------------------------------ result
 
 function assemble() {
@@ -174,28 +189,37 @@ function assemble() {
   const vu = validUntil(RULES.law_as_of);
   const warnings = validityWarnings({ assessedAt: today, validUntil: vu, lawAsOf: RULES.law_as_of, lawStatus,
     citedSources: Object.keys(RULES.sources), rules: RULES.categories.map((c) => c.rule_id) });
+  const mode = state.mode ?? "full";
+  const scopeOut = mode === "class" ? { status: "UNRESOLVED", reasons: ["Not assessed: the user chose a classification-only check."] } : s;
   const out = toOutput(RULES, state.facts, res, route(RULES, state.facts, res), {
     assessmentId: `cra-${today}`, assessedAt: today, validUntil: vu, validityWarnings: warnings,
-    scope: s, timeline: s.status === "IN_SCOPE" ? t.timeline : [],
+    scope: scopeOut, timeline: mode === "full" && s.status === "IN_SCOPE" ? t.timeline : [],
   });
-  return { out: { ...out, core_function: state.core, timeline_facts: state.tfacts }, s, res };
+  // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
+  if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
+  return { out: { ...out, check: mode, core_function: state.core, timeline_facts: state.tfacts }, s, res };
 }
 
 function resultHtml(): string {
   const { out, s, res } = assemble();
   const c = out.classification;
+  const mode = state.mode ?? "full";
   const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${w.kind === "PAST_END_DATE" ? "Outdated" : "Law changed"}:</strong> ${esc(w.detail)}</div>`).join("");
   const scopeText: Record<string, string> = {
     IN_SCOPE: "The CRA applies to this product.", OUT_OF_SCOPE: "The CRA does not apply to this product.",
     UNRESOLVED: "Whether the CRA applies is not determined yet.",
   };
-  let body = `
-    ${warn}
-    <section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeText[s.status])}</p>
-      <ul>${s.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul></section>`;
-  if (s.status === "IN_SCOPE") {
+  let body = warn + (mode === "class"
+    ? `<section class="box"><h2>Scope</h2><p class="verdict">Not checked.</p>
+        <p>The class below assumes the CRA applies to your product. Check that before relying on it.</p>
+        <div class="nav"><button type="button" id="to-full">Check whether the CRA applies</button></div></section>`
+    : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeText[s.status])}</p>
+      <ul>${s.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
+      ${mode === "scope" && s.status === "IN_SCOPE" ? `<div class="nav"><button type="button" id="to-class">Continue: which class?</button></div>` : ""}</section>`);
+  if ((mode === "full" && s.status === "IN_SCOPE") || mode === "class") {
     const cat = (id: string) => `${esc(CATEGORIES[id]?.title ?? id)} <span class="muted">(${esc(id)})</span>`;
-    const status = c.status === "UNRESOLVED" ? `Not determined. At least: ${CLASS_LABEL[c.class_floor]}` : CLASS_LABEL[c.status];
+    const stated = c.status === "UNRESOLVED" ? `Not determined. At least: ${CLASS_LABEL[c.class_floor]}` : CLASS_LABEL[c.status];
+    const status = mode === "class" ? `If the CRA applies: ${stated.charAt(0).toLowerCase()}${stated.slice(1)}` : stated;
     const blockingCov = c.blocking.filter((b) => b.value === "NOT_COVERED").length;
     const blockingOther = c.blocking.filter((b) => b.value !== "NOT_COVERED");
     const reasonText: Record<string, string> = {
@@ -218,13 +242,15 @@ function resultHtml(): string {
       body += `<section class="box"><h2>Conformity route</h2><ul>${out.conformity_routes.map((r) =>
         `<li>${esc(r.route)}${r.open_ref ? ` <span class="muted">(${esc(r.open_ref)})</span>` : ""}</li>`).join("")}</ul></section>`;
     }
-    const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
-    body += `
-    <section class="box"><h2>When</h2><table><thead><tr><th>Obligation</th><th>Status</th><th>Basis</th></tr></thead><tbody>
-      ${out.timeline.map((i) => `<tr><td>${esc(i.obligation.replace(/_/g, " ").toLowerCase())}<br><span class="muted small">${esc(i.provision)}</span></td>
-        <td>${esc(tlLabel[i.status])}${i.applies_from ? `<br><span class="muted small">from ${esc(i.applies_from)}</span>` : ""}</td>
-        <td>${esc(i.basis)}${i.open_questions ? `<br><span class="muted small">${esc(i.open_questions.join(" "))}</span>` : ""}</td></tr>`).join("")}
-    </tbody></table></section>`;
+    if (mode !== "class") {
+      const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
+      body += `
+      <section class="box"><h2>When</h2><table><thead><tr><th>Obligation</th><th>Status</th><th>Basis</th></tr></thead><tbody>
+        ${out.timeline.map((i) => `<tr><td>${esc(i.obligation.replace(/_/g, " ").toLowerCase())}<br><span class="muted small">${esc(i.provision)}</span></td>
+          <td>${esc(tlLabel[i.status])}${i.applies_from ? `<br><span class="muted small">from ${esc(i.applies_from)}</span>` : ""}</td>
+          <td>${esc(i.basis)}${i.open_questions ? `<br><span class="muted small">${esc(i.open_questions.join(" "))}</span>` : ""}</td></tr>`).join("")}
+      </tbody></table></section>`;
+    }
   }
   body += `
     <section class="box"><p>Rules reflect the law as of <strong>${esc(out.law_as_of)}</strong>; this version is valid until ${esc(out.valid_until)}.
@@ -249,8 +275,14 @@ function download() {
 function render() {
   const cur = current();
   const header = `<p class="muted pilot">Pilot. Rules for ${RULES.categories.length} of 26 categories. Informational only; not legal advice.</p>`;
-  if (cur.phase === "result") {
+  if (cur.phase === "start") {
+    app.innerHTML = header + startHtml();
+    app.querySelectorAll<HTMLButtonElement>("button.choice").forEach((b) =>
+      b.addEventListener("click", () => { state.mode = b.dataset.mode as Mode; render(); }));
+  } else if (cur.phase === "result") {
     app.innerHTML = header + resultHtml();
+    document.getElementById("to-class")?.addEventListener("click", () => { state.mode = "full"; render(); });
+    document.getElementById("to-full")?.addEventListener("click", () => { state.mode = "full"; render(); });
     document.getElementById("export")?.addEventListener("click", download);
     document.getElementById("restart")?.addEventListener("click", () => { state = fresh(); render(); });
   } else {
@@ -267,6 +299,7 @@ function render() {
   window.scrollTo(0, 0);
 }
 
+initTheme();
 (async () => {
   try {
     const r = await fetch("./law-status.json", { cache: "no-store" });

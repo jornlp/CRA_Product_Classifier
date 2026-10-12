@@ -12,8 +12,9 @@ const read = (p: string) => JSON.parse(readFileSync(new URL(`../../../${p}`, imp
 const R: Rules = { scope: read("packages/rules/scope.json"), classification: read("packages/rules/classification.json"), timeline: read("packages/rules/timeline.json") };
 
 /** Walk the flow, answering from `answers`; anything not listed is answered "not sure". */
-function walk(answers: Record<string, unknown>, date = "2026-10-12") {
-  const st: FlowState = { facts: {}, tfacts: { ASSESSMENT_DATE: date }, done: new Set() };
+function walk(answers: Record<string, unknown>, date = "2026-10-12", mode: FlowState["mode"] = "full", start?: FlowState) {
+  const st: FlowState = start ?? { facts: {}, tfacts: { ASSESSMENT_DATE: date }, done: new Set(), mode };
+  st.mode = mode;
   const asked: string[] = [];
   for (let i = 0; i < 60; i++) {
     const s = nextStep(R, st);
@@ -88,4 +89,36 @@ describe("smart door lock: ticks home security on the purpose screen", () => {
 it("prints the question sequences (for review)", () => {
   const rat = walk({ ...inScope, PROTECTS_PHYSICAL_SECURITY: false, CENTRAL_CONTROL_OF_SECURITY: false, METERING_COMMUNICATION: false, ADVANCED_SECURITY_CORE: false });
   console.log("RAT-01 asked:", rat.asked.join(" → "));
+});
+
+describe("check modes (scope only, class only, full) and continuing", () => {
+  const lock = { ...inScope, PURPOSE_SCREEN: ["HOME_SECURITY"], PROTECTS_PHYSICAL_SECURITY: true, RESIDENTIAL_SETTING: true, CONTROL_PATH: "NETWORK_REMOTE" };
+  it("without a choice, the flow starts at the start screen", () =>
+    expect(nextStep(R, { facts: {}, tfacts: {}, done: new Set() }).phase).toBe("start"));
+  it("scope only: asks scope questions and stops", () => {
+    const r = walk(lock, "2026-10-12", "scope");
+    expect(r.scope.status).toBe("IN_SCOPE");
+    expect(r.asked).not.toContain("CORE_FUNCTION");
+    expect(r.asked).not.toContain("UNITS_PLACED_ON_MARKET");
+  });
+  it("class only: asks no scope and no date questions", () => {
+    const r = walk(lock, "2026-10-12", "class");
+    for (const q of ["PRODUCT_KIND", "MARKET_STATUS", "EXCLUSION_SCREEN", "UNITS_PLACED_ON_MARKET"]) expect(r.asked).not.toContain(q);
+    expect(r.asked[0]).toBe("CORE_FUNCTION");
+    expect(r.cls.categories["III-I-17"].value).toBe("TRUE");
+  });
+  it("continuing from scope to the full check asks nothing twice", () => {
+    const first = walk(lock, "2026-10-12", "scope");
+    const second = walk(lock, "2026-10-12", "full", first.st);
+    expect(second.asked.filter((q) => first.asked.includes(q))).toEqual([]);
+    expect(second.asked[0]).toBe("CORE_FUNCTION");
+    expect(second.asked).toContain("UNITS_PLACED_ON_MARKET");
+  });
+  it("continuing from class to the full check asks only scope and dates", () => {
+    const first = walk(lock, "2026-10-12", "class");
+    const second = walk(lock, "2026-10-12", "full", first.st);
+    expect(second.asked.filter((q) => first.asked.includes(q))).toEqual([]);
+    expect(second.asked).toContain("PRODUCT_KIND");
+    expect(second.asked).not.toContain("PROTECTS_PHYSICAL_SECURITY");
+  });
 });
