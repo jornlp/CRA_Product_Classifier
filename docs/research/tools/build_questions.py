@@ -55,18 +55,53 @@ LABELS = {
                 "NOT_AN_IC": "No, it is not itself a chip"},
     "AVA_VAN_LEVEL": {"NONE": "No AVA_VAN level", "1": "AVA_VAN.1", "2": "AVA_VAN.2", "3": "AVA_VAN.3", "4": "AVA_VAN.4", "5": "AVA_VAN.5"},
     "METERED_COMMODITY": {"ELECTRICITY": "Electricity", "GAS": "Gas", "HEAT": "Heat", "WATER": "Water", "OTHER": "Something else", "NONE": "Not part of a metering system"},
-    "PURPOSE_SCREEN": {"HOME_SECURITY": "Protecting a home or the people in it: locks, alarms, security cameras, baby monitors",
-                       "HOME_CONTROL": "Controlling security devices in a home, such as locks or alarms: a hub or home automation app",
-                       "PASSWORDS": "Storing or managing passwords",
-                       "CHIP": "Being a chip built into other products (processor, controller, secure element)",
-                       "METERING": "Linking an energy metering system to the utility or other outside parties (a gateway)",
-                       "CRYPTO_FOR_OTHERS": "Cryptographic processing or key protection for other systems"},
+    "PURPOSE_SCREEN": {
+        "IDENTITY": "Checking who someone is, or controlling access: login, identity management, access readers",
+        "PASSWORDS": "Storing or managing passwords",
+        "MALWARE": "Finding, removing or quarantining malicious software (antivirus)",
+        "VPN": "Setting up VPN connections",
+        "SIEM": "Collecting and correlating security events (SIEM)",
+        "PKI": "Issuing or managing digital certificates (PKI)",
+        "FIREWALL": "Firewall, or detecting or preventing intrusions",
+        "OS": "Being an operating system",
+        "BOOT": "Starting up a system: firmware or boot loader",
+        "BROWSER": "Showing web content: a browser, or a browser component for other apps",
+        "VIRTUALISATION": "Running virtual machines or containers",
+        "ROUTING": "Routing or switching network traffic, or connecting to the internet: router, modem, switch, access point",
+        "NETWORK_INTERFACE": "Connecting a device to a network: network card, adapter, virtual network interface",
+        "NETWORK_MGMT": "Managing or configuring other network equipment",
+        "CHIP": "Being a chip built into other products: processor, controller, ASIC, FPGA, secure element",
+        "SECURITY_BOX": "Protecting keys or sensitive data in tamper-protected hardware: hardware security module, payment terminal, tachograph",
+        "CRYPTO_FOR_OTHERS": "Cryptographic processing or key protection for other systems",
+        "HOME_SECURITY": "Protecting a home or the people in it: locks, alarms, security cameras, baby monitors",
+        "HOME_CONTROL": "Controlling security devices in a home, such as locks or alarms: a hub or home automation app",
+        "VOICE_ASSISTANT": "A voice or chat assistant for the home that answers requests and controls devices or services",
+        "TOY": "A toy for children under 14",
+        "WEARABLE": "Something worn on the body: watch, band, ring, clothing",
+        "METERING": "Linking an energy metering system to the utility or other outside parties (a gateway)"},
+    "NETWORK_DEVICE_ROLE": {"ROUTER": "Routes traffic between networks (router)", "INTERNET_MODEM": "Modem for connecting to the internet",
+                            "OTHER_MODEM": "Modem for something else, such as a point-to-point serial link",
+                            "MANAGED_SWITCH_OR_BRIDGE": "Switch with management (managed or smart switch), or a bridge such as a wireless access point",
+                            "UNMANAGED_SWITCH": "Unmanaged switch (no management interface)", "NONE": "None of these"},
+    "TOY_INTERACTIVE_OR_TRACKING": {"SOCIAL_INTERACTIVE": "It can talk, listen, film or take typed input", "LOCATION_TRACKING": "It can track or work out where it, or the child, is",
+                                    "BOTH": "Both", "PROXIMITY_ONLY": "It only notices when someone or another toy is nearby", "NONE": "Neither"},
+    "VIRTUALISATION_TYPE": {"HYPERVISOR": "Runs virtual machines (hypervisor)", "CONTAINER_RUNTIME": "Runs containers on a machine (container runtime)",
+                            "ORCHESTRATOR_ONLY": "Only schedules containers across machines; others run them",
+                            "PROCESS_SANDBOX": "Isolates a single process (sandbox)", "NONE": "None of these"},
     "HIGH_RISK_AI_BASIS": {"NONE": "No high-risk AI system", "ANNEX_III": "High-risk under Annex III of the AI Act",
                            "ANNEX_I_SECTION_A": "High-risk because of a product law in Annex I, Section A, of the AI Act",
                            "ANNEX_I_SECTION_B": "High-risk because of a product law in Annex I, Section B (for example machinery)"},
 }
+GROUPS = {"PURPOSE_SCREEN": [
+    ("Security software", ["IDENTITY", "PASSWORDS", "MALWARE", "VPN", "SIEM", "PKI", "FIREWALL"]),
+    ("System software", ["OS", "BOOT", "BROWSER", "VIRTUALISATION"]),
+    ("Network equipment", ["ROUTING", "NETWORK_INTERFACE", "NETWORK_MGMT"]),
+    ("Chips and hardware security", ["CHIP", "SECURITY_BOX", "CRYPTO_FOR_OTHERS"]),
+    ("Home and personal products", ["HOME_SECURITY", "HOME_CONTROL", "VOICE_ASSISTANT", "TOY", "WEARABLE"]),
+    ("Energy", ["METERING"])]}
 # Facts where the user's own documents can genuinely disagree: offer "documents say different things".
-CONFLICT_OK = {"PROTECTS_PHYSICAL_SECURITY", "RESIDENTIAL_SETTING", "STORES_PASSWORDS_CORE", "ADVANCED_SECURITY_CORE", "CENTRAL_CONTROL_OF_SECURITY"}
+CONFLICT_OK = {"PROTECTS_PHYSICAL_SECURITY", "RESIDENTIAL_SETTING", "STORES_PASSWORDS_CORE", "ADVANCED_SECURITY_CORE", "CENTRAL_CONTROL_OF_SECURITY",
+               "IS_TOY", "FOR_CHILDREN_UNDER_14", "CRYPTO_CORE", "SECURITY_PURPOSE_OUTPUT"}
 # Value conventions per engine: classification and scope use booleans; the timeline uses YES/NO codes.
 CODE_FACTS = {"CHANGE_AFFECTS_ANNEX_I", "RADIO_EQUIPMENT_RED_DA"}
 EXTRA = {
@@ -249,6 +284,15 @@ def build():
         if fid in ("UNITS_PLACED_ON_MARKET", "CHANGE_AT"):
             q["kind"] = "date"
             q["options"] = [NOT_SURE] if fid == "UNITS_PLACED_ON_MARKET" else [{"value": "", "label": "No change since placing"}, NOT_SURE]
+        if fid in GROUPS:
+            grp = {o: g for g, opts in GROUPS[fid] for o in opts}
+            missing = [o["value"] for o in q["options"] if o["value"] not in grp]
+            if missing:
+                sys.exit(f"{fid}: options without a group: {missing}")
+            for o in q["options"]:
+                o["group"] = grp[o["value"]]
+            order = [o for g, opts in GROUPS[fid] for o in opts]
+            q["options"].sort(key=lambda o: order.index(o["value"]))
         out[fid] = q
     for k, v in EXTRA.items():
         out[k] = {**v, "legal_basis": [{**l, "text": layout(l)} for l in v.get("legal_basis", [])]}

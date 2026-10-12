@@ -41,7 +41,11 @@ describe("assessment output schema", () => {
     expect(O(out), JSON.stringify(O.errors)).toBe(true);
   });
   it("rejects DEFAULT while categories are uncovered and blocking", () =>
-    expect(O(mutate(outputFor("CAT-03N"), (d) => (d.classification.status = "DEFAULT")))).toBe(false));
+    expect(O(mutate(outputFor("CAT-03N"), (d) => Object.assign(d.classification, {
+      status: "DEFAULT", uncovered_categories: ["IV-01"], blocking: [{ category: "IV-01", value: "NOT_COVERED" }] })))).toBe(false));
+  it("rejects DEFAULT while a category is merely unknown", () =>
+    expect(O(mutate(outputFor("CAT-03N"), (d) => Object.assign(d.classification, {
+      status: "DEFAULT", blocking: [{ category: "III-I-17", value: "UNKNOWN" }] })))).toBe(false));
   it("rejects DEFAULT with scope UNRESOLVED", () =>
     expect(O(mutate(outputFor("CAT-03N"), (d) => {
       Object.assign(d.classification, { status: "DEFAULT", blocking: [], uncovered_categories: [] });

@@ -19,7 +19,7 @@ import { reportMarkdown } from "./report.js";
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
 const TIMELINE = tl as unknown as TimelineRules;
-type Option = { value: unknown; label: string };
+type Option = { value: unknown; label: string; group?: string };
 type LawLine = { label: string; level: number; parts: { text: string; mark?: boolean }[] };
 type Legal = { ref: string; quote?: string; text?: { act: string; heading: string; lines: LawLine[] } | null };
 
@@ -121,9 +121,17 @@ function questionHtml(phase: Phase, fid: string): string {
   const hint = q.hint ?? g?.hint;
   let control = "";
   if (q.kind === "multi-enum") {
-    control = (q.options ?? []).map((o, i) => `
-      <label class="opt"><input type="checkbox" name="a" value="${i}"> <span>${esc(o.label)}</span></label>`).join("")
-      + `<p class="muted small">Tick nothing if none of these applies.</p>`;
+    const box = (o: Option, i: number) => `<label class="opt"><input type="checkbox" name="a" value="${i}"> <span>${esc(o.label)}</span></label>`;
+    const opts = q.options ?? [];
+    if (opts.some((o) => o.group)) {
+      // Grouped, and every group open: an unticked option counts as "no", so each must be seen.
+      const groups = [...new Set(opts.map((o) => o.group!))];
+      control = groups.map((g) => `<div class="group"><p class="group-name">${esc(g)}</p>${
+        opts.map((o, i) => (o.group === g ? box(o, i) : "")).join("")}</div>`).join("");
+    } else {
+      control = opts.map(box).join("");
+    }
+    control += `<p class="muted small">Tick nothing if none of these applies.</p>`;
   } else if (q.kind === "date") {
     control = `<label class="opt"><span>Date</span> <input type="date" name="d"></label>`
       + (q.options ?? []).map((o, i) => `<label class="opt"><input type="radio" name="a" value="${i}"> <span>${esc(o.label)}</span></label>`).join("");
@@ -232,7 +240,7 @@ function resultHtml(): string {
       ${c.matched.length ? `<h3>Matches</h3><ul>${c.matched.map((m) => `<li>${cat(m.category)}: ${esc(CLASS_LABEL[m.class])}</li>`).join("")}</ul>` : ""}
       ${blockingOther.length ? `<h3>Still open</h3><ul>${out.reasons.filter((r) => r.category && r.kind in reasonText).map((r) =>
         `<li>${esc(reasonText[r.kind])} ${cat(r.category!)}${r.open_ref ? ` <span class="muted">(${esc(r.open_ref)})</span>` : ""}${r.kind === "LAW_OPEN" ? ". Get expert advice: more answers will not resolve this." : ""}</li>`).join("")}</ul>` : ""}
-      ${blockingCov ? `<p class="note">This pilot has rules for ${RULES.categories.length} of 26 categories. Until all 26 are covered,
+      ${blockingCov ? `<p class="note">This version has rules for ${RULES.categories.length} of 26 categories. Until all 26 are covered,
         it does not state a class it cannot fully check${c.class_floor === "CRITICAL" ? "" : ", including Default"}.</p>` : ""}
       ${c.excluded.length ? `<h3>Ruled out, and why</h3><ul>${c.excluded.map((x) => {
         const viaScreen = x.failing.some((f) => f.fact && f.fact in res.derived);
@@ -287,7 +295,8 @@ function download(format: "md" | "json") {
 
 function render() {
   const cur = current();
-  const header = `<p class="muted pilot">Pilot. Rules for ${RULES.categories.length} of 26 categories. Informational only; not legal advice.</p>`;
+  const n = RULES.categories.length;
+  const header = `<p class="muted pilot">${n < 26 ? `Pilot. Rules for ${n} of 26 categories. ` : "Preview: rules not yet independently reviewed. "}Informational only; not legal advice.</p>`;
   if (cur.phase === "start") {
     app.innerHTML = header + startHtml();
     app.querySelectorAll<HTMLButtonElement>("button.choice").forEach((b) =>

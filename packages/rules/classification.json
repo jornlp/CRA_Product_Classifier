@@ -1,6 +1,6 @@
 {
  "artifact": "wp7-spike-rules",
- "rule_set_version": "0.0.1-spike",
+ "rule_set_version": "0.1.0",
  "law_as_of": "2026-10-12",
  "sources": {
   "B1c": {
@@ -64,12 +64,29 @@
   "PURPOSE_SCREEN": {
    "type": "multi-enum",
    "values": [
+    "IDENTITY",
+    "PASSWORDS",
+    "MALWARE",
+    "VPN",
+    "SIEM",
+    "PKI",
+    "FIREWALL",
+    "OS",
+    "BOOT",
+    "BROWSER",
+    "VIRTUALISATION",
+    "ROUTING",
+    "NETWORK_INTERFACE",
+    "NETWORK_MGMT",
+    "CHIP",
+    "SECURITY_BOX",
+    "CRYPTO_FOR_OTHERS",
     "HOME_SECURITY",
     "HOME_CONTROL",
-    "PASSWORDS",
-    "CHIP",
-    "METERING",
-    "CRYPTO_FOR_OTHERS"
+    "VOICE_ASSISTANT",
+    "TOY",
+    "WEARABLE",
+    "METERING"
    ],
    "evidence": "MANUFACTURER_ONLY"
   },
@@ -101,8 +118,9 @@
   "IC_TYPE": {
    "type": "enum",
    "values": [
-    "MICROCONTROLLER",
     "MICROPROCESSOR",
+    "MICROCONTROLLER",
+    "SOC_UNCLEAR",
     "ASIC",
     "FPGA",
     "NOT_AN_IC"
@@ -186,46 +204,265 @@
   "UNITS_PLACED_ON_MARKET": {
    "type": "date",
    "evidence": "MANUFACTURER_ONLY"
+  },
+  "AUTH_OR_ACCESS_CONTROL": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "RENDERS_WEB_CONTENT": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "DETECTS_MALWARE": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "VPN_TUNNEL": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "CONFIGURES_NETWORK_ELEMENTS": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "MULTI_SOURCE_DATA": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "CORRELATES_DATA": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "SECURITY_PURPOSE_OUTPUT": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "MANAGES_BOOT": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "MANAGES_CERT_LIFECYCLE": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "NETWORK_INTERFACE": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "HARDWARE_ABSTRACTION": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "NETWORK_DEVICE_ROLE": {
+   "type": "multi-enum",
+   "evidence": "DOCUMENT",
+   "values": [
+    "ROUTER",
+    "INTERNET_MODEM",
+    "OTHER_MODEM",
+    "MANAGED_SWITCH_OR_BRIDGE",
+    "UNMANAGED_SWITCH",
+    "NONE"
+   ]
+  },
+  "NATURAL_LANGUAGE_ASSISTANT": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "PUBLIC_INTERNET": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "IS_TOY": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "TOY_INTERACTIVE_OR_TRACKING": {
+   "type": "enum",
+   "evidence": "DOCUMENT",
+   "values": [
+    "SOCIAL_INTERACTIVE",
+    "LOCATION_TRACKING",
+    "BOTH",
+    "PROXIMITY_ONLY",
+    "NONE"
+   ]
+  },
+  "WORN_ON_BODY": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "HEALTH_MONITORING": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "FOR_CHILDREN_UNDER_14": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "MEDICAL_STATUS": {
+   "type": "enum",
+   "evidence": "MANUFACTURER_ONLY",
+   "values": [
+    "CE_MARKED_MDR_IVDR",
+    "MEDICAL_PURPOSE_NOT_CERTIFIED",
+    "NONE"
+   ]
+  },
+  "VIRTUALISATION_TYPE": {
+   "type": "enum",
+   "evidence": "DOCUMENT",
+   "values": [
+    "HYPERVISOR",
+    "CONTAINER_RUNTIME",
+    "ORCHESTRATOR_ONLY",
+    "PROCESS_SANDBOX",
+    "NONE"
+   ]
+  },
+  "FILTERS_OR_DETECTS_INTRUSION": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "CRYPTO_CORE": {
+   "type": "bool",
+   "evidence": "MANUFACTURER_ONLY"
+  },
+  "MULTIPLE_DISCRETE_COMPONENTS": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
+  },
+  "PHYSICAL_TAMPER_ENVELOPE": {
+   "type": "bool",
+   "evidence": "DOCUMENT"
   }
  },
  "derive": [
   {
    "screen": "PURPOSE_SCREEN",
    "unticked_sets": {
+    "IDENTITY": {
+     "AUTH_OR_ACCESS_CONTROL": false
+    },
+    "PASSWORDS": {
+     "STORES_PASSWORDS_CORE": false
+    },
+    "MALWARE": {
+     "DETECTS_MALWARE": false
+    },
+    "VPN": {
+     "VPN_TUNNEL": false
+    },
+    "SIEM": {
+     "SECURITY_PURPOSE_OUTPUT": false
+    },
+    "PKI": {
+     "MANAGES_CERT_LIFECYCLE": false
+    },
+    "FIREWALL": {
+     "FILTERS_OR_DETECTS_INTRUSION": false
+    },
+    "OS": {
+     "HARDWARE_ABSTRACTION": false
+    },
+    "BOOT": {
+     "MANAGES_BOOT": false
+    },
+    "BROWSER": {
+     "RENDERS_WEB_CONTENT": false
+    },
+    "VIRTUALISATION": {
+     "VIRTUALISATION_TYPE": "NONE"
+    },
+    "ROUTING": {
+     "NETWORK_DEVICE_ROLE": [
+      "NONE"
+     ]
+    },
+    "NETWORK_INTERFACE": {
+     "NETWORK_INTERFACE": false
+    },
+    "NETWORK_MGMT": {
+     "CONFIGURES_NETWORK_ELEMENTS": false
+    },
+    "CHIP": {
+     "IC_TYPE": "NOT_AN_IC"
+    },
+    "SECURITY_BOX": {
+     "CRYPTO_CORE": false
+    },
+    "CRYPTO_FOR_OTHERS": {
+     "ADVANCED_SECURITY_CORE": false
+    },
     "HOME_SECURITY": {
      "PROTECTS_PHYSICAL_SECURITY": false
     },
     "HOME_CONTROL": {
      "CENTRAL_CONTROL_OF_SECURITY": false
     },
-    "PASSWORDS": {
-     "STORES_PASSWORDS_CORE": false
+    "VOICE_ASSISTANT": {
+     "NATURAL_LANGUAGE_ASSISTANT": false
     },
-    "CHIP": {
-     "IC_TYPE": "NOT_AN_IC"
+    "TOY": {
+     "IS_TOY": false
+    },
+    "WEARABLE": {
+     "WORN_ON_BODY": false
     },
     "METERING": {
      "METERING_COMMUNICATION": false
-    },
-    "CRYPTO_FOR_OTHERS": {
-     "ADVANCED_SECURITY_CORE": false
     }
    },
    "why": "Answered on the purpose screen: the product is not mainly for this. One question over an OR-joined list, so every option left unticked is an answered 'no' (WP7 4.1)."
+  },
+  {
+   "screen": "EXCLUSION_SCREEN",
+   "unticked_sets": {
+    "MEDICAL": {
+     "MEDICAL_STATUS": "NONE"
+    }
+   },
+   "why": "Answered on the exclusion screen (scope): no medical exclusion ticked, so the product is not a medical device. Only used when the scope check was done."
   }
  ],
  "ask_order": [
   "PURPOSE_SCREEN",
+  "AUTH_OR_ACCESS_CONTROL",
+  "STORES_PASSWORDS_CORE",
+  "DETECTS_MALWARE",
+  "VPN_TUNNEL",
+  "MULTI_SOURCE_DATA",
+  "CORRELATES_DATA",
+  "SECURITY_PURPOSE_OUTPUT",
+  "MANAGES_CERT_LIFECYCLE",
+  "FILTERS_OR_DETECTS_INTRUSION",
+  "HARDWARE_ABSTRACTION",
+  "MANAGES_BOOT",
+  "RENDERS_WEB_CONTENT",
+  "VIRTUALISATION_TYPE",
+  "NETWORK_DEVICE_ROLE",
+  "NETWORK_INTERFACE",
+  "CONFIGURES_NETWORK_ELEMENTS",
   "IC_TYPE",
   "SECURITY_FUNCTION",
   "SECURES_BEYOND_ITSELF",
   "TAMPER_PROTECTION",
   "AVA_VAN_LEVEL",
+  "CRYPTO_CORE",
+  "MULTIPLE_DISCRETE_COMPONENTS",
+  "PHYSICAL_TAMPER_ENVELOPE",
   "PROTECTS_PHYSICAL_SECURITY",
   "CENTRAL_CONTROL_OF_SECURITY",
+  "NATURAL_LANGUAGE_ASSISTANT",
+  "IS_TOY",
+  "TOY_INTERACTIVE_OR_TRACKING",
+  "WORN_ON_BODY",
+  "HEALTH_MONITORING",
+  "FOR_CHILDREN_UNDER_14",
+  "MEDICAL_STATUS",
   "RESIDENTIAL_SETTING",
   "CONTROL_PATH",
-  "STORES_PASSWORDS_CORE",
+  "PUBLIC_INTERNET",
   "METERING_COMMUNICATION",
   "COLLECTS_METER_DATA",
   "CRYPTO_SUPPORT",
@@ -235,6 +472,63 @@
   "ADVANCED_SECURITY_CORE"
  ],
  "categories": [
+  {
+   "rule_id": "CAT-III-I-01",
+   "category": "III-I-01",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-01"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "AUTH_OR_ACCESS_CONTROL",
+     "is": true,
+     "quote": "provide mechanisms for authentication or authorisation"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-01P",
+    "CAT-01N"
+   ],
+   "descriptive": [
+    {
+     "quote": "access management systems that control access of natural persons, legal persons, devices or systems to digital resources or physical locations",
+     "why": "included in the same fact question (OR-joined with C1)"
+    }
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-02",
+   "category": "III-I-02",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_INTERPRETATION",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-02"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "RENDERS_WEB_CONTENT",
+     "is": true,
+     "quote": "enable end users to access, render, and interact with web content and services hosted on servers"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-02P",
+    "CAT-02N",
+    "MP-01"
+   ],
+   "descriptive": [
+    {
+     "quote": "They typically include a browser engine",
+     "why": "'typically': not a condition (WP5 finding 1)"
+    }
+   ]
+  },
   {
    "rule_id": "CAT-III-I-03",
    "category": "III-I-03",
@@ -262,6 +556,410 @@
     "CAT-03P",
     "CAT-03N",
     "MP-02"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-04",
+   "category": "III-I-04",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-04"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "DETECTS_MALWARE",
+     "is": true,
+     "quote": "detect or search for malicious software or code on devices, or remove or quarantine such software or code"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-04P",
+    "CAT-04N",
+    "MP-03"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-05",
+   "category": "III-I-05",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-05"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "VPN_TUNNEL",
+     "is": true,
+     "quote": "establish an encrypted logical tunnel that is constructed from the system resources of a physical or virtual network"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-05P",
+    "CAT-05N"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-06",
+   "category": "III-I-06",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_INTERPRETATION",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-06"
+   },
+   "conditions": {
+    "C2": {
+     "fact": "CONFIGURES_NETWORK_ELEMENTS",
+     "is": true,
+     "quote": "controlling their network operations and configuration"
+    }
+   },
+   "match": "C2",
+   "test_ids": [
+    "CAT-06P",
+    "CAT-06N",
+    "MP-04"
+   ],
+   "descriptive": [
+    {
+     "quote": "by monitoring them",
+     "why": "not required alone: the description includes dedicated configuration management systems (WP5 finding 2, MP-04)"
+    }
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-07",
+   "category": "III-I-07",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-07"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "MULTI_SOURCE_DATA",
+     "is": true,
+     "quote": "collect data from multiple sources"
+    },
+    "C2": {
+     "fact": "CORRELATES_DATA",
+     "is": true,
+     "quote": "analyse and correlate that data"
+    },
+    "C3": {
+     "fact": "SECURITY_PURPOSE_OUTPUT",
+     "is": true,
+     "quote": "present it as actionable information for security-related purposes"
+    }
+   },
+   "match": {
+    "all": [
+     "C1",
+     "C2",
+     "C3"
+    ]
+   },
+   "test_ids": [
+    "CAT-07P",
+    "CAT-07N",
+    "MP-05",
+    "MP-06"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-08",
+   "category": "III-I-08",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_INTERPRETATION",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-08"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "MANAGES_BOOT",
+     "is": true,
+     "quote": "manage the process of initial system startup after power on/restart by initialising hardware, loading or transferring control to the operating system environment or system resources"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-08P",
+    "CAT-08N",
+    "MP-07"
+   ],
+   "descriptive": [
+    {
+     "quote": "and selecting boot options",
+     "why": "not required: single-stage boot loaders are expressly included (WP5 finding 2, MP-07)"
+    }
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-09",
+   "category": "III-I-09",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-09"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "MANAGES_CERT_LIFECYCLE",
+     "is": true,
+     "quote": "used as part of a public key infrastructure (PKI) that manage the validation, creation, issuance, distribution, status publication, renewal or revocation of digital certificates"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-09P",
+    "CAT-09N",
+    "MP-08"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-10",
+   "category": "III-I-10",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-10"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "NETWORK_INTERFACE",
+     "is": true,
+     "quote": "directly or indirectly connect a device to a network via an API that emulates that of drivers of physical network interfaces"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-10P",
+    "CAT-10N",
+    "MP-09"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-11",
+   "category": "III-I-11",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-11"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "HARDWARE_ABSTRACTION",
+     "is": true,
+     "quote": "provide an abstract interface of the underlying hardware and control the execution of software"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-11P",
+    "CAT-11N"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-12",
+   "category": "III-I-12",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-12"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "NETWORK_DEVICE_ROLE",
+     "contains_any": [
+      "ROUTER",
+      "INTERNET_MODEM",
+      "MANAGED_SWITCH_OR_BRIDGE"
+     ],
+     "quote": "Routers are products with digital elements that establish and control the flow of data between different networks"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-12P",
+    "CAT-12N",
+    "MP-10",
+    "MP-11",
+    "CAT-21N"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-13",
+   "category": "III-I-13",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-13"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "IC_TYPE",
+     "in": [
+      "MICROPROCESSOR",
+      "SOC_UNCLEAR"
+     ],
+     "quote": "integrated circuits that carry out central processing functions relying on external memory and peripherals"
+    },
+    "C2": {
+     "fact": "SECURITY_FUNCTION",
+     "is": true,
+     "quote": "They additionally provide security-related functionalities"
+    },
+    "C3": {
+     "fact": "SECURES_BEYOND_ITSELF",
+     "is": true,
+     "quote": "beyond the microprocessor itself"
+    }
+   },
+   "match": {
+    "all": [
+     "C1",
+     "C2",
+     "C3"
+    ]
+   },
+   "test_ids": [
+    "CAT-13P",
+    "CAT-13N",
+    "MP-12"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-14",
+   "category": "III-I-14",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "Annex, Class I point 14"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "IC_TYPE",
+     "in": [
+      "MICROCONTROLLER",
+      "SOC_UNCLEAR"
+     ],
+     "quote": "integrated circuits that carry out central processing functions integrating memory"
+    },
+    "C2": {
+     "fact": "SECURITY_FUNCTION",
+     "is": true,
+     "quote": "They additionally provide security-related functionalities"
+    },
+    "C3": {
+     "fact": "SECURES_BEYOND_ITSELF",
+     "is": true,
+     "quote": "beyond the microcontroller itself"
+    }
+   },
+   "match": {
+    "all": [
+     "C1",
+     "C2",
+     "C3"
+    ]
+   },
+   "test_ids": [
+    "CAT-14P",
+    "CAT-14N",
+    "MP-24"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-15",
+   "category": "III-I-15",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-15"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "IC_TYPE",
+     "in": [
+      "ASIC",
+      "FPGA"
+     ],
+     "quote": "fully or partially custom-designed to perform a specific function"
+    },
+    "C2": {
+     "fact": "SECURITY_FUNCTION",
+     "is": true,
+     "quote": "They additionally provide security-related functionalities"
+    },
+    "C3": {
+     "fact": "SECURES_BEYOND_ITSELF",
+     "is": true,
+     "quote": "beyond the ASIC itself"
+    }
+   },
+   "match": {
+    "all": [
+     "C1",
+     "C2",
+     "C3"
+    ]
+   },
+   "test_ids": [
+    "CAT-15P",
+    "CAT-15N"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-16",
+   "category": "III-I-16",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-16"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "PUBLIC_INTERNET",
+     "is": true,
+     "quote": "communicate on the public Internet, whether directly or via other equipment"
+    },
+    "C2": {
+     "fact": "NATURAL_LANGUAGE_ASSISTANT",
+     "is": true,
+     "quote": "process demands, tasks or questions based on natural language prompts"
+    },
+    "C3": {
+     "fact": "RESIDENTIAL_SETTING",
+     "is": true,
+     "quote": "control the functions of connected devices in residential settings"
+    }
+   },
+   "match": {
+    "all": [
+     "C2",
+     "C3",
+     "C1"
+    ]
+   },
+   "test_ids": [
+    "CAT-16P",
+    "CAT-16N",
+    "MP-13"
    ]
   },
   {
@@ -329,31 +1027,194 @@
    ]
   },
   {
-   "rule_id": "CAT-III-I-14",
-   "category": "III-I-14",
+   "rule_id": "CAT-III-I-18",
+   "category": "III-I-18",
    "class": "IMPORTANT_I",
    "status": "AUTHOR_VERIFIED",
    "law_ref": {
     "source": "B2",
-    "item": "Annex, Class I point 14"
+    "item": "III-I-18"
    },
    "conditions": {
     "C1": {
-     "fact": "IC_TYPE",
-     "in": [
-      "MICROCONTROLLER"
-     ],
-     "quote": "integrated circuits that carry out central processing functions integrating memory"
+     "fact": "IS_TOY",
+     "is": true,
+     "quote": "that are covered by Directive 2009/48/EC"
     },
     "C2": {
-     "fact": "SECURITY_FUNCTION",
+     "fact": "PUBLIC_INTERNET",
      "is": true,
-     "quote": "They additionally provide security-related functionalities"
+     "quote": "that communicate on the public Internet, whether directly or via any other equipment"
     },
     "C3": {
-     "fact": "SECURES_BEYOND_ITSELF",
+     "fact": "TOY_INTERACTIVE_OR_TRACKING",
+     "map": {
+      "SOCIAL_INTERACTIVE": "TRUE",
+      "LOCATION_TRACKING": "TRUE",
+      "BOTH": "TRUE",
+      "PROXIMITY_ONLY": "FALSE",
+      "NONE": "FALSE"
+     },
+     "quote": "Where the toy merely detects the proximity of the user or of other toys by using sensing technologies, the toy is not to be considered to have location tracking features."
+    }
+   },
+   "match": {
+    "all": [
+     "C1",
+     "C3",
+     "C2"
+    ]
+   },
+   "test_ids": [
+    "CAT-18P",
+    "CAT-18N",
+    "MP-15",
+    "MP-16",
+    "MP-17"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-I-19",
+   "category": "III-I-19",
+   "class": "IMPORTANT_I",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-I-19"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "WORN_ON_BODY",
      "is": true,
-     "quote": "beyond the microcontroller itself"
+     "quote": "worn on the body directly or via clothing or accessories"
+    },
+    "C2": {
+     "fact": "HEALTH_MONITORING",
+     "is": true,
+     "quote": "regularly or continuously, sense and further process information, including body metrics, relevant to the user's health"
+    },
+    "C3": {
+     "fact": "MEDICAL_STATUS",
+     "map": {
+      "NONE": "TRUE",
+      "CE_MARKED_MDR_IVDR": "FALSE",
+      "MEDICAL_PURPOSE_NOT_CERTIFIED": "OPEN"
+     },
+     "quote": "excluding products that fall within the scope of Regulation (EU) 2017/745 or of Regulation (EU) 2017/746",
+     "open_ref": "EXC-03"
+    },
+    "C4": {
+     "fact": "FOR_CHILDREN_UNDER_14",
+     "is": true,
+     "quote": "of individuals under the age of 14"
+    }
+   },
+   "match": {
+    "all": [
+     "C1",
+     {
+      "name": "health or children",
+      "any": [
+       {
+        "name": "health monitoring",
+        "all": [
+         "C2",
+         "C3"
+        ]
+       },
+       "C4"
+      ]
+     }
+    ]
+   },
+   "test_ids": [
+    "CAT-19P",
+    "CAT-19N",
+    "MP-18",
+    "MP-19"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-II-01",
+   "category": "III-II-01",
+   "class": "IMPORTANT_II",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-II-01"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "VIRTUALISATION_TYPE",
+     "map": {
+      "HYPERVISOR": "TRUE",
+      "CONTAINER_RUNTIME": "TRUE",
+      "ORCHESTRATOR_ONLY": "OPEN",
+      "PROCESS_SANDBOX": "FALSE",
+      "NONE": "FALSE"
+     },
+     "quote": "manage the execution and lifecycle of containers running on a single host operating system",
+     "open_ref": "MP-21"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-20P",
+    "CAT-20N",
+    "MP-20",
+    "MP-21"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-II-02",
+   "category": "III-II-02",
+   "class": "IMPORTANT_II",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-II-02"
+   },
+   "conditions": {
+    "C1": {
+     "fact": "FILTERS_OR_DETECTS_INTRUSION",
+     "is": true,
+     "quote": "protect a connected network or system from unauthorized access by monitoring and restricting data communication traffic"
+    }
+   },
+   "match": "C1",
+   "test_ids": [
+    "CAT-21P",
+    "CAT-21N",
+    "MP-22",
+    "MP-23"
+   ]
+  },
+  {
+   "rule_id": "CAT-III-II-03",
+   "category": "III-II-03",
+   "class": "IMPORTANT_II",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "III-II-03"
+   },
+   "conditions": {
+    "C1": {
+     "category": "III-I-13",
+     "quote": "microprocessors with security-related functionalities referred to in Table 'Class I', point 13"
+    },
+    "C2": {
+     "fact": "TAMPER_PROTECTION",
+     "is": true,
+     "quote": "including tamper evidence, resistance or response"
+    },
+    "C3": {
+     "fact": "AVA_VAN_LEVEL",
+     "in": [
+      2,
+      3
+     ],
+     "quote": "designed to provide protection of AVA_VAN level 2 or 3"
     }
    },
    "match": {
@@ -364,9 +1225,8 @@
     ]
    },
    "test_ids": [
-    "CAT-14P",
-    "CAT-14N",
-    "MP-24"
+    "CAT-22P",
+    "CAT-22N"
    ]
   },
   {
@@ -412,61 +1272,43 @@
    ]
   },
   {
-   "rule_id": "CAT-IV-03",
-   "category": "IV-03",
+   "rule_id": "CAT-IV-01",
+   "category": "IV-01",
    "class": "CRITICAL",
    "status": "AUTHOR_VERIFIED",
    "law_ref": {
     "source": "B2",
-    "item": "Annex, Critical point 3"
+    "item": "IV-01"
    },
    "conditions": {
-    "C1a": {
-     "fact": "IC_TYPE",
-     "in": [
-      "MICROCONTROLLER",
-      "MICROPROCESSOR"
-     ],
-     "quote": "Secure elements are microcontrollers or microprocessors"
-    },
-    "C1b": {
-     "fact": "SECURITY_FUNCTION",
+    "C1": {
+     "fact": "CRYPTO_CORE",
      "is": true,
-     "quote": "with security-related functionalities"
+     "quote": "securely store, process, or manage sensitive data or perform cryptographic operations"
     },
-    "C1c": {
-     "fact": "TAMPER_PROTECTION",
+    "C2": {
+     "fact": "MULTIPLE_DISCRETE_COMPONENTS",
      "is": true,
-     "quote": "including tamper evidence, resistance or response"
+     "quote": "consist of multiple discrete components"
     },
     "C3": {
-     "fact": "AVA_VAN_LEVEL",
-     "in": [
-      4,
-      5
-     ],
-     "quote": "designed to provide protection of at least AVA_VAN.4"
+     "fact": "PHYSICAL_TAMPER_ENVELOPE",
+     "is": true,
+     "quote": "incorporating a hardware physical envelope providing tamper evidence, resistance or response as countermeasures against physical attacks"
     }
    },
    "match": {
     "all": [
-     "C1a",
-     "C1b",
-     "C1c",
+     "C1",
+     "C2",
      "C3"
     ]
    },
-   "descriptive": [
-    {
-     "quote": "They typically store, process, or manage cryptographic operations or sensitive data",
-     "why": "'typically': not a condition"
-    }
-   ],
    "test_ids": [
-    "CAT-26P",
-    "CAT-26N",
-    "MP-25",
-    "MP-26"
+    "CAT-24P",
+    "CAT-24N",
+    "MP-27",
+    "MP-28"
    ]
   },
   {
@@ -551,6 +1393,65 @@
     "A4-02",
     "A4-04",
     "A4-06"
+   ]
+  },
+  {
+   "rule_id": "CAT-IV-03",
+   "category": "IV-03",
+   "class": "CRITICAL",
+   "status": "AUTHOR_VERIFIED",
+   "law_ref": {
+    "source": "B2",
+    "item": "Annex, Critical point 3"
+   },
+   "conditions": {
+    "C1a": {
+     "fact": "IC_TYPE",
+     "in": [
+      "MICROCONTROLLER",
+      "MICROPROCESSOR",
+      "SOC_UNCLEAR"
+     ],
+     "quote": "Secure elements are microcontrollers or microprocessors"
+    },
+    "C1b": {
+     "fact": "SECURITY_FUNCTION",
+     "is": true,
+     "quote": "with security-related functionalities"
+    },
+    "C1c": {
+     "fact": "TAMPER_PROTECTION",
+     "is": true,
+     "quote": "including tamper evidence, resistance or response"
+    },
+    "C3": {
+     "fact": "AVA_VAN_LEVEL",
+     "in": [
+      4,
+      5
+     ],
+     "quote": "designed to provide protection of at least AVA_VAN.4"
+    }
+   },
+   "match": {
+    "all": [
+     "C1a",
+     "C1b",
+     "C1c",
+     "C3"
+    ]
+   },
+   "descriptive": [
+    {
+     "quote": "They typically store, process, or manage cryptographic operations or sensitive data",
+     "why": "'typically': not a condition"
+    }
+   ],
+   "test_ids": [
+    "CAT-26P",
+    "CAT-26N",
+    "MP-25",
+    "MP-26"
    ]
   }
  ],

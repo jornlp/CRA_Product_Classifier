@@ -39,9 +39,9 @@ describe("interview case: pest-control camera (RAT-01)", () => {
     expect(r.cls.categories["III-I-17"].failing).toContain("C1");
   });
   it("rules out the critical gateway category", () => expect(r.cls.categories["IV-02"].value).toBe("FALSE"));
-  it("does not claim DEFAULT while 20 categories have no rule", () => {
-    expect(r.cls.status).toBe("UNRESOLVED");
-    expect(r.cls.floor).toBe("DEFAULT");
+  it("with all 26 categories ruled out, the class is Default", () => {
+    expect(r.cls.status).toBe("DEFAULT");
+    expect(Object.values(r.cls.categories).every((c) => c.value === "FALSE")).toBe(true);
   });
   it("never asks the remote-control question once the purpose rules the first limb out", () =>
     expect(r.asked).not.toContain("CONTROL_PATH"));
@@ -56,9 +56,9 @@ describe("interview case: water meter without gateway function (WTR-01)", () => 
   const r = walk({ ...inScope, PROTECTS_PHYSICAL_SECURITY: false, CENTRAL_CONTROL_OF_SECURITY: false,
     METERING_COMMUNICATION: false, COLLECTS_METER_DATA: true, CRYPTO_SUPPORT: false, FIREWALLING: false,
     CONTROLS_OTHER_DEVICES: false, METERED_COMMODITY: "WATER", ADVANCED_SECURITY_CORE: false });
-  it("is not critical: the gateway conditions fail", () => {
+  it("is not critical: the gateway conditions fail; with every category ruled out, Default", () => {
     expect(r.cls.categories["IV-02"].value).toBe("FALSE");
-    expect(r.cls.floor).toBe("DEFAULT");
+    expect(r.cls.status).toBe("DEFAULT");
   });
   it("the purpose screen rules out the gateway: no gateway question is asked", () => {
     expect(r.asked).not.toContain("METERING_COMMUNICATION");
@@ -80,9 +80,9 @@ describe("smart door lock: ticks home security on the purpose screen", () => {
   it("is never asked about passwords, chips or meters", () => {
     for (const q of ["STORES_PASSWORDS_CORE", "IC_TYPE", "METERING_COMMUNICATION", "ADVANCED_SECURITY_CORE"]) expect(r.asked).not.toContain(q);
   });
-  it("matches smart-home security: at least Class I", () => {
+  it("matches smart-home security, and nothing higher: Important, Class I", () => {
     expect(r.cls.categories["III-I-17"].value).toBe("TRUE");
-    expect(r.cls.floor).toBe("IMPORTANT_I");
+    expect(r.cls.status).toBe("IMPORTANT_I");
   });
 });
 
@@ -126,4 +126,38 @@ describe("check modes (scope only, class only, full) and continuing", () => {
 it("never asks for a free-text description: it is for the user's records only", () => {
   const r = walk({ ...inScope });
   expect(r.asked).not.toContain("CORE_FUNCTION");
+});
+
+describe("products from every family reach their class without unrelated questions", () => {
+  const no = (asked: string[], qs: string[]) => qs.forEach((q) => expect(asked).not.toContain(q));
+  it("home router with built-in modem: Class I, never asked about toys, chips or passwords", () => {
+    const r = walk({ ...inScope, PURPOSE_SCREEN: ["ROUTING"], NETWORK_DEVICE_ROLE: ["ROUTER", "INTERNET_MODEM"] });
+    expect(r.cls.status).toBe("IMPORTANT_I");
+    expect(r.cls.categories["III-I-12"].value).toBe("TRUE");
+    no(r.asked, ["IS_TOY", "IC_TYPE", "STORES_PASSWORDS_CORE", "WORN_ON_BODY"]);
+  });
+  it("fitness tracker, not a medical device: Class I via health monitoring", () => {
+    const r = walk({ ...inScope, EXCLUSION_SCREEN: [], PURPOSE_SCREEN: ["WEARABLE"], WORN_ON_BODY: true, HEALTH_MONITORING: true });
+    expect(r.cls.categories["III-I-19"].value).toBe("TRUE");
+    expect(r.cls.status).toBe("IMPORTANT_I");
+    no(r.asked, ["MEDICAL_STATUS", "FOR_CHILDREN_UNDER_14"]); // medical settled by the exclusion screen; children limb not needed
+  });
+  it("talking connected toy: Class I", () => {
+    const r = walk({ ...inScope, PURPOSE_SCREEN: ["TOY"], IS_TOY: true, PUBLIC_INTERNET: true, TOY_INTERACTIVE_OR_TRACKING: "SOCIAL_INTERACTIVE" });
+    expect(r.cls.status).toBe("IMPORTANT_I");
+  });
+  it("hardware security module: Critical", () => {
+    const r = walk({ ...inScope, PURPOSE_SCREEN: ["SECURITY_BOX"], CRYPTO_CORE: true, MULTIPLE_DISCRETE_COMPONENTS: true, PHYSICAL_TAMPER_ENVELOPE: true });
+    expect(r.cls.status).toBe("CRITICAL");
+  });
+  it("container orchestrator: the law is open, so no definite class", () => {
+    const r = walk({ ...inScope, PURPOSE_SCREEN: ["VIRTUALISATION"], VIRTUALISATION_TYPE: "ORCHESTRATOR_ONLY" });
+    expect(r.cls.status).toBe("UNRESOLVED");
+    expect(r.cls.categories["III-II-01"].value).toBe("OPEN");
+  });
+  it("class-only check of a fitness tracker asks the medical question directly", () => {
+    const r = walk({ ...inScope, PURPOSE_SCREEN: ["WEARABLE"], WORN_ON_BODY: true, HEALTH_MONITORING: true, MEDICAL_STATUS: "NONE" }, "2026-10-12", "class");
+    expect(r.asked).toContain("MEDICAL_STATUS");
+    expect(r.asked).not.toContain("EXCLUSION_SCREEN");
+  });
 });

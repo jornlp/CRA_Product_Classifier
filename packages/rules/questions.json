@@ -1087,28 +1087,119 @@
    ],
    "options": [
     {
-     "value": "HOME_SECURITY",
-     "label": "Protecting a home or the people in it: locks, alarms, security cameras, baby monitors"
-    },
-    {
-     "value": "HOME_CONTROL",
-     "label": "Controlling security devices in a home, such as locks or alarms: a hub or home automation app"
+     "value": "IDENTITY",
+     "label": "Checking who someone is, or controlling access: login, identity management, access readers",
+     "group": "Security software"
     },
     {
      "value": "PASSWORDS",
-     "label": "Storing or managing passwords"
+     "label": "Storing or managing passwords",
+     "group": "Security software"
+    },
+    {
+     "value": "MALWARE",
+     "label": "Finding, removing or quarantining malicious software (antivirus)",
+     "group": "Security software"
+    },
+    {
+     "value": "VPN",
+     "label": "Setting up VPN connections",
+     "group": "Security software"
+    },
+    {
+     "value": "SIEM",
+     "label": "Collecting and correlating security events (SIEM)",
+     "group": "Security software"
+    },
+    {
+     "value": "PKI",
+     "label": "Issuing or managing digital certificates (PKI)",
+     "group": "Security software"
+    },
+    {
+     "value": "FIREWALL",
+     "label": "Firewall, or detecting or preventing intrusions",
+     "group": "Security software"
+    },
+    {
+     "value": "OS",
+     "label": "Being an operating system",
+     "group": "System software"
+    },
+    {
+     "value": "BOOT",
+     "label": "Starting up a system: firmware or boot loader",
+     "group": "System software"
+    },
+    {
+     "value": "BROWSER",
+     "label": "Showing web content: a browser, or a browser component for other apps",
+     "group": "System software"
+    },
+    {
+     "value": "VIRTUALISATION",
+     "label": "Running virtual machines or containers",
+     "group": "System software"
+    },
+    {
+     "value": "ROUTING",
+     "label": "Routing or switching network traffic, or connecting to the internet: router, modem, switch, access point",
+     "group": "Network equipment"
+    },
+    {
+     "value": "NETWORK_INTERFACE",
+     "label": "Connecting a device to a network: network card, adapter, virtual network interface",
+     "group": "Network equipment"
+    },
+    {
+     "value": "NETWORK_MGMT",
+     "label": "Managing or configuring other network equipment",
+     "group": "Network equipment"
     },
     {
      "value": "CHIP",
-     "label": "Being a chip built into other products (processor, controller, secure element)"
+     "label": "Being a chip built into other products: processor, controller, ASIC, FPGA, secure element",
+     "group": "Chips and hardware security"
     },
     {
-     "value": "METERING",
-     "label": "Linking an energy metering system to the utility or other outside parties (a gateway)"
+     "value": "SECURITY_BOX",
+     "label": "Protecting keys or sensitive data in tamper-protected hardware: hardware security module, payment terminal, tachograph",
+     "group": "Chips and hardware security"
     },
     {
      "value": "CRYPTO_FOR_OTHERS",
-     "label": "Cryptographic processing or key protection for other systems"
+     "label": "Cryptographic processing or key protection for other systems",
+     "group": "Chips and hardware security"
+    },
+    {
+     "value": "HOME_SECURITY",
+     "label": "Protecting a home or the people in it: locks, alarms, security cameras, baby monitors",
+     "group": "Home and personal products"
+    },
+    {
+     "value": "HOME_CONTROL",
+     "label": "Controlling security devices in a home, such as locks or alarms: a hub or home automation app",
+     "group": "Home and personal products"
+    },
+    {
+     "value": "VOICE_ASSISTANT",
+     "label": "A voice or chat assistant for the home that answers requests and controls devices or services",
+     "group": "Home and personal products"
+    },
+    {
+     "value": "TOY",
+     "label": "A toy for children under 14",
+     "group": "Home and personal products"
+    },
+    {
+     "value": "WEARABLE",
+     "label": "Something worn on the body: watch, band, ring, clothing",
+     "group": "Home and personal products"
+    },
+    {
+     "value": "METERING",
+     "label": "Linking an energy metering system to the utility or other outside parties (a gateway)",
+     "group": "Energy"
     }
    ]
   },
@@ -1452,12 +1543,16 @@
    ],
    "options": [
     {
+     "value": "MICROPROCESSOR",
+     "label": "A microprocessor (uses external memory)"
+    },
+    {
      "value": "MICROCONTROLLER",
      "label": "A microcontroller (memory integrated)"
     },
     {
-     "value": "MICROPROCESSOR",
-     "label": "A microprocessor (uses external memory)"
+     "value": "SOC_UNCLEAR",
+     "label": "A system-on-chip; not clearly either"
     },
     {
      "value": "ASIC",
@@ -2311,6 +2406,1533 @@
    ],
    "hint": "If you are asking about both stock already shipped and future production, assess them separately.",
    "options": [
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "AUTH_OR_ACCESS_CONTROL": {
+   "question": "Does it authenticate or authorise people, devices or systems, or control their access to digital resources or physical locations?",
+   "kind": "bool",
+   "why_we_ask": "Identity and access management products are a listed category: products that check who someone is, or decide what they may access, including physical access readers.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-01",
+     "quote": "provide mechanisms for authentication or authorisation",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-01",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 1: Identity management systems and privileged access management software and hardware, including authentication and access control readers, including biometric readers",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Identity management systems are products with digital elements that "
+         },
+         {
+          "text": "provide mechanisms for authentication or authorisation",
+          "mark": true
+         },
+         {
+          "text": " and that may also provide mechanisms for the lifecycle management of identity credentials of natural persons, legal persons, devices or systems, such as identity registration, provisioning, maintenance, deregistration. These systems include access management systems that control access of natural persons, legal persons, devices or systems to digital resources or physical locations. Privileged access management software is an access management system that controls and monitors access rights to IT or OT systems and sensitive information within an organisation, including systems enforcing differentiated access control policies for privileged users. This category includes but is not limited to authentication and access control readers, biometric readers, single sign-on software, federated identity management software, one-time password software, hardware authentication devices such as transaction authentication number (TAN) generators, authentication software and multi-factor authentication software."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-01",
+     "quote": "control access of natural persons, legal persons, devices or systems to digital resources or physical locations",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-01",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 1: Identity management systems and privileged access management software and hardware, including authentication and access control readers, including biometric readers",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Identity management systems are products with digital elements that provide mechanisms for authentication or authorisation and that may also provide mechanisms for the lifecycle management of identity credentials of natural persons, legal persons, devices or systems, such as identity registration, provisioning, maintenance, deregistration. These systems include access management systems that "
+         },
+         {
+          "text": "control access of natural persons, legal persons, devices or systems to digital resources or physical locations",
+          "mark": true
+         },
+         {
+          "text": ". Privileged access management software is an access management system that controls and monitors access rights to IT or OT systems and sensitive information within an organisation, including systems enforcing differentiated access control policies for privileged users. This category includes but is not limited to authentication and access control readers, biometric readers, single sign-on software, federated identity management software, one-time password software, hardware authentication devices such as transaction authentication number (TAN) generators, authentication software and multi-factor authentication software."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "RENDERS_WEB_CONTENT": {
+   "question": "Does it let users access, display and interact with web content and services hosted on servers?",
+   "kind": "bool",
+   "why_we_ask": "Browsers are a listed category, including browser components built into other apps. What matters is letting users open and use web content from servers; it does not need every feature of a full browser.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-02",
+     "quote": "enable end users to access, render, and interact with web content and services hosted on servers",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 2: Standalone and embedded browsers",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Software products with digital elements that "
+         },
+         {
+          "text": "enable end users to access, render, and interact with web content and services hosted on servers",
+          "mark": true
+         },
+         {
+          "text": " that are connected to networks such as the Internet. They typically include a browser engine for interpreting and displaying content written in markup language (e.g. HTML), support for web protocols (e.g. HTTP, HTTPS), the ability to execute scripts and manage user inputs as well as storage of temporary or persistent data from websites (cookies). This category includes but is not limited to standalone applications that fulfil the functions of browsers, embedded browsers intended for integration into another system or application as well as browsers with AI agent integration."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "DETECTS_MALWARE": {
+   "question": "Does it detect, search for, remove or quarantine malicious software?",
+   "kind": "bool",
+   "why_we_ask": "Antivirus and anti-malware software is a listed category: software that finds malicious code, or removes or quarantines it.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-04",
+     "quote": "detect or search for malicious software or code on devices, or remove or quarantine such software or code",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-04",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 4: Software that searches for, removes, or quarantines malicious software",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Software products with digital elements, typically referred to as antivirus or antimalware, that "
+         },
+         {
+          "text": "detect or search for malicious software or code on devices, or remove or quarantine such software or code",
+          "mark": true
+         },
+         {
+          "text": ", in order to maintain the integrity, confidentiality, or availability of such devices. In the context of this category of products, malicious software means software containing malicious features or capabilities that can cause harm directly or indirectly to the user and/or the computer system, such as viruses, worms, ransomware, spyware and trojans. This category includes but is not limited to software that detects or searches for malicious software in real-time or manually, rootkit detection and rescue disks with the core functionality of searching, removing or quarantining malicious software."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "VPN_TUNNEL": {
+   "question": "Does it establish an encrypted logical tunnel built from the resources of a physical or virtual network?",
+   "kind": "bool",
+   "why_we_ask": "VPN products are a listed category: products that set up an encrypted tunnel over a network. An app that only encrypts its own traffic is not a VPN.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-05",
+     "quote": "establish an encrypted logical tunnel that is constructed from the system resources of a physical or virtual network",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-05",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 5: Products with digital elements with the function of virtual private network (VPN)",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that "
+         },
+         {
+          "text": "establish an encrypted logical tunnel that is constructed from the system resources of a physical or virtual network",
+          "mark": true
+         },
+         {
+          "text": ". This category includes but is not limited to virtual private network clients, virtual private network servers and virtual private network gateways."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CONFIGURES_NETWORK_ELEMENTS": {
+   "question": "Does it control the network operations or configuration of other network elements?",
+   "kind": "bool",
+   "why_we_ask": "Network management systems are a listed category. What decides is whether the product controls how other network equipment operates or is configured. A dashboard that only shows status does not.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-06",
+     "quote": "controlling their network operations and configuration",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-06",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 6: Network management systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that manage connected network elements, such as servers, routers, switches, workstations, printers or mobile devices, by monitoring them and "
+         },
+         {
+          "text": "controlling their network operations and configuration",
+          "mark": true
+         },
+         {
+          "text": ". This category includes but is not limited to end-to-end management systems and dedicated configuration management systems, such as controllers for software-defined networking."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "MULTI_SOURCE_DATA": {
+   "question": "Does it collect data from multiple sources?",
+   "kind": "bool",
+   "why_we_ask": "Security event management (SIEM) systems are a listed category. They gather data from many sources; a tool reading one device's logs is not one.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-07",
+     "quote": "collect data from multiple sources",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-07",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 7: Security information and event management (SIEM) systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that "
+         },
+         {
+          "text": "collect data from multiple sources",
+          "mark": true
+         },
+         {
+          "text": ", analyse and correlate that data and present it as actionable information for security-related purposes, such as threat and incident detection, forensic analysis or compliance purposes."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CORRELATES_DATA": {
+   "question": "Does it analyse and correlate that data?",
+   "kind": "bool",
+   "why_we_ask": "A SIEM analyses and correlates the data it gathers, rather than only storing it.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-07",
+     "quote": "analyse and correlate that data",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-07",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 7: Security information and event management (SIEM) systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that collect data from multiple sources, "
+         },
+         {
+          "text": "analyse and correlate that data",
+          "mark": true
+         },
+         {
+          "text": " and present it as actionable information for security-related purposes, such as threat and incident detection, forensic analysis or compliance purposes."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "SECURITY_PURPOSE_OUTPUT": {
+   "question": "Is the result presented as actionable information for security purposes, such as threat detection, forensics or compliance?",
+   "kind": "bool",
+   "why_we_ask": "A SIEM turns that data into information for security, such as detecting threats or incidents. Correlating data for performance or business reporting does not count.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-07",
+     "quote": "present it as actionable information for security-related purposes, such as threat and incident detection, forensic analysis or compliance purposes",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-07",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 7: Security information and event management (SIEM) systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that collect data from multiple sources, analyse and correlate that data and "
+         },
+         {
+          "text": "present it as actionable information for security-related purposes, such as threat and incident detection, forensic analysis or compliance purposes",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "MANAGES_BOOT": {
+   "question": "Does it manage system startup after power-on or restart: initialising hardware and loading or handing control to the operating system?",
+   "kind": "bool",
+   "why_we_ask": "Boot managers are a listed category: firmware or software that starts a system after power-on and hands over to the operating system. Single-stage boot loaders count too.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-08",
+     "quote": "manage the process of initial system startup after power on/restart",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-08",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 8: Boot managers",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Software products with digital elements that "
+         },
+         {
+          "text": "manage the process of initial system startup after power on/restart",
+          "mark": true
+         },
+         {
+          "text": " by initialising hardware, loading or transferring control to the operating system environment or system resources, and selecting boot options. This category includes but is not limited to UEFI firmware, single-stage and multi-stage boot loaders."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-08",
+     "quote": "single-stage and multi-stage boot loaders",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-08",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 8: Boot managers",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Software products with digital elements that manage the process of initial system startup after power on/restart by initialising hardware, loading or transferring control to the operating system environment or system resources, and selecting boot options. This category includes but is not limited to UEFI firmware, "
+         },
+         {
+          "text": "single-stage and multi-stage boot loaders",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "MANAGES_CERT_LIFECYCLE": {
+   "question": "Does it manage the lifecycle of digital certificates or their associated keys?",
+   "kind": "bool",
+   "why_we_ask": "Certificate issuance and PKI software is a listed category: software that creates, issues, renews or revokes digital certificates, or manages the keys that belong to them. A key store with no certificates does not count.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-09",
+     "quote": "manage the validation, creation, issuance, distribution, status publication, renewal or revocation of digital certificates",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-09",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 9: Public key infrastructure and digital certificate issuance software",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements used as part of a public key infrastructure (PKI) that "
+         },
+         {
+          "text": "manage the validation, creation, issuance, distribution, status publication, renewal or revocation of digital certificates",
+          "mark": true
+         },
+         {
+          "text": ", or the generation, storage, escrow, exchange, destruction or rotation of cryptographic keys associated with such digital certificates. This category includes but is not limited to key management systems, digital certificate management systems, online certificate status protocol responders and all-in-one PKI solutions."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "NETWORK_INTERFACE": {
+   "question": "Does it connect a device to a network through an interface driver API — a network card, adapter or virtual interface?",
+   "kind": "bool",
+   "why_we_ask": "Network interfaces are a listed category: network cards and adapters, and virtual network interfaces sold as products.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-10",
+     "quote": "This category includes but is not limited to wired and wireless network interface cards, controllers and adapters",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-10",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 10: Physical and virtual network interfaces",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Physical network interfaces are products with digital elements that directly connect a device to a network via an application programming interface (API) provided by the interface drivers, typically operating at the data link layer, and that feature hardware adapters to transmission media with corresponding firmware, typically operating at the physical and data link layer. Virtual network interfaces are products with digital elements that directly or indirectly connect a device to a network via an API that emulates that of drivers of physical network interfaces, typically operating at the data link layer. "
+         },
+         {
+          "text": "This category includes but is not limited to wired and wireless network interface cards, controllers and adapters",
+          "mark": true
+         },
+         {
+          "text": ", such as for Wi-Fi, Ethernet, IrDA, USB, Bluetooth, NearLink, Zigbee, or Fieldbus, as well as purely virtual standalone products, such as virtual network interface cards, container network interfaces and VPN interfaces."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "HARDWARE_ABSTRACTION": {
+   "question": "Does it abstract the hardware and control the execution of other software?",
+   "kind": "bool",
+   "why_we_ask": "Operating systems are a listed category: software that sits between the hardware and other software and controls how that software runs.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-11",
+     "quote": "provide an abstract interface of the underlying hardware and control the execution of software",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-11",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 11: Operating systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Software products with digital elements that "
+         },
+         {
+          "text": "provide an abstract interface of the underlying hardware and control the execution of software",
+          "mark": true
+         },
+         {
+          "text": ", and that may provide services such as computing resource management and configuration, scheduling, input-output control, managing data, and providing an interface through which applications interact with system resources and peripherals. This category includes but is not limited to real-time operating systems, general-purpose and special-purpose operating systems."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "NETWORK_DEVICE_ROLE": {
+   "question": "Which of these does the product do? Select all that apply.",
+   "kind": "multi-enum",
+   "why_we_ask": "Routers, internet modems and managed switches are a listed category. Each has its own condition: a modem only counts if it is for internet connection, and a switch only if it has a management plane.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-12",
+     "quote": "Modems intended for the connection to the Internet are hardware products",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-12",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 12: Routers, modems intended for the connection to the internet, and switches",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Routers are products with digital elements that establish and control the flow of data between different networks by selecting paths or routes using routing protocol mechanisms and algorithms, typically operating at the network layer. This category includes but is not limited to wired and wireless routers, virtual routers and routers with or without modems. "
+         },
+         {
+          "text": "Modems intended for the connection to the Internet are hardware products",
+          "mark": true
+         },
+         {
+          "text": " with digital elements that use digital modulation and demodulation techniques to convert analogue signals from and to digital signals for IP-based communication. This category includes but is not limited to fibre modems, Digital Subscriber Line (DSL) modems, cable (DOCSIS) modems, satellite modems and cellular modems. Switches are products with digital elements that provide connectivity between networked devices through packet forwarding mechanisms and that have a management plane, typically implemented at the data link or network layer. This category includes but is not limited to managed switches, smart switches, multilayer switches, virtual security switches, programmable switches for software-defined networking and bridges such as wireless access points."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-12",
+     "quote": "that have a management plane",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-12",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 12: Routers, modems intended for the connection to the internet, and switches",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Routers are products with digital elements that establish and control the flow of data between different networks by selecting paths or routes using routing protocol mechanisms and algorithms, typically operating at the network layer. This category includes but is not limited to wired and wireless routers, virtual routers and routers with or without modems. Modems intended for the connection to the Internet are hardware products with digital elements that use digital modulation and demodulation techniques to convert analogue signals from and to digital signals for IP-based communication. This category includes but is not limited to fibre modems, Digital Subscriber Line (DSL) modems, cable (DOCSIS) modems, satellite modems and cellular modems. Switches are products with digital elements that provide connectivity between networked devices through packet forwarding mechanisms and "
+         },
+         {
+          "text": "that have a management plane",
+          "mark": true
+         },
+         {
+          "text": ", typically implemented at the data link or network layer. This category includes but is not limited to managed switches, smart switches, multilayer switches, virtual security switches, programmable switches for software-defined networking and bridges such as wireless access points."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": "ROUTER",
+     "label": "Routes traffic between networks (router)"
+    },
+    {
+     "value": "INTERNET_MODEM",
+     "label": "Modem for connecting to the internet"
+    },
+    {
+     "value": "OTHER_MODEM",
+     "label": "Modem for something else, such as a point-to-point serial link"
+    },
+    {
+     "value": "MANAGED_SWITCH_OR_BRIDGE",
+     "label": "Switch with management (managed or smart switch), or a bridge such as a wireless access point"
+    },
+    {
+     "value": "UNMANAGED_SWITCH",
+     "label": "Unmanaged switch (no management interface)"
+    },
+    {
+     "value": "NONE",
+     "label": "None of these"
+    }
+   ]
+  },
+  "NATURAL_LANGUAGE_ASSISTANT": {
+   "question": "Does it process natural-language requests and act on them by reaching services or controlling devices?",
+   "kind": "bool",
+   "why_we_ask": "Smart home virtual assistants are a listed category: products that take spoken or written requests and act on them, by reaching services or controlling devices in the home.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-16",
+     "quote": "process demands, tasks or questions based on natural language prompts",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-16",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 16: Smart home general purpose virtual assistants",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that communicate on the public Internet, whether directly or via other equipment, that "
+         },
+         {
+          "text": "process demands, tasks or questions based on natural language prompts",
+          "mark": true
+         },
+         {
+          "text": ", such as through audio or written input, and that, based on those demands, tasks or questions, provide access to other services or control the functions of connected devices in residential settings. This category includes but is not limited to smart speakers with an integrated virtual assistant, and standalone virtual assistants that meet this description."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "PUBLIC_INTERNET": {
+   "question": "Does it communicate on the public Internet, directly or via other equipment?",
+   "kind": "bool",
+   "why_we_ask": "Some categories cover only products that communicate on the public internet, directly or through another device such as a phone or a hub.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-16",
+     "quote": "communicate on the public Internet, whether directly or via other equipment",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-16",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 16: Smart home general purpose virtual assistants",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Products with digital elements that "
+         },
+         {
+          "text": "communicate on the public Internet, whether directly or via other equipment",
+          "mark": true
+         },
+         {
+          "text": ", that process demands, tasks or questions based on natural language prompts, such as through audio or written input, and that, based on those demands, tasks or questions, provide access to other services or control the functions of connected devices in residential settings. This category includes but is not limited to smart speakers with an integrated virtual assistant, and standalone virtual assistants that meet this description."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "IS_TOY": {
+   "question": "Is it designed or intended for play by children under 14? Some products are not treated as toys even when children use them — for example playground equipment for public use, toy steam engines, and slings and catapults.",
+   "kind": "bool",
+   "why_we_ask": "Connected toys are a listed category, but only products that count as toys under EU toy safety law: designed or intended for play by children under 14.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-18",
+     "quote": "that are covered by Directive 2009/48/EC",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-18",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 18: Internet connected toys covered by Directive 2009/48/EC that have social interactive features (e.g. speaking or filming) or that have location tracking features",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Internet connected toys that have social interactive features are products with digital elements "
+         },
+         {
+          "text": "that are covered by Directive 2009/48/EC",
+          "mark": true
+         },
+         {
+          "text": ", that communicate on the public Internet, whether directly or via any other equipment, and that have embedded technologies that enable inbound and outbound communication, such as keyboard, microphone, speaker or camera. Internet connected toys that have location tracking features are products with digital elements that are covered by Directive 2009/48/EC, that communicate on the public Internet, whether directly or via any other equipment, and that have technologies that enable tracking or inferring of the geographical location of the toy or its user. Where the toy merely detects the proximity of the user or of other toys by using sensing technologies, the toy is not to be considered to have location tracking features."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "TOY_INTERACTIVE_OR_TRACKING": {
+   "question": "Does it have social interactive features such as speaking or filming, or location tracking? Proximity detection alone does not count.",
+   "kind": "enum",
+   "why_we_ask": "A connected toy is in the category if it can talk, listen or film, or if it tracks where the child is. Only noticing that someone is nearby does not count as tracking.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-18",
+     "quote": "that have embedded technologies that enable inbound and outbound communication, such as keyboard, microphone, speaker or camera",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-18",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 18: Internet connected toys covered by Directive 2009/48/EC that have social interactive features (e.g. speaking or filming) or that have location tracking features",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Internet connected toys that have social interactive features are products with digital elements that are covered by Directive 2009/48/EC, that communicate on the public Internet, whether directly or via any other equipment, and "
+         },
+         {
+          "text": "that have embedded technologies that enable inbound and outbound communication, such as keyboard, microphone, speaker or camera",
+          "mark": true
+         },
+         {
+          "text": ". Internet connected toys that have location tracking features are products with digital elements that are covered by Directive 2009/48/EC, that communicate on the public Internet, whether directly or via any other equipment, and that have technologies that enable tracking or inferring of the geographical location of the toy or its user. Where the toy merely detects the proximity of the user or of other toys by using sensing technologies, the toy is not to be considered to have location tracking features."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-18",
+     "quote": "the toy is not to be considered to have location tracking features",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-18",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 18: Internet connected toys covered by Directive 2009/48/EC that have social interactive features (e.g. speaking or filming) or that have location tracking features",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Internet connected toys that have social interactive features are products with digital elements that are covered by Directive 2009/48/EC, that communicate on the public Internet, whether directly or via any other equipment, and that have embedded technologies that enable inbound and outbound communication, such as keyboard, microphone, speaker or camera. Internet connected toys that have location tracking features are products with digital elements that are covered by Directive 2009/48/EC, that communicate on the public Internet, whether directly or via any other equipment, and that have technologies that enable tracking or inferring of the geographical location of the toy or its user. Where the toy merely detects the proximity of the user or of other toys by using sensing technologies, "
+         },
+         {
+          "text": "the toy is not to be considered to have location tracking features",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": "SOCIAL_INTERACTIVE",
+     "label": "It can talk, listen, film or take typed input"
+    },
+    {
+     "value": "LOCATION_TRACKING",
+     "label": "It can track or work out where it, or the child, is"
+    },
+    {
+     "value": "BOTH",
+     "label": "Both"
+    },
+    {
+     "value": "PROXIMITY_ONLY",
+     "label": "It only notices when someone or another toy is nearby"
+    },
+    {
+     "value": "NONE",
+     "label": "Neither"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "WORN_ON_BODY": {
+   "question": "Is it worn on the body, directly or via clothing or accessories?",
+   "kind": "bool",
+   "why_we_ask": "Wearables are a listed category when they monitor health or are made for children. First: is it worn on the body, directly or through clothing or accessories?",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-19",
+     "quote": "worn on the body directly or via clothing or accessories",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-19",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 19: Personal wearable products to be worn or placed on a human body that have a health monitoring (such as tracking) purpose and to which Regulation (EU) 2017/745 or (EU) 2017/746 do not apply, or personal wearable products that are intended for the use by and for children",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Personal wearable products to be worn or placed on a human body that have a health monitoring purpose are products with digital elements that are "
+         },
+         {
+          "text": "worn on the body directly or via clothing or accessories",
+          "mark": true
+         },
+         {
+          "text": " and that can, regularly or continuously, sense and further process information, including body metrics, relevant to the user's health, excluding products that fall within the scope of Regulation (EU) 2017/745 or of Regulation (EU) 2017/746. This category includes but is not limited to fitness trackers, smartwatches, smart jewellery, smart clothing and sports apparel that meet this description. Personal wearable products that are intended for the use by and for children are products with digital elements which can be worn or placed on the body, directly or via clothing or accessories, of individuals under the age of 14. This category includes but is not limited to child safety wearables."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "HEALTH_MONITORING": {
+   "question": "Does it regularly or continuously sense and process information relevant to the user's health?",
+   "kind": "bool",
+   "why_we_ask": "A wearable is in the category if it regularly or continuously senses information about the wearer's health, such as heart rate or other body measurements.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-19",
+     "quote": "regularly or continuously, sense and further process information, including body metrics, relevant to the user's health",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-19",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 19: Personal wearable products to be worn or placed on a human body that have a health monitoring (such as tracking) purpose and to which Regulation (EU) 2017/745 or (EU) 2017/746 do not apply, or personal wearable products that are intended for the use by and for children",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Personal wearable products to be worn or placed on a human body that have a health monitoring purpose are products with digital elements that are worn on the body directly or via clothing or accessories and that can, "
+         },
+         {
+          "text": "regularly or continuously, sense and further process information, including body metrics, relevant to the user's health",
+          "mark": true
+         },
+         {
+          "text": ", excluding products that fall within the scope of Regulation (EU) 2017/745 or of Regulation (EU) 2017/746. This category includes but is not limited to fitness trackers, smartwatches, smart jewellery, smart clothing and sports apparel that meet this description. Personal wearable products that are intended for the use by and for children are products with digital elements which can be worn or placed on the body, directly or via clothing or accessories, of individuals under the age of 14. This category includes but is not limited to child safety wearables."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "FOR_CHILDREN_UNDER_14": {
+   "question": "Is it intended for use by and for individuals under 14?",
+   "kind": "bool",
+   "why_we_ask": "Wearables made for children under 14 are in the category even without any health monitoring, for example child safety watches.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-19",
+     "quote": "Personal wearable products that are intended for the use by and for children",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-19",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 19: Personal wearable products to be worn or placed on a human body that have a health monitoring (such as tracking) purpose and to which Regulation (EU) 2017/745 or (EU) 2017/746 do not apply, or personal wearable products that are intended for the use by and for children",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Personal wearable products to be worn or placed on a human body that have a health monitoring purpose are products with digital elements that are worn on the body directly or via clothing or accessories and that can, regularly or continuously, sense and further process information, including body metrics, relevant to the user's health, excluding products that fall within the scope of Regulation (EU) 2017/745 or of Regulation (EU) 2017/746. This category includes but is not limited to fitness trackers, smartwatches, smart jewellery, smart clothing and sports apparel that meet this description. "
+         },
+         {
+          "text": "Personal wearable products that are intended for the use by and for children",
+          "mark": true
+         },
+         {
+          "text": " are products with digital elements which can be worn or placed on the body, directly or via clothing or accessories, of individuals under the age of 14. This category includes but is not limited to child safety wearables."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-19",
+     "quote": "This category includes but is not limited to child safety wearables.",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-19",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class I, point 19: Personal wearable products to be worn or placed on a human body that have a health monitoring (such as tracking) purpose and to which Regulation (EU) 2017/745 or (EU) 2017/746 do not apply, or personal wearable products that are intended for the use by and for children",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Personal wearable products to be worn or placed on a human body that have a health monitoring purpose are products with digital elements that are worn on the body directly or via clothing or accessories and that can, regularly or continuously, sense and further process information, including body metrics, relevant to the user's health, excluding products that fall within the scope of Regulation (EU) 2017/745 or of Regulation (EU) 2017/746. This category includes but is not limited to fitness trackers, smartwatches, smart jewellery, smart clothing and sports apparel that meet this description. Personal wearable products that are intended for the use by and for children are products with digital elements which can be worn or placed on the body, directly or via clothing or accessories, of individuals under the age of 14. "
+         },
+         {
+          "text": "This category includes but is not limited to child safety wearables.",
+          "mark": true
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "VIRTUALISATION_TYPE": {
+   "question": "Does it run virtual machines or containers? Which describes it best?",
+   "kind": "enum",
+   "why_we_ask": "Hypervisors and container runtimes are Class II products. A tool that only schedules containers across machines, without running them itself, is a case the law does not clearly settle.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-II-01",
+     "quote": "enable the execution, management and orchestration of virtual machines",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-01",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class II, point 1: Hypervisors and container runtime systems that support virtualised execution of operating systems and similar environments",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Hypervisors are software products with digital elements that abstract and/or allocate computing resources and "
+         },
+         {
+          "text": "enable the execution, management and orchestration of virtual machines",
+          "mark": true
+         },
+         {
+          "text": " that are logically separated from each other and/or from the physical hardware. Hypervisors may run directly on hardware (bare metal), on top of an operating system, or within another virtual machine (nested virtualisation). In the context of this category of products, a virtual machine is a software-defined logical separation of a computing environment, which includes a virtualised set of hardware resources (e.g. CPU, memory, storage, network interfaces) and typically hosts its own operating system. This category includes but is not limited to type 1 hypervisors (bare metal), type 2 hypervisors (hosted on an operating system) and hybrid hypervisors. Container runtime systems are software products with digital elements that manage the execution and lifecycle of containers running on a single host operating system as isolated processes, allocating resources and allowing the management and orchestration of individual containers. In the context of this category of products, a container is a software-based execution environment that encapsulates one or more software components and their dependencies in a single package, enabling it to run independently and consistently."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "B2",
+     "cat": "III-II-01",
+     "quote": "manage the execution and lifecycle of containers running on a single host operating system",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-01",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class II, point 1: Hypervisors and container runtime systems that support virtualised execution of operating systems and similar environments",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Hypervisors are software products with digital elements that abstract and/or allocate computing resources and enable the execution, management and orchestration of virtual machines that are logically separated from each other and/or from the physical hardware. Hypervisors may run directly on hardware (bare metal), on top of an operating system, or within another virtual machine (nested virtualisation). In the context of this category of products, a virtual machine is a software-defined logical separation of a computing environment, which includes a virtualised set of hardware resources (e.g. CPU, memory, storage, network interfaces) and typically hosts its own operating system. This category includes but is not limited to type 1 hypervisors (bare metal), type 2 hypervisors (hosted on an operating system) and hybrid hypervisors. Container runtime systems are software products with digital elements that "
+         },
+         {
+          "text": "manage the execution and lifecycle of containers running on a single host operating system",
+          "mark": true
+         },
+         {
+          "text": " as isolated processes, allocating resources and allowing the management and orchestration of individual containers. In the context of this category of products, a container is a software-based execution environment that encapsulates one or more software components and their dependencies in a single package, enabling it to run independently and consistently."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": "HYPERVISOR",
+     "label": "Runs virtual machines (hypervisor)"
+    },
+    {
+     "value": "CONTAINER_RUNTIME",
+     "label": "Runs containers on a machine (container runtime)"
+    },
+    {
+     "value": "ORCHESTRATOR_ONLY",
+     "label": "Only schedules containers across machines; others run them"
+    },
+    {
+     "value": "PROCESS_SANDBOX",
+     "label": "Isolates a single process (sandbox)"
+    },
+    {
+     "value": "NONE",
+     "label": "None of these"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "FILTERS_OR_DETECTS_INTRUSION": {
+   "question": "Does it monitor and restrict network traffic, or detect or respond to intrusions?",
+   "kind": "bool",
+   "why_we_ask": "Firewalls and intrusion detection or prevention systems are Class II, whether for homes or industry. A router that also has a firewall stays a router; tick this only if filtering or detecting intrusions is what the product is for.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-II-02",
+     "quote": "protect a connected network or system from unauthorized access by monitoring and restricting data communication traffic",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class II, point 2: Firewalls, intrusion detection and prevention systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Firewalls are products with digital elements that "
+         },
+         {
+          "text": "protect a connected network or system from unauthorized access by monitoring and restricting data communication traffic",
+          "mark": true
+         },
+         {
+          "text": " to and from that network. This category includes but is not limited to network firewalls and application firewalls such as web application firewalls or filters and anti-spam gateways. Intrusion detection systems are products with digital elements that monitor traffic once it has entered the network environment for suspicious activity and detect or identify that an intrusion has been attempted, is occurring, or has occurred on a connected network or system. This category includes but is not limited to network-based intrusion detection systems and host-based intrusion detection systems. Intrusion prevention systems are products with digital elements composed of an intrusion detection system that actively responds to an intrusion to a connected network or system. This category includes but is not limited to network-based intrusion prevention systems and host-based intrusion prevention systems."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "B2",
+     "cat": "III-II-02",
+     "quote": "monitor traffic once it has entered the network environment for suspicious activity",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-02",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, Class II, point 2: Firewalls, intrusion detection and prevention systems",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Firewalls are products with digital elements that protect a connected network or system from unauthorized access by monitoring and restricting data communication traffic to and from that network. This category includes but is not limited to network firewalls and application firewalls such as web application firewalls or filters and anti-spam gateways. Intrusion detection systems are products with digital elements that "
+         },
+         {
+          "text": "monitor traffic once it has entered the network environment for suspicious activity",
+          "mark": true
+         },
+         {
+          "text": " and detect or identify that an intrusion has been attempted, is occurring, or has occurred on a connected network or system. This category includes but is not limited to network-based intrusion detection systems and host-based intrusion detection systems. Intrusion prevention systems are products with digital elements composed of an intrusion detection system that actively responds to an intrusion to a connected network or system. This category includes but is not limited to network-based intrusion prevention systems and host-based intrusion prevention systems."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "CRYPTO_CORE": {
+   "question": "Is securely storing, processing or managing sensitive data, or performing cryptographic operations, what the product is FOR?",
+   "kind": "bool",
+   "why_we_ask": "Hardware security devices are critical products. The first condition: is protecting sensitive data or performing cryptographic operations what the device is for?",
+   "evidence": "MANUFACTURER_ONLY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-01",
+     "quote": "securely store, process, or manage sensitive data or perform cryptographic operations",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-01",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 1: Hardware Devices with Security Boxes",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Hardware products with digital elements that "
+         },
+         {
+          "text": "securely store, process, or manage sensitive data or perform cryptographic operations",
+          "mark": true
+         },
+         {
+          "text": ", and that consist of multiple discrete components, incorporating a hardware physical envelope providing tamper evidence, resistance or response as countermeasures against physical attacks. This category includes but is not limited to physical payment terminals, hardware security modules that generate and manage cryptographic elements, and tachographs that meet the above description."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    },
+    {
+     "value": "CONFLICTING",
+     "label": "Our documents say different things"
+    }
+   ]
+  },
+  "MULTIPLE_DISCRETE_COMPONENTS": {
+   "question": "Is it built from multiple discrete components, rather than a single chip?",
+   "kind": "bool",
+   "why_we_ask": "The critical category covers devices built from several components, such as a payment terminal or a hardware security module. A single chip falls under other categories.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-01",
+     "quote": "consist of multiple discrete components",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-01",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 1: Hardware Devices with Security Boxes",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Hardware products with digital elements that securely store, process, or manage sensitive data or perform cryptographic operations, and that "
+         },
+         {
+          "text": "consist of multiple discrete components",
+          "mark": true
+         },
+         {
+          "text": ", incorporating a hardware physical envelope providing tamper evidence, resistance or response as countermeasures against physical attacks. This category includes but is not limited to physical payment terminals, hardware security modules that generate and manage cryptographic elements, and tachographs that meet the above description."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
+  "PHYSICAL_TAMPER_ENVELOPE": {
+   "question": "Do those components sit inside a hardware enclosure that gives tamper evidence, resistance or response against physical attack?",
+   "kind": "bool",
+   "why_we_ask": "What makes these devices critical is a physical enclosure that shows, resists or reacts to tampering, for example by erasing keys when it is opened. An ordinary case does not count.",
+   "evidence": "DOCUMENT_LIKELY",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-01",
+     "quote": "incorporating a hardware physical envelope providing tamper evidence, resistance or response as countermeasures against physical attacks",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-01",
+     "text": {
+      "act": "Implementing Regulation (EU) 2025/2392",
+      "heading": "Annex, critical products, point 1: Hardware Devices with Security Boxes",
+      "lines": [
+       {
+        "label": "",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Hardware products with digital elements that securely store, process, or manage sensitive data or perform cryptographic operations, and that consist of multiple discrete components, "
+         },
+         {
+          "text": "incorporating a hardware physical envelope providing tamper evidence, resistance or response as countermeasures against physical attacks",
+          "mark": true
+         },
+         {
+          "text": ". This category includes but is not limited to physical payment terminals, hardware security modules that generate and manage cryptographic elements, and tachographs that meet the above description."
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": true,
+     "label": "Yes"
+    },
+    {
+     "value": false,
+     "label": "No"
+    },
     {
      "value": "UNKNOWN",
      "label": "Not sure"

@@ -743,7 +743,8 @@
    "expected_behaviour": "Art. 12(3) derogation: CRA conformity procedures apply for the CRA essential requirements",
    "status": "AUTHOR_VERIFIED",
    "expected_scope": "IN",
-   "expected_class": "IMPORTANT_II"
+   "expected_class": "NOT_ASSERTED",
+   "note": "Scenario covers Art. 32(2) (Class I) and 32(3) (Class II); the case tests the conformity route, not the class. Was IMPORTANT_II, which was more specific than the scenario (found when encoding all 26 categories)."
   },
   {
    "id": "AI-03",

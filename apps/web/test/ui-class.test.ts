@@ -36,7 +36,7 @@ it("class only, smart lock: skips scope, ends with a conditional class and an of
   await pick("No");                     // EHR
   const text = app().textContent!;
   expect(text).toContain("Not checked.");
-  expect(text).toContain("If the CRA applies: not determined. At least: Important, Class I");
+  expect(text).toContain("If the CRA applies: not determined. At least: Important, Class I");  // scope unchecked: never definite
   expect(text).not.toContain("cra art 14 reporting");
   app().querySelector<HTMLButtonElement>("#to-full")!.click(); await tick();
   expect(heading()).toContain("hardware, software, or an online service");

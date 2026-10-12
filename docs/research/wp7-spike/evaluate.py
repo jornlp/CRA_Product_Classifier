@@ -48,6 +48,8 @@ def eval_condition(cond, facts, spec, cat_results, trace):
     state, val = fact_value(cond["fact"], facts, spec, trace)
     if state != "VALUE":
         return state
+    if "contains_any" in cond:  # multi-select answer: any listed option ticked
+        return T if any(x in (val or []) for x in cond["contains_any"]) else F
     if "is" in cond:
         return T if val == cond["is"] else F
     if "in" in cond:

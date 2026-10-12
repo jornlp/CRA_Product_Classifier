@@ -80,6 +80,9 @@ describe("screens: pest-control camera", () => {
   });
   it("asks what the product is mainly for, with binding, FAQ and worked examples", async () => {
     expect(heading()).toContain("mainly for");
+    const groups = [...app().querySelectorAll(".group-name")].map((g) => g.textContent);
+    expect(groups).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy"]);
+    expect(app().querySelectorAll("details .group").length).toBe(0); // no group is hidden
     const guide = app().querySelector("aside.guide")!.textContent!;
     expect(guide).toContain("Official text (binding)");
     expect(guide).toContain("Commission FAQ");
@@ -97,14 +100,14 @@ describe("screens: pest-control camera", () => {
     await answer("No"); // RED DA
     await answer("No"); // certificate
   });
-  it("result: in scope, smart-home security ruled out with the official wording, no false DEFAULT", () => {
+  it("result: in scope, smart-home security ruled out with the official wording, class Default", () => {
     const text = app().textContent!;
     expect(text).toContain("The CRA applies to this product.");
     expect(text).toContain("Ruled out, and why");
     expect(text).toContain("Smart home products with security functionalities");
     expect(text).toContain("protect the physical security of consumers");
-    expect(text).toContain("Not determined. At least: Default");
-    expect(text).toContain("rules for 6 of 26 categories");
+    expect(app().querySelector(".verdict:nth-of-type(1)")).not.toBeNull();
+    expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("Default");
     expect(text).toContain("you indicated the product is not mainly for this");
     expect(text).toContain("not legal advice");
   });

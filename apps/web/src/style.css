@@ -70,3 +70,5 @@ q { font-style: italic; }
 .records { border: 1px solid var(--line); border-radius: 8px; padding: .6rem .9rem .9rem; margin: 1rem 0 0; display: grid; gap: .5rem; }
 .records label { display: grid; gap: .2rem; font-size: .92rem; }
 .records input { font: inherit; padding: .45rem; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); }
+.group { display: grid; gap: .4rem; margin-bottom: .6rem; }
+.group-name { font-weight: 700; font-size: .85rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: .5rem 0 0; }

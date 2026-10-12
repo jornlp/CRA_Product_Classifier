@@ -8,7 +8,7 @@ import type { Value, Match, Facts, Derive } from "./logic.js";
 export type ClassName = "DEFAULT" | "IMPORTANT_I" | "IMPORTANT_II" | "CRITICAL";
 
 export interface Condition {
-  quote: string; fact?: string; is?: unknown; in?: unknown[]; map?: Record<string, Value>;
+  quote: string; fact?: string; is?: unknown; in?: unknown[]; map?: Record<string, Value>; contains_any?: unknown[];
   category?: string; open_ref?: string; status?: string; where?: string;
 }
 export interface CategoryRule {
@@ -61,6 +61,7 @@ function evalCondition(cond: Condition, facts: Facts, rules: ClassificationRules
   if (cond.category !== undefined) return results[cond.category].value;
   const [state, val] = factValue(cond.fact!, facts, rules, trace);
   if (state !== "VALUE") return state;
+  if (cond.contains_any !== undefined) return cond.contains_any.some((x) => ((val as unknown[]) ?? []).includes(x)) ? T : F;
   if ("is" in cond) return val === cond.is ? T : F;
   if (cond.in !== undefined) return cond.in.includes(val) ? T : F;
   if (cond.map !== undefined) return cond.map[mapKey(val)] ?? U;

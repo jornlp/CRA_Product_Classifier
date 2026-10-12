@@ -53,7 +53,9 @@ export function nextClassificationQuestions(rules: ClassificationRules, facts: F
   const src = derivationSources(rules.derive);
   for (const fid of [...weight.keys()]) {
     const s = src.get(fid);
-    if (s && !(s in facts)) { weight.set(s, (weight.get(s) ?? 0) + weight.get(fid)!); if (!firstSeen.has(s)) firstSeen.set(s, -1); }
+    // Only screens that belong to the classification are asked here; the exclusion screen is a
+    // scope question, so in a classification-only check its follow-up is asked directly.
+    if (s && !(s in facts) && s in rules.facts) { weight.set(s, (weight.get(s) ?? 0) + weight.get(fid)!); if (!firstSeen.has(s)) firstSeen.set(s, -1); }
   }
   // Reading order first (rules' ask_order); otherwise the fact that settles most categories.
   const pos = (f: string) => { const i = (rules.ask_order ?? []).indexOf(f); return i < 0 ? Infinity : i; };

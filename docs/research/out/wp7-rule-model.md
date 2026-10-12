@@ -329,6 +329,9 @@ screen grows by one or two options per encoded category family.
   the rest should be routine, but each still needs its WP5 condition notes read first.
 - ~~Timeline trial~~ — done, §10.
 - ~~Scope trial~~ — done, §10a.
-- Everything the trials need is now in the engine contract. What remains before Phase 1 is
-  encoding the other 20 categories (reading each one's WP5 notes first), and the people-dependent
-  work: WP3 interviews, WP4 runs on the online tools, WP6 comprehension tests and a review round.
+- ~~Encode the other 20 categories~~ — done 12 October 2026: all 26 encoded with the WP5 condition
+  logic (descriptive wording kept out, inclusion-list overrides honoured, open questions mapped to
+  OPEN), 84 classification fixtures in both engines, one new condition type (`contains_any`).
+  With full coverage the engine can now state DEFAULT where every category is ruled out.
+- Still people-dependent: WP6 comprehension tests, the DR-04 technical review of the rules, and a
+  review round on the open questions. Guidance examples exist for the pilot questions only.

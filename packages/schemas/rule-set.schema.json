@@ -249,6 +249,11 @@
     "open_ref": {
      "description": "Required wherever map can yield OPEN: the recorded open question.",
      "type": "string"
+    },
+    "contains_any": {
+     "type": "array",
+     "minItems": 1,
+     "description": "For multi-select facts: TRUE if any listed option is ticked."
     }
    },
    "oneOf": [
@@ -268,6 +273,12 @@
      "required": [
       "fact",
       "map"
+     ]
+    },
+    {
+     "required": [
+      "fact",
+      "contains_any"
      ]
     },
     {
@@ -425,7 +436,8 @@
      "enum": [
       "author-verified",
       "operative-for-exclusion",
-      "not-covered"
+      "not-covered",
+      "rule-encoded"
      ]
     },
     "conditions": {

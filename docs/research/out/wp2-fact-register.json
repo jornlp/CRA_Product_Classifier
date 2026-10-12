@@ -432,7 +432,16 @@
    "worked_example": {
     "yes": "Reaches a cloud service directly or through a hub.",
     "no": "Talks only to a paired handset over Bluetooth, with no internet path."
-   }
+   },
+   "user_why": "Some categories cover only products that communicate on the public internet, directly or through another device such as a phone or a hub.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-16",
+     "quote": "communicate on the public Internet, whether directly or via other equipment",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-16"
+    }
+   ]
   },
   {
    "fact_id": "RESIDENTIAL_SETTING",
@@ -528,7 +537,7 @@
   {
    "fact_id": "CRYPTO_CORE",
    "question": "Is securely storing, processing or managing sensitive data, or performing cryptographic operations, what the product is FOR?",
-   "kind": "enum:YES/NO/UNKNOWN",
+   "kind": "bool",
    "why_we_ask": "IV-01, IV-03, and the IV-02 exclusion gate",
    "categories_discriminated": [
     "IV-01",
@@ -540,7 +549,16 @@
    "worked_example": {
     "yes": "A hardware security module; a secure element.",
     "no": "A product that uses TLS like almost every connected product."
-   }
+   },
+   "user_why": "Hardware security devices are critical products. The first condition: is protecting sensitive data or performing cryptographic operations what the device is for?",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-01",
+     "quote": "securely store, process, or manage sensitive data or perform cryptographic operations",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-01"
+    }
+   ]
   },
   {
    "fact_id": "DISCRETE_COMPONENTS_ENVELOPE",
@@ -648,7 +666,22 @@
    "worked_example": {
     "yes": "Single sign-on; a badge reader controlling a door.",
     "no": "An app with a login screen that calls someone else's identity service."
-   }
+   },
+   "user_why": "Identity and access management products are a listed category: products that check who someone is, or decide what they may access, including physical access readers.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-01",
+     "quote": "provide mechanisms for authentication or authorisation",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-01"
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-01",
+     "quote": "control access of natural persons, legal persons, devices or systems to digital resources or physical locations",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-01"
+    }
+   ]
   },
   {
    "fact_id": "RENDERS_WEB_CONTENT",
@@ -666,7 +699,16 @@
    },
    "replaces": "RENDERS_WEB_CONTENT (v1)",
    "revision": "v2 (WP7 trial)",
-   "previous_question": "Does it access, render and interact with web content over web protocols, with a browser engine and script execution?"
+   "previous_question": "Does it access, render and interact with web content over web protocols, with a browser engine and script execution?",
+   "user_why": "Browsers are a listed category, including browser components built into other apps. What matters is letting users open and use web content from servers; it does not need every feature of a full browser.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-02",
+     "quote": "enable end users to access, render, and interact with web content and services hosted on servers",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-02"
+    }
+   ]
   },
   {
    "fact_id": "STORES_PASSWORDS",
@@ -699,7 +741,16 @@
    "worked_example": {
     "yes": "Scans for and quarantines malicious code.",
     "no": "Reports that a file changed, without judging whether it is malicious."
-   }
+   },
+   "user_why": "Antivirus and anti-malware software is a listed category: software that finds malicious code, or removes or quarantines it.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-04",
+     "quote": "detect or search for malicious software or code on devices, or remove or quarantine such software or code",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-04"
+    }
+   ]
   },
   {
    "fact_id": "VPN_TUNNEL",
@@ -714,7 +765,16 @@
    "worked_example": {
     "yes": "A client or gateway establishing an encrypted tunnel.",
     "no": "An app that uses TLS for its own traffic."
-   }
+   },
+   "user_why": "VPN products are a listed category: products that set up an encrypted tunnel over a network. An app that only encrypts its own traffic is not a VPN.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-05",
+     "quote": "establish an encrypted logical tunnel that is constructed from the system resources of a physical or virtual network",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-05"
+    }
+   ]
   },
   {
    "fact_id": "MANAGES_NETWORK_ELEMENTS",
@@ -768,7 +828,22 @@
    },
    "replaces": "MANAGES_BOOT (v1)",
    "revision": "v2 (WP7 trial)",
-   "previous_question": "Does it manage system startup — initialising hardware, loading the OS, selecting boot options?"
+   "previous_question": "Does it manage system startup — initialising hardware, loading the OS, selecting boot options?",
+   "user_why": "Boot managers are a listed category: firmware or software that starts a system after power-on and hands over to the operating system. Single-stage boot loaders count too.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-08",
+     "quote": "manage the process of initial system startup after power on/restart",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-08"
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-08",
+     "quote": "single-stage and multi-stage boot loaders",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-08"
+    }
+   ]
   },
   {
    "fact_id": "MANAGES_CERT_LIFECYCLE",
@@ -783,7 +858,16 @@
    "worked_example": {
     "yes": "Issues, renews and revokes certificates.",
     "no": "Validates certificates using the OS trust store."
-   }
+   },
+   "user_why": "Certificate issuance and PKI software is a listed category: software that creates, issues, renews or revokes digital certificates, or manages the keys that belong to them. A key store with no certificates does not count.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-09",
+     "quote": "manage the validation, creation, issuance, distribution, status publication, renewal or revocation of digital certificates",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-09"
+    }
+   ]
   },
   {
    "fact_id": "NETWORK_INTERFACE",
@@ -798,7 +882,16 @@
    "worked_example": {
     "yes": "A network card or adapter with its driver interface.",
     "no": "A USB storage controller."
-   }
+   },
+   "user_why": "Network interfaces are a listed category: network cards and adapters, and virtual network interfaces sold as products.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-10",
+     "quote": "This category includes but is not limited to wired and wireless network interface cards, controllers and adapters",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-10"
+    }
+   ]
   },
   {
    "fact_id": "HARDWARE_ABSTRACTION",
@@ -817,7 +910,16 @@
    "certification_proxy": {
     "marker": "NIAP General Purpose Operating System Protection Profile; BSI Operating System Protection Profile (OSPP)",
     "use": "POSITIVE ONLY. Evidence the product was evaluated as an operating system. Absence proves nothing."
-   }
+   },
+   "user_why": "Operating systems are a listed category: software that sits between the hardware and other software and controls how that software runs.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-11",
+     "quote": "provide an abstract interface of the underlying hardware and control the execution of software",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-11"
+    }
+   ]
   },
   {
    "fact_id": "ROUTES_OR_FORWARDS",
@@ -850,7 +952,16 @@
    "worked_example": {
     "yes": "Understands spoken requests and acts on them.",
     "no": "Responds to a few fixed voice commands offline."
-   }
+   },
+   "user_why": "Smart home virtual assistants are a listed category: products that take spoken or written requests and act on them, by reaching services or controlling devices in the home.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-16",
+     "quote": "process demands, tasks or questions based on natural language prompts",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-16"
+    }
+   ]
   },
   {
    "fact_id": "IS_TOY",
@@ -865,7 +976,16 @@
    "worked_example": {
     "yes": "Designed for play by children under 14.",
     "no": "A hobby kit marketed to adults."
-   }
+   },
+   "user_why": "Connected toys are a listed category, but only products that count as toys under EU toy safety law: designed or intended for play by children under 14.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-18",
+     "quote": "that are covered by Directive 2009/48/EC",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-18"
+    }
+   ]
   },
   {
    "fact_id": "TOY_INTERACTIVE_OR_TRACKING",
@@ -880,7 +1000,29 @@
    "worked_example": {
     "yes": "A microphone and speaker for two-way interaction; location reporting.",
     "no": "Proximity detection only - expressly not location tracking."
-   }
+   },
+   "user_why": "A connected toy is in the category if it can talk, listen or film, or if it tracks where the child is. Only noticing that someone is nearby does not count as tracking.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-18",
+     "quote": "that have embedded technologies that enable inbound and outbound communication, such as keyboard, microphone, speaker or camera",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-18"
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-18",
+     "quote": "the toy is not to be considered to have location tracking features",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-18"
+    }
+   ],
+   "values": [
+    "SOCIAL_INTERACTIVE",
+    "LOCATION_TRACKING",
+    "BOTH",
+    "PROXIMITY_ONLY",
+    "NONE"
+   ]
   },
   {
    "fact_id": "WORN_ON_BODY",
@@ -895,7 +1037,16 @@
    "worked_example": {
     "yes": "A wristband, smartwatch or smart garment.",
     "no": "A device clipped to a bag but not worn on the body."
-   }
+   },
+   "user_why": "Wearables are a listed category when they monitor health or are made for children. First: is it worn on the body, directly or through clothing or accessories?",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-19",
+     "quote": "worn on the body directly or via clothing or accessories",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-19"
+    }
+   ]
   },
   {
    "fact_id": "HEALTH_MONITORING",
@@ -910,7 +1061,16 @@
    "worked_example": {
     "yes": "Continuous heart-rate or activity sensing.",
     "no": "A watch that only tells the time."
-   }
+   },
+   "user_why": "A wearable is in the category if it regularly or continuously senses information about the wearer's health, such as heart rate or other body measurements.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-19",
+     "quote": "regularly or continuously, sense and further process information, including body metrics, relevant to the user's health",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-19"
+    }
+   ]
   },
   {
    "fact_id": "FOR_CHILDREN_UNDER_14",
@@ -925,7 +1085,22 @@
    "worked_example": {
     "yes": "A child safety wearable.",
     "no": "An adult fitness tracker."
-   }
+   },
+   "user_why": "Wearables made for children under 14 are in the category even without any health monitoring, for example child safety watches.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-19",
+     "quote": "Personal wearable products that are intended for the use by and for children",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-19"
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-19",
+     "quote": "This category includes but is not limited to child safety wearables.",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-19"
+    }
+   ]
   },
   {
    "fact_id": "VIRTUALISATION",
@@ -958,7 +1133,22 @@
    "worked_example": {
     "yes": "A firewall or IPS, consumer or industrial - no industrial condition applies.",
     "no": "A router that happens to include firewall features."
-   }
+   },
+   "user_why": "Firewalls and intrusion detection or prevention systems are Class II, whether for homes or industry. A router that also has a firewall stays a router; tick this only if filtering or detecting intrusions is what the product is for.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-II-02",
+     "quote": "protect a connected network or system from unauthorized access by monitoring and restricting data communication traffic",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-02"
+    },
+    {
+     "src": "B2",
+     "cat": "III-II-02",
+     "quote": "monitor traffic once it has entered the network environment for suspicious activity",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-02"
+    }
+   ]
   },
   {
    "fact_id": "IS_SECURE_ELEMENT",
@@ -1060,7 +1250,16 @@
     "no": "Displays network status without changing anything."
    },
    "replaces": "MANAGES_NETWORK_ELEMENTS",
-   "revision": "v2 (WP7 trial)"
+   "revision": "v2 (WP7 trial)",
+   "user_why": "Network management systems are a listed category. What decides is whether the product controls how other network equipment operates or is configured. A dashboard that only shows status does not.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-06",
+     "quote": "controlling their network operations and configuration",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-06"
+    }
+   ]
   },
   {
    "fact_id": "CONTROL_PATH",
@@ -1209,7 +1408,16 @@
     "no": "The logs of one firewall only."
    },
    "replaces": "CORRELATES_SECURITY_DATA",
-   "revision": "v2 (WP7 trial)"
+   "revision": "v2 (WP7 trial)",
+   "user_why": "Security event management (SIEM) systems are a listed category. They gather data from many sources; a tool reading one device's logs is not one.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-07",
+     "quote": "collect data from multiple sources",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-07"
+    }
+   ]
   },
   {
    "fact_id": "CORRELATES_DATA",
@@ -1226,7 +1434,16 @@
     "no": "Stores logs for later search without correlation."
    },
    "replaces": "CORRELATES_SECURITY_DATA",
-   "revision": "v2 (WP7 trial)"
+   "revision": "v2 (WP7 trial)",
+   "user_why": "A SIEM analyses and correlates the data it gathers, rather than only storing it.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-07",
+     "quote": "analyse and correlate that data",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-07"
+    }
+   ]
   },
   {
    "fact_id": "SECURITY_PURPOSE_OUTPUT",
@@ -1243,7 +1460,16 @@
     "no": "Application performance dashboards (WP5 MP-05)."
    },
    "replaces": "CORRELATES_SECURITY_DATA",
-   "revision": "v2 (WP7 trial)"
+   "revision": "v2 (WP7 trial)",
+   "user_why": "A SIEM turns that data into information for security, such as detecting threats or incidents. Correlating data for performance or business reporting does not count.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-07",
+     "quote": "present it as actionable information for security-related purposes, such as threat and incident detection, forensic analysis or compliance purposes",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-07"
+    }
+   ]
   },
   {
    "fact_id": "NETWORK_DEVICE_ROLE",
@@ -1276,7 +1502,22 @@
     "NONE": "FALSE"
    },
    "replaces": "ROUTES_OR_FORWARDS",
-   "revision": "v2 (WP7 trial)"
+   "revision": "v2 (WP7 trial)",
+   "user_why": "Routers, internet modems and managed switches are a listed category. Each has its own condition: a modem only counts if it is for internet connection, and a switch only if it has a management plane.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-I-12",
+     "quote": "Modems intended for the connection to the Internet are hardware products",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-12"
+    },
+    {
+     "src": "B2",
+     "cat": "III-I-12",
+     "quote": "that have a management plane",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-I-12"
+    }
+   ]
   },
   {
    "fact_id": "VIRTUALISATION_TYPE",
@@ -1307,7 +1548,22 @@
     "NONE": "FALSE"
    },
    "replaces": "VIRTUALISATION",
-   "revision": "v2 (WP7 trial)"
+   "revision": "v2 (WP7 trial)",
+   "user_why": "Hypervisors and container runtimes are Class II products. A tool that only schedules containers across machines, without running them itself, is a case the law does not clearly settle.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "III-II-01",
+     "quote": "enable the execution, management and orchestration of virtual machines",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-01"
+    },
+    {
+     "src": "B2",
+     "cat": "III-II-01",
+     "quote": "manage the execution and lifecycle of containers running on a single host operating system",
+     "ref": "Implementing Regulation (EU) 2025/2392, category III-II-01"
+    }
+   ]
   },
   {
    "fact_id": "MULTIPLE_DISCRETE_COMPONENTS",
@@ -1324,7 +1580,16 @@
     "no": "A single secure chip."
    },
    "replaces": "DISCRETE_COMPONENTS_ENVELOPE",
-   "revision": "v2 (WP7 trial)"
+   "revision": "v2 (WP7 trial)",
+   "user_why": "The critical category covers devices built from several components, such as a payment terminal or a hardware security module. A single chip falls under other categories.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-01",
+     "quote": "consist of multiple discrete components",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-01"
+    }
+   ]
   },
   {
    "fact_id": "PHYSICAL_TAMPER_ENVELOPE",
@@ -1341,7 +1606,16 @@
     "no": "An ordinary industrial PC case."
    },
    "replaces": "DISCRETE_COMPONENTS_ENVELOPE",
-   "revision": "v2 (WP7 trial)"
+   "revision": "v2 (WP7 trial)",
+   "user_why": "What makes these devices critical is a physical enclosure that shows, resists or reacts to tampering, for example by erasing keys when it is opened. An ordinary case does not count.",
+   "legal_basis": [
+    {
+     "src": "B2",
+     "cat": "IV-01",
+     "quote": "incorporating a hardware physical envelope providing tamper evidence, resistance or response as countermeasures against physical attacks",
+     "ref": "Implementing Regulation (EU) 2025/2392, category IV-01"
+    }
+   ]
   },
   {
    "fact_id": "ADVANCED_SECURITY_CORE",
@@ -1981,19 +2255,55 @@
    "question": "Which of these is your product mainly for? Tick all that apply, or none.",
    "kind": "multi-enum",
    "values": [
+    "IDENTITY",
+    "PASSWORDS",
+    "MALWARE",
+    "VPN",
+    "SIEM",
+    "PKI",
+    "FIREWALL",
+    "OS",
+    "BOOT",
+    "BROWSER",
+    "VIRTUALISATION",
+    "ROUTING",
+    "NETWORK_INTERFACE",
+    "NETWORK_MGMT",
+    "CHIP",
+    "SECURITY_BOX",
+    "CRYPTO_FOR_OTHERS",
     "HOME_SECURITY",
     "HOME_CONTROL",
-    "PASSWORDS",
-    "CHIP",
-    "METERING",
-    "CRYPTO_FOR_OTHERS"
+    "VOICE_ASSISTANT",
+    "TOY",
+    "WEARABLE",
+    "METERING"
    ],
    "categories_discriminated": [
+    "III-I-01",
+    "III-I-02",
     "III-I-03",
-    "III-I-17",
+    "III-I-04",
+    "III-I-05",
+    "III-I-06",
+    "III-I-07",
+    "III-I-08",
+    "III-I-09",
+    "III-I-10",
+    "III-I-11",
+    "III-I-12",
     "III-I-13",
     "III-I-14",
+    "III-I-15",
+    "III-I-16",
+    "III-I-17",
+    "III-I-18",
+    "III-I-19",
+    "III-II-01",
+    "III-II-02",
+    "III-II-03",
     "III-II-04",
+    "IV-01",
     "IV-02",
     "IV-03"
    ],
