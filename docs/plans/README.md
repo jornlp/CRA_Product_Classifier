@@ -51,6 +51,65 @@ decisive misunderstandings. Both validation companies are Dutch-speaking, so Eng
 comprehension testing with them needs to be explicit about whether language or legal
 concept caused any misunderstanding. WP6 covers this.
 
+### DR-04 — Positioning: an informational tool, not a validated classifier
+
+Decided 12 October 2026. The project will **not** pursue a legally validated classification
+service. It will present what the official texts say, show what is undetermined, carry a visible
+disclaimer, and tell users to obtain their own legal advice.
+
+This is a positioning decision, and it requires amending two of v4's own gates, which were
+written for a different product. Failing them silently would be worse than changing them.
+
+**AC-01, amended.** v4: *every published rule has an official legal reference and a named
+reviewer; unreviewed rules are disabled.* As written, with no legal reviewer, every rule is
+permanently disabled and the tool cannot exist.
+
+> **AC-01 (amended).** A rule may be enabled when every condition it applies is **verified
+> verbatim against the official source**, the source is held with a recorded hash, and the rule
+> carries its citation into the output. Verification is mechanical and repeatable; it does not
+> require a lawyer.
+
+This is a gate we can actually meet, and it is the one that catches real defects: both errors
+found on 12 October — a "typically" read as mandatory in IV-03, and "directly" where the text
+says "directly or indirectly" in III-I-10 — are exactly what it catches.
+
+**§8.2 Definition of Done, amended.** Drop the requirement for a substantive legal reviewer to
+sign each rule-PR. Keep everything else: exact provision and source version, explicit conditions
+and exceptions, positive/negative/minimal-pair tests, a technical reviewer, understandable
+language with a "why do we ask this?" explanation, and an updated changelog.
+
+**AC-02 kept, and kept strictly.** Under this positioning it becomes the acceptance criterion
+that matters most. A user told `UNRESOLVED` goes and asks someone. A user told `DEFAULT` who was
+in fact in a higher class may self-assess and act on it. **Being confidently wrong in the
+permissive direction is the only way this tool can harm anyone**, and no disclaimer changes that.
+
+**Case status taxonomy.** `HYPOTHESIS` implied a legal review that is not coming. Replaced by:
+
+| Status | Meaning |
+|---|---|
+| `AUTHOR_VERIFIED` | The conditions trace verbatim to official text we hold and have verified |
+| `AUTHOR_INTERPRETATION` | Our reading goes beyond the literal text; reasonable, but a reading |
+| `OPEN_QUESTION` | The law is genuinely undetermined; the engine must not resolve it |
+
+No status asserts legal endorsement, and none is pending anything.
+
+**AC-03, refined after review round 2.** The CRA imposes no procedural duty to record 26 negative
+findings. The legal test is whether the product has the core functionality of a listed category.
+So separate two requirements that AC-03 had conflated:
+
+> **Substantive completeness** — the system must have a sound basis for ruling out every
+> applicable Annex III and Annex IV category. This is non-negotiable.
+>
+> **Explanatory completeness** — the output need not reject every irrelevant category in writing.
+> It must establish the core functionality and explain why the plausible candidates do not apply.
+
+The engineering consequence is the important part: **if the candidate-selection mechanism can
+silently omit a genuinely applicable category, `DEFAULT` is not justified.** Question pruning is
+therefore load-bearing for legal safety, not only for UX, and every pruning decision needs a
+recorded basis — which is what the earlier note about skipped questions was reaching for.
+
+**Disclaimer.** Use v3 §13's fuller clause, not v4's shortened paragraph.
+
 ## Items reinstated from v3 that v4 dropped
 
 - **Rules-as-Code prior art** — Catala, LegalRuleML, OpenFisca, OECD Law as Code. The

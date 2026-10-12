@@ -94,10 +94,10 @@
       "candidate-rule-drafted",
       "candidate-rule-blocked",
       "operative-for-exclusion",
-      "reviewed",
+      "author-verified",
       "declared-out-of-coverage"
      ],
-     "description": "State machine: not-covered -> candidate-rule-drafted -> reviewed. candidate-rule-blocked when an open legal question prevents drafting. operative-for-exclusion: the category carries an unresolved question about when it MATCHES, but a prior condition shared by every candidate reading lets it be EXCLUDED reliably on the facts; such a category does not block DEFAULT for products excluded at that gate, and returns UNRESOLVED for products that reach the gate. declared-out-of-coverage is a deliberate decision, never a default. Only 'reviewed' may be enabled at runtime (AC-01)."
+     "description": "State machine under DR-04: not-covered -> candidate-rule-drafted -> author-verified. A rule may be ENABLED at 'author-verified', meaning every condition is verified verbatim against the official source and the rule carries its citation into the output. candidate-rule-blocked: an open legal question prevents drafting. operative-for-exclusion: the category cannot be reliably matched but can be reliably EXCLUDED on a condition every candidate reading shares, so it does not block DEFAULT for products excluded at that gate. declared-out-of-coverage is a deliberate decision, never a default."
     },
     "coverage_reason": {
      "type": "string",

@@ -56,6 +56,29 @@ These are named inside the Annex categories, so their definitions are part of th
 | Regulation (EU) 2017/746 (IVDR) | Same | CELEX `32017R0746` |
 | Directive 2009/48/EC (toy safety) | Named in III-I-18. **Check whether a newer Toy Safety Regulation has replaced it** | CELEX `32009L0048` |
 
+## UNVERIFIED CLAIM — a delegated act under Art. 2(5) may already exist
+
+Raised in review round 2, **not yet verified**, and it contradicts what this project recorded on
+12 October ("no evidence found of a delegated act under Art. 2(5)").
+
+> **Commission Delegated Regulation (EU) 2025/1535**, said to have been adopted 29 July 2025,
+> excluding products falling within Regulation (EU) No 168/2013 (two- and three-wheel vehicles
+> and quadricycles), with an express exception for certain L1e vehicles designed to pedal.
+
+Plausible on its face: the CRA's own title amends Reg. (EU) No 168/2013, so that family is
+already in its field of view. But the claim comes from an LLM review and **must be checked
+against EUR-Lex before anything is built on it**.
+
+If it holds, two things follow:
+
+1. The engine's Art. 2(5) rule changes shape. It must check whether an **applicable** delegated
+   act covers this product, not whether any delegated act exists. Those are different questions
+   and only the first is answerable.
+2. Our records are wrong and need correcting wherever they say no such act was found.
+
+**To obtain:** CELEX for Delegated Regulation (EU) 2025/1535, and a search of the OJ for any
+other delegated acts under CRA Art. 2(5), 7(3), 8(1) and 8(2).
+
 ## P1 — exclusions under CRA Art. 2
 
 Do **not** work from a remembered list. Read Art. 2 and write down which instruments it

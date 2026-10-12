@@ -265,8 +265,9 @@
    }
   ],
   "no_evidence_found_of": [
-   "delegated act amending Annex III or Annex IV",
-   "Art. 8(1) act requiring a European cybersecurity certificate"
+   "CONTRADICTED IN REVIEW ROUND 2, UNVERIFIED: Commission Delegated Regulation (EU) 2025/1535 of 29 July 2025 is said to exclude products within Reg. (EU) No 168/2013 under CRA Art. 2(5). Check EUR-Lex before relying on either statement. See docs/legal/sources/MANIFEST.md.",
+   "delegated act amending Annex III or Annex IV - still no evidence found",
+   "Art. 8(1) act requiring a European cybersecurity certificate - still no evidence found"
   ],
   "design_implication": "law_version needs an application-date dimension, not just a version string: an assessment of a product placed in 2028 may need a different consolidation from one made today.",
   "eurlex_dates_of_effect": [

@@ -172,9 +172,10 @@ dropped, and whether any submission raised the gap.
 - **The Commission**, if 1–3 leave it open. Slowest, most authoritative.
 
 ### 5. The reviewer's own reasoned opinion
-Once 1–3 are in, a named legal reviewer records the reading, the canons relied on
-(*effet utile* against *ejusdem generis* and systematic coherence), and the residual
-uncertainty. That is what the Definition of Done requires; it does not require certainty.
+Once 1–3 are in, the authors record the reading, the canons relied on (*effet utile* against
+*ejusdem generis* and systematic coherence), and the residual uncertainty — marked
+`AUTHOR_INTERPRETATION`, not as a resolved question. Under DR-04 the engine continues to return
+`UNRESOLVED` here regardless; this question changes what we can explain, not what we assert.
 
 ## What the engine does meanwhile — and probably permanently
 

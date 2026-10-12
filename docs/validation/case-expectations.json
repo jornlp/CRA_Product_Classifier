@@ -1,0 +1,1759 @@
+{
+ "artifact": "case-expectations",
+ "version": 1,
+ "created": "2026-10-12",
+ "legend": {
+  "expected_scope": "IN | OUT | UNRESOLVED | NOT_ASSERTED",
+  "expected_class": "DEFAULT | IMPORTANT_I | IMPORTANT_II | CRITICAL | UNRESOLVED | NOT_ASSERTED",
+  "NOT_ASSERTED": "The case tests engine behaviour rather than this outcome. A comparison must treat NOT_ASSERTED as 'no claim', never as a disagreement.",
+  "expected_category": "For per-category pairs only: which category, and whether it should match."
+ },
+ "status": "Statuses follow DR-04. AUTHOR_VERIFIED means the conditions trace verbatim to official text we hold; AUTHOR_INTERPRETATION means our reading goes beyond the literal text; OPEN_QUESTION means the law is undetermined and the engine must not resolve it. No status asserts legal endorsement.",
+ "cases": [
+  {
+   "id": "SCP-01",
+   "section": "A",
+   "scenario": "Connected product sold commercially in the EU",
+   "decisive_fact": "baseline",
+   "expected_behaviour": "Scope `IN_SCOPE`; reasons cite art. 2/3",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "SCP-02",
+   "section": "A",
+   "scenario": "Identical product, never made available on the EU market",
+   "decisive_fact": "EU market activity FALSE",
+   "expected_behaviour": "Scope `OUT_OF_SCOPE` with stated reason",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "SCP-03",
+   "section": "A",
+   "scenario": "Identical product, EU market activity unknown",
+   "decisive_fact": "EU market activity UNKNOWN",
+   "expected_behaviour": "No definitive outcome; targeted question",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "UNRESOLVED",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "SCP-04",
+   "section": "A",
+   "scenario": "Device with no network stack, data exchanged only over USB to a PC",
+   "decisive_fact": "connection is direct/physical",
+   "expected_behaviour": "Not `OUT_OF_SCOPE` on \"no internet\"; art. 2(1)/3 question",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "review_change": "Firmed from 'ask a further question' to a resolved IN after reviewer round 1: Art. 2(1) with Art. 3(9) covers a physical data connection; USB suffices."
+  },
+  {
+   "id": "SCP-05",
+   "section": "A",
+   "scenario": "Device whose only data path is a proprietary radio to a vendor hub",
+   "decisive_fact": "indirect logical connection",
+   "expected_behaviour": "Connectivity treated as potentially relevant",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "SCP-06",
+   "section": "A",
+   "scenario": "Genuinely air-gapped device, no data interface of any kind",
+   "decisive_fact": "all connection paths FALSE",
+   "expected_behaviour": "Scope may resolve negative, with each path recorded FALSE",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "SCP-07",
+   "section": "A",
+   "scenario": "Connection technically present but vendor says it is unused",
+   "decisive_fact": "intended vs foreseeable use",
+   "expected_behaviour": "Foreseeable-use question; vendor claim alone not decisive",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "UNRESOLVED",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "SCP-08",
+   "section": "A",
+   "scenario": "Prototype shown at a trade fair, not yet placed on market",
+   "decisive_fact": "market activity vs placing",
+   "expected_behaviour": "Scope and timeline answered separately",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-01",
+   "section": "B",
+   "scenario": "Product with a medical intended purpose under MDR/IVDR",
+   "decisive_fact": "regulated medical purpose",
+   "expected_behaviour": "Exclusion evaluated explicitly, reason recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-02",
+   "section": "B",
+   "scenario": "Camera toothbrush marketed for oral hygiene only",
+   "decisive_fact": "no medical intended purpose",
+   "expected_behaviour": "No medical exclusion; continue to classification",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-03",
+   "section": "B",
+   "scenario": "EXC-02 variant marketed for gum-disease diagnosis",
+   "decisive_fact": "medical purpose claimed",
+   "expected_behaviour": "Exclusion candidate + expert review flag",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "UNRESOLVED",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-04",
+   "section": "B",
+   "scenario": "Component for a type-approved motor vehicle",
+   "decisive_fact": "Reg. 2019/2144 applies",
+   "expected_behaviour": "Art. 2(2)(c) exclusion where that Regulation applies to the product",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "UNRESOLVED",
+   "expected_class": "NOT_ASSERTED",
+   "contested": "We keep OUT, but the reviewer's caution is reasonable: whether Reg. 2019/2144 applies to a component rather than the vehicle should be confirmed.",
+   "review_change": "Round 2: Reg. (EU) 2019/2144 Art. 2 expressly covers systems, components and separate technical units for vehicle categories M, N and O, and the Commission guidance (s.9.3.1) distinguishes components EXCLUSIVELY designed and constructed for covered vehicles (excluded) from generic components that merely can be integrated (not excluded). Our scenario establishes only use in a type-approved vehicle, not exclusivity. Changed from OUT to UNRESOLVED."
+  },
+  {
+   "id": "EXC-05",
+   "section": "B",
+   "scenario": "Device developed exclusively for military/classified use",
+   "decisive_fact": "national-security exclusion",
+   "expected_behaviour": "Exclusion candidate; documentary evidence required",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-06",
+   "section": "B",
+   "scenario": "Exclusion claimed but applicable instrument unidentified",
+   "decisive_fact": "exclusion basis UNKNOWN",
+   "expected_behaviour": "No exclusion granted; question returned",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "UNRESOLVED",
+   "expected_class": "NOT_ASSERTED",
+   "review_change": "Reviewer correction, accepted: where the basis for a claimed exclusion is UNKNOWN, scope is UNRESOLVED. Treating it as IN converts an UNKNOWN into a FALSE, which is the thing our own four-valued model forbids."
+  },
+  {
+   "id": "EXC-07",
+   "section": "B",
+   "scenario": "Avionics product within scope of Reg. 2018/1139 but not certified under it",
+   "decisive_fact": "certification, not scope",
+   "expected_behaviour": "Art. 2(3) excludes only products *certified in accordance with* 2018/1139 — scope alone is not enough",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-08",
+   "section": "B",
+   "scenario": "Sectoral rules claimed to cover the Annex I risks",
+   "decisive_fact": "Art. 2(5) delegated act",
+   "expected_behaviour": "No exclusion unless a delegated act under Art. 2(5) actually says so; absence of an act is not an exclusion",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "contested": "We keep IN. Art. 2(5) requires a delegated act for the limitation to exist; the absence of one is determinable, not unknown, so this is not the EXC-06 situation.",
+   "review_change": "Round 2 confirms IN where no applicable exclusion instrument exists - but corrects the reasoning. The engine must check for an APPLICABLE delegated act under Art. 2(5), not whether any delegated act exists. See the claim about Delegated Reg. (EU) 2025/1535 in docs/legal/sources/MANIFEST.md, which is UNVERIFIED."
+  },
+  {
+   "id": "BND-01",
+   "section": "C",
+   "scenario": "Sensor sold only as an integrated appliance",
+   "decisive_fact": "single product boundary",
+   "expected_behaviour": "One assessment",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "BND-02",
+   "section": "C",
+   "scenario": "Same sensor also sold separately as a component",
+   "decisive_fact": "separately marketed",
+   "expected_behaviour": "Separate assessment per offered product",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "BND-03",
+   "section": "C",
+   "scenario": "Device + cloud backend, backend is remote data processing for the product",
+   "decisive_fact": "backend is part of product",
+   "expected_behaviour": "Backend in scope as product element",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "BND-04",
+   "section": "C",
+   "scenario": "Standalone SaaS with no associated device",
+   "decisive_fact": "no product relationship",
+   "expected_behaviour": "Scope differs; reason recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "BND-05",
+   "section": "C",
+   "scenario": "Bundle sold as one SKU but containing two candidate categories",
+   "decisive_fact": "multiple core functions",
+   "expected_behaviour": "No silent merge; boundary question + review flag",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "UNRESOLVED",
+   "review_change": "Our error, found by the structured comparison: scope is plainly IN; it is the CLASS that is unresolved by the boundary question. We had put the uncertainty on the wrong axis."
+  },
+  {
+   "id": "BND-06",
+   "section": "C",
+   "scenario": "Spare part replacing an identical component, same specifications",
+   "decisive_fact": "Art. 2(6)",
+   "expected_behaviour": "Excluded by Art. 2(6) — a genuine exclusion, not merely a separate assessment",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "BND-07",
+   "section": "C",
+   "scenario": "Replacement module with improved specifications",
+   "decisive_fact": "not identical / different specs",
+   "expected_behaviour": "Art. 2(6) does not apply; own assessment and own timeline",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "WTR-03",
+   "section": "C",
+   "scenario": "Identical meter, third party sells the gateway separately",
+   "decisive_fact": "who places what",
+   "expected_behaviour": "Two delimited assessments, no category carry-over",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CORE-01",
+   "section": "D",
+   "scenario": "Pet camera for behaviour analysis",
+   "decisive_fact": "core function is observation",
+   "expected_behaviour": "Not matched on \"camera\"; `DEFAULT` plausible if all categories excluded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "DEFAULT"
+  },
+  {
+   "id": "CORE-02",
+   "section": "D",
+   "scenario": "Video doorbell marketed for intruder detection",
+   "decisive_fact": "core function is consumer physical security",
+   "expected_behaviour": "cat. III-I-17 candidate — positive-side test",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CORE-03",
+   "section": "D",
+   "scenario": "Device runs Linux and TLS, core function is irrigation timing",
+   "decisive_fact": "OS/crypto are components",
+   "expected_behaviour": "No class from component presence",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LOCK-01",
+   "section": "D",
+   "scenario": "Residential smart door lock, app-controlled, remotely manageable",
+   "decisive_fact": "residential consumer security",
+   "expected_behaviour": "cat. III-I-17 candidate",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "LOCK-02",
+   "section": "D",
+   "scenario": "Same lock marketed for office access control",
+   "decisive_fact": "residential context absent",
+   "expected_behaviour": "cat. III-I-17 may not match; still in CRA scope",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "review_change": "Round 2 adds: a lock intended EXCLUSIVELY for office access control is not III-I-17, and the next category to assess is III-I-01 (access control to physical locations), not DEFAULT."
+  },
+  {
+   "id": "LOCK-04",
+   "section": "D",
+   "scenario": "Smart lock marketed for short-term rental use — \"residential and Airbnb\"",
+   "decisive_fact": "setting is genuinely both",
+   "expected_behaviour": "`RESIDENTIAL_SETTING` = `CONFLICTING`; reviewer flag rather than a choice. Short-term rental is neither an ordinary home nor a commercial building",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_I",
+   "review_change": "Round 2 confirms, same qualification. Not a universal rule that any mention of residential use establishes III-I-17."
+  },
+  {
+   "id": "LOCK-03",
+   "section": "D",
+   "scenario": "Same lock, marketing claims both home and office use",
+   "decisive_fact": "CONFLICTING context",
+   "expected_behaviour": "`CONFLICTING` + review flag; no silent choice",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_I",
+   "review_change": "Round 2 confirms, with a qualification we must encode: residential use must be GENUINE intended purpose (Art. 3(23) - instructions, promotional materials, statements, technical documentation), not merely mentioned. A residential claim contradicted by design or technical documentation is UNRESOLVED, not IMPORTANT_I."
+  },
+  {
+   "id": "CORE-04",
+   "section": "D",
+   "scenario": "Product documentation and marketing describe different core functions",
+   "decisive_fact": "CONFLICTING evidence",
+   "expected_behaviour": "No automatic selection; reviewer flag",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "UNRESOLVED"
+  },
+  {
+   "id": "CORE-05",
+   "section": "D",
+   "scenario": "Product whose core function matches a category, carrying unrelated extra features",
+   "decisive_fact": "extra functions present",
+   "expected_behaviour": "Category retained — extra functions do not remove core functionality (B2 recital 4)",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CORE-06",
+   "section": "D",
+   "scenario": "Home automation hub that centrally controls smart locks and alarms",
+   "decisive_fact": "central control limb",
+   "expected_behaviour": "cat. III-I-17 candidate in its own right, via the \"centrally control such products\" limb",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CORE-07",
+   "section": "D",
+   "scenario": "Product integrating components that perform a category's functions, but whose own core function differs",
+   "decisive_fact": "core function vs capability",
+   "expected_behaviour": "Not in that category — B7 §3.4: a smartphone is not an operating system or password manager; SOAR is not SIEM",
+   "status": "AUTHOR_INTERPRETATION",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "RAT-01",
+   "section": "E",
+   "scenario": "Commercial rat-trap camera, external data connection, pest-monitoring core function",
+   "decisive_fact": "pest monitoring, not consumer safety",
+   "expected_behaviour": "Scope candidate `IN_SCOPE`; cat. III-I-17 not matched on \"camera\" alone; `DEFAULT` only on complete coverage",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "DEFAULT"
+  },
+  {
+   "id": "RAT-02",
+   "section": "E",
+   "scenario": "Identical device marketed as remotely managed home intruder monitoring",
+   "decisive_fact": "core function changed",
+   "expected_behaviour": "cat. III-I-17 candidate with explicit changed core function and source reference",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "RAT-03",
+   "section": "E",
+   "scenario": "Connection unknown",
+   "decisive_fact": "connectivity UNKNOWN",
+   "expected_behaviour": "No definitive `OUT_OF_SCOPE`; targeted direct/indirect connection question",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "UNRESOLVED",
+   "expected_class": "UNRESOLVED"
+  },
+  {
+   "id": "RAT-04",
+   "section": "E",
+   "scenario": "Documentation describes both pest monitoring and home security",
+   "decisive_fact": "CONFLICTING",
+   "expected_behaviour": "`CONFLICTING` / review flag; no automatic choice",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "UNRESOLVED"
+  },
+  {
+   "id": "A3-01",
+   "section": "E",
+   "scenario": "Firewall or IDS product, consumer or industrial",
+   "decisive_fact": "no industrial-use condition exists in B2 III-II-02",
+   "expected_behaviour": "Class II candidate on the technical description alone; v3/v4 both wrongly assumed an industrial qualifier",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_II"
+  },
+  {
+   "id": "A3-02",
+   "section": "E",
+   "scenario": "Consumer router/modem",
+   "decisive_fact": "use context",
+   "expected_behaviour": "Category assessed against B2 description",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "A3-03",
+   "section": "E",
+   "scenario": "PLC or industrial gateway",
+   "decisive_fact": "function vs sector label",
+   "expected_behaviour": "Not automatically Class II",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "A3-04",
+   "section": "E",
+   "scenario": "HVAC controller / building access control",
+   "decisive_fact": "\"smart building\" is not a legal class",
+   "expected_behaviour": "Evaluated per core function",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "A3-05",
+   "section": "E",
+   "scenario": "Internet-connected toy assessed with an assessment date before 01-08-2030",
+   "decisive_fact": "referenced instrument in force",
+   "expected_behaviour": "cat. III-I-18 resolved against Directive 2009/48/EC",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "A3-06",
+   "section": "E",
+   "scenario": "Identical toy assessed on or after 01-08-2030",
+   "decisive_fact": "referenced instrument repealed",
+   "expected_behaviour": "Same category, but the reference resolves to Reg. (EU) 2025/2509 via its Art. 56 correlation clause — tests dated cross-reference resolution",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "WTR-01",
+   "section": "F",
+   "scenario": "Connected water meter measuring and transmitting consumption; no separately sold gateway",
+   "decisive_fact": "metering only",
+   "expected_behaviour": "Not automatically cat. IV-2; `DEFAULT` only after complete exclusion",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "DEFAULT",
+   "contested": "We keep DEFAULT, but note the reviewer reached it from one category rather than a full sweep - the AC-03 concern, in the wild."
+  },
+  {
+   "id": "WTR-02",
+   "section": "F",
+   "scenario": "Separate security gateway: third-party communication, crypto, firewalling, device control",
+   "decisive_fact": "gateway control functions",
+   "expected_behaviour": "cat. IV-2 candidate + legal review; never Critical on keyword",
+   "status": "OPEN_QUESTION",
+   "expected_scope": "IN",
+   "expected_class": "UNRESOLVED"
+  },
+  {
+   "id": "A4-01",
+   "section": "F",
+   "scenario": "Electricity smart-meter gateway matching the B2 description",
+   "decisive_fact": "energy source named in the text",
+   "expected_behaviour": "cat. IV-2 candidate on the stated conditions",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "CRITICAL"
+  },
+  {
+   "id": "A4-02",
+   "section": "F",
+   "scenario": "Water gateway with identical technical functions",
+   "decisive_fact": "water is not an energy source",
+   "expected_behaviour": "B2 names only gas/heat as other energy sources, so the gateway limb has a textual basis for not matching; second limb of the category title unresolved (WP1 §1)",
+   "status": "OPEN_QUESTION",
+   "expected_scope": "IN",
+   "expected_class": "UNRESOLVED",
+   "contested": "We keep UNRESOLVED. The reviewer reached DEFAULT without addressing the second limb of Annex IV category 2, which is the whole open question.",
+   "review_change": "Round 2: the reviewer RETRACTED their round-1 DEFAULT, concluding UNRESOLVED is more defensible where a product plausibly meets the second limb. Our position is unchanged and now has an argued second reading behind it."
+  },
+  {
+   "id": "A4-03",
+   "section": "F",
+   "scenario": "Device called \"smart meter gateway\" in marketing, lacking the described functions",
+   "decisive_fact": "name vs function",
+   "expected_behaviour": "Name is not evidence; conditions tested individually",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "A4-04",
+   "section": "F",
+   "scenario": "Gas or heat gateway with identical technical functions",
+   "decisive_fact": "energy source expressly named in B2",
+   "expected_behaviour": "cat. IV-2 candidate — pairs against A4-02 to isolate the carrier question",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "CRITICAL"
+  },
+  {
+   "id": "A4-06",
+   "section": "F",
+   "scenario": "Device whose core functionality is secure cryptoprocessing, unrelated to any metering system",
+   "decisive_fact": "second limb of the IV-2 title",
+   "expected_behaviour": "Tests whether the undescribed \"other devices for advanced security purposes\" limb operates independently of the gateway description",
+   "status": "OPEN_QUESTION",
+   "expected_scope": "IN",
+   "expected_class": "UNRESOLVED",
+   "review_change": "Round 2: same retraction. The reviewer's preferred reading is that the second limb operates independently, so a device whose core functionality is secure cryptoprocessing could be CRITICAL with no metering connection - but the boundary of 'advanced security purposes' remains undetermined."
+  },
+  {
+   "id": "A4-05",
+   "section": "F",
+   "scenario": "Water meter deployed across a utility's network; the operator is a NIS2 essential entity in a critical-infrastructure sector",
+   "decisive_fact": "deployment context and operator status",
+   "expected_behaviour": "No effect on classification. Annex IV \"critical product\" is a product-category test on core functionality; critical-infrastructure status belongs to the operator under NIS 2, not to the product under the CRA",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "DEFAULT"
+  },
+  {
+   "id": "ROL-01",
+   "section": "G",
+   "scenario": "Manufacturer under own brand",
+   "decisive_fact": "role = manufacturer",
+   "expected_behaviour": "Role obligations; class unchanged",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "ROL-02",
+   "section": "G",
+   "scenario": "Same product imported from outside the EU",
+   "decisive_fact": "role = importer",
+   "expected_behaviour": "Different role questions, same class",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "ROL-03",
+   "section": "G",
+   "scenario": "Same product distributed unchanged",
+   "decisive_fact": "role = distributor",
+   "expected_behaviour": "Different role questions, same class",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "ROL-04",
+   "section": "G",
+   "scenario": "White-label product rebranded by the seller",
+   "decisive_fact": "who places under whose name",
+   "expected_behaviour": "Manufacturer role question; boundary recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "ROL-05",
+   "section": "G",
+   "scenario": "Custom software built for one client",
+   "decisive_fact": "who places on market",
+   "expected_behaviour": "Role and boundary established before class",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "ROL-06",
+   "section": "G",
+   "scenario": "Integrator combines third-party products into a system",
+   "decisive_fact": "new product or not",
+   "expected_behaviour": "Explicit question; no automatic answer",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LIFE-01",
+   "section": "H",
+   "scenario": "Placed on market before 11-12-2027, no substantial modification since",
+   "decisive_fact": "placing date",
+   "expected_behaviour": "Main requirements: transitional handling; art. 14 assessed separately",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LIFE-02",
+   "section": "H",
+   "scenario": "Product substantially changed after 11-12-2027, status of change uncertain",
+   "decisive_fact": "modification UNKNOWN",
+   "expected_behaviour": "No definitive transition exemption; question or expert review",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LIFE-03",
+   "section": "H",
+   "scenario": "New product first placed on market in 2028",
+   "decisive_fact": "placing date",
+   "expected_behaviour": "Main requirements assessed as applicable if scope `IN_SCOPE`",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LIFE-04",
+   "section": "H",
+   "scenario": "Routine security firmware update, no functional change",
+   "decisive_fact": "not every update is substantial",
+   "expected_behaviour": "Not automatically a substantial modification",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LIFE-05",
+   "section": "H",
+   "scenario": "Firmware update adding a new remote-management capability",
+   "decisive_fact": "functional change",
+   "expected_behaviour": "Substantial modification candidate + review flag",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LIFE-06",
+   "section": "H",
+   "scenario": "Placing date unknown",
+   "decisive_fact": "date UNKNOWN",
+   "expected_behaviour": "Timeline `UNRESOLVED` per obligation; no single \"CRA from date\" answer",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LIFE-08",
+   "section": "H",
+   "scenario": "Update changes security behaviour; intended purpose unchanged; effect on Annex I Part I compliance UNKNOWN",
+   "decisive_fact": "limb (a) of Art. 3(30)",
+   "expected_behaviour": "Must not conclude \"not substantial\" from unchanged intended purpose alone — `UNRESOLVED` + reviewer flag. The MVP cannot decide limb (a)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "LIFE-07",
+   "section": "H",
+   "scenario": "Product holds an EU type-examination certificate under other harmonisation legislation",
+   "decisive_fact": "Art. 69(1)",
+   "expected_behaviour": "Certificate valid until 11 June 2028 unless it expires earlier or that legislation says otherwise — a fourth date the plan omitted",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "OSS-01",
+   "section": "I",
+   "scenario": "Non-commercial OSS project, no monetisation",
+   "decisive_fact": "commercial activity FALSE",
+   "expected_behaviour": "Dedicated scope/role route",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "OSS-02",
+   "section": "I",
+   "scenario": "Same code offered with paid support and commercial distribution",
+   "decisive_fact": "commercial activity TRUE",
+   "expected_behaviour": "Different route; reasons recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "OSS-03",
+   "section": "I",
+   "scenario": "Open-source steward role",
+   "decisive_fact": "steward status",
+   "expected_behaviour": "Steward-specific questions, distinct from manufacturer",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "AI-01",
+   "section": "K",
+   "scenario": "In-scope product that is also a high-risk AI system under Art. 6 of Reg. 2024/1689, `DEFAULT` class",
+   "decisive_fact": "high-risk AI status",
+   "expected_behaviour": "CRA class unchanged; conformity route is the AI Act's Art. 43 procedure (Art. 12(2))",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "AI-02",
+   "section": "K",
+   "scenario": "Same, but the product is an Annex III important product under Art. 32(2)(a)/(b) or 32(3)",
+   "decisive_fact": "class + AI Act internal-control route",
+   "expected_behaviour": "Art. 12(3) derogation: CRA conformity procedures apply for the CRA essential requirements",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "IMPORTANT_II"
+  },
+  {
+   "id": "AI-03",
+   "section": "K",
+   "scenario": "Same, but an Annex IV critical product",
+   "decisive_fact": "class + AI Act internal-control route",
+   "expected_behaviour": "Art. 12(3) derogation applies",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "CRITICAL"
+  },
+  {
+   "id": "AI-04",
+   "section": "K",
+   "scenario": "Product embeds an AI component but its core function is not that of a high-risk AI system",
+   "decisive_fact": "AI as component",
+   "expected_behaviour": "No change to class or route; the component rule applies as elsewhere",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "OWN-01",
+   "section": "N",
+   "scenario": "Development and configuration tools a manufacturer builds for its own use",
+   "decisive_fact": "never placed on the market",
+   "expected_behaviour": "Out of scope — placing on the market does not occur for products made for one's own use (Blue Guide 2.3)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "OWN-02",
+   "section": "N",
+   "scenario": "The same internal tools later offered as separate products",
+   "decisive_fact": "first making available",
+   "expected_behaviour": "In scope from that point; pairs with `UG-03`",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "TYPE-01",
+   "section": "N",
+   "scenario": "10 000 units of a product type placed on the market before 11-12-2027, not yet with end users",
+   "decisive_fact": "individual units, placed before the date",
+   "expected_behaviour": "Need not be brought into compliance (Art. 69(2))",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "TYPE-02",
+   "section": "N",
+   "scenario": "A further 5 000 units of the same type placed on the market after 11-12-2027",
+   "decisive_fact": "the CRA applies to individual products, not product types",
+   "expected_behaviour": "Must comply. Earlier placement of the type gives later units no protection (Blue Guide 2.2)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "TEST-01",
+   "section": "N",
+   "scenario": "Beta or release-candidate software made available for a limited period, with a visible sign that it is non-compliant and for testing only",
+   "decisive_fact": "Art. 4(3) conditions met",
+   "expected_behaviour": "Making available permitted despite non-compliance; vulnerability handling still applied as far as possible (recital 37)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "TEST-02",
+   "section": "N",
+   "scenario": "The same beta made available indefinitely, or without the visible sign",
+   "decisive_fact": "Art. 4(3) conditions not met",
+   "expected_behaviour": "Art. 4(3) does not apply; ordinary obligations stand",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "ARCH-01",
+   "section": "N",
+   "scenario": "Public archive of historical versions no longer made available on the market",
+   "decisive_fact": "Art. 13(11)",
+   "expected_behaviour": "Permitted, provided users are clearly informed of the risks of unsupported software",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-09",
+   "section": "N",
+   "scenario": "Dual-use product with both civilian and defence applications",
+   "decisive_fact": "not developed or modified exclusively for defence",
+   "expected_behaviour": "Not excluded — the Art. 2(7) exclusion requires exclusivity",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "EXC-10",
+   "section": "N",
+   "scenario": "The same product modified exclusively for national security or defence purposes",
+   "decisive_fact": "exclusivity met",
+   "expected_behaviour": "Excluded under Art. 2(7)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "COMP-01",
+   "section": "N",
+   "scenario": "Product integrating third-party components that do not bear the CE marking, during the transition",
+   "decisive_fact": "components not yet subject to the CRA",
+   "expected_behaviour": "Integration permitted; due diligence must be exercised by other means (Art. 13(5), recital 35)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "OTHER-01",
+   "section": "J",
+   "scenario": "Identical facts entered via \"Other\", \"Industrial\" and \"Consumer\" personas",
+   "decisive_fact": "persona only",
+   "expected_behaviour": "Exactly equal legal evaluation and status",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "NOT_ASSERTED",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "SRC-01",
+   "section": "J",
+   "scenario": "Category source changes or rule set is updated",
+   "decisive_fact": "rule set version",
+   "expected_behaviour": "Earlier assessment stays reproducible against its old version",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "NOT_ASSERTED",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "MET-01",
+   "section": "J",
+   "scenario": "Same facts, same rule version, evaluated twice",
+   "decisive_fact": "determinism",
+   "expected_behaviour": "Identical result and identical trace",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "NOT_ASSERTED",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "MET-02",
+   "section": "J",
+   "scenario": "Annex coverage incomplete, no category matched",
+   "decisive_fact": "coverage gap",
+   "expected_behaviour": "`DEFAULT` blocked; `UNRESOLVED` + follow-up questions (AC-03)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "UNRESOLVED"
+  },
+  {
+   "id": "MET-03",
+   "section": "J",
+   "scenario": "Decisive fact UNKNOWN throughout the flow",
+   "decisive_fact": "unknown propagation",
+   "expected_behaviour": "Never converted to FALSE end-to-end (AC-04)",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "NOT_ASSERTED",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "MET-05",
+   "section": "J",
+   "scenario": "Product plainly outside a category whose matching criteria are legally unresolved (IV-02)",
+   "decisive_fact": "exclusion gate fails",
+   "expected_behaviour": "Category excluded with reason; `DEFAULT` remains available if all others are excluded — an open question must not freeze every assessment",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "DEFAULT"
+  },
+  {
+   "id": "MET-06",
+   "section": "J",
+   "scenario": "Product that reaches the unresolved question (metering gateway, or advanced-security/cryptoprocessing core function)",
+   "decisive_fact": "exclusion gate passed or UNKNOWN",
+   "expected_behaviour": "`UNRESOLVED` + `NEEDS_EXPERT_REVIEW`; never `DEFAULT`, never `CRITICAL`",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "UNRESOLVED"
+  },
+  {
+   "id": "MET-04",
+   "section": "J",
+   "scenario": "Scope `UNRESOLVED` but category candidates exist",
+   "decisive_fact": "scope gate",
+   "expected_behaviour": "No definitive class; candidates may still be shown",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "UNRESOLVED",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "UG-01",
+   "section": "M",
+   "scenario": "Industrial networking family: managed switches, interface cards and a network management suite, sold as one portfolio",
+   "decisive_fact": "three categories matched at once",
+   "expected_behaviour": "Assess each product separately; `III-I-06`, `III-I-10`, `III-I-12` may each apply — multi-category is an expected outcome, not an error",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "UG-02",
+   "section": "M",
+   "scenario": "Hospitality platform that issues per-reservation PIN codes and centrally controls door locks in hotels",
+   "decisive_fact": "central control, but not a residential setting",
+   "expected_behaviour": "`III-I-17` fourth limb engages on central control yet fails on \"residential setting\" — tests that both must hold",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "UG-03",
+   "section": "M",
+   "scenario": "Retailer's in-house store system, used internally for years, now sold to other retailers",
+   "decisive_fact": "making available on the market begins",
+   "expected_behaviour": "Not in scope while purely internal; becomes a product placed on the market on first commercial supply (Art. 3(21)(22))",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED",
+   "review_change": "Our error: the scenario describes the system AFTER it is sold to other retailers, so it has been placed on the market. OUT applies only to the earlier internal-use period."
+  },
+  {
+   "id": "UG-04",
+   "section": "M",
+   "scenario": "Design agency develops a product end-to-end; the client markets it under the client's name",
+   "decisive_fact": "who markets under whose name",
+   "expected_behaviour": "The client is the manufacturer (Art. 3(13)); the agency is not — role, not technology, decides",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "UG-05",
+   "section": "M",
+   "scenario": "Industrial machine embedding a third-party cellular gateway module",
+   "decisive_fact": "component vs separately placed product",
+   "expected_behaviour": "Machine assessed on its own core function; the module is its own product only if placed on the market separately (Art. 3(1)); Art. 13(5) due diligence applies either way",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "UG-06",
+   "section": "M",
+   "scenario": "Automotive test and measurement equipment used in vehicle development",
+   "decisive_fact": "not itself a vehicle component",
+   "expected_behaviour": "Art. 2(2)(c) exclusion fails — Reg. 2019/2144 applies to vehicles, not to equipment used to test them",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-01P",
+   "section": "L",
+   "scenario": "Enterprise single sign-on software",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-01",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-01N",
+   "section": "L",
+   "scenario": "Employee directory app that stores records but performs no authentication or access control",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-01",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-02P",
+   "section": "L",
+   "scenario": "Embedded browser component intended for integration into another application",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-02",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-02N",
+   "section": "L",
+   "scenario": "In-app help viewer that renders only local static HTML with no web protocol support or script execution",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-02",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-03P",
+   "section": "L",
+   "scenario": "Hardware-based password manager",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-03",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-03N",
+   "section": "L",
+   "scenario": "Notes application with one encrypted field, no password generation, sharing or application integration",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-03",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-04P",
+   "section": "L",
+   "scenario": "Rootkit detection tool",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-04",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-04N",
+   "section": "L",
+   "scenario": "File integrity monitor that reports changes but neither detects malicious code nor removes it",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-04",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-05P",
+   "section": "L",
+   "scenario": "VPN gateway appliance",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-05",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-05N",
+   "section": "L",
+   "scenario": "Application using TLS for its own traffic, constructing no tunnel from network resources",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-05",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-06P",
+   "section": "L",
+   "scenario": "Software-defined networking controller",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-06",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-06N",
+   "section": "L",
+   "scenario": "Device dashboard that displays network status but cannot change network operations or configuration",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-06",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-07P",
+   "section": "L",
+   "scenario": "SIEM platform",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-07",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-07N",
+   "section": "L",
+   "scenario": "Log archiving service with no correlation or analysis for security purposes",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-07",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-08P",
+   "section": "L",
+   "scenario": "UEFI firmware",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-08",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-08N",
+   "section": "L",
+   "scenario": "OS updater that replaces kernel images but does not manage startup or select boot options",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-08",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-09P",
+   "section": "L",
+   "scenario": "Online certificate status protocol responder",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-09",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-09N",
+   "section": "L",
+   "scenario": "Application that validates certificates using the operating system trust store and manages no certificate lifecycle",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-09",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-10P",
+   "section": "L",
+   "scenario": "Wi-Fi network interface card with firmware",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-10",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-10N",
+   "section": "L",
+   "scenario": "USB mass-storage controller - not a network interface",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-10",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-11P",
+   "section": "L",
+   "scenario": "Real-time operating system placed on the market as a product",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-11",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-11N",
+   "section": "L",
+   "scenario": "Smartphone integrating an operating system - core functionality is not that of an OS (B7 section 3.4)",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-11",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-12P",
+   "section": "L",
+   "scenario": "Wireless access point operating as a bridge",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-12",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-12N",
+   "section": "L",
+   "scenario": "Smart speaker with a Wi-Fi client that neither routes, modulates nor forwards packets",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-12",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-13P",
+   "section": "L",
+   "scenario": "CPU providing a secure boot chain and trusted execution environment for the wider system",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-13",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-13N",
+   "section": "L",
+   "scenario": "Microprocessor whose cryptographic accelerator protects only its own internal operation",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-13",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-14P",
+   "section": "L",
+   "scenario": "Microcontroller providing secure key storage for the host product",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-14",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-14N",
+   "section": "L",
+   "scenario": "Microcontroller with an on-die RNG used solely for its own internal functions",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-14",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-15P",
+   "section": "L",
+   "scenario": "FPGA implementing the secure boot chain for the system it is embedded in",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-15",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-15N",
+   "section": "L",
+   "scenario": "ASIC performing only signal processing, with no security-related functionality",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-15",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-16P",
+   "section": "L",
+   "scenario": "Smart speaker with an integrated virtual assistant",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-16",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-16N",
+   "section": "L",
+   "scenario": "Voice-command remote that recognises fixed words offline and sends infrared codes only",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-16",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-17P",
+   "section": "L",
+   "scenario": "Residential smart door locking device, app-controlled (see LOCK-01)",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-17",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-17N",
+   "section": "L",
+   "scenario": "Rat-trap camera whose core function is pest monitoring (see RAT-01)",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-17",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-18P",
+   "section": "L",
+   "scenario": "Connected toy with a microphone and speaker for two-way interaction",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-18",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-18N",
+   "section": "L",
+   "scenario": "Connected toy whose only sensing detects proximity of the user - expressly not location tracking",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-18",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-19P",
+   "section": "L",
+   "scenario": "Fitness tracker with continuous heart-rate monitoring, outside MDR/IVDR",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-I-19",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_I"
+  },
+  {
+   "id": "CAT-19N",
+   "section": "L",
+   "scenario": "Wearable step counter that is a CE-marked medical device under Reg. 2017/745 - expressly excluded",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "OUT",
+   "expected_category": {
+    "id": "III-I-19",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED",
+   "review_change": "Reviewer correction, accepted: a CE-marked medical device under Reg. 2017/745 is excluded from the CRA entirely by Art. 2(2)(a). We had it as in scope with the category excluded, which skips the exclusion."
+  },
+  {
+   "id": "CAT-20P",
+   "section": "L",
+   "scenario": "Type 1 bare-metal hypervisor",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-01",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_II"
+  },
+  {
+   "id": "CAT-20N",
+   "section": "L",
+   "scenario": "Application sandbox that isolates one process but manages no VM or container lifecycle",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-01",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-21P",
+   "section": "L",
+   "scenario": "Consumer network firewall product - tests that no industrial-use qualifier applies",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-02",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_II"
+  },
+  {
+   "id": "CAT-21N",
+   "section": "L",
+   "scenario": "Router integrating firewall functionality - remains a router (B2 recital 4)",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-02",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-22P",
+   "section": "L",
+   "scenario": "Microprocessor with tamper response designed to AVA_VAN level 3",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-03",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_II"
+  },
+  {
+   "id": "CAT-22N",
+   "section": "L",
+   "scenario": "Same microprocessor without tamper evidence, resistance or response",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-03",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-23P",
+   "section": "L",
+   "scenario": "Microcontroller with tamper resistance designed to AVA_VAN level 2",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-04",
+    "matches": true
+   },
+   "expected_class": "IMPORTANT_II"
+  },
+  {
+   "id": "CAT-23N",
+   "section": "L",
+   "scenario": "Same microcontroller designed without any AVA_VAN level claim",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "III-II-04",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-24P",
+   "section": "L",
+   "scenario": "Hardware security module generating and managing cryptographic elements",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-01",
+    "matches": true
+   },
+   "expected_class": "CRITICAL"
+  },
+  {
+   "id": "CAT-24N",
+   "section": "L",
+   "scenario": "Single-chip crypto device with no multiple discrete components and no physical envelope",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-01",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-25P",
+   "section": "L",
+   "scenario": "Electricity smart meter gateway meeting the description (see A4-01)",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-02",
+    "matches": true
+   },
+   "expected_class": "CRITICAL"
+  },
+  {
+   "id": "CAT-25N",
+   "section": "L",
+   "scenario": "Connected water consumption meter that is not a gateway (see WTR-01)",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-02",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  },
+  {
+   "id": "CAT-26P",
+   "section": "L",
+   "scenario": "Trusted Platform Module designed to AVA_VAN.4",
+   "decisive_fact": "matches the decisive conditions",
+   "expected_behaviour": "candidate for this category",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-03",
+    "matches": true
+   },
+   "expected_class": "CRITICAL"
+  },
+  {
+   "id": "CAT-26N",
+   "section": "L",
+   "scenario": "Microcontroller with cryptographic functions designed below AVA_VAN.4 and without tamper resistance",
+   "decisive_fact": "fails at least one decisive condition",
+   "expected_behaviour": "category excluded, with the failing condition recorded",
+   "status": "AUTHOR_VERIFIED",
+   "expected_scope": "IN",
+   "expected_category": {
+    "id": "IV-03",
+    "matches": false
+   },
+   "expected_class": "NOT_ASSERTED"
+  }
+ ],
+ "review_round_1": {
+  "date": "2026-10-12",
+  "reviewer_rows": 142,
+  "agreement_as_submitted": {
+   "scope": "125/142 (88%)",
+   "class": "43/50 (86%)"
+  },
+  "changes_adopted": 7,
+  "disagreements_standing": [
+   "EXC-04",
+   "EXC-08",
+   "A4-02",
+   "WTR-01"
+  ]
+ },
+ "review_round_2": {
+  "date": "2026-10-12",
+  "scope": "5 targeted questions",
+  "reviewer": "LLM - see reviews/PROVENANCE.md; findings are flagged for verification, not accepted as authority",
+  "notable": "The reviewer retracted their own round-1 DEFAULT on A4-02/A4-06, which is the strongest signal in either round: an independent reading changed under argument rather than holding by default."
+ }
+}

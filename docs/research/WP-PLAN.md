@@ -14,11 +14,12 @@ the kind is recorded explicitly:
 | `QUOTE` | Verbatim text from a binding or official source | Yes, with reference |
 | `INTERPRETATION` | Documented reading by a named human | Only after legal review |
 | `HYPOTHESIS` | Candidate, including anything LLM-generated | No |
-| `VERIFIED_CASE` | Fixture with reviewed expected outcome | Yes |
+| `VERIFIED_CASE` | Fixture whose conditions are verified verbatim against the official source | Yes |
 
-LLM output enters as `HYPOTHESIS` and is marked `MODEL_INFERRED` in provenance. Under
-AC-01, an unreviewed rule ships disabled. The study therefore cannot, by itself, produce
-a working classifier — and should not be planned as if it could.
+LLM output enters as `HYPOTHESIS` and is marked `MODEL_INFERRED` in provenance. Under AC-01 as
+amended by DR-04, a rule is enabled on verification against the official source — which the
+authors perform — not on an LLM's output. An LLM may flag discrepancies for the authors to check;
+it may not establish a condition.
 
 ## Research protocol (v3 §6)
 

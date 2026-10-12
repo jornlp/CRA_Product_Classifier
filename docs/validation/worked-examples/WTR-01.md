@@ -3,8 +3,9 @@
 First hand-run assessment, per v4's "first practical deliverable". It exists to test
 whether the catalogue and the category inventory actually produce a defensible answer.
 
-**Status: `HYPOTHESIS`.** No legal reviewer has signed this. It is a worked illustration
-of the method, not a classification of any company's product.
+**Status under DR-04: `AUTHOR_VERIFIED` for the category sweep, `OPEN_QUESTION` for IV-02.**
+The sweep traces to official text we hold and have verified. It is a worked illustration of the
+method, not a legal determination, and the tool does not claim otherwise.
 
 ## Assumed product boundary and facts
 

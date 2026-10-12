@@ -34,10 +34,10 @@ of cases clustered on two categories tells you about those two categories.
 
 ## The honest constraint
 
-"Correct" means "matches a legally reviewed answer". We have no legal reviewer, so all 81
-catalogue cases are `HYPOTHESIS`. **We therefore cannot score correctness**, and claiming to
-would be exactly the overclaim this project exists to avoid — v3 §7 already warns against
-assuming a tool falls short without documenting the test.
+"Correct" means "matches a legally authoritative answer". Under DR-04 this project does not
+produce one, and neither do the tools being compared. **We therefore cannot score correctness**,
+and claiming to would be exactly the overclaim this project exists to avoid — v3 §7 already warns
+against assuming a tool falls short without documenting the test.
 
 But correctness is not the only measurable thing, and three classes of finding are fully
 defensible without a reviewer.

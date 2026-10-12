@@ -4,7 +4,7 @@
  "created": "2026-10-12",
  "updated": "2026-10-12",
  "purpose": "Complete inventory of CRA Annex III and Annex IV categories with their official technical descriptions. This is the list AC-03 measures against: every entry must end with either a reviewed rule or an explicit not-covered status. Incomplete coverage blocks any definitive DEFAULT outcome.",
- "provenance": "QUOTE_VERIFIED against the authentic Official Journal PDF of Commission Implementing Regulation (EU) 2025/2392, retrieved 2026-10-12, stored at docs/legal/sources/B2_impl-reg-2025-2392_tech-descriptions_OJ-2025-12-01.pdf, sha256 fac0a59b6cad2f1c7878c561e066b0d47514fb7fc2dcb708cdd1285073aecdf3. Two entries (III-I-15, IV-03) carry partial transcriptions marked in their notes.",
+ "provenance": "QUOTE_VERIFIED against the authentic Official Journal PDF of Commission Implementing Regulation (EU) 2025/2392, retrieved 2026-10-12, stored at docs/legal/sources/B2_impl-reg-2025-2392_tech-descriptions_OJ-2025-12-01.pdf, sha256 fac0a59b6cad2f1c7878c561e066b0d47514fb7fc2dcb708cdd1285073aecdf3. All 26 descriptions are complete. Six categories had conditions amended on 12 October 2026 after discrepancies were flagged and then verified by the authors against this source.",
  "law_version": "2024/2847 (OJ L, 20.11.2024) + 2025/2392 (OJ L, 1.12.2025)",
  "impl_reg_dates": {
   "adopted": "2025-11-28",
@@ -33,16 +33,19 @@
    "technical_description": "Identity management systems are products with digital elements that provide mechanisms for authentication or authorisation and that may also provide mechanisms for the lifecycle management of identity credentials of natural persons, legal persons, devices or systems, such as identity registration, provisioning, maintenance, deregistration. These systems include access management systems that control access of natural persons, legal persons, devices or systems to digital resources or physical locations. Privileged access management software is an access management system that controls and monitors access rights to IT or OT systems and sensitive information within an organisation, including systems enforcing differentiated access control policies for privileged users. This category includes but is not limited to authentication and access control readers, biometric readers, single sign-on software, federated identity management software, one-time password software, hardware authentication devices such as transaction authentication number (TAN) generators, authentication software and multi-factor authentication software.",
    "coverage": "not-covered",
    "note": "Covers access control to PHYSICAL locations as well as digital resources. Interacts with III-I-17 for door locks: a commercial access-control reader may land here rather than in the smart-home category. Relevant to LOCK-02.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "provides mechanisms for authentication or authorisation",
     "or controls access of persons/devices/systems to digital resources or physical locations",
-    "privileged variant: controls and monitors access rights to IT/OT systems within an organisation"
+    "privileged variant: controls AND MONITORS access rights to IT or OT systems AND SENSITIVE INFORMATION within an organisation"
    ],
    "cases": [
     "CAT-01P",
     "CAT-01N"
-   ]
+   ],
+   "review_round_1": {
+    "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
+   }
   },
   {
    "id": "III-I-02",
@@ -51,7 +54,7 @@
    "technical_description": "Software products with digital elements that enable end users to access, render, and interact with web content and services hosted on servers that are connected to networks such as the Internet. They typically include a browser engine for interpreting and displaying content written in markup language (e.g. HTML), support for web protocols (e.g. HTTP, HTTPS), the ability to execute scripts and manage user inputs as well as storage of temporary or persistent data from websites (cookies). This category includes but is not limited to standalone applications that fulfil the functions of browsers, embedded browsers intended for integration into another system or application as well as browsers with AI agent integration.",
    "coverage": "not-covered",
    "note": "'Browsers with AI agent integration' is expressly named.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "enables end users to access, render and interact with web content and services hosted on servers",
     "typically includes a browser engine, web protocol support, script execution"
@@ -67,7 +70,7 @@
    "title": "Password managers",
    "technical_description": "Products with digital elements that store passwords, locally on a device or on a remote server, including activities such as generation of passwords as well as password sharing and integration with local or third-party applications for usage of passwords. This category includes but is not limited to local password managers, password managers provided as browser extensions, enterprise password managers as well as hardware-based password managers.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "stores passwords locally or on a remote server",
     "activities such as generation, sharing, or integration with applications for password use"
@@ -83,7 +86,7 @@
    "title": "Software that searches for, removes, or quarantines malicious software",
    "technical_description": "Software products with digital elements, typically referred to as antivirus or antimalware, that detect or search for malicious software or code on devices, or remove or quarantine such software or code, in order to maintain the integrity, confidentiality, or availability of such devices. In the context of this category of products, malicious software means software containing malicious features or capabilities that can cause harm directly or indirectly to the user and/or the computer system, such as viruses, worms, ransomware, spyware and trojans. This category includes but is not limited to software that detects or searches for malicious software in real-time or manually, rootkit detection and rescue disks with the core functionality of searching, removing or quarantining malicious software.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "detects or searches for malicious software or code on devices",
     "or removes or quarantines such software or code"
@@ -99,7 +102,7 @@
    "title": "Products with digital elements with the function of virtual private network (VPN)",
    "technical_description": "Products with digital elements that establish an encrypted logical tunnel that is constructed from the system resources of a physical or virtual network. This category includes but is not limited to virtual private network clients, virtual private network servers and virtual private network gateways.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "establishes an encrypted logical tunnel constructed from the system resources of a physical or virtual network"
    ],
@@ -114,7 +117,7 @@
    "title": "Network management systems",
    "technical_description": "Products with digital elements that manage connected network elements, such as servers, routers, switches, workstations, printers or mobile devices, by monitoring them and controlling their network operations and configuration. This category includes but is not limited to end-to-end management systems and dedicated configuration management systems, such as controllers for software-defined networking.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "manages connected network elements by monitoring them",
     "and controlling their network operations and configuration"
@@ -130,7 +133,7 @@
    "title": "Security information and event management (SIEM) systems",
    "technical_description": "Products with digital elements that collect data from multiple sources, analyse and correlate that data and present it as actionable information for security-related purposes, such as threat and incident detection, forensic analysis or compliance purposes.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "collects data from multiple sources",
     "analyses and correlates that data",
@@ -147,7 +150,7 @@
    "title": "Boot managers",
    "technical_description": "Software products with digital elements that manage the process of initial system startup after power on/restart by initialising hardware, loading or transferring control to the operating system environment or system resources, and selecting boot options. This category includes but is not limited to UEFI firmware, single-stage and multi-stage boot loaders.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "manages initial system startup after power on or restart",
     "initialises hardware, loads or transfers control to the operating system",
@@ -164,7 +167,7 @@
    "title": "Public key infrastructure and digital certificate issuance software",
    "technical_description": "Products with digital elements used as part of a public key infrastructure (PKI) that manage the validation, creation, issuance, distribution, status publication, renewal or revocation of digital certificates, or the generation, storage, escrow, exchange, destruction or rotation of cryptographic keys associated with such digital certificates. This category includes but is not limited to key management systems, digital certificate management systems, online certificate status protocol responders and all-in-one PKI solutions.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "used as part of a public key infrastructure",
     "manages validation, creation, issuance, distribution, status publication, renewal or revocation of digital certificates",
@@ -182,16 +185,19 @@
    "technical_description": "Physical network interfaces are products with digital elements that directly connect a device to a network via an application programming interface (API) provided by the interface drivers, typically operating at the data link layer, and that feature hardware adapters to transmission media with corresponding firmware, typically operating at the physical and data link layer. Virtual network interfaces are products with digital elements that directly or indirectly connect a device to a network via an API that emulates that of drivers of physical network interfaces, typically operating at the data link layer. This category includes but is not limited to wired and wireless network interface cards, controllers and adapters, such as for Wi-Fi, Ethernet, IrDA, USB, Bluetooth, NearLink, Zigbee, or Fieldbus, as well as purely virtual standalone products, such as virtual network interface cards, container network interfaces and VPN interfaces.",
    "coverage": "not-covered",
    "note": "Names USB, Bluetooth and Zigbee adapters. Relevant to SCP-04/05: a product's connection module may itself be an Annex III category.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
-    "directly connects a device to a network via an API provided by interface drivers",
+    "connects a device to a network via an API provided by interface drivers - directly for physical interfaces, directly OR INDIRECTLY for virtual ones",
     "physical: hardware adapters to transmission media with firmware",
     "virtual: emulates drivers of physical network interfaces"
    ],
    "cases": [
     "CAT-10P",
     "CAT-10N"
-   ]
+   ],
+   "review_round_1": {
+    "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
+   }
   },
   {
    "id": "III-I-11",
@@ -200,7 +206,7 @@
    "technical_description": "Software products with digital elements that provide an abstract interface of the underlying hardware and control the execution of software, and that may provide services such as computing resource management and configuration, scheduling, input-output control, managing data, and providing an interface through which applications interact with system resources and peripherals. This category includes but is not limited to real-time operating systems, general-purpose and special-purpose operating systems.",
    "coverage": "not-covered",
    "note": "Recital 4's worked example. Includes RTOS and special-purpose OS, so an embedded RTOS shipped as a product is in scope of the category.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "provides an abstract interface of the underlying hardware",
     "controls the execution of software"
@@ -222,12 +228,15 @@
     "CAT-12N"
    ],
    "note": "Recital 4: a router integrating firewall functionality remains a router.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "routers: establish and control data flow between different networks by selecting paths using routing protocols",
-    "modems: digital modulation/demodulation for IP-based communication",
+    "modems INTENDED FOR CONNECTION TO THE INTERNET: digital modulation/demodulation for IP-based communication",
     "switches: packet forwarding between networked devices with a management plane"
-   ]
+   ],
+   "review_round_1": {
+    "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
+   }
   },
   {
    "id": "III-I-13",
@@ -236,7 +245,7 @@
    "technical_description": "Products with digital elements that are integrated circuits that carry out central processing functions relying on external memory and peripherals, including microcode and other low-level firmware. They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation, trusted execution environment, or other hardware-based protection mechanisms, that aim to secure other products, networks or services beyond the microprocessor itself, such as secure boot chain, virtualization or secure communication interfaces.",
    "coverage": "not-covered",
    "note": "Decisive limiter: the security functionality must aim to secure products/networks/services BEYOND the microprocessor itself.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "integrated circuit carrying out central processing functions, relying on external memory and peripherals",
     "additionally provides security-related functionalities",
@@ -253,7 +262,7 @@
    "title": "Microcontrollers with security-related functionalities",
    "technical_description": "Products with digital elements that are integrated circuits that carry out central processing functions integrating memory allowing the microcontroller to be programmable and typically also other peripherals, including microcode and other low-level firmware. They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation, trusted execution environment, or other hardware-based protection mechanisms, that aim to secure other products, networks or services beyond the microcontroller itself, such as secure boot chain, virtualization or secure communication interfaces.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "integrated circuit carrying out central processing functions, integrating memory, programmable",
     "additionally provides security-related functionalities",
@@ -270,7 +279,7 @@
    "title": "Application specific integrated circuits (ASIC) and field-programmable gate arrays (FPGA) with security-related functionalities",
    "technical_description": "Application specific integrated circuits (ASIC) with security-related functionalities are products with digital elements that are integrated circuits, fully or partially custom-designed to perform a specific function or implement a specific application, including microcode and other low-level firmware. They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation, trusted execution environment, or other hardware-based protection mechanisms, that aim to secure other products, networks or services beyond the ASIC itself, such as secure boot chain, virtualization or secure communication interfaces. Field-programmable gate arrays (FPGA) with security-related functionalities are products with digital elements that are integrated circuits characterized by a matrix of configurable logic blocks designed to be reprogrammable after manufacturing to perform a specific function or implement a specific application, including microcode and other low-level firmware. They additionally provide security-related functionalities, such as encryption, authentication, secure key storage, random number generation, trusted execution environment, or other hardware-based protection mechanisms, that aim to secure other products, networks or services beyond the FPGA itself, such as secure boot chain, virtualization or secure communication interfaces.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "ASIC: custom-designed integrated circuit for a specific function",
     "FPGA: matrix of configurable logic blocks, reprogrammable after manufacturing",
@@ -287,7 +296,7 @@
    "title": "Smart home general purpose virtual assistants",
    "technical_description": "Products with digital elements that communicate on the public Internet, whether directly or via other equipment, that process demands, tasks or questions based on natural language prompts, such as through audio or written input, and that, based on those demands, tasks or questions, provide access to other services or control the functions of connected devices in residential settings. This category includes but is not limited to smart speakers with an integrated virtual assistant, and standalone virtual assistants that meet this description.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "communicates on the public Internet, directly or via other equipment",
     "processes demands, tasks or questions based on natural language prompts",
@@ -303,7 +312,7 @@
    "item": 17,
    "title": "Smart home products with security functionalities, including smart door locks, security cameras, baby monitoring systems and alarm systems",
    "technical_description": "Products with digital elements that protect the physical security of consumers in a residential setting and which can be controlled or managed remotely from other systems, as well as hardware and software that centrally control such products. This category includes but is not limited to smart door locking devices, baby monitoring systems, alarm systems and home security cameras.",
-   "coverage": "candidate-rule-drafted",
+   "coverage": "author-verified",
    "decisive_conditions": [
     "protects the physical security of consumers",
     "in a residential setting",
@@ -323,7 +332,7 @@
     "CAT-17P",
     "CAT-17N"
    ],
-   "coverage_reason": "Technical description retrieved and decisive conditions identified; rule drafted but unreviewed, so disabled under AC-01."
+   "coverage_reason": "Technical description verified verbatim against the official source; decisive conditions extracted and verified. Enabled under AC-01 as amended by DR-04."
   },
   {
    "id": "III-I-18",
@@ -353,12 +362,15 @@
    "decisive_conditions": [
     "is a toy covered by Directive 2009/48/EC (play, children under 14, not in its Annex I)",
     "communicates on the public Internet, directly or via other equipment",
-    "AND has social interactive features OR location tracking features"
+    "AND has social interactive features - embedded technology enabling INBOUND AND OUTBOUND communication such as keyboard, microphone, speaker or camera - OR location tracking features"
    ],
    "cases": [
     "CAT-18P",
     "CAT-18N"
-   ]
+   ],
+   "review_round_1": {
+    "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
+   }
   },
   {
    "id": "III-I-19",
@@ -374,7 +386,7 @@
     "CAT-19N"
    ],
    "note": "'Children' is defined as individuals under the age of 14. Note the interaction with the Art. 2(2) MDR/IVDR exclusion: this category is defined so as not to overlap it.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "worn on the body directly or via clothing or accessories",
     "regularly or continuously senses and processes information relevant to the user's health",
@@ -388,15 +400,18 @@
    "title": "Hypervisors and container runtime systems that support virtualised execution of operating systems and similar environments",
    "technical_description": "Hypervisors are software products with digital elements that abstract and/or allocate computing resources and enable the execution, management and orchestration of virtual machines that are logically separated from each other and/or from the physical hardware. Hypervisors may run directly on hardware (bare metal), on top of an operating system, or within another virtual machine (nested virtualisation). In the context of this category of products, a virtual machine is a software-defined logical separation of a computing environment, which includes a virtualised set of hardware resources (e.g. CPU, memory, storage, network interfaces) and typically hosts its own operating system. This category includes but is not limited to type 1 hypervisors (bare metal), type 2 hypervisors (hosted on an operating system) and hybrid hypervisors. Container runtime systems are software products with digital elements that manage the execution and lifecycle of containers running on a single host operating system as isolated processes, allocating resources and allowing the management and orchestration of individual containers. In the context of this category of products, a container is a software-based execution environment that encapsulates one or more software components and their dependencies in a single package, enabling it to run independently and consistently.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "hypervisor: abstracts/allocates computing resources and enables execution, management and orchestration of virtual machines",
-    "container runtime: manages execution and lifecycle of containers on a single host OS as isolated processes"
+    "container runtime: manages execution and lifecycle of containers on a single host OS as isolated processes, ALLOCATING RESOURCES and allowing management and orchestration of individual containers"
    ],
    "cases": [
     "CAT-20P",
     "CAT-20N"
-   ]
+   ],
+   "review_round_1": {
+    "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
+   }
   },
   {
    "id": "III-II-02",
@@ -411,7 +426,7 @@
     "CAT-21N"
    ],
    "note": "IMPORTANT: the description contains NO industrial-use condition. v3/v4 both assumed Class II firewalls were 'intended for industrial use'; that qualifier is absent from the official text. A consumer firewall product appears to fall in Class II. Verify against B1 Annex III and re-check case A3-01.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "firewall: protects a connected network or system from unauthorised access by monitoring and restricting traffic",
     "IDS: monitors traffic that has entered the environment and detects intrusion",
@@ -426,7 +441,7 @@
    "technical_description": "Products with digital elements that are microprocessors with security-related functionalities referred to in Table 'Class I', point 13, of this Annex, including tamper evidence, resistance or response, and which additionally are designed to provide protection of AVA_VAN level 2 or 3, as set out in the Common Criteria and the Common Evaluation Methodology.",
    "coverage": "not-covered",
    "note": "Cross-references III-I-13 and adds a certification-level threshold (AVA_VAN 2 or 3). The rule engine needs cross-category references.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "is a microprocessor with security-related functionalities within Class I point 13",
     "includes tamper evidence, resistance or response",
@@ -443,7 +458,7 @@
    "title": "Tamper-resistant microcontrollers",
    "technical_description": "Products with digital elements that are microcontrollers with security-related functionalities referred to in Table 'Class I', point 14, of this Annex, including tamper evidence, resistance or response, and which additionally are designed to provide protection of AVA_VAN level 2 or 3, as set out in the Common Criteria and the Common Evaluation Methodology.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "is a microcontroller with security-related functionalities within Class I point 14",
     "includes tamper evidence, resistance or response",
@@ -460,7 +475,7 @@
    "title": "Hardware Devices with Security Boxes",
    "technical_description": "Hardware products with digital elements that securely store, process, or manage sensitive data or perform cryptographic operations, and that consist of multiple discrete components, incorporating a hardware physical envelope providing tamper evidence, resistance or response as countermeasures against physical attacks. This category includes but is not limited to physical payment terminals, hardware security modules that generate and manage cryptographic elements, and tachographs that meet the above description.",
    "coverage": "not-covered",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "securely stores, processes or manages sensitive data, or performs cryptographic operations",
     "consists of multiple discrete components",
@@ -527,17 +542,20 @@
    "technical_description": "Secure elements are microcontrollers or microprocessors with security-related functionalities, including tamper evidence, resistance or response. They typically store, process, or manage cryptographic operations or sensitive data, such as identity credentials or payment credentials. Secure elements are designed to provide protection of at least AVA_VAN.4, as set out in the Common Criteria or the Common Evaluation Methodology. They can be discrete silicon or can be integrated into systems on chip (SoC). Secure elements can incorporate an application environment or an operating system, and can include one or more applications. This category includes but is not limited to Trusted Platform Modules (TPMs) and embedded Universal Integrated Circuit Card (UICC). Smartcards or similar devices are secure elements integrated into a carrier material, such as plastic or wood, in the shape of a card, or secure elements integrated into carrier materials taking other shapes. This category includes but is not limited to identity and travel documents, qualified signature cards, replaceable UICCs, physical payment cards, physical access cards, digital tachograph cards or wrist bands with integrated payment secure elements.",
    "coverage": "not-covered",
    "note": "Threshold is 'at least AVA_VAN.4' - higher than the AVA_VAN 2-3 of III-II-03/04. Note digital tachograph CARDS appear here, while tachographs themselves are named in IV-01.",
-   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03.",
+   "coverage_reason": "Technical description retrieved and verified; no rule drafted yet. WP1 produced the text only. Keeps DEFAULT blocked under AC-03 until a rule is written and verified.",
    "decisive_conditions": [
     "secure element: microcontroller/microprocessor with security-related functionalities including tamper evidence, resistance or response",
-    "stores, processes or manages cryptographic operations or sensitive data",
+    "typically stores, processes or manages cryptographic operations or sensitive data (the official text says 'typically' - this is NOT a mandatory condition)",
     "designed to provide protection of AT LEAST AVA_VAN.4",
     "smartcard: a secure element integrated into a carrier material"
    ],
    "cases": [
     "CAT-26P",
     "CAT-26N"
-   ]
+   ],
+   "review_round_1": {
+    "wp1_sheet": "Conditions amended after review round 1; see wp1-review-round-1.md for provenance and evidence level."
+   }
   }
  ],
  "next_actions": [
@@ -551,5 +569,7 @@
  "titles_verified": "All 26 category titles verified verbatim against B1 Annex III (p.71) and Annex IV (p.72) of the authentic OJ PDF on 2026-10-12. B1 Annex III Class II item 2 reads 'Firewalls, intrusion detection and prevention systems' with NO industrial-use qualifier, confirming the correction to v3/v4.",
  "transcription_status": "Complete. All 26 descriptions transcribed in full; the earlier partial entries for III-I-15 and IV-03 have been replaced.",
  "schema": "schemas/category-inventory.schema.json",
- "default_blocking_rule": "AC-03 is satisfied when, FOR THE PRODUCT BEING ASSESSED, every one of the 26 categories is either excluded with a recorded reason or flagged. It does not require every category's inclusion criteria to be settled in the abstract. A category in state 'operative-for-exclusion' therefore does not permanently block DEFAULT - it blocks it only for products that reach its open question. This preserves the guarantee AC-03 exists for (no DEFAULT on unexamined coverage) without one unresolved legal question rendering every assessment UNRESOLVED."
+ "default_blocking_rule": "AC-03 is satisfied when, FOR THE PRODUCT BEING ASSESSED, every one of the 26 categories is either excluded with a recorded reason or flagged. It does not require every category's inclusion criteria to be settled in the abstract. A category in state 'operative-for-exclusion' therefore does not permanently block DEFAULT - it blocks it only for products that reach its open question. This preserves the guarantee AC-03 exists for (no DEFAULT on unexamined coverage) without one unresolved legal question rendering every assessment UNRESOLVED.",
+ "review_round_1_note": "Six categories had conditions amended after review round 1. Each amendment was verified by the authors against the held official text before being applied; none was accepted on the reviewer's authority. See wp1-review-round-1.md.",
+ "enabling_gate": "DR-04: a rule may be enabled when its conditions are verified verbatim against the official source held with a recorded hash, and it carries its citation into the output. No named legal reviewer is required; no status asserts legal endorsement."
 }

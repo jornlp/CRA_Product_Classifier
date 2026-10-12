@@ -5,10 +5,12 @@ built around v4's existing IDs rather than replacing them.
 
 ## How to read this
 
-**Every expected outcome below is a `HYPOTHESIS` — a validation expectation, not a legal
-determination.** v4 §4 says this explicitly about its own two company cases, and it holds
-for all of these. Status becomes `R` (reviewed) only when a named legal reviewer signs off
-the expected outcome, per the §8.2 Definition of Done.
+**No expected outcome below is a legal determination.** Statuses follow DR-04:
+`AUTHOR_VERIFIED` means the conditions trace verbatim to official text we hold and have
+verified; `AUTHOR_INTERPRETATION` means our reading goes beyond the literal text;
+`OPEN_QUESTION` means the law is genuinely undetermined and the engine must not resolve it.
+The authoritative status and structured expected values for every case live in
+`case-expectations.json`.
 
 The "decisive fact" column is the point of the catalogue: most cases exist to be a
 **minimal pair** with a sibling, differing in exactly one legally relevant fact. A case
@@ -19,7 +21,7 @@ security functionality, per B2 Annex I nr. 17); `cat. IV-2` = Annex IV category 
 (smart-meter gateways, per B2 Annex II nr. 2). Exact wording must be verified against
 B1/B2 on every release — the match depends on the official text, not on our paraphrase.
 
-Legend — Status: `H` hypothesis, `R` legally reviewed. Source: `v3` from
+Legend — Status: `H` marks rows not yet migrated to the DR-04 taxonomy; see `case-expectations.json` for the authoritative status of every case. Source: `v3` from
 ontwikkelrapport §5, `v4` from implementatiespecificatie §7.1, `new` added here.
 
 ---
@@ -352,5 +354,7 @@ statuses, the points experts must decide, and a reviewer ID. Two further constra
    public test cases needs explicit consent, and the Annex C data request would make them
    more identifiable, not less. Consider a de-identified public variant plus a private
    fixture.
-2. **No reviewer yet.** Every row is `H`. Until a legal reviewer signs expected outcomes,
-   these fixtures test self-consistency and determinism — not legal correctness.
+2. **Verification, not endorsement.** Under DR-04 these fixtures test consistency with the
+   official text and with each other. They do not establish legal correctness, and the tool does
+   not claim it. The criterion that matters is AC-02: never be confidently wrong in the
+   permissive direction, because that is the only way this tool can harm a user.
