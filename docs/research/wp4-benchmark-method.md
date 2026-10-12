@@ -169,3 +169,11 @@ support. That is the AC-02 failure, seen from the outside.
 
 **Not suitable for the online tools:** the remaining WP5 condition pairs (section P) need facts
 these tools do not ask for. Their value is in testing our own engine.
+
+## Layer 1 result
+
+Done 2026-10-12: `docs/research/out/wp4-layer1-static-audit.md`. All three tools classify in the
+browser, so their full logic was read from the pages and checked against B1c and B2. Six permissive
+and six strict findings, each cited; Section 4 predicts the 23 priority cases from the tools' own
+wording. Layer 2 (real clicks) is only worth running where an outcome depends on a computation
+rather than on how the user reads a label.
