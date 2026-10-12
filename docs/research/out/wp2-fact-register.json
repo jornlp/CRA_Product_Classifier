@@ -1,6 +1,6 @@
 {
  "artifact": "wp2-fact-register",
- "version": 1,
+ "version": 2,
  "created": "2026-10-12",
  "purpose": "The distinct facts behind WP1's 76 decisive conditions, phrased as questions a non-lawyer can answer. No question asks the user to pick an Annex category.",
  "law_version": "2024/2847 consolidated 000.003 + 2025/2392",
@@ -236,7 +236,10 @@
    "worked_example": {
     "yes": "A microcontroller sold to device makers.",
     "no": "A finished appliance that contains one."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "IC_TYPE",
+   "superseded_why": "categories depend on which kind of IC"
   },
   {
    "fact_id": "TAMPER_PROTECTION",
@@ -263,8 +266,8 @@
   {
    "fact_id": "AVA_VAN_LEVEL",
    "question": "What AVA_VAN level is it designed to provide, under the Common Criteria?",
-   "kind": "enum:NONE/2/3/4+/UNKNOWN",
-   "why_we_ask": "III-II-03/04 require level 2 or 3; IV-03 requires AT LEAST AVA_VAN.4",
+   "kind": "enum",
+   "why_we_ask": "III-II-03/04 require level 2 or 3 exactly; IV-03 requires AT LEAST AVA_VAN.4. Level 1 matters: it fails both (WP5 MP-24..26).",
    "categories_discriminated": [
     "III-II-03",
     "III-II-04",
@@ -280,7 +283,17 @@
    "worked_example": {
     "yes": "'EAL4+ augmented with AVA_VAN.5' on the certificate. Record the issuing scheme too.",
     "no": "A vendor claim of being 'highly secure' with no certificate."
-   }
+   },
+   "values": [
+    "NONE",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "UNKNOWN"
+   ],
+   "revision": "v2 (WP7 trial)"
   },
   {
    "fact_id": "PUBLIC_INTERNET",
@@ -327,7 +340,10 @@
    "worked_example": {
     "yes": "Controlled from an app while the user is away.",
     "no": "Operated only by a button on the device."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "CONTROL_PATH",
+   "superseded_why": "boolean could not carry the open proximity case"
   },
   {
    "fact_id": "PROTECTS_PHYSICAL_SECURITY",
@@ -393,7 +409,10 @@
    "worked_example": {
     "yes": "A payment terminal with a tamper-responsive enclosure.",
     "no": "A single chip with no multi-component enclosure."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "MULTIPLE_DISCRETE_COMPONENTS + PHYSICAL_TAMPER_ENVELOPE",
+   "superseded_why": "AND-bundle (WP5 MP-27)"
   },
   {
    "fact_id": "CONTROLS_OTHER_DEVICES",
@@ -443,7 +462,10 @@
    "worked_example": {
     "yes": "Electricity, gas, heat - named in the technical description.",
     "no": "Water, which is not named; this is a known open question."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "METERED_COMMODITY",
+   "superseded_why": "water is not an energy carrier; name misled"
   },
   {
    "fact_id": "AUTH_OR_ACCESS_CONTROL",
@@ -462,18 +484,21 @@
   },
   {
    "fact_id": "RENDERS_WEB_CONTENT",
-   "question": "Does it access, render and interact with web content over web protocols, with a browser engine and script execution?",
+   "question": "Does it let users access, display and interact with web content and services hosted on servers?",
    "kind": "bool",
-   "why_we_ask": "III-I-02",
+   "why_we_ask": "III-I-02. A browser engine, web protocols and script execution are what browsers 'typically include', not conditions (WP5 MP-01).",
    "categories_discriminated": [
     "III-I-02"
    ],
    "evidence_expectation": "DOCUMENT_LIKELY",
    "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
    "worked_example": {
-    "yes": "An embedded browser component with an engine and script execution.",
-    "no": "A help screen rendering local static text."
-   }
+    "yes": "An embedded web view loading remote pages, even with scripts disabled.",
+    "no": "A help screen rendering local static HTML only."
+   },
+   "replaces": "RENDERS_WEB_CONTENT (v1)",
+   "revision": "v2 (WP7 trial)",
+   "previous_question": "Does it access, render and interact with web content over web protocols, with a browser engine and script execution?"
   },
   {
    "fact_id": "STORES_PASSWORDS",
@@ -488,7 +513,10 @@
    "worked_example": {
     "yes": "A vault that generates, stores and fills credentials.",
     "no": "An app that remembers one login for itself."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "STORES_PASSWORDS_CORE",
+   "superseded_why": "bundled illustrative activities as conditions (WP5 finding 1)"
   },
   {
    "fact_id": "DETECTS_MALWARE",
@@ -533,7 +561,10 @@
    "worked_example": {
     "yes": "Pushes configuration to switches and routers.",
     "no": "Displays network status without changing anything."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "MONITORS_NETWORK_ELEMENTS + CONFIGURES_NETWORK_ELEMENTS",
+   "superseded_why": "AND-bundle; inclusion list overrides monitoring (WP5 finding 2)"
   },
   {
    "fact_id": "CORRELATES_SECURITY_DATA",
@@ -548,22 +579,28 @@
    "worked_example": {
     "yes": "Collects logs from many sources and correlates them into alerts.",
     "no": "Stores logs for later search without correlation."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "MULTI_SOURCE_DATA + CORRELATES_DATA + SECURITY_PURPOSE_OUTPUT",
+   "superseded_why": "AND-bundle of three required conditions"
   },
   {
    "fact_id": "MANAGES_BOOT",
-   "question": "Does it manage system startup — initialising hardware, loading the OS, selecting boot options?",
+   "question": "Does it manage system startup after power-on or restart: initialising hardware and loading or handing control to the operating system?",
    "kind": "bool",
-   "why_we_ask": "III-I-08",
+   "why_we_ask": "III-I-08. Selecting boot options is part of the description, but single-stage boot loaders are expressly included, so it is not required (WP5 MP-07).",
    "categories_discriminated": [
     "III-I-08"
    ],
    "evidence_expectation": "DOCUMENT_LIKELY",
    "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
    "worked_example": {
-    "yes": "UEFI firmware or a bootloader selecting and loading the OS.",
+    "yes": "UEFI firmware; a single-stage boot loader that loads one fixed kernel.",
     "no": "An updater that replaces a kernel file."
-   }
+   },
+   "replaces": "MANAGES_BOOT (v1)",
+   "revision": "v2 (WP7 trial)",
+   "previous_question": "Does it manage system startup — initialising hardware, loading the OS, selecting boot options?"
   },
   {
    "fact_id": "MANAGES_CERT_LIFECYCLE",
@@ -627,7 +664,10 @@
    "worked_example": {
     "yes": "A router, managed switch, modem or access point.",
     "no": "A device that merely connects as a client."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "NETWORK_DEVICE_ROLE",
+   "superseded_why": "limbs carry their own qualifiers"
   },
   {
    "fact_id": "NATURAL_LANGUAGE_ASSISTANT",
@@ -732,7 +772,10 @@
    "worked_example": {
     "yes": "A type 1 hypervisor; a container runtime.",
     "no": "A sandbox isolating a single process."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "VIRTUALISATION_TYPE",
+   "superseded_why": "boolean could not carry the open orchestrator case"
   },
   {
    "fact_id": "FILTERS_OR_DETECTS_INTRUSION",
@@ -762,7 +805,10 @@
    "worked_example": {
     "yes": "A TPM, eUICC or payment card chip.",
     "no": "A general microcontroller with a crypto library."
-   }
+   },
+   "status": "SUPERSEDED",
+   "superseded_by": "derived: IC_TYPE + SECURITY_FUNCTION + TAMPER_PROTECTION + AVA_VAN_LEVEL",
+   "superseded_why": "question built in the descriptive 'typically stores ... credentials'; IV-03 is decided by the four facts it is derived from"
   },
   {
    "fact_id": "RADIO_EQUIPMENT_RED_DA",
@@ -777,13 +823,361 @@
     "no": "A wired-only product with no radio, or radio equipment outside the Delegated Regulation's listed categories."
    },
    "output_rule": "POINTER ONLY. The tool must not assess RED conformity - v4 section 2.3 keeps this out of scope. It states that other requirements may already apply and that the user should check them separately. Harmonised standards for the RED Delegated Regulation are the EN 18031 series, cited in the OJ; they are NOT CRA standards."
+  },
+  {
+   "fact_id": "STORES_PASSWORDS_CORE",
+   "question": "Is storing passwords, on the device or on a server, what this product is for?",
+   "kind": "bool",
+   "why_we_ask": "III-I-03: 'store passwords, locally on a device or on a remote server'. Generation, sharing and filling are listed as examples, not conditions (WP5 MP-02).",
+   "categories_discriminated": [
+    "III-I-03"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A password vault, even one with no generator.",
+    "no": "A notes app that happens to have one encrypted field: storing passwords is not its purpose."
+   },
+   "question_hint": "Generating, sharing or auto-filling passwords is typical but not required.",
+   "replaces": "STORES_PASSWORDS",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "MONITORS_NETWORK_ELEMENTS",
+   "question": "Does it monitor connected network elements such as servers, routers, switches or printers?",
+   "kind": "bool",
+   "why_we_ask": "III-I-06: 'by monitoring them'. Not decisive on its own: the description also includes dedicated configuration management systems (WP5 MP-04).",
+   "categories_discriminated": [
+    "III-I-06"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Polls switches and shows their status and alarms.",
+    "no": "Shows only its own status."
+   },
+   "replaces": "MANAGES_NETWORK_ELEMENTS",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "CONFIGURES_NETWORK_ELEMENTS",
+   "question": "Does it control the network operations or configuration of other network elements?",
+   "kind": "bool",
+   "why_we_ask": "III-I-06: 'controlling their network operations and configuration'.",
+   "categories_discriminated": [
+    "III-I-06"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Pushes configuration to routers and switches; an SDN controller.",
+    "no": "Displays network status without changing anything."
+   },
+   "replaces": "MANAGES_NETWORK_ELEMENTS",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "CONTROL_PATH",
+   "question": "How can the product be controlled or managed from another system?",
+   "kind": "enum",
+   "why_we_ask": "III-I-17: 'can be controlled or managed remotely from other systems'. Control from a nearby phone only is an open question (WP5 MP-14).",
+   "categories_discriminated": [
+    "III-I-17"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "From an app over the internet or a home hub: NETWORK_REMOTE.",
+    "no": "Only by buttons on the device: NONE."
+   },
+   "values": [
+    "NETWORK_REMOTE",
+    "PROXIMITY_ONLY",
+    "NONE"
+   ],
+   "condition_values": {
+    "NETWORK_REMOTE": "TRUE",
+    "PROXIMITY_ONLY": "OPEN",
+    "NONE": "FALSE"
+   },
+   "replaces": "REMOTE_MANAGEMENT",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "IC_TYPE",
+   "question": "Is the product itself an integrated circuit? If so, which kind?",
+   "kind": "enum",
+   "why_we_ask": "III-I-13 (microprocessor: external memory), III-I-14 (microcontroller: integrated memory), III-I-15 (ASIC/FPGA), III-II-03/04, IV-03 (microcontroller or microprocessor).",
+   "categories_discriminated": [
+    "III-I-13",
+    "III-I-14",
+    "III-I-15",
+    "III-II-03",
+    "III-II-04",
+    "IV-03"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A microcontroller sold to device makers: MICROCONTROLLER.",
+    "no": "A finished appliance that contains one: NOT_AN_IC."
+   },
+   "values": [
+    "MICROPROCESSOR",
+    "MICROCONTROLLER",
+    "SOC_UNCLEAR",
+    "ASIC",
+    "FPGA",
+    "NOT_AN_IC"
+   ],
+   "condition_values": {
+    "SOC_UNCLEAR": "Matches III-I-13 or III-I-14; both are Class I, so the class is unaffected (WP5 MP-12). IV-03 accepts either."
+   },
+   "replaces": "IS_INTEGRATED_CIRCUIT",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "METERED_COMMODITY",
+   "question": "Which commodity does the metering system measure?",
+   "kind": "enum",
+   "why_we_ask": "IV-02 gateway limb: electricity is named, and gas or heat as 'other sources of energy'. Water is not an energy source (WP1; A4-02).",
+   "categories_discriminated": [
+    "IV-02"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Electricity, gas or heat.",
+    "no": "Water: the gateway limb does not match, and the second limb is an open question."
+   },
+   "values": [
+    "ELECTRICITY",
+    "GAS",
+    "HEAT",
+    "WATER",
+    "OTHER",
+    "NONE"
+   ],
+   "condition_values": {
+    "ELECTRICITY": "TRUE",
+    "GAS": "TRUE",
+    "HEAT": "TRUE",
+    "WATER": "FALSE",
+    "OTHER": "UNKNOWN",
+    "NONE": "FALSE"
+   },
+   "replaces": "ENERGY_CARRIER",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "MULTI_SOURCE_DATA",
+   "question": "Does it collect data from multiple sources?",
+   "kind": "bool",
+   "why_we_ask": "III-I-07, first of three required conditions (WP5 MP-06).",
+   "categories_discriminated": [
+    "III-I-07"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Logs from firewalls, servers and endpoints.",
+    "no": "The logs of one firewall only."
+   },
+   "replaces": "CORRELATES_SECURITY_DATA",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "CORRELATES_DATA",
+   "question": "Does it analyse and correlate that data?",
+   "kind": "bool",
+   "why_we_ask": "III-I-07, second required condition.",
+   "categories_discriminated": [
+    "III-I-07"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Correlates events across sources into incidents.",
+    "no": "Stores logs for later search without correlation."
+   },
+   "replaces": "CORRELATES_SECURITY_DATA",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "SECURITY_PURPOSE_OUTPUT",
+   "question": "Is the result presented as actionable information for security purposes, such as threat detection, forensics or compliance?",
+   "kind": "bool",
+   "why_we_ask": "III-I-07, third required condition. SOAR is generally not SIEM (B7 section 3.4).",
+   "categories_discriminated": [
+    "III-I-07"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "Security alerts and incident timelines.",
+    "no": "Application performance dashboards (WP5 MP-05)."
+   },
+   "replaces": "CORRELATES_SECURITY_DATA",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "NETWORK_DEVICE_ROLE",
+   "question": "Which of these does the product do? Select all that apply.",
+   "kind": "multi-enum",
+   "why_we_ask": "III-I-12 has three limbs, each with its own qualifier: routers; modems intended for connection to the Internet; switches with a management plane (WP5 MP-10, MP-11).",
+   "categories_discriminated": [
+    "III-I-12"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A home router with built-in modem: ROUTER and INTERNET_MODEM.",
+    "no": "A device that only connects as a Wi-Fi client: NONE."
+   },
+   "values": [
+    "ROUTER",
+    "INTERNET_MODEM",
+    "OTHER_MODEM",
+    "MANAGED_SWITCH_OR_BRIDGE",
+    "UNMANAGED_SWITCH",
+    "NONE"
+   ],
+   "condition_values": {
+    "ROUTER": "TRUE",
+    "INTERNET_MODEM": "TRUE",
+    "MANAGED_SWITCH_OR_BRIDGE": "TRUE",
+    "OTHER_MODEM": "FALSE",
+    "UNMANAGED_SWITCH": "FALSE",
+    "NONE": "FALSE"
+   },
+   "replaces": "ROUTES_OR_FORWARDS",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "VIRTUALISATION_TYPE",
+   "question": "Does it run virtual machines or containers? Which describes it best?",
+   "kind": "enum",
+   "why_we_ask": "III-II-01: hypervisors, and container runtimes on a single host that allocate resources and manage containers. Multi-host orchestrators are an open question (WP5 MP-21).",
+   "categories_discriminated": [
+    "III-II-01"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A type 1 hypervisor; a container runtime.",
+    "no": "A sandbox isolating one process."
+   },
+   "values": [
+    "HYPERVISOR",
+    "CONTAINER_RUNTIME",
+    "ORCHESTRATOR_ONLY",
+    "PROCESS_SANDBOX",
+    "NONE"
+   ],
+   "condition_values": {
+    "HYPERVISOR": "TRUE",
+    "CONTAINER_RUNTIME": "TRUE",
+    "ORCHESTRATOR_ONLY": "OPEN",
+    "PROCESS_SANDBOX": "FALSE",
+    "NONE": "FALSE"
+   },
+   "replaces": "VIRTUALISATION",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "MULTIPLE_DISCRETE_COMPONENTS",
+   "question": "Is it built from multiple discrete components, rather than a single chip?",
+   "kind": "bool",
+   "why_we_ask": "IV-01: 'consist of multiple discrete components'.",
+   "categories_discriminated": [
+    "IV-01"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A payment terminal or HSM board.",
+    "no": "A single secure chip."
+   },
+   "replaces": "DISCRETE_COMPONENTS_ENVELOPE",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "PHYSICAL_TAMPER_ENVELOPE",
+   "question": "Do those components sit inside a hardware enclosure that gives tamper evidence, resistance or response against physical attack?",
+   "kind": "bool",
+   "why_we_ask": "IV-01: 'incorporating a hardware physical envelope providing tamper evidence, resistance or response' (WP5 MP-27).",
+   "categories_discriminated": [
+    "IV-01"
+   ],
+   "evidence_expectation": "DOCUMENT_LIKELY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A tamper-responsive HSM enclosure that erases keys when opened.",
+    "no": "An ordinary industrial PC case."
+   },
+   "replaces": "DISCRETE_COMPONENTS_ENVELOPE",
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "ADVANCED_SECURITY_CORE",
+   "question": "Is the product's core functionality an advanced security purpose, such as secure cryptoprocessing, as opposed to a feature it also has?",
+   "kind": "bool",
+   "why_we_ask": "IV-02 second limb: 'other devices for advanced security purposes, including for secure cryptoprocessing'. It has no technical description, so a TRUE answer leads to expert review, never to a match (WP1 open question).",
+   "categories_discriminated": [
+    "IV-02"
+   ],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "A device whose core function is cryptoprocessing for other systems.",
+    "no": "A water meter that encrypts its own readings."
+   },
+   "condition_values": {
+    "TRUE": "OPEN",
+    "FALSE": "FALSE"
+   },
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "HIGH_RISK_AI_BASIS",
+   "question": "Is the product a high-risk AI system under the AI Act, and on which basis?",
+   "kind": "enum",
+   "why_we_ask": "CRA Art. 12 sets the conformity route for high-risk AI. The AI Act as amended by Reg. 2026/1744 treats the bases differently: Annex III from 2.12.2027; Annex I Section A from 2.8.2028; Annex I Section B (e.g. machinery) outside Art. 43 (cases AI-01, AI-05, AI-06).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "An AI safety component in a product under Annex I Section A legislation.",
+    "no": "No AI system, or one that is not high-risk: NONE."
+   },
+   "values": [
+    "NONE",
+    "ANNEX_III",
+    "ANNEX_I_SECTION_A",
+    "ANNEX_I_SECTION_B"
+   ],
+   "revision": "v2 (WP7 trial)"
+  },
+  {
+   "fact_id": "EHR_SYSTEM",
+   "question": "Is the product classified as an electronic health record (EHR) system under Regulation (EU) 2025/327?",
+   "kind": "bool",
+   "why_we_ask": "CRA Art. 32(5a), inserted by the EHDS: EHR systems follow the EHDS conformity procedure from 26.3.2027 (EHR-01).",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "worked_example": {
+    "yes": "An EHR system placed on the market for healthcare providers.",
+    "no": "A fitness app that stores the user's own workouts."
+   },
+   "revision": "v2 (WP7 trial)"
   }
  ],
  "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",
  "suggested_question_order": [
   {
-   "fact_id": "IS_INTEGRATED_CIRCUIT",
-   "gates": 5
+   "fact_id": "IC_TYPE",
+   "gates": 6
   },
   {
    "fact_id": "TAMPER_PROTECTION",
@@ -818,6 +1212,10 @@
    "gates": 2
   },
   {
+   "fact_id": "ADVANCED_SECURITY_CORE",
+   "gates": 1
+  },
+  {
    "fact_id": "AUTH_OR_ACCESS_CONTROL",
    "gates": 1
   },
@@ -826,19 +1224,19 @@
    "gates": 1
   },
   {
-   "fact_id": "CORRELATES_SECURITY_DATA",
+   "fact_id": "CONFIGURES_NETWORK_ELEMENTS",
+   "gates": 1
+  },
+  {
+   "fact_id": "CONTROL_PATH",
+   "gates": 1
+  },
+  {
+   "fact_id": "CORRELATES_DATA",
    "gates": 1
   },
   {
    "fact_id": "DETECTS_MALWARE",
-   "gates": 1
-  },
-  {
-   "fact_id": "DISCRETE_COMPONENTS_ENVELOPE",
-   "gates": 1
-  },
-  {
-   "fact_id": "ENERGY_CARRIER",
    "gates": 1
   },
   {
@@ -858,10 +1256,6 @@
    "gates": 1
   },
   {
-   "fact_id": "IS_SECURE_ELEMENT",
-   "gates": 1
-  },
-  {
    "fact_id": "IS_TOY",
    "gates": 1
   },
@@ -874,7 +1268,7 @@
    "gates": 1
   },
   {
-   "fact_id": "MANAGES_NETWORK_ELEMENTS",
+   "fact_id": "METERED_COMMODITY",
    "gates": 1
   },
   {
@@ -882,7 +1276,23 @@
    "gates": 1
   },
   {
+   "fact_id": "MONITORS_NETWORK_ELEMENTS",
+   "gates": 1
+  },
+  {
+   "fact_id": "MULTIPLE_DISCRETE_COMPONENTS",
+   "gates": 1
+  },
+  {
+   "fact_id": "MULTI_SOURCE_DATA",
+   "gates": 1
+  },
+  {
    "fact_id": "NATURAL_LANGUAGE_ASSISTANT",
+   "gates": 1
+  },
+  {
+   "fact_id": "NETWORK_DEVICE_ROLE",
    "gates": 1
   },
   {
@@ -890,11 +1300,11 @@
    "gates": 1
   },
   {
-   "fact_id": "PROTECTS_PHYSICAL_SECURITY",
+   "fact_id": "PHYSICAL_TAMPER_ENVELOPE",
    "gates": 1
   },
   {
-   "fact_id": "REMOTE_MANAGEMENT",
+   "fact_id": "PROTECTS_PHYSICAL_SECURITY",
    "gates": 1
   },
   {
@@ -902,11 +1312,11 @@
    "gates": 1
   },
   {
-   "fact_id": "ROUTES_OR_FORWARDS",
+   "fact_id": "SECURITY_PURPOSE_OUTPUT",
    "gates": 1
   },
   {
-   "fact_id": "STORES_PASSWORDS",
+   "fact_id": "STORES_PASSWORDS_CORE",
    "gates": 1
   },
   {
@@ -914,7 +1324,7 @@
    "gates": 1
   },
   {
-   "fact_id": "VIRTUALISATION",
+   "fact_id": "VIRTUALISATION_TYPE",
    "gates": 1
   },
   {
@@ -958,6 +1368,10 @@
    "gates": 0
   },
   {
+   "fact_id": "EHR_SYSTEM",
+   "gates": 0
+  },
+  {
    "fact_id": "EU_MARKET_ACTIVITY",
    "gates": 0
   },
@@ -970,12 +1384,21 @@
    "gates": 0
   },
   {
+   "fact_id": "HIGH_RISK_AI_BASIS",
+   "gates": 0
+  },
+  {
    "fact_id": "MARKET_ROLE",
    "gates": 0
   },
   {
    "fact_id": "PRODUCT_BOUNDARY",
    "gates": 0
+  },
+  {
+   "fact_id": "RADIO_EQUIPMENT_RED_DA",
+   "gates": 0
   }
- ]
+ ],
+ "revision_note": "v2, 2026-10-12, from the WP7 trial: conditions the law joins with AND are separate facts, because a 'No' must say which condition failed; conditions joined with OR may share a question. Facts that can reach a legally open question carry condition_values mapping to OPEN. Superseded facts are kept with superseded_by for traceability."
 }

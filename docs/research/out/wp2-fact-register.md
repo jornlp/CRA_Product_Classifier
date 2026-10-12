@@ -1,5 +1,14 @@
 # WP2 — fact register, first pass
 
+> **Revised to v2 (12 October 2026, after the WP7 trial).** 56 active facts; 10 superseded and kept
+> with `superseded_by`. The counts below describe the v1 pass. The rule behind the revision: **conditions
+> the law joins with AND must be separate facts**, because a "No" has to say which condition failed;
+> conditions joined with OR may share a question, since "No" then means none applies. Facts that can reach
+> an open legal question (`CONTROL_PATH`, `VIRTUALISATION_TYPE`, `ADVANCED_SECURITY_CORE`, `METERED_COMMODITY`)
+> carry `condition_values` that map to OPEN. 16 active facts are `MANUFACTURER_ONLY`. See
+> `wp7-rule-model.md` §4.1 for the changes, one per row.
+
+
 **49 distinct facts** behind WP1's 76 decisive conditions. All 26 categories have at
 least one discriminating fact. Full register: `wp1`-sourced, in `wp2-fact-register.json`.
 

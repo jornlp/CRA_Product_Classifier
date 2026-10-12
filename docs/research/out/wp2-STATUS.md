@@ -1,5 +1,14 @@
 # WP2 — status: complete, pending review
 
+> **Revised to v2 (12 October 2026, after the WP7 trial).** 56 active facts; 10 superseded and kept
+> with `superseded_by`. The counts below describe the v1 pass. The rule behind the revision: **conditions
+> the law joins with AND must be separate facts**, because a "No" has to say which condition failed;
+> conditions joined with OR may share a question, since "No" then means none applies. Facts that can reach
+> an open legal question (`CONTROL_PATH`, `VIRTUALISATION_TYPE`, `ADVANCED_SECURITY_CORE`, `METERED_COMMODITY`)
+> carry `condition_values` that map to OPEN. 16 active facts are `MANUFACTURER_ONLY`. See
+> `wp7-rule-model.md` §4.1 for the changes, one per row.
+
+
 WP2's objective was to let users describe products in their own words without needing to know
 Annex categories. Its "done when" was: every decisive fact has a plain-language question and a
 worked example, and no question asks the user to pick an Annex category.
