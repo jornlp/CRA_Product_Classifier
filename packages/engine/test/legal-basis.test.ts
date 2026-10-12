@@ -51,3 +51,12 @@ describe("legal text layout (generated from the held texts)", () => {
     }
   }
 });
+
+describe("Commission FAQ examples on the purpose screen are verbatim", () => {
+  const faqText = norm(readFileSync(new URL(`../../../${JSON.parse(readFileSync(new URL("../../../packages/rules/guidance.json", import.meta.url), "utf8")).sources.B7.text}`, import.meta.url), "utf8"))
+    .replace(/[_*]/g, "").replace(/[“”]/g, '"');
+  const purpose = read("packages/rules/questions.json").questions.PURPOSE_SCREEN;
+  for (const o of purpose.options) for (const [i, e] of (o.faq_examples ?? []).entries()) {
+    it(`${o.value} example ${i + 1}`, () => expect(faqText).toContain(norm(e.quote).replace(/[“”]/g, '"')));
+  }
+});

@@ -108,6 +108,15 @@ describe("screens: pest-control camera", () => {
     btn.click();
     expect(panel.hidden).toBe(true);
   });
+  it("the ⓘ for operating systems shows the FAQ's official counter-example", () => {
+    const row = [...app().querySelectorAll(".opt-row")].find((r) => r.textContent!.includes("being an operating system"))!;
+    const btn = row.querySelector<HTMLButtonElement>("button.info-btn")!;
+    btn.click();
+    const panel = document.getElementById(btn.getAttribute("aria-controls")!)!;
+    expect(panel.textContent).toContain("Commission FAQ v14 (non-binding)");
+    expect(panel.textContent).toContain("Does not count: A smartphone contains an operating system");
+    btn.click();
+  });
   it("ticking nothing on the purpose screen skips every category question", async () => {
     await answer([]);
     expect(heading()).toContain("high-risk AI system");

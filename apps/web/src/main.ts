@@ -20,11 +20,15 @@ const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
 const TIMELINE = tl as unknown as TimelineRules;
 type CatInfo = { category: string; title: string; class: string; named_products: string[]; description: string };
-type Option = { value: unknown; label: string; group?: string; info?: CatInfo[] };
+type FaqExample = { counts: boolean; text: string; quote: string; source: string };
+type Option = { value: unknown; label: string; group?: string; info?: CatInfo[]; faq_examples?: FaqExample[] };
 
 /** What an option on the purpose screen covers, straight from the implementing regulation. */
-function optionInfoHtml(info: CatInfo[], id: string): string {
-  return `<div class="opt-info" id="${id}" hidden>${info.map((c) => `
+function optionInfoHtml(info: CatInfo[], id: string, faq: FaqExample[] = []): string {
+  const faqHtml = faq.length ? `<div class="faq-ex"><p class="src src-official_guidance">Commission FAQ v14 (non-binding)</p><ul>${faq.map((e) =>
+    `<li><strong>${e.counts ? "Counts" : "Does not count"}:</strong> ${esc(e.text)}
+      <details><summary>Exact wording</summary><blockquote>${esc(e.quote)}</blockquote></details></li>`).join("")}</ul></div>` : "";
+  return `<div class="opt-info" id="${id}" hidden>${faqHtml}${info.map((c) => `
     <article class="law">
       <p class="law-act">Implementing Regulation (EU) 2025/2392 · ${esc(CLASS_LABEL[c.class])}</p>
       <p class="law-title">${esc(c.title)}</p>
@@ -144,7 +148,7 @@ function questionHtml(phase: Phase, fid: string): string {
     const box = (o: Option, i: number) => o.info?.length
       ? `<div class="opt-row"><label class="opt"><input type="checkbox" name="a" value="${i}"${checked(o.value)}> <span>${esc(o.label)}</span></label>
           <button type="button" class="info-btn" aria-expanded="false" aria-controls="info-${i}" title="What the regulation says about this">ⓘ<span class="sr-only"> What the regulation says about this</span></button></div>
-          ${optionInfoHtml(o.info, `info-${i}`)}`
+          ${optionInfoHtml(o.info, `info-${i}`, o.faq_examples)}`
       : `<label class="opt"><input type="checkbox" name="a" value="${i}"${checked(o.value)}> <span>${esc(o.label)}</span></label>`;
     const opts = q.options ?? [];
     const stem = q.stem ? `<div class="stem"><p class="stem-text">${esc(q.stem)}</p>${q.stem_warning ? `<p class="stem-warning">${esc(q.stem_warning)}</p>` : ""}</div>` : "";

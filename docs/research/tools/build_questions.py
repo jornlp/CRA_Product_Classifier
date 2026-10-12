@@ -94,6 +94,31 @@ LABELS = {
 }
 OPTION_INFO_FOR = {"PURPOSE_SCREEN"}
 
+# Official examples from the Commission FAQ v14 (non-binding), per purpose option. Quotes are
+# verified verbatim against the held FAQ text in CI (packages/engine/test/legal-basis.test.ts).
+FAQ_EXAMPLES = {
+    "OS": [
+        ("COUNTS", "An operating system that also includes small extra tools, such as a calculator, is still an operating system.",
+         "products that have the core functionality of \"operating systems\" (an important product with digital elements of Class I) often include software that performs ancillary functions not included in the technical description of that product category, such as calculators or simple graphics editors"),
+        ("NOT", "A smartphone contains an operating system, but is not itself an operating system.",
+         "as a smartphone's core functionality is not that of an operating system or of a password manager, it is generally not to be considered to have the core functionality of an operating system or of a password manager")],
+    "PASSWORDS": [
+        ("NOT", "A smartphone with a built-in password manager is not a password manager.",
+         "as a smartphone's core functionality is not that of an operating system or of a password manager, it is generally not to be considered to have the core functionality of an operating system or of a password manager")],
+    "SIEM": [
+        ("NOT", "Security orchestration (SOAR) software can do what a SIEM does, but is generally not a SIEM.",
+         "SOAR software is generally not to be considered to have the core functionality of \"security information and event management (SIEM) systems\"")],
+    "BROWSER": [
+        ("NOT", "A news app with an embedded browser component is not a browser.",
+         "integrating an embedded browser as a component of a news app for use in smartphones does not in itself render the news app subject to the conformity assessment procedure")],
+    "CHIP": [
+        ("NOT", "A laptop with a secure element inside is not a secure element.",
+         "integrating a secure element into a laptop does not in itself render the laptop subject to the conformity assessment procedure")],
+    "ROUTING": [
+        ("COUNTS", "A router that also has a firewall is still a router.",
+         "such as an operating system integrating browser functionality, or a router integrating firewall functionality")],
+}
+
 
 def option_info(cls):
     """For each purpose option: the categories it rules out when unticked (read from the rules:
@@ -324,6 +349,8 @@ def build():
             info = option_info(cls)
             for o in q.get("options", []):
                 o["info"] = info.get(o["value"], [])
+                o["faq_examples"] = [{"counts": c == "COUNTS", "text": t, "quote": qt, "source": "Commission FAQ v14 (non-binding)"}
+                                     for c, t, qt in FAQ_EXAMPLES.get(o["value"], [])]
         if fid in STEMS:
             q["stem"], q["stem_warning"] = STEMS[fid]
         if fid in GROUPS:
