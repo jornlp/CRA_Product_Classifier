@@ -27,7 +27,7 @@ export interface ClassificationRules {
   sources: Record<string, { id: string; sha256: string; file?: string }>;
   class_order: ClassName[]; categories_total: number; category_ids: string[];
   facts: Record<string, { type: string; evidence: string }>;
-  categories: CategoryRule[]; routes: RouteRule[];
+  categories: CategoryRule[]; routes: RouteRule[]; ask_order?: string[];
 }
 
 export interface CategoryResult {

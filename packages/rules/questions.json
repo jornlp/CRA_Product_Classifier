@@ -1,7 +1,7 @@
 {
  "artifact": "questions",
  "generated_by": "docs/research/tools/build_questions.py",
- "note": "Question wording comes from the WP2 fact register; edit it there and regenerate.",
+ "note": "Question wording comes from the WP2 fact register; category titles verbatim from B2. Edit at the source and regenerate.",
  "questions": {
   "PRODUCT_KIND": {
    "question": "Is what you place on the market hardware, software, or an online service?",
@@ -935,6 +935,112 @@
    "kind": "date",
    "why_we_ask": "Which obligations already apply depends on the date of the assessment.",
    "internal": true
+  }
+ },
+ "categories": {
+  "III-I-01": {
+   "title": "Identity management systems and privileged access management software and hardware, including authentication and access control readers, including biometric readers",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-02": {
+   "title": "Standalone and embedded browsers",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-03": {
+   "title": "Password managers",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-04": {
+   "title": "Software that searches for, removes, or quarantines malicious software",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-05": {
+   "title": "Products with digital elements with the function of virtual private network (VPN)",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-06": {
+   "title": "Network management systems",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-07": {
+   "title": "Security information and event management (SIEM) systems",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-08": {
+   "title": "Boot managers",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-09": {
+   "title": "Public key infrastructure and digital certificate issuance software",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-10": {
+   "title": "Physical and virtual network interfaces",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-11": {
+   "title": "Operating systems",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-12": {
+   "title": "Routers, modems intended for the connection to the internet, and switches",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-13": {
+   "title": "Microprocessors with security-related functionalities",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-14": {
+   "title": "Microcontrollers with security-related functionalities",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-15": {
+   "title": "Application specific integrated circuits (ASIC) and field-programmable gate arrays (FPGA) with security-related functionalities",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-16": {
+   "title": "Smart home general purpose virtual assistants",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-17": {
+   "title": "Smart home products with security functionalities, including smart door locks, security cameras, baby monitoring systems and alarm systems",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-18": {
+   "title": "Internet connected toys covered by Directive 2009/48/EC that have social interactive features (e.g. speaking or filming) or that have location tracking features",
+   "class": "IMPORTANT_I"
+  },
+  "III-I-19": {
+   "title": "Personal wearable products to be worn or placed on a human body that have a health monitoring (such as tracking) purpose and to which Regulation (EU) 2017/745 or (EU) 2017/746 do not apply, or personal wearable products that are intended for the use by and for children",
+   "class": "IMPORTANT_I"
+  },
+  "III-II-01": {
+   "title": "Hypervisors and container runtime systems that support virtualised execution of operating systems and similar environments",
+   "class": "IMPORTANT_II"
+  },
+  "III-II-02": {
+   "title": "Firewalls, intrusion detection and prevention systems",
+   "class": "IMPORTANT_II"
+  },
+  "III-II-03": {
+   "title": "Tamper-resistant microprocessors",
+   "class": "IMPORTANT_II"
+  },
+  "III-II-04": {
+   "title": "Tamper-resistant microcontrollers",
+   "class": "IMPORTANT_II"
+  },
+  "IV-01": {
+   "title": "Hardware Devices with Security Boxes",
+   "class": "CRITICAL"
+  },
+  "IV-02": {
+   "title": "Smart meter gateways within smart metering systems as defined in Article 2, point (23) of Directive (EU) 2019/944 and other devices for advanced security purposes, including for secure cryptoprocessing",
+   "class": "CRITICAL"
+  },
+  "IV-03": {
+   "title": "Smartcards or similar devices, including secure elements",
+   "class": "CRITICAL"
   }
  }
 }

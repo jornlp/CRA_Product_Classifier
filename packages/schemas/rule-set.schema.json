@@ -77,6 +77,14 @@
     "type": "string",
     "pattern": "^(III-I|III-II|IV)-\\d{2}$"
    }
+  },
+  "ask_order": {
+   "description": "Reading order for questions. Affects only which still-relevant question comes first, never which questions are asked or the result (tested by replay).",
+   "type": "array",
+   "items": {
+    "type": "string"
+   },
+   "uniqueItems": true
   }
  },
  "additionalProperties": false,

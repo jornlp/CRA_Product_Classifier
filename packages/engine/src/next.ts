@@ -49,7 +49,9 @@ export function nextClassificationQuestions(rules: ClassificationRules, facts: F
       if (!firstSeen.has(fid)) firstSeen.set(fid, n++);
     }
   }
-  return [...weight.keys()].sort((a, b) => weight.get(b)! - weight.get(a)! || firstSeen.get(a)! - firstSeen.get(b)!);
+  // Reading order first (rules' ask_order); otherwise the fact that settles most categories.
+  const pos = (f: string) => { const i = (rules.ask_order ?? []).indexOf(f); return i < 0 ? Infinity : i; };
+  return [...weight.keys()].sort((a, b) => pos(a) - pos(b) || weight.get(b)! - weight.get(a)! || firstSeen.get(a)! - firstSeen.get(b)!);
 }
 
 /** Facts to ask for scope. Exclusion follow-ups appear only once the screen marks them. */
@@ -80,7 +82,9 @@ export function nextScopeQuestions(rules: ScopeRules, facts: Facts): string[] {
       if (sets.includes(fid) && !(src in derived) && !sources.includes(src)) sources.push(src);
     }
   }
-  return [...sources, ...out.filter((x) => !sources.includes(x))];
+  const all = [...sources, ...out.filter((x) => !sources.includes(x))];
+  const pos = (f: string) => { const i = (rules.ask_order ?? []).indexOf(f); return i < 0 ? Infinity : i; };
+  return all.sort((a, b) => pos(a) - pos(b));
 }
 
 /** Timeline questions in order; each follow-up only when the previous answer makes it matter. */

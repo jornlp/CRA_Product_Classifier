@@ -11,6 +11,9 @@ const classOf = (cid: string): ClassName =>
 
 export interface OutputOptions {
   assessmentId: string; assessedAt: string; validUntil: string;
+  /** Real scope and timeline results; without them the trial placeholders are used (golden files). */
+  scope?: { status: string; reasons: string[] };
+  timeline?: { obligation: string; status: string; provision: string; basis?: string; applies_from?: string; open_questions?: string[] }[];
   validityWarnings?: { kind: "PAST_END_DATE" | "LAW_CHANGED"; detail: string; rules?: string[]; since?: string }[];
 }
 
@@ -49,7 +52,7 @@ export function toOutput(rules: ClassificationRules, facts: Facts, res: Classify
     law_as_of: rules.law_as_of, valid_until: opt.validUntil, validity_warnings: opt.validityWarnings ?? [],
     sources: Object.entries(rules.sources).map(([code, v]) => ({ code, id: v.id, sha256: v.sha256 })),
     facts: Object.entries(facts).map(([fact_id, v]) => ({ fact_id, value: v.value, provenance: v.provenance ?? "USER_CONFIRMED" })),
-    scope: { status: "IN_SCOPE", reasons: ["assumed in trial"], assumed: true },
+    scope: opt.scope ? { status: opt.scope.status, reasons: opt.scope.reasons } : { status: "IN_SCOPE", reasons: ["assumed in trial"], assumed: true },
     classification: {
       status: blocking.length ? "UNRESOLVED" : floor, class_floor: floor, blocking,
       matched: Object.entries(res.categories).filter(([, r]) => r.value === T)
@@ -64,7 +67,7 @@ export function toOutput(rules: ClassificationRules, facts: Facts, res: Classify
       uncovered_categories: uncovered,
     },
     conformity_routes: routes.map((r) => ({ rule_id: r.rule, route: r.route, open_ref: r.open_ref ?? null })),
-    timeline: [], reasons, next_questions: [...new Set(nextq)].sort(),
+    timeline: opt.timeline ?? [], reasons, next_questions: [...new Set(nextq)].sort(),
     reassessment_recommended: { value: false }, disclaimer_version: "v3-13-draft",
   };
 }

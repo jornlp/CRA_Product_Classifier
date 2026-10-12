@@ -21,6 +21,7 @@ export interface ScopeRules {
   derive: Derive[];
   applicability: { permissive_result: Value; conditions: Record<string, ScopeCondition>; match: Match };
   exclusions: { permissive_result: Value; conditions: Record<string, ScopeCondition> };
+  ask_order?: string[];
 }
 export type ScopeStatus = "IN_SCOPE" | "OUT_OF_SCOPE" | "UNRESOLVED";
 

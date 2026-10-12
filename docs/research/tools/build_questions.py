@@ -121,8 +121,12 @@ def build():
             q["options"] = [NOT_SURE] if fid == "UNITS_PLACED_ON_MARKET" else [{"value": "", "label": "No change since placing"}, NOT_SURE]
         out[fid] = q
     out.update(EXTRA)
+    inv = json.loads((ROOT / "docs/research/out/wp1-category-inventory.json").read_text())
+    cls_of = lambda cid: "CRITICAL" if cid.startswith("IV") else "IMPORTANT_II" if cid.startswith("III-II") else "IMPORTANT_I"
+    cats = {c["id"]: {"title": c["title"], "class": cls_of(c["id"])} for c in inv["categories"]}
     return {"artifact": "questions", "generated_by": "docs/research/tools/build_questions.py",
-            "note": "Question wording comes from the WP2 fact register; edit it there and regenerate.", "questions": out}
+            "note": "Question wording comes from the WP2 fact register; category titles verbatim from B2. Edit at the source and regenerate.",
+            "questions": out, "categories": cats}
 
 
 if __name__ == "__main__":
