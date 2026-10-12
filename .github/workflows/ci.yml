@@ -30,7 +30,11 @@ jobs:
         run: npm run build -w @cra/web
       - name: No external requests in the built site (AC-07)
         run: |
-          if grep -rEo 'https?://[^"'"'"' )]+' apps/web/dist --include='*.js' --include='*.html'; then
-            echo "The built site references an external URL. Assessment data must never leave the browser." >&2
+          # The only URL allowed is the link to this repository (for reporting errors); it is a link the
+          # user may click, not a request the page makes. Anything else fails the build.
+          found=$(grep -rhEo 'https?://[^"'"'"' )`]+' apps/web/dist --include='*.js' --include='*.html' | grep -v '^https://github.com/jornlp/CRA_Product_Classifier$' || true)
+          if [ -n "$found" ]; then
+            echo "The built site references an external URL. Assessment data must never leave the browser:" >&2
+            echo "$found" >&2
             exit 1
           fi

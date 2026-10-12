@@ -3,10 +3,10 @@
  * twelve months from then. Until release, the window is counted from the law date of the rules.
  */
 export const CONFIG = {
-  RELEASE_DATE: null as string | null,
+  RELEASE_DATE: "2026-10-12" as string | null,
   VALIDITY_MONTHS: 12,
   /** Where people report errors; set when the repository is published. */
-  REPO_URL: null as string | null,
+  REPO_URL: "https://github.com/jornlp/CRA_Product_Classifier" as string | null,
   /** Translated from the draft clause in the v3 report, section 13 (DR-04: use the fuller clause).
    *  v3 recommends review by a qualified lawyer before publication. */
   disclaimerVersion: "v3-13-en-1",
