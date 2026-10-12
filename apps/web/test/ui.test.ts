@@ -91,7 +91,7 @@ describe("screens: pest-control camera", () => {
     const guide = app().querySelector("aside.guide")!.textContent!;
     expect(guide).toContain("Official text (binding)");
     expect(guide).toContain("Commission FAQ");
-    expect(guide).toContain("rodent");
+    expect(guide).not.toContain("our interpretation");
     expect(guide).toContain("Words that mislead");
   });
   it("ticking nothing on the purpose screen skips every category question", async () => {

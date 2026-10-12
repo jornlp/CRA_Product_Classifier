@@ -2,9 +2,10 @@
  "artifact": "guidance",
  "purpose": "Examples shown with each question while the user answers. They illustrate the condition; the user still answers the condition, not 'which example is my product'.",
  "rules": [
-  "Every question has at least one YES and one NO example, so examples do not pull answers in one direction.",
-  "OFFICIAL_TEXT examples quote the held legal text verbatim (checked in CI). OFFICIAL_GUIDANCE quotes the Commission FAQ verbatim and is labelled non-binding. WORKED_CASE examples are our interpretation and name their case.",
-  "Look-alikes name the words that mislead, with why. They never decide an answer."
+  "Only official sources: the CRA (articles and recitals), Implementing Regulation (EU) 2025/2392, and the Commission FAQ, labelled non-binding. Our own worked cases are not shown to users, because they are interpretation (decided by the project lead, 12 October 2026).",
+  "Every quote is checked verbatim against the held text in CI.",
+  "Look-alikes only restate an official condition in plain words; they never decide an answer.",
+  "Examples sit under the question; the user answers the question, not 'which example is mine'."
  ],
  "sources": {
   "B2": {
@@ -16,11 +17,6 @@
    "label": "Commission FAQ on the CRA, version 14",
    "binding": false,
    "text": "docs/research/out/orcwg/FAQs_on_the_CRA__v14_NBetxUGiUQm9skmnHZ7ig2xOG4_123307.md"
-  },
-  "CASE": {
-   "label": "Worked case from this project's catalogue (our interpretation)",
-   "binding": false,
-   "text": "docs/validation/case-expectations.json"
   },
   "B1R": {
    "label": "CRA recitals",
@@ -47,27 +43,12 @@
      "item": "FAQ 2",
      "text": "A door lock reading an NFC tag, or a Bluetooth headset paired with a phone, has a data connection by radio.",
      "quote": "Bluetooth (e.g. a Bluetooth headset connecting to a smartphone), near-field communication technology (e.g. a door lock connecting to an NFC tag)"
-    },
-    {
-     "answer": "YES",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "SCP-05",
-     "text": "A sensor that only talks to its own hub over a proprietary radio is connected indirectly through the hub."
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "SCP-06",
-     "text": "A sealed device with no data interface of any kind has no data connection."
     }
    ],
    "lookalikes": [
     {
      "term": "not internet-connected",
-     "text": "Not the test. A USB-only or Bluetooth-only product still has a data connection.",
-     "case": "SCP-04"
+     "text": "Not the test. A USB-only or Bluetooth-only product still has a data connection."
     }
    ]
   },
@@ -81,34 +62,12 @@
      "category": "III-I-17",
      "text": "Smart door locks, baby monitoring systems, alarm systems and home security cameras.",
      "quote": "This category includes but is not limited to smart door locking devices, baby monitoring systems, alarm systems and home security cameras."
-    },
-    {
-     "answer": "YES",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "RAT-02",
-     "text": "A camera sold as a remote intruder monitor for the home."
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "RAT-01",
-     "text": "A camera that detects a trapped rodent. Its purpose is pest monitoring, not protecting people."
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "CORE-01",
-     "text": "A pet camera for watching an animal's behaviour."
     }
    ],
    "lookalikes": [
     {
      "term": "camera",
-     "text": "A lens is not the test. What decides is whether the product's purpose is protecting people's physical security.",
-     "case": "RAT-01"
+     "text": "A lens is not the test. What decides is whether the product's purpose is protecting people's physical security."
     },
     {
      "term": "smart home",
@@ -126,29 +85,9 @@
      "category": "III-I-17",
      "text": "The category covers products that protect consumers in a residential setting.",
      "quote": "protect the physical security of consumers in a residential setting"
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "LOCK-02",
-     "text": "The same smart lock marketed for office access control."
-    },
-    {
-     "answer": "CONFLICTING",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "LOCK-04",
-     "text": "A lock marketed for \"residential and Airbnb\" use: short-term rentals are neither clearly a home nor an office. Answer that the documents conflict."
     }
    ],
-   "lookalikes": [
-    {
-     "term": "residential and Airbnb",
-     "text": "Found verbatim in smart-lock marketing. Do not pick one side; say the documents conflict.",
-     "case": "LOCK-04"
-    }
-   ]
+   "lookalikes": []
   },
   "CONTROL_PATH": {
    "hint": "Can another system control or manage it: an app over the internet, a home hub, a cloud service? Or only buttons on the device, or a phone standing next to it?",
@@ -160,27 +99,6 @@
      "category": "III-I-17",
      "text": "The category requires that the product can be controlled or managed remotely from other systems.",
      "quote": "can be controlled or managed remotely from other systems"
-    },
-    {
-     "answer": "NETWORK_REMOTE",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "LOCK-01",
-     "text": "A smart lock opened from an app while the owner is away."
-    },
-    {
-     "answer": "PROXIMITY_ONLY",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "MP-14",
-     "text": "A lock opened only by Bluetooth from a phone standing next to it. Whether this counts as remote is an open legal question; the tool will say so."
-    },
-    {
-     "answer": "NONE",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "MP-14",
-     "text": "A keypad lock with no data connection to any other system."
     }
    ],
    "lookalikes": []
@@ -195,20 +113,6 @@
      "category": "III-I-17",
      "text": "Hardware and software that centrally control such products are in the category too.",
      "quote": "as well as hardware and software that centrally control such products"
-    },
-    {
-     "answer": "YES",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "CORE-06",
-     "text": "A home automation hub that arms the alarm and locks the doors."
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "RAT-01",
-     "text": "A pest-monitoring camera does not control any security product."
     }
    ],
    "lookalikes": []
@@ -223,32 +127,16 @@
      "category": "IV-02",
      "text": "A smart meter gateway controls communication between the metering system and authorised third parties, such as utilities.",
      "quote": "control communication between components in or connected to smart metering systems as defined in Article 2(23) of Directive (EU) 2019/944, and authorised third parties, such as utility providers"
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "WTR-01",
-     "text": "A water meter that measures consumption and transmits its own readings, with no gateway function."
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "A4-03",
-     "text": "A device marketed as a \"smart meter gateway\" that lacks these functions. The name does not count."
     }
    ],
    "lookalikes": [
     {
      "term": "smart meter",
-     "text": "A meter is not a gateway. The critical category describes gateways with specific functions.",
-     "case": "WTR-01"
+     "text": "A meter is not a gateway. The critical category describes gateways with specific functions."
     },
     {
      "term": "gateway",
-     "text": "Often used for any hub or protocol converter. Only a smart meter gateway with all the described functions is meant.",
-     "case": "A4-03"
+     "text": "Often used for any hub or protocol converter. Only a smart meter gateway with all the described functions is meant."
     }
    ]
   },
@@ -262,13 +150,6 @@
      "category": "IV-02",
      "text": "A smart meter gateway provides the means to control other devices.",
      "quote": "provide the means to control other devices"
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "WTR-01",
-     "text": "A meter that only measures and reports controls nothing else."
     }
    ],
    "lookalikes": []
@@ -291,35 +172,13 @@
      "category": "IV-02",
      "text": "Gateways for gas or heat metering are included if they meet the description.",
      "quote": "measuring consumption of other sources of energy such as gas or heat, provided that the gateway meets this description"
-    },
-    {
-     "answer": "WATER",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "A4-02",
-     "text": "Water is not a source of energy, so the gateway part of the category does not match. Whether a water gateway falls under the category's second part is an open question; the tool will say so."
     }
    ],
    "lookalikes": []
   },
   "ADVANCED_SECURITY_CORE": {
    "hint": "Is an advanced security purpose, such as secure cryptoprocessing for other systems, what the product is for? Encrypting its own data is a feature, not this purpose.",
-   "examples": [
-    {
-     "answer": "YES",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "A4-06",
-     "text": "A device whose core function is secure cryptoprocessing for other systems. The category's wording reaches it, but there is no technical description, so the tool will ask for expert review rather than decide."
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "WTR-01",
-     "text": "A water meter that encrypts its own readings: encryption is a feature, not its purpose."
-    }
-   ],
+   "examples": [],
    "lookalikes": [
     {
      "term": "critical",
@@ -347,26 +206,12 @@
      "quote": "by requiring as a condition for use the processing of personal data for reasons other than exclusively for improving the security, compatibility or interoperability of the software"
     },
     {
-     "answer": "YES",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "OSS-02",
-     "text": "Open-source code also offered with paid support and commercial distribution."
-    },
-    {
      "answer": "NO",
      "kind": "OFFICIAL_RECITAL",
      "source": "B1R",
      "item": "Recital 15",
      "text": "A project that accepts donations only to cover its costs, without aiming for profit.",
      "quote": "Accepting donations without the intention of making a profit should not be considered to be a commercial activity"
-    },
-    {
-     "answer": "NO",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "OSS-01",
-     "text": "A volunteer open-source project with no monetisation of any kind."
     }
    ],
    "lookalikes": [
@@ -397,20 +242,6 @@
     },
     {
      "answer": "NONE",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "RAT-01",
-     "text": "A camera that detects a trapped rodent: pest monitoring is none of these purposes."
-    },
-    {
-     "answer": "NONE",
-     "kind": "WORKED_CASE",
-     "source": "CASE",
-     "case": "WTR-01",
-     "text": "A water meter that measures and sends its readings: it is not a gateway linking a metering system to the utility."
-    },
-    {
-     "answer": "NONE",
      "kind": "OFFICIAL_GUIDANCE",
      "source": "B7",
      "item": "FAQ 3.4",
@@ -421,13 +252,11 @@
    "lookalikes": [
     {
      "term": "camera",
-     "text": "A camera does not make a product home security. Tick that only if protecting people or a home is what it is for.",
-     "case": "RAT-01"
+     "text": "A camera does not make a product home security. Tick that only if protecting people or a home is what it is for."
     },
     {
      "term": "smart meter",
-     "text": "A meter is not a gateway. The metering option is for gateways that link the system to outside parties.",
-     "case": "WTR-01"
+     "text": "A meter is not a gateway. The metering option is for gateways that link the system to outside parties."
     },
     {
      "term": "login",

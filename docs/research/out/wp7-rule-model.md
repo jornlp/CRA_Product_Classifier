@@ -289,7 +289,7 @@ their product to a category name. So each question carries examples, shown next 
 |---|---|---|
 | `OFFICIAL_TEXT` | B2 technical descriptions, e.g. their "includes but is not limited to" lists | binding text, quoted |
 | `OFFICIAL_GUIDANCE` | Commission FAQ v14, e.g. smartphone is not an OS, SOAR is not a SIEM | non-binding, quoted, versioned |
-| `WORKED_CASE` | our catalogue, e.g. the pest-control camera | our interpretation, with case id |
+| ~~`WORKED_CASE`~~ | ~~our catalogue~~ | **removed** (project lead, 12 October 2026): our cases are interpretation, so they are not shown to users. They remain test fixtures |
 
 Plus **look-alikes**: the WP2 trap terms ("camera", "smart meter", "gateway", "critical") with why
 they mislead.

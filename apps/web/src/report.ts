@@ -20,6 +20,14 @@ const TL: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRA
 const REASON: Record<string, string> = {
   MISSING_FACTS: "An answer is missing for", CONFLICTING_FACTS: "Answers conflict for", LAW_OPEN: "The law does not settle",
 };
+const ROUTE_LABEL: Record<string, string> = {
+  CRA_ART_32: "CRA conformity procedures (CRA Art. 32)",
+  CRA_ART_32_VIA_ART_12_3: "CRA conformity procedures, by CRA Art. 12(3)",
+  AI_ACT_ART_43: "AI Act conformity procedure (AI Act Art. 43), by CRA Art. 12(2)",
+  EHDS_CHAPTER_III: "European Health Data Space conformity procedure (Regulation (EU) 2025/327, Chapter III), by CRA Art. 32(5a)",
+  OPEN: "Not settled by the law. Get expert advice.",
+};
+export const routeLabel = (r: string) => ROUTE_LABEL[r] ?? (r.startsWith("DEPENDS_ON_CLASS") ? "Depends on the class, which is not yet determined" : r);
 const cell = (s: unknown) => String(s ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
 
 function answerLabel(ctx: Ctx, fid: string, v: unknown): string {
@@ -55,7 +63,7 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
     if (c.matched.length) L.push("### Matches", "", ...c.matched.map((m: any) => `- ${cat(m.category)}: ${CLASS[m.class]}`), "");
     const open = out.reasons.filter((r: any) => r.category && r.kind in REASON);
     if (open.length) {
-      L.push("### Still open", "", ...open.map((r: any) => `- ${REASON[r.kind]} ${cat(r.category)}${r.open_ref ? ` (${r.open_ref})` : ""}${
+      L.push("### Still open", "", ...open.map((r: any) => `- ${REASON[r.kind]} ${cat(r.category)}${
         r.kind === "LAW_OPEN" ? ". Get expert advice: more answers will not resolve this." : ""}`), "");
     }
     const cov = c.blocking.filter((b: any) => b.value === "NOT_COVERED").length;
@@ -69,7 +77,7 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
       L.push("");
     }
     const routes = out.conformity_routes.filter((r: any) => r.route !== "CRA_ART_32");
-    if (routes.length) L.push("### Conformity route", "", ...routes.map((r: any) => `- ${r.route}${r.open_ref ? ` (${r.open_ref})` : ""}`), "");
+    if (routes.length) L.push("### Conformity route", "", ...routes.map((r: any) => `- ${routeLabel(r.route)}`), "");
   }
   if (out.timeline?.length) {
     L.push("## When obligations apply", "", "| Obligation | Status | From | Basis |", "|---|---|---|---|");

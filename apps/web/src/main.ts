@@ -14,7 +14,7 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown } from "./report.js";
+import { reportMarkdown, routeLabel } from "./report.js";
 
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
@@ -47,7 +47,7 @@ const CLASS_LABEL: Record<string, string> = {
 };
 const SOURCE_LABEL: Record<string, string> = {
   OFFICIAL_TEXT: "Official text (binding)", OFFICIAL_RECITAL: "CRA recital (explains the law, not binding)",
-  OFFICIAL_GUIDANCE: "Commission FAQ v14 (non-binding)", WORKED_CASE: "Worked example (our interpretation)",
+  OFFICIAL_GUIDANCE: "Commission FAQ v14 (non-binding)",
 };
 
 // ------------------------------------------------------------------ state
@@ -250,7 +250,7 @@ function resultHtml(): string {
     <section class="box"><h2>Class</h2><p class="verdict">${esc(status)}</p>
       ${c.matched.length ? `<h3>Matches</h3><ul>${c.matched.map((m) => `<li>${cat(m.category)}: ${esc(CLASS_LABEL[m.class])}</li>`).join("")}</ul>` : ""}
       ${blockingOther.length ? `<h3>Still open</h3><ul>${out.reasons.filter((r) => r.category && r.kind in reasonText).map((r) =>
-        `<li>${esc(reasonText[r.kind])} ${cat(r.category!)}${r.open_ref ? ` <span class="muted">(${esc(r.open_ref)})</span>` : ""}${r.kind === "LAW_OPEN" ? ". Get expert advice: more answers will not resolve this." : ""}</li>`).join("")}</ul>` : ""}
+        `<li>${esc(reasonText[r.kind])} ${cat(r.category!)}${r.kind === "LAW_OPEN" ? ". Get expert advice: more answers will not resolve this." : ""}</li>`).join("")}</ul>` : ""}
       ${blockingCov ? `<p class="note">This version has rules for ${RULES.categories.length} of 26 categories. Until all 26 are covered,
         it does not state a class it cannot fully check${c.class_floor === "CRITICAL" ? "" : ", including Default"}.</p>` : ""}
       ${c.excluded.length ? `<h3>Ruled out, and why</h3><ul>${c.excluded.map((x) => {
@@ -261,7 +261,7 @@ function resultHtml(): string {
     </section>`;
     if (out.conformity_routes.some((r) => r.route !== "CRA_ART_32")) {
       body += `<section class="box"><h2>Conformity route</h2><ul>${out.conformity_routes.map((r) =>
-        `<li>${esc(r.route)}${r.open_ref ? ` <span class="muted">(${esc(r.open_ref)})</span>` : ""}</li>`).join("")}</ul></section>`;
+        `<li>${esc(routeLabel(r.route))}</li>`).join("")}</ul></section>`;
     }
     if (mode !== "class") {
       const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
