@@ -1052,7 +1052,7 @@
    ]
   },
   "PURPOSE_SCREEN": {
-   "question": "What is your product mainly for? Tick all that apply, or none.",
+   "question": "What is your product mainly for?",
    "kind": "multi-enum",
    "why_we_ask": "To say a product is not in a listed category, the tool has to rule that category out. This question rules out the ones that clearly do not fit, so you are only asked about the ones that might. Tick what your product is mainly for, not every function it has: a smart lock that has an app with a login is not mainly for storing passwords.",
    "evidence": "MANUFACTURER_ONLY",
@@ -2222,7 +2222,7 @@
    ],
    "stem": "My product is mainly for …",
    "stem_warning": "Not for features it also has. An app with a login is not mainly for checking who someone is; a camera is not mainly for protecting a home unless that is what it is sold for.",
-   "stem_note": "The CRA applies to products in every sector, including sectors it does not mention, for example industrial machinery, trains and other transport, office equipment, education, hospitals, banking and payments, and consumer products. Only the exclusions in Article 2 take a product out. The class depends on what the product is mainly for, not on its sector. If it is mainly for none of the purposes below, tick nothing: that gives the default class, which still carries all CRA requirements."
+   "stem_note": "The CRA applies in every sector, including ones it does not mention (for example industry, transport, office, education, healthcare, finance). The class depends on what the product is for, not on its sector."
   },
   "STORES_PASSWORDS_CORE": {
    "question": "Is storing passwords, on the device or on a server, what this product is for?",

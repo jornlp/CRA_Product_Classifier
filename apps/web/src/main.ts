@@ -171,7 +171,7 @@ function questionHtml(phase: Phase, fid: string): string {
     } else {
       control = stem + opts.map(box).join("");
     }
-    control += `<p class="muted small">Tick nothing if none of these applies.</p>`;
+    control += `<p class="muted small">Tick all that apply, or nothing if none does: that gives the default class, which still carries all CRA requirements.</p>`;
   } else if (q.kind === "date") {
     const dateVal = typeof prev === "string" && /^\d{4}-\d{2}-\d{2}$/.test(prev) ? prev : "";
     control = `<label class="opt"><span>Date</span> <input type="date" name="d" value="${esc(dateVal)}"></label>`

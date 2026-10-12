@@ -185,11 +185,8 @@ STEMS = {"PURPOSE_SCREEN": ("My product is mainly for …",
                             "a camera is not mainly for protecting a home unless that is what it is sold for.")}
 # Shown above the stem: the list is about purpose, not sector, and the sectors named are examples only.
 STEM_NOTES = {"PURPOSE_SCREEN":
-    "The CRA applies to products in every sector, including sectors it does not mention, for example industrial "
-    "machinery, trains and other transport, office equipment, education, hospitals, banking and payments, and consumer "
-    "products. Only the exclusions in Article 2 take a product out. The class depends on what the product is mainly for, "
-    "not on its sector. If it is mainly for none of the purposes below, tick nothing: that gives the default class, "
-    "which still carries all CRA requirements."}
+    "The CRA applies in every sector, including ones it does not mention (for example industry, transport, "
+    "office, education, healthcare, finance). The class depends on what the product is for, not on its sector."}
 GROUPS = {"PURPOSE_SCREEN": [
     ("Security software", ["IDENTITY", "PASSWORDS", "MALWARE", "VPN", "SIEM", "PKI", "FIREWALL"]),
     ("System software", ["OS", "BOOT", "BROWSER", "VIRTUALISATION"]),
