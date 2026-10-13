@@ -6109,6 +6109,73 @@
     }
    }
   ],
+  "CONFORMITY_ROUTES": [
+   {
+    "src": "CRA",
+    "art": "12",
+    "para": "2",
+    "quote": "the relevant conformity assessment procedure provided for in Article 43 of",
+    "ref": "CRA Art. 12(2)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 12: High-risk AI systems",
+     "lines": [
+      {
+       "label": "2.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "For the products with digital elements and cybersecurity requirements referred to in paragraph 1 of this Article, "
+        },
+        {
+         "text": "the relevant conformity assessment procedure provided for in Article 43 of",
+         "mark": true
+        },
+        {
+         "text": " Regulation (EU) 2024/1689 shall apply. For the purposes of that assessment, notified bodies which are competent to control the conformity of the high-risk AI systems under Regulation (EU) 2024/1689 shall also be competent to control the conformity of high-risk AI systems which fall within the scope of this Regulation with the requirements set out in Annex I to this Regulation, provided that the compliance of those notified bodies with the requirements laid down in Article 39 of this Regulation has been assessed in the context of the notification procedure under Regulation (EU) 2024/1689."
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "src": "CRA",
+    "art": "12",
+    "para": "3",
+    "quote": "and to which the conformity assessment procedure based on internal control as referred to in Annex VI to Regulation (EU) 2024/1689 applies, shall be subject to the conformity assessment procedures provided for in this Regulation",
+    "ref": "CRA Art. 12(3)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 12: High-risk AI systems",
+     "lines": [
+      {
+       "label": "3.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "By way of derogation from paragraph 2 of this Article, important products with digital elements as listed in Annex III to this Regulation, which are subject to the conformity assessment procedures referred to in Article 32(2), points (a) and (b), and Article 32(3) of this Regulation and critical products with digital elements as listed in Annex IV to this Regulation which are required to obtain a European cybersecurity certificate pursuant to Article 8(1) of this Regulation or, absent that, which are subject to the conformity assessment procedures referred to in Article 32(3) of this Regulation, and which are classified as high-risk AI systems pursuant to Article 6 of Regulation (EU) 2024/1689, "
+        },
+        {
+         "text": "and to which the conformity assessment procedure based on internal control as referred to in Annex VI to Regulation (EU) 2024/1689 applies, shall be subject to the conformity assessment procedures provided for in this Regulation",
+         "mark": true
+        },
+        {
+         "text": " in so far as the essential cybersecurity requirements set out in this Regulation are concerned."
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "src": "EHDS",
+    "ref": "CRA Art. 32(5a), inserted by Regulation (EU) 2025/327 (EHDS), Art. 104",
+    "text": null
+   }
+  ],
   "OTHER_LEGISLATION_CERTIFICATE": [
    {
     "src": "CRA",

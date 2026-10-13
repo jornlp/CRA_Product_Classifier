@@ -24,7 +24,7 @@ export function nextStep(r: Rules, st: FlowState): { phase: Phase; fid?: string 
   }
   const cq = nextClassificationQuestions(r.classification, st.facts)[0];
   if (cq) return { phase: "class", fid: cq };
-  for (const fid of ["HIGH_RISK_AI_BASIS", "EHR_SYSTEM"]) if (!(fid in st.facts)) return { phase: "routes", fid };
+  // No AI Act or EHDS questions: they decide only the conformity route, which the result shows per case.
   if (st.mode === "class") return { phase: "result" };  // dates come with the full check
   // No date questions: the result shows each placing period instead, and a certificate's own expiry is
   // stated as "its own expiry date or 11 June 2028, whichever comes first".

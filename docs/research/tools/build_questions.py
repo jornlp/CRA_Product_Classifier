@@ -217,6 +217,10 @@ OBLIGATION_LAW = {
          "quote": "which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I or which results in a modification to the intended purpose"},
         _cra("69", "2", "shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification"),
         _cra("71", "2", "This Regulation shall apply from 11 December 2027")],
+    "CONFORMITY_ROUTES": [
+        _cra("12", "2", "the relevant conformity assessment procedure provided for in Article 43 of"),
+        _cra("12", "3", "and to which the conformity assessment procedure based on internal control as referred to in Annex VI to Regulation (EU) 2024/1689 applies, shall be subject to the conformity assessment procedures provided for in this Regulation"),
+        {"src": "EHDS", "ref": "CRA Art. 32(5a), inserted by Regulation (EU) 2025/327 (EHDS), Art. 104"}],
     "OTHER_LEGISLATION_CERTIFICATE": [
         _cra("69", "1", "shall remain valid until 11 June 2028, unless they expire before that date")],
 }

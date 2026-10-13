@@ -41,8 +41,6 @@ it("class only, smart lock: skips scope, ends with a conditional class and an of
   await pick("Yes");                    // protects physical security
   await pick("Yes");                    // residential
   await pick("From another system");    // control path
-  await pick("No high-risk AI system");
-  await pick("No");                     // EHR
   const text = app().textContent!;
   expect(text).toContain("Not checked.");
   expect(text).toContain("If the CRA applies: not determined. At least: Important, Class I");  // scope unchecked: never definite

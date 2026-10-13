@@ -38,11 +38,23 @@ export function placingBoundaries(cls: ClassificationRules, tl: TimelineRules): 
   return [...s].sort();
 }
 
+/** Merge neighbouring periods for which `key` gives the same value. */
+export function mergePeriods<T>(periods: Period[], key: (p: Period) => T): (Period & { key: T })[] {
+  const out: (Period & { key: T })[] = [];
+  for (const p of periods) {
+    const k = key(p), last = out[out.length - 1];
+    if (last && JSON.stringify(last.key) === JSON.stringify(k)) out[out.length - 1] = { ...period(last.from, p.before), value: last.value, key: k };
+    else out.push({ ...p, key: k });
+  }
+  return out;
+}
+
 function period(from: string | undefined, before: string | undefined): Period {
-  const label = !from ? `Before ${longDate(before!)}`
+  const label = !from && !before ? "Whenever placed"
+    : !from ? `Before ${longDate(before!)}`
     : !before ? `On or after ${longDate(from)}`
     : `${longDate(from)} to ${longDate(dayBefore(before))}`;
-  return { from, before, value: from ?? dayBefore(before!), label };
+  return { from, before, value: from ?? (before ? dayBefore(before) : "2000-01-01"), label };
 }
 
 export function periodsBetween(boundaries: string[]): Period[] {

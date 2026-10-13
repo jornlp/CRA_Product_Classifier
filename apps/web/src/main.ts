@@ -8,14 +8,14 @@ import sc from "../../../packages/rules/scope.json";
 import tl from "../../../packages/rules/timeline.json";
 import qs from "../../../packages/rules/questions.json";
 import guidance from "../../../packages/rules/guidance.json";
-import { classify, route, toOutput, scope, timeline, validityWarnings, placingPeriods, placingOutcome } from "../../../packages/engine/src/index.js";
+import { classify, route, toOutput, scope, timeline, validityWarnings, placingPeriods, placingOutcome, mergePeriods } from "../../../packages/engine/src/index.js";
 import { nextStep, record, unrecord } from "./flow.js";
 import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, routeLabel, markdownToHtml, RED_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
-import type { PlacingRow } from "./report.js";
+import { reportMarkdown, routeLabel, markdownToHtml, RED_NOTE, ROUTE_CASES, routeCaseText, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
+import type { PlacingRow, RouteCaseRow } from "./report.js";
 import { aboutHtml } from "./about.js";
 import { count } from "./analytics.js";
 
@@ -269,17 +269,24 @@ function assemble() {
   });
   // Class only: no scope or timeline questions were asked, but the CRA requirements per placing period
   // need no answers, so they are shown too (stated under "if the CRA applies").
+  // No AI Act or EHDS questions: the route is worked out for each case, and per placing period where it changes.
+  const routeCases: RouteCaseRow[] = ROUTE_CASES.map((rc) => {
+    const f: Facts = { ...state.facts, ...Object.fromEntries(Object.entries(rc.facts).map(([k, v]) => [k, { value: v, provenance: "USER_CONFIRMED" as const }])) };
+    const merged = mergePeriods(placingPeriods(RULES, TIMELINE, f, state.tfacts),
+      (p) => placingOutcome(RULES, TIMELINE, f, state.tfacts, p.value).routes);
+    return { case: rc.label, by_period: merged.map((p) => ({ period: p.label, routes: p.key })) };
+  });
   const periods = showTimeline ? byPeriod
     : mode === "class" ? byPeriod.map((r) => ({ ...r, timeline: r.timeline.filter((i) => i.obligation === "CRA_ESSENTIAL_REQUIREMENTS") }))
     : [];
   // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
   if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
   return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, check: mode, for_your_records: state.record, timeline_facts: state.tfacts,
-    ...(periods.length ? { timeline_by_placing_period: periods } : {}) }, s, res, periods, routesVary };
+    ...(periods.length ? { timeline_by_placing_period: periods } : {}), conformity_routes_by_case: routeCases }, s, res, periods, routesVary, routeCases };
 }
 
 function resultHtml(): string {
-  const { out, s, res, periods, routesVary } = assemble();
+  const { out, s, res, periods, routeCases } = assemble();
   const c = out.classification;
   const mode = state.mode ?? "full";
   const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${w.kind === "PAST_END_DATE" ? "Outdated" : "Law changed"}:</strong> ${esc(w.detail)}</div>`).join("");
@@ -319,12 +326,13 @@ function resultHtml(): string {
         return `<li>${cat(x.category)}: does not meet ${x.failing.map((f) => `<q>${esc(f.quote)}</q>`).join(" or ")}${viaScreen
           ? ` <span class="muted small">(you indicated the product is not mainly for this; go back to change that)</span>` : ""}</li>`;
       }).join("")}</ul></details>` : "";
-    if (routesVary) {
-      body += `<section class="box"><h2>Conformity route</h2><p>Depends on when the units are placed on the market: see the table below.</p></section>`;
-    } else if (out.conformity_routes.some((r) => r.route !== "CRA_ART_32")) {
-      body += `<section class="box"><h2>Conformity route</h2><ul>${out.conformity_routes.map((r) =>
-        `<li>${esc(routeLabel(r.route))}</li>`).join("")}</ul></section>`;
-    }
+    body += `
+    <section class="box"><h2>Conformity route</h2>
+      <p class="muted small">Depends on other EU laws; this tool does not ask about them. Find the row that fits your product.</p>
+      <table><thead><tr><th>If the product is</th><th>Conformity route</th></tr></thead><tbody>
+      ${routeCases.map((r) => `<tr><td>${esc(r.case)}</td><td>${esc(routeCaseText(r))}</td></tr>`).join("")}
+      </tbody></table>
+      ${lawDetails("CONFORMITY_ROUTES", "The law: CRA Art. 12(2), 12(3) and 32(5a)")}</section>`;
   }
   {
     const pc = placingColumns(periods);

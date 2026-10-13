@@ -131,11 +131,9 @@ describe("screens: pest-control camera", () => {
   });
   it("ticking nothing on the purpose screen skips every category question", async () => {
     await answer([]);
-    expect(heading()).toContain("high-risk AI system");
+    expect(heading()).toContain("type-examination certificate");  // no category, AI Act or EHDS question
   });
   it("finishes the remaining questions", async () => {
-    await answer("No high-risk AI system");
-    await answer("No"); // EHR
     await answer("No"); // certificate
   });
   it("result: in scope, smart-home security ruled out with the official wording, class Default", () => {
@@ -173,6 +171,11 @@ describe("screens: pest-control camera", () => {
     expect(rows[0].textContent).toContain("unless they are substantially modified");
     expect(rows[1].textContent).toContain("Apply from 11 December 2027");
     expect(app().textContent).toContain("Delegated Regulation (EU) 2022/30");
+    // The conformity route is shown per case, without asking about the AI Act or the EHDS.
+    const routes = [...app().querySelectorAll("table")].find((t) => t.textContent!.includes("If the product is"))!.querySelectorAll("tbody tr");
+    expect(routes.length).toBe(5);
+    expect(routes[0].textContent).toContain("CRA conformity procedures (CRA Art. 32)");
+    expect(routes[2].textContent).toContain("Before 2 August 2028: Not settled by the law");
     // The law behind each obligation is one click away, verbatim with the key words marked.
     const marks = [...app().querySelectorAll("details.legal mark")].map((m) => m.textContent);
     expect(marks).toContain("Article 14 shall apply from 11 September 2026");
