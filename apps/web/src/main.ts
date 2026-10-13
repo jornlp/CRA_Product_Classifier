@@ -287,10 +287,7 @@ function resultHtml(): string {
     IN_SCOPE: "The CRA applies to this product.", OUT_OF_SCOPE: "The CRA does not apply to this product.",
     UNRESOLVED: "Whether the CRA applies is not determined yet.",
   };
-  let body = warn + (mode === "class"
-    ? `<section class="box"><h2>Scope</h2><p class="verdict">Not checked.</p>
-        <p>The class below assumes the CRA applies to your product. Check that before relying on it.</p>
-        <div class="nav"><button type="button" id="to-full">Check whether the CRA applies</button></div></section>`
+  let body = warn + (mode === "class" ? ""
     : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeText[s.status])}</p>
       <ul>${s.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
       ${mode === "scope" && s.status === "IN_SCOPE" ? `<div class="nav"><button type="button" id="to-class">Continue: which class?</button></div>` : ""}</section>`);
@@ -305,7 +302,10 @@ function resultHtml(): string {
       MISSING_FACTS: "An answer is missing for", CONFLICTING_FACTS: "Your answers conflict for", LAW_OPEN: "The law does not settle",
     };
     body += `
-    <section class="box"><h2>Class</h2><p class="verdict">${esc(status)}</p>
+    <section class="box"><h2>Class</h2>
+      ${mode === "class" ? `<p class="scope-line">Scope not checked: this assumes the CRA applies to your product.
+        <button type="button" id="to-full" class="link-btn">Check whether it applies</button></p>` : ""}
+      <p class="verdict">${esc(status)}</p>
       ${c.matched.length ? `<h3>Matches</h3><ul>${c.matched.map((m) => `<li>${cat(m.category)}: ${esc(CLASS_LABEL[m.class])}</li>`).join("")}</ul>` : ""}
       ${blockingOther.length ? `<h3>Still open</h3><ul>${out.reasons.filter((r) => r.category && r.kind in reasonText).map((r) =>
         `<li>${esc(reasonText[r.kind])} ${cat(r.category!)}${r.kind === "LAW_OPEN" ? ". Get expert advice: more answers will not resolve this." : ""}</li>`).join("")}</ul>` : ""}
@@ -319,22 +319,18 @@ function resultHtml(): string {
         return `<li>${cat(x.category)}: does not meet ${x.failing.map((f) => `<q>${esc(f.quote)}</q>`).join(" or ")}${viaScreen
           ? ` <span class="muted small">(you indicated the product is not mainly for this; go back to change that)</span>` : ""}</li>`;
       }).join("")}</ul></details>` : "";
-    body += `
-    <section class="box"><p class="note">${esc(ROUTE_NOTE)}</p>
-      ${lawDetails("CONFORMITY_ROUTES", "The law: CRA Art. 12(2), 12(3) and 32(5a)")}</section>`;
   }
   {
     const pc = placingColumns(periods);
     if (periods.length && (pc.obligations.length || pc.routes)) {
       body += `
-      <section class="box"><h2>${mode === "class" ? "If the CRA applies: when" : "Depends on when the units are placed on the market"}</h2>
+      <section class="box"><h2>When the requirements apply${mode === "class" ? " (if the CRA applies)" : ""}</h2>
         <p class="muted small">Each unit counts on its own: what matters is when that unit is placed on the market, not when the model was launched.</p>
         <table><thead><tr><th>Units placed</th>${pc.obligations.map((o) => `<th>${esc(PLACING_COLUMN[o])}</th>`).join("")}${pc.routes ? "<th>Conformity route</th>" : ""}</tr></thead><tbody>
         ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}${
           pc.routes ? `<td>${esc(routesText(r.conformity_routes))}</td>` : ""}</tr>`).join("")}
         </tbody></table>
-        ${pc.obligations.map((o) => lawDetails(o, `The law and the Commission FAQ: ${PLACING_COLUMN[o]}`)).join("")}
-        <p class="note">${esc(RED_NOTE)}</p></section>`;
+        ${pc.obligations.map((o) => lawDetails(o, `The law and the Commission FAQ: ${PLACING_COLUMN[o]}`)).join("")}</section>`;
     }
     if (out.timeline.length) {
       const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
@@ -345,6 +341,13 @@ function resultHtml(): string {
           <td>${esc(i.basis)}${i.open_questions ? `<br><span class="muted small">${esc(i.open_questions.join(" "))}</span>` : ""}</td></tr>`).join("")}
       </tbody></table></section>`;
     }
+    // Pointers only: laws this tool does not check. Collapsed; the title names them.
+    if (periods.length || out.timeline.length || mode === "class") body += `
+      <details class="box other-laws"><summary><h2>Other EU laws that may apply</h2>
+        <span class="muted small">radio equipment rules (since 1 August 2025), AI Act, European Health Data Space</span></summary>
+        <h3>Radio equipment rules</h3><p>${esc(RED_NOTE)}</p>
+        <h3>AI Act and European Health Data Space</h3><p>${esc(ROUTE_NOTE)}</p>
+        ${lawDetails("CONFORMITY_ROUTES", "The law: CRA Art. 12(2), 12(3) and 32(5a)")}</details>`;
     body += ruledOut;
   }
   body += `
