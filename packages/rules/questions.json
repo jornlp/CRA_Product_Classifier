@@ -5806,5 +5806,220 @@
    "title": "Smartcards or similar devices, including secure elements",
    "class": "CRITICAL"
   }
+ },
+ "obligations": {
+  "CRA_ART_14_REPORTING": [
+   {
+    "src": "CRA",
+    "art": "14",
+    "para": "1",
+    "quote": "shall notify any actively exploited vulnerability contained in the product with digital elements that it becomes aware of",
+    "ref": "CRA Art. 14(1)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 14: Reporting obligations of manufacturers",
+     "lines": [
+      {
+       "label": "1.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "A manufacturer "
+        },
+        {
+         "text": "shall notify any actively exploited vulnerability contained in the product with digital elements that it becomes aware of",
+         "mark": true
+        },
+        {
+         "text": " simultaneously to the CSIRT designated as coordinator, in accordance with paragraph 7 of this Article, and to ENISA. The manufacturer shall notify that actively exploited vulnerability via the single reporting platform established pursuant to Article 16."
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "src": "CRA",
+    "art": "14",
+    "para": "3",
+    "quote": "shall notify any severe incident having an impact on the security of the product with digital elements",
+    "ref": "CRA Art. 14(3)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 14: Reporting obligations of manufacturers",
+     "lines": [
+      {
+       "label": "3.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "A manufacturer "
+        },
+        {
+         "text": "shall notify any severe incident having an impact on the security of the product with digital elements",
+         "mark": true
+        },
+        {
+         "text": " that it becomes aware of simultaneously to the CSIRT designated as coordinator, in accordance with paragraph 7 of this Article, and to ENISA. The manufacturer shall notify that incident via the single reporting platform established pursuant to Article 16."
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "src": "CRA",
+    "art": "69",
+    "para": "3",
+    "quote": "shall apply to all products with digital elements that fall within the scope of this Regulation that have been placed on the market before 11 December 2027",
+    "ref": "CRA Art. 69(3)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 69: Transitional provisions",
+     "lines": [
+      {
+       "label": "3.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "By way of derogation from paragraph 2 of this Article, the obligations laid down in Article 14 "
+        },
+        {
+         "text": "shall apply to all products with digital elements that fall within the scope of this Regulation that have been placed on the market before 11 December 2027",
+         "mark": true
+        },
+        {
+         "text": "."
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "src": "CRA",
+    "art": "71",
+    "para": "2",
+    "quote": "Article 14 shall apply from 11 September 2026",
+    "ref": "CRA Art. 71(2)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 71: Entry into force and application",
+     "lines": [
+      {
+       "label": "2.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "This Regulation shall apply from 11 December 2027. However, "
+        },
+        {
+         "text": "Article 14 shall apply from 11 September 2026",
+         "mark": true
+        },
+        {
+         "text": " and Chapter IV (Articles 35 to 51) shall apply from 11 June 2026. This Regulation shall be binding in its entirety and directly applicable in all Member States."
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "CRA_ESSENTIAL_REQUIREMENTS": [
+   {
+    "src": "CRA",
+    "art": "69",
+    "para": "2",
+    "quote": "shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification",
+    "ref": "CRA Art. 69(2)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 69: Transitional provisions",
+     "lines": [
+      {
+       "label": "2.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "Products with digital elements that have been placed on the market before 11 December 2027 "
+        },
+        {
+         "text": "shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification",
+         "mark": true
+        },
+        {
+         "text": "."
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "src": "CRA",
+    "art": "71",
+    "para": "2",
+    "quote": "This Regulation shall apply from 11 December 2027",
+    "ref": "CRA Art. 71(2)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 71: Entry into force and application",
+     "lines": [
+      {
+       "label": "2.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "This Regulation shall apply from 11 December 2027",
+         "mark": true
+        },
+        {
+         "text": ". However, Article 14 shall apply from 11 September 2026 and Chapter IV (Articles 35 to 51) shall apply from 11 June 2026. This Regulation shall be binding in its entirety and directly applicable in all Member States."
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "OTHER_LEGISLATION_CERTIFICATE": [
+   {
+    "src": "CRA",
+    "art": "69",
+    "para": "1",
+    "quote": "shall remain valid until 11 June 2028, unless they expire before that date",
+    "ref": "CRA Art. 69(1)",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 69: Transitional provisions",
+     "lines": [
+      {
+       "label": "1.",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "EU type-examination certificates and approval decisions issued regarding cybersecurity requirements for products with digital elements that are subject to Union harmonisation legislation other than this Regulation "
+        },
+        {
+         "text": "shall remain valid until 11 June 2028, unless they expire before that date",
+         "mark": true
+        },
+        {
+         "text": ", or unless otherwise specified in such other Union harmonisation legislation, in which case they shall remain valid as referred to in that legislation."
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ]
  }
 }

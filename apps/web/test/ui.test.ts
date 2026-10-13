@@ -173,6 +173,10 @@ describe("screens: pest-control camera", () => {
     expect(rows[0].textContent).toContain("unless they are substantially modified");
     expect(rows[1].textContent).toContain("Apply from 11 December 2027");
     expect(app().textContent).toContain("Delegated Regulation (EU) 2022/30");
+    // The law behind each obligation is one click away, verbatim with the key words marked.
+    const marks = [...app().querySelectorAll("details.legal mark")].map((m) => m.textContent);
+    expect(marks).toContain("Article 14 shall apply from 11 September 2026");
+    expect(marks.some((m) => m!.includes("only if, from that date, those products are subject to a substantial modification"))).toBe(true);
   });
   it("Home returns to the start screen and keeps the answers; choosing the check again resumes at the result", async () => {
     document.getElementById("home-btn")!.click(); await tick();

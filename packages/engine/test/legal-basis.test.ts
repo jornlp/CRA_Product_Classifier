@@ -60,3 +60,9 @@ describe("Commission FAQ examples on the purpose screen are verbatim", () => {
     it(`${o.value} example ${i + 1}`, () => expect(faqText).toContain(norm(e.quote).replace(/[“”]/g, '"')));
   }
 });
+
+describe("timeline obligations: the law shown on the result is verbatim", () => {
+  for (const [obl, laws] of Object.entries<any[]>(read("packages/rules/questions.json").obligations)) {
+    for (const l of laws) it(`${obl}: ${l.ref}`, () => expect(norm(sourceText(l) ?? "")).toContain(norm(l.quote)));
+  }
+});

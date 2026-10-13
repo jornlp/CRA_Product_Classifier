@@ -61,6 +61,11 @@ function lawHtml(l: Legal): string {
 type Question = { question: string; kind: string; why_we_ask: string; legal_basis?: Legal[]; hint?: string; options?: Option[]; evidence?: string;
   stem?: string; stem_warning?: string; stem_note?: string };
 const QUESTIONS = (qs as { questions: Record<string, Question> }).questions;
+/** The law behind each timeline obligation, verbatim with the key words marked. */
+const OBLIGATION_LAW = (qs as unknown as { obligations: Record<string, Legal[]> }).obligations;
+const lawDetails = (obligation: string, summary: string) => OBLIGATION_LAW[obligation]?.length
+  ? `<details class="legal"><summary>${esc(summary)}</summary>${OBLIGATION_LAW[obligation].map(lawHtml).join("")}</details>`
+  : `<span class="muted small">${esc(summary)}</span>`;
 const CATEGORIES = (qs as { categories: Record<string, { title: string; class: string }> }).categories;
 type Example = { answer: string; kind: string; source: string; text: string; quote?: string; item?: string; category?: string; case?: string };
 type Guide = { hint?: string; note?: string; examples: Example[]; lookalikes: { term: string; text: string; case?: string }[] };
@@ -326,13 +331,14 @@ function resultHtml(): string {
         ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}${
           pc.routes ? `<td>${esc(routesText(r.conformity_routes))}</td>` : ""}</tr>`).join("")}
         </tbody></table>
+        ${pc.obligations.map((o) => lawDetails(o, `The law: ${PLACING_COLUMN[o]}`)).join("")}
         <p class="note">${esc(RED_NOTE)}</p></section>`;
     }
     if (out.timeline.length) {
       const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
       body += `
       <section class="box"><h2>Other obligations</h2><table><thead><tr><th>Obligation</th><th>Status</th><th>Basis</th></tr></thead><tbody>
-        ${out.timeline.map((i) => `<tr><td>${esc(i.obligation.replace(/_/g, " ").toLowerCase())}<br><span class="muted small">${esc(i.provision)}</span></td>
+        ${out.timeline.map((i) => `<tr><td>${esc(i.obligation.replace(/_/g, " ").toLowerCase())}<br>${lawDetails(i.obligation, i.provision)}</td>
           <td>${esc(tlLabel[i.status])}${i.applies_from ? `<br><span class="muted small">from ${esc(i.applies_from)}</span>` : ""}</td>
           <td>${esc(i.basis)}${i.open_questions ? `<br><span class="muted small">${esc(i.open_questions.join(" "))}</span>` : ""}</td></tr>`).join("")}
       </tbody></table></section>`;

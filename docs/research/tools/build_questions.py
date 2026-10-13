@@ -199,6 +199,21 @@ CONFLICT_OK = {"PROTECTS_PHYSICAL_SECURITY", "RESIDENTIAL_SETTING", "STORES_PASS
                "IS_TOY", "FOR_CHILDREN_UNDER_14", "CRYPTO_CORE", "SECURITY_PURPOSE_OUTPUT"}
 # Value conventions per engine: classification and scope use booleans; the timeline uses YES/NO codes.
 CODE_FACTS = {"CHANGE_AFFECTS_ANNEX_I", "RADIO_EQUIPMENT_RED_DA", "RADIO_PRESENT", "RADIO_INTERNET", "RADIO_BODY_CHILD_TOY", "RADIO_PERSONAL_DATA"}
+# The law behind each timeline obligation, shown behind a click on the result (verbatim, key words marked).
+def _cra(art, para, quote):
+    return {"src": "CRA", "art": art, "para": para, "quote": quote, "ref": f"CRA Art. {art}({para})"}
+OBLIGATION_LAW = {
+    "CRA_ART_14_REPORTING": [
+        _cra("14", "1", "shall notify any actively exploited vulnerability contained in the product with digital elements that it becomes aware of"),
+        _cra("14", "3", "shall notify any severe incident having an impact on the security of the product with digital elements"),
+        _cra("69", "3", "shall apply to all products with digital elements that fall within the scope of this Regulation that have been placed on the market before 11 December 2027"),
+        _cra("71", "2", "Article 14 shall apply from 11 September 2026")],
+    "CRA_ESSENTIAL_REQUIREMENTS": [
+        _cra("69", "2", "shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification"),
+        _cra("71", "2", "This Regulation shall apply from 11 December 2027")],
+    "OTHER_LEGISLATION_CERTIFICATE": [
+        _cra("69", "1", "shall remain valid until 11 June 2028, unless they expire before that date")],
+}
 EXTRA = {
     "CERTIFICATE_EXPIRY": {"question": "When does that certificate expire?", "kind": "date",
                            "why_we_ask": "The certificate stays valid until 11 June 2028, or until its own expiry date if that comes first.",
@@ -407,7 +422,8 @@ def build():
     cats = {c["id"]: {"title": c["title"], "class": cls_of(c["id"])} for c in inv["categories"]}
     return {"artifact": "questions", "generated_by": "docs/research/tools/build_questions.py",
             "note": "Question wording comes from the WP2 fact register; category titles verbatim from B2. Edit at the source and regenerate.",
-            "questions": out, "categories": cats}
+            "questions": out, "categories": cats,
+            "obligations": {k: [{**l, "text": layout(l)} for l in v] for k, v in OBLIGATION_LAW.items()}}
 
 
 if __name__ == "__main__":
