@@ -183,10 +183,9 @@ Decided 12 October 2026 by the project lead.
   with dates carries a fixed note that radio products may already be covered by Del. Reg. (EU) 2022/30 for
   units placed since 1 August 2025, and that the tool does not check it. The engine keeps its RED logic and
   fixtures, so asking can be switched back on in `apps/web/src/flow.ts`.
-- **No AI Act or EHDS questions** (decided 13 October 2026): they decide only the conformity route, not the
-  class. The result shows the route for each case (no high-risk AI or EHR; AI Act Annex III; Annex I Section A;
-  Annex I Section B; EHR system), per placing period where it changes, with CRA Art. 12(2), 12(3) and 32(5a)
-  behind a click. The engine and its route fixtures are unchanged.
+- **No AI Act or EHDS questions** (decided 13 October 2026): they do not change the CRA class or requirements,
+  only the conformity procedure (CRA Art. 12, 32(5a)). The result carries a fixed note that these laws may apply,
+  with the CRA articles behind a click. The engine and its route fixtures are unchanged.
 - **Not done before publication:** independent technical review of the rules (DR-04, §8.2), and
   comprehension testing with users (WP6, AC-08). The site says "Preview: rules not yet
   independently reviewed".

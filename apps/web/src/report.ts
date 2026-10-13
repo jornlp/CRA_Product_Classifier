@@ -64,24 +64,11 @@ export const RED_NOTE =
   "directly or via other equipment, and toys, childcare products and wearables that can process personal data. " +
   "This tool does not check those rules.";
 
-/** The cases that decide the conformity route (CRA Art. 12, Art. 32(5a)); the result shows each instead of asking. */
-export const ROUTE_CASES: { label: string; facts: Record<string, unknown> }[] = [
-  { label: "None of the below (most products)", facts: { HIGH_RISK_AI_BASIS: "NONE", EHR_SYSTEM: false } },
-  { label: "A high-risk AI system under the AI Act, Annex III (areas such as biometrics, education or employment)",
-    facts: { HIGH_RISK_AI_BASIS: "ANNEX_III", EHR_SYSTEM: false } },
-  { label: "A high-risk AI system under the AI Act, Annex I, Section A (a product, or a safety component of one, covered by the EU laws listed there, such as toys, lifts or radio equipment)",
-    facts: { HIGH_RISK_AI_BASIS: "ANNEX_I_SECTION_A", EHR_SYSTEM: false } },
-  { label: "A high-risk AI system under the AI Act, Annex I, Section B (such as machinery)",
-    facts: { HIGH_RISK_AI_BASIS: "ANNEX_I_SECTION_B", EHR_SYSTEM: false } },
-  { label: "An electronic health record system under the European Health Data Space Regulation (EU) 2025/327",
-    facts: { HIGH_RISK_AI_BASIS: "NONE", EHR_SYSTEM: true } },
-];
-export interface RouteCaseRow { case: string; by_period: { period: string; routes: { route: string }[] }[] }
-/** One cell: the route, or the route per placing period where it changes. */
-export const routeCaseText = (r: RouteCaseRow) => {
-  const texts = r.by_period.map((p) => routesText(p.routes));
-  return new Set(texts).size === 1 ? texts[0] : r.by_period.map((p, i) => `${p.period}: ${texts[i]}`).join(" ");
-};
+/** Pointer only: the AI Act and the EHDS do not change the CRA class or requirements, only the conformity procedure. */
+export const ROUTE_NOTE = "Other EU laws may also apply to the product, such as the AI Act (for a high-risk AI system) or the " +
+  "European Health Data Space Regulation (for an electronic health record system). They do not change the CRA class or the CRA " +
+  "requirements; they can change which conformity procedure checks those requirements (CRA Art. 12 and 32(5a)). " +
+  "This tool does not check those laws.";
 
 export const routeLabel = (r: string) => ROUTE_LABEL[r] ?? (r.startsWith("DEPENDS_ON_CLASS") ? "Depends on the class, which is not yet determined" : r);
 const cell = (s: unknown) => String(s ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
@@ -133,11 +120,7 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
       }
       R.push("");
     }
-    const cases: RouteCaseRow[] = out.conformity_routes_by_case ?? [];
-    if (cases.length) {
-      L.push("### Conformity route", "", "_Depends on other EU laws; this tool does not ask about them. Find the row that fits your product._", "",
-        "| If the product is | Conformity route |", "|---|---|", ...cases.map((r) => `| ${cell(r.case)} | ${cell(routeCaseText(r))} |`), "");
-    }
+    L.push(`_${ROUTE_NOTE}_`, "");
   }
   const rows: PlacingRow[] = out.timeline_by_placing_period ?? [];
   const pc = placingColumns(rows);

@@ -171,11 +171,9 @@ describe("screens: pest-control camera", () => {
     expect(rows[0].textContent).toContain("unless they are substantially modified");
     expect(rows[1].textContent).toContain("Apply from 11 December 2027");
     expect(app().textContent).toContain("Delegated Regulation (EU) 2022/30");
-    // The conformity route is shown per case, without asking about the AI Act or the EHDS.
-    const routes = [...app().querySelectorAll("table")].find((t) => t.textContent!.includes("If the product is"))!.querySelectorAll("tbody tr");
-    expect(routes.length).toBe(5);
-    expect(routes[0].textContent).toContain("CRA conformity procedures (CRA Art. 32)");
-    expect(routes[2].textContent).toContain("Before 2 August 2028: Not settled by the law");
+    // AI Act and EHDS: a pointer only, not part of the CRA class.
+    expect(app().textContent).toContain("They do not change the CRA class or the CRA requirements");
+    expect([...app().querySelectorAll("table")].some((t) => t.textContent!.includes("If the product is"))).toBe(false);
     // The law behind each obligation is one click away, verbatim with the key words marked.
     const marks = [...app().querySelectorAll("details.legal mark")].map((m) => m.textContent);
     expect(marks).toContain("Article 14 shall apply from 11 September 2026");
