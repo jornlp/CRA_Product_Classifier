@@ -225,7 +225,7 @@ function startHtml(): string {
   return `<section class="start">
     <h2>What do you want to know?</h2>
     <div class="choices">
-      ${opt("scope", "Does the CRA apply to my product?", "About six questions: what you supply, to whom, and whether it connects to anything. From the result you can continue to the class and the dates.")}
+      ${opt("scope", "Does the CRA apply to my product?", "About six questions: what you supply, to whom, and whether it connects to anything. The result also shows when the requirements apply, and you can continue to the class.")}
       ${opt("class", "Class only", "Which class is my product? For when you already know the CRA applies. The result is stated as \u201cif the CRA applies\u201d.")}
     </div>
     <p class="muted small">You can continue a partial check later without answering again.</p>
@@ -251,7 +251,8 @@ function assemble() {
              timeline: o.timeline.filter((i) => BY_PLACING.has(i.obligation)) };
   });
   const routesVary = placingColumns(byPeriod).routes;
-  const showTimeline = mode === "full" && s.status === "IN_SCOPE";
+  // Dates need no answers, so they come with every in-scope result, the scope check included.
+  const showTimeline = mode !== "class" && s.status === "IN_SCOPE";
   const out = toOutput(RULES, state.facts, res, routesVary ? route(RULES, state.facts, res) : byPeriod[0].conformity_routes as ReturnType<typeof route>, {
     assessmentId: `cra-${today}`, assessedAt: today, validUntil: vu, validityWarnings: warnings,
     scope: scopeOut, timeline: showTimeline ? t.timeline.filter((i) => !BY_PLACING.has(i.obligation)) : [],
@@ -282,7 +283,8 @@ function resultHtml(): string {
         <div class="nav"><button type="button" id="to-full">Check whether the CRA applies</button></div></section>`
     : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeText[s.status])}</p>
       <ul>${s.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
-      ${mode === "scope" && s.status === "IN_SCOPE" ? `<div class="nav"><button type="button" id="to-class">Continue: which class, and when?</button></div>` : ""}</section>`);
+      ${mode === "scope" && s.status === "IN_SCOPE" ? `<div class="nav"><button type="button" id="to-class">Continue: which class?</button></div>` : ""}</section>`);
+  let ruledOut = "";
   if ((mode === "full" && s.status === "IN_SCOPE") || mode === "class") {
     const cat = (id: string) => `${esc(CATEGORIES[id]?.title ?? id)} <span class="muted">(${esc(id)})</span>`;
     const stated = c.status === "UNRESOLVED" ? `Not determined. At least: ${CLASS_LABEL[c.class_floor]}` : CLASS_LABEL[c.status];
@@ -301,7 +303,7 @@ function resultHtml(): string {
         it does not state a class it cannot fully check${c.class_floor === "CRITICAL" ? "" : ", including Default"}.</p>` : ""}
       ${c.excluded.length ? `<p class="muted small">Which categories were ruled out, and why: see the end of this page.</p>` : ""}
     </section>`;
-    const ruledOut = c.excluded.length ? `
+    ruledOut = c.excluded.length ? `
     <details class="box ruled-out"><summary><h2>Ruled out, and why (${c.excluded.length} ${c.excluded.length === 1 ? "category" : "categories"})</h2></summary><ul>${c.excluded.map((x) => {
         const viaScreen = x.failing.some((f) => f.fact && f.fact in res.derived);
         return `<li>${cat(x.category)}: does not meet ${x.failing.map((f) => `<q>${esc(f.quote)}</q>`).join(" or ")}${viaScreen
@@ -313,6 +315,8 @@ function resultHtml(): string {
       body += `<section class="box"><h2>Conformity route</h2><ul>${out.conformity_routes.map((r) =>
         `<li>${esc(routeLabel(r.route))}</li>`).join("")}</ul></section>`;
     }
+  }
+  {
     const pc = placingColumns(periods);
     if (periods.length && (pc.obligations.length || pc.routes)) {
       body += `
@@ -323,7 +327,7 @@ function resultHtml(): string {
           pc.routes ? `<td>${esc(routesText(r.conformity_routes))}</td>` : ""}</tr>`).join("")}
         </tbody></table></section>`;
     }
-    if (mode !== "class") {
+    if (out.timeline.length) {
       const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
       body += `
       <section class="box"><h2>Other obligations</h2><table><thead><tr><th>Obligation</th><th>Status</th><th>Basis</th></tr></thead><tbody>

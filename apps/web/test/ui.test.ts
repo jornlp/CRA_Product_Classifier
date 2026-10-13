@@ -82,8 +82,11 @@ describe("screens: pest-control camera", () => {
     expect(heading()).toContain("Tick all that apply");
     await answer([]);    // no exclusion
   });
-  it("the scope result offers to continue to the class and the dates", async () => {
+  it("the scope result shows when the requirements apply, and offers to continue to the class", async () => {
     expect(app().textContent).toContain("The CRA applies to this product.");
+    const rows = [...app().querySelectorAll("table")].find((t) => t.textContent!.includes("Units placed"))!.querySelectorAll("tbody tr");
+    expect([...rows].map((r) => r.children[0].textContent)).toEqual(["Before 11 December 2027", "On or after 11 December 2027"]);
+    expect(app().textContent).toContain("cra art 14 reporting");
     app().querySelector<HTMLButtonElement>("#to-class")!.click(); await tick();
   });
   it("asks what the product is mainly for, with the stem and its warning always visible", async () => {
