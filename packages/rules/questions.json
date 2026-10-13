@@ -5933,6 +5933,36 @@
   "CRA_ESSENTIAL_REQUIREMENTS": [
    {
     "src": "CRA",
+    "art": "3",
+    "def": "30",
+    "ref": "CRA Art. 3(30)",
+    "quote": "which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I or which results in a modification to the intended purpose",
+    "text": {
+     "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+     "heading": "Article 3: Definitions",
+     "lines": [
+      {
+       "label": "(30)",
+       "level": 0,
+       "point": false,
+       "parts": [
+        {
+         "text": "‘substantial modification’ means a change to the product with digital elements following its placing on the market, "
+        },
+        {
+         "text": "which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I or which results in a modification to the intended purpose",
+         "mark": true
+        },
+        {
+         "text": " for which the product with digital elements has been assessed;"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   {
+    "src": "CRA",
     "art": "69",
     "para": "2",
     "quote": "shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification",
@@ -6019,6 +6049,44 @@
       }
      ]
     }
+   }
+  ]
+ },
+ "obligation_faq": {
+  "CRA_ESSENTIAL_REQUIREMENTS": [
+   {
+    "entry": "7.2",
+    "quote": "Union harmonisation legislation including the CRA applies to individual products, and not product types. Therefore, only individual products that have been placed on the market before 11 December 2027 do not need to comply with the CRA.",
+    "source": "Commission FAQ v14 (non-binding)"
+   },
+   {
+    "entry": "1.4",
+    "quote": "For example, a manufacturer places on the market a smart TV in mid-2027. The manufacturer is not required to comply with the CRA for this product with digital elements. In 2028, it releases a software update, which does not qualify as a substantial modification, to fix a bug that causes apps running on the TV to crash after some usage time. The manufacturer is not required to bring the smart TV in conformity with the CRA, as it would not be substantially modifying it.",
+    "source": "Commission FAQ v14 (non-binding)"
+   },
+   {
+    "entry": "1.4",
+    "quote": "In 2029, that manufacturer releases a software update that qualifies as a substantial modification, for example because it modifies the original intended functions by enabling the smart TV to control smart home systems. In that case, the manufacturer is required to bring the smart TV into compliance with the CRA.",
+    "source": "Commission FAQ v14 (non-binding)"
+   }
+  ],
+  "CRA_ART_14_REPORTING": [
+   {
+    "entry": "5.3",
+    "quote": "Reporting obligations start applying as of 11 September 2026.",
+    "source": "Commission FAQ v14 (non-binding)"
+   },
+   {
+    "entry": "5.3",
+    "quote": "For such products, manufacturers are required to notify the vulnerability or incident but are not required by the CRA to comply with other obligations, e.g. in relation to vulnerability handling.",
+    "source": "Commission FAQ v14 (non-binding)"
+   }
+  ],
+  "OTHER_LEGISLATION_CERTIFICATE": [
+   {
+    "entry": "7.1",
+    "quote": "According to Article 69(1), EU-type examination certificates and approval decision issued regarding cybersecurity requirements for products with digital elements that are subject to other Union harmonisation legislation, such as Commission Delegated Regulation (EU) 2022/30, remain valid until 11 June 2028 (unless otherwise specified in such legislation or unless the certificate expires before that date).",
+    "source": "Commission FAQ v14 (non-binding)"
    }
   ]
  }

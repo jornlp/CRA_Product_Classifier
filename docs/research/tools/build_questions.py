@@ -209,10 +209,35 @@ OBLIGATION_LAW = {
         _cra("69", "3", "shall apply to all products with digital elements that fall within the scope of this Regulation that have been placed on the market before 11 December 2027"),
         _cra("71", "2", "Article 14 shall apply from 11 September 2026")],
     "CRA_ESSENTIAL_REQUIREMENTS": [
+        {"src": "CRA", "art": "3", "def": "30", "ref": "CRA Art. 3(30)",
+         "quote": "which affects the compliance of the product with digital elements with the essential cybersecurity requirements set out in Part I of Annex I or which results in a modification to the intended purpose"},
         _cra("69", "2", "shall be subject to the requirements set out in this Regulation only if, from that date, those products are subject to a substantial modification"),
         _cra("71", "2", "This Regulation shall apply from 11 December 2027")],
     "OTHER_LEGISLATION_CERTIFICATE": [
         _cra("69", "1", "shall remain valid until 11 June 2028, unless they expire before that date")],
+}
+# What the Commission's FAQ (non-binding) says on each obligation; entry numbers and verbatim quotes, checked
+# against the held FAQ text in CI (packages/engine/test/legal-basis.test.ts).
+OBLIGATION_FAQ = {
+    "CRA_ESSENTIAL_REQUIREMENTS": [
+        ("7.2", "Union harmonisation legislation including the CRA applies to individual products, and not product types. "
+                "Therefore, only individual products that have been placed on the market before 11 December 2027 do not need to comply with the CRA."),
+        ("1.4", "For example, a manufacturer places on the market a smart TV in mid-2027. The manufacturer is not required to comply with the CRA "
+                "for this product with digital elements. In 2028, it releases a software update, which does not qualify as a substantial modification, "
+                "to fix a bug that causes apps running on the TV to crash after some usage time. The manufacturer is not required to bring the smart TV "
+                "in conformity with the CRA, as it would not be substantially modifying it."),
+        ("1.4", "In 2029, that manufacturer releases a software update that qualifies as a substantial modification, for example because it "
+                "modifies the original intended functions by enabling the smart TV to control smart home systems. In that case, the manufacturer "
+                "is required to bring the smart TV into compliance with the CRA.")],
+    "CRA_ART_14_REPORTING": [
+        ("5.3", "Reporting obligations start applying as of 11 September 2026."),
+        ("5.3", "For such products, manufacturers are required to notify the vulnerability or incident but are not required by the CRA to "
+                "comply with other obligations, e.g. in relation to vulnerability handling.")],
+    "OTHER_LEGISLATION_CERTIFICATE": [
+        ("7.1", "According to Article 69(1), EU-type examination certificates and approval decision issued regarding cybersecurity requirements "
+                "for products with digital elements that are subject to other Union harmonisation legislation, such as Commission Delegated "
+                "Regulation (EU) 2022/30, remain valid until 11 June 2028 (unless otherwise specified in such legislation or unless the "
+                "certificate expires before that date).")],
 }
 EXTRA = {
     "CERTIFICATE_EXPIRY": {"question": "When does that certificate expire?", "kind": "date",
@@ -423,7 +448,9 @@ def build():
     return {"artifact": "questions", "generated_by": "docs/research/tools/build_questions.py",
             "note": "Question wording comes from the WP2 fact register; category titles verbatim from B2. Edit at the source and regenerate.",
             "questions": out, "categories": cats,
-            "obligations": {k: [{**l, "text": layout(l)} for l in v] for k, v in OBLIGATION_LAW.items()}}
+            "obligations": {k: [{**l, "text": layout(l)} for l in v] for k, v in OBLIGATION_LAW.items()},
+            "obligation_faq": {k: [{"entry": e, "quote": q, "source": "Commission FAQ v14 (non-binding)"} for e, q in v]
+                               for k, v in OBLIGATION_FAQ.items()}}
 
 
 if __name__ == "__main__":

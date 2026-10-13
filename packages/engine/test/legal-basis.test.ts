@@ -66,3 +66,11 @@ describe("timeline obligations: the law shown on the result is verbatim", () => 
     for (const l of laws) it(`${obl}: ${l.ref}`, () => expect(norm(sourceText(l) ?? "")).toContain(norm(l.quote)));
   }
 });
+
+describe("timeline obligations: the Commission FAQ passages shown on the result are verbatim", () => {
+  const faqText = norm(readFileSync(new URL(`../../../${read("packages/rules/guidance.json").sources.B7.text}`, import.meta.url), "utf8"))
+    .replace(/[_*]/g, "").replace(/[“”]/g, '"');
+  for (const [obl, items] of Object.entries<any[]>(read("packages/rules/questions.json").obligation_faq)) {
+    for (const [i, f] of items.entries()) it(`${obl} FAQ ${f.entry} (${i + 1})`, () => expect(faqText).toContain(norm(f.quote).replace(/[“”]/g, '"')));
+  }
+});

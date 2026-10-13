@@ -63,9 +63,14 @@ type Question = { question: string; kind: string; why_we_ask: string; legal_basi
 const QUESTIONS = (qs as { questions: Record<string, Question> }).questions;
 /** The law behind each timeline obligation, verbatim with the key words marked. */
 const OBLIGATION_LAW = (qs as unknown as { obligations: Record<string, Legal[]> }).obligations;
-const lawDetails = (obligation: string, summary: string) => OBLIGATION_LAW[obligation]?.length
-  ? `<details class="legal"><summary>${esc(summary)}</summary>${OBLIGATION_LAW[obligation].map(lawHtml).join("")}</details>`
-  : `<span class="muted small">${esc(summary)}</span>`;
+const OBLIGATION_FAQ = (qs as unknown as { obligation_faq: Record<string, { entry: string; quote: string; source: string }[]> }).obligation_faq;
+const lawDetails = (obligation: string, summary: string) => {
+  const law = OBLIGATION_LAW[obligation] ?? [], faq = OBLIGATION_FAQ[obligation] ?? [];
+  if (!law.length && !faq.length) return `<span class="muted small">${esc(summary)}</span>`;
+  return `<details class="legal"><summary>${esc(summary)}</summary>${law.map(lawHtml).join("")}${faq.length
+    ? `<div class="faq"><p class="law-act">Commission FAQ on the CRA, version 14 (non-binding: it does not interpret the law authoritatively)</p>${
+      faq.map((f) => `<blockquote><p>${esc(f.quote)}</p><p class="muted small">FAQ entry ${esc(f.entry)}</p></blockquote>`).join("")}</div>` : ""}</details>`;
+};
 const CATEGORIES = (qs as { categories: Record<string, { title: string; class: string }> }).categories;
 type Example = { answer: string; kind: string; source: string; text: string; quote?: string; item?: string; category?: string; case?: string };
 type Guide = { hint?: string; note?: string; examples: Example[]; lookalikes: { term: string; text: string; case?: string }[] };
@@ -331,7 +336,7 @@ function resultHtml(): string {
         ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}${
           pc.routes ? `<td>${esc(routesText(r.conformity_routes))}</td>` : ""}</tr>`).join("")}
         </tbody></table>
-        ${pc.obligations.map((o) => lawDetails(o, `The law: ${PLACING_COLUMN[o]}`)).join("")}
+        ${pc.obligations.map((o) => lawDetails(o, `The law and the Commission FAQ: ${PLACING_COLUMN[o]}`)).join("")}
         <p class="note">${esc(RED_NOTE)}</p></section>`;
     }
     if (out.timeline.length) {
