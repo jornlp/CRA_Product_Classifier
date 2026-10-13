@@ -67,6 +67,7 @@ function answerLabel(ctx: Ctx, fid: string, v: unknown): string {
 
 export function reportMarkdown(out: Out, ctx: Ctx): string {
   const L: string[] = [];
+  const R: string[] = [];  // ruled-out categories: after the dates, so they do not bury them
   const cat = (id: string) => `${ctx.categories[id]?.title ?? id} (${id})`;
   const rec = out.for_your_records ?? {};
   const check = { scope: "Does the CRA apply?", class: "Which class?", full: "Full check" }[out.check as string] ?? "Full check";
@@ -96,12 +97,12 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
     const cov = c.blocking.filter((b: any) => b.value === "NOT_COVERED").length;
     if (cov) L.push(`_${cov} categories have no rule yet in this version, so the class cannot be stated in full._`, "");
     if (c.excluded.length) {
-      L.push("### Ruled out, and why", "");
+      R.push("## Ruled out, and why", "");
       for (const x of c.excluded) {
         const via = x.failing.some((f: any) => f.fact && f.fact in ctx.derived);
-        L.push(`- ${cat(x.category)}: does not meet ${x.failing.map((f: any) => `“${f.quote}”`).join(" or ")}${via ? " _(you indicated the product is not mainly for this)_" : ""}`);
+        R.push(`- ${cat(x.category)}: does not meet ${x.failing.map((f: any) => `“${f.quote}”`).join(" or ")}${via ? " _(you indicated the product is not mainly for this)_" : ""}`);
       }
-      L.push("");
+      R.push("");
     }
     const routes = out.conformity_routes.filter((r: any) => r.route !== "CRA_ART_32");
     if (routes.length) L.push("### Conformity route", "", ...routes.map((r: any) => `- ${routeLabel(r.route)}`), "");
@@ -127,6 +128,7 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
     L.push("");
   }
 
+  L.push(...R);
   L.push("## Your answers", "", "| Question | Answer |", "|---|---|");
   for (const f of out.facts) L.push(`| ${cell(ctx.questions[f.fact_id]?.question ?? f.fact_id)} | ${cell(answerLabel(ctx, f.fact_id, f.value))} |`);
   for (const [k, v] of Object.entries<unknown>(out.timeline_facts ?? {})) {

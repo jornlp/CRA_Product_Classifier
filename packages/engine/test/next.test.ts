@@ -76,7 +76,12 @@ describe("timeline: asking only what matters gives the same result", () => {
       for (let i = 0; i < 20; i++) {
         const q = nextTimelineQuestions(tl, facts)[0];
         if (!q) break;
-        facts[q] = q in f.facts ? f.facts[q] : (q === "CHANGE_AT" ? undefined : q === "OTHER_LEGISLATION_CERTIFICATE" ? false : q === "RADIO_EQUIPMENT_RED_DA" ? "NO" : "UNKNOWN");
+        // Fixtures that give RADIO_EQUIPMENT_RED_DA directly: answer the atomic questions consistently with it.
+        const red = f.facts.RADIO_EQUIPMENT_RED_DA as string | undefined;
+        const radio: Record<string, string> = red === "YES" ? { RADIO_PRESENT: "YES", RADIO_INTERNET: "YES" }
+          : red === "UNKNOWN" ? { RADIO_PRESENT: "UNKNOWN" } : { RADIO_PRESENT: "NO" };
+        facts[q] = q in f.facts ? f.facts[q] : q in radio ? radio[q]
+          : (q === "CHANGE_AT" ? undefined : q === "OTHER_LEGISLATION_CERTIFICATE" ? false : "UNKNOWN");
         if (facts[q] === undefined) delete facts[q], (facts as any)[q] = "";
       }
       const want = Object.fromEntries(timeline(tl, f.facts).timeline.map((i) => [i.obligation, i.status]));

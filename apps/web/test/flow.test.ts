@@ -28,7 +28,7 @@ function walk(answers: Record<string, unknown>, date = "2026-10-12", mode: FlowS
 const inScope = { PURPOSE_SCREEN: [] as string[], PRODUCT_KIND: "HARDWARE", MARKET_STATUS: "MADE_AVAILABLE", COMMERCIAL_ACTIVITY: true,
   DATA_INTERFACE_PRESENT: true, CONNECTION_INTENDED: true, EXCLUSION_SCREEN: [],
   IC_TYPE: "NOT_AN_IC", STORES_PASSWORDS_CORE: false, HIGH_RISK_AI_BASIS: "NONE", EHR_SYSTEM: false,
-  UNITS_PLACED_ON_MARKET: "2028-03-01", RADIO_EQUIPMENT_RED_DA: "YES", OTHER_LEGISLATION_CERTIFICATE: false };
+  UNITS_PLACED_ON_MARKET: "2028-03-01", RADIO_PRESENT: "YES", RADIO_INTERNET: "YES", OTHER_LEGISLATION_CERTIFICATE: false };
 
 describe("interview case: pest-control camera (RAT-01)", () => {
   const r = walk({ ...inScope, PROTECTS_PHYSICAL_SECURITY: false, CENTRAL_CONTROL_OF_SECURITY: false,
@@ -116,7 +116,7 @@ describe("check modes (scope only, class only, full) and continuing", () => {
     const second = walk(lock, "2026-10-12", "full", first.st);
     expect(second.asked.filter((q) => first.asked.includes(q))).toEqual([]);
     expect(second.asked[0]).toBe("PURPOSE_SCREEN");
-    expect(second.asked).toContain("RADIO_EQUIPMENT_RED_DA");
+    expect(second.asked).toContain("RADIO_PRESENT");
     for (const q of ["UNITS_PLACED_ON_MARKET", "CHANGE_AT", "CERTIFICATE_EXPIRY"]) expect(second.asked).not.toContain(q);
   });
   it("continuing from class to the full check asks only scope and dates", () => {

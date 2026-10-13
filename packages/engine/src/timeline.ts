@@ -35,6 +35,19 @@ function substantialModification(rules: TimelineRules, f: TimelineFacts): ["TRUE
     : "effect on Annex I Part I compliance unknown; unchanged purpose alone does not settle it (LIFE-08)"];
 }
 
+/**
+ * Del. Reg. 2022/30 Art. 1: radio AND (internet-connected OR (toy, childcare or worn on the body AND can
+ * process personal, traffic or location data)). Art. 1(3) needs internet connection, so adds no case. Kleene
+ * logic over YES/NO/UNKNOWN; a direct RADIO_EQUIPMENT_RED_DA answer wins; no radio answer at all means NO.
+ */
+export function redDaCovered(f: TimelineFacts): string {
+  if ("RADIO_EQUIPMENT_RED_DA" in f) return f.RADIO_EQUIPMENT_RED_DA as string;
+  if (!("RADIO_PRESENT" in f)) return "NO";
+  const v = (k: string) => (f[k] === "YES" ? 1 : f[k] === "NO" ? 0 : 0.5);
+  const r = Math.min(v("RADIO_PRESENT"), Math.max(v("RADIO_INTERNET"), Math.min(v("RADIO_BODY_CHILD_TOY"), v("RADIO_PERSONAL_DATA"))));
+  return r === 1 ? "YES" : r === 0 ? "NO" : UNK;
+}
+
 export function timeline(rules: TimelineRules, f: TimelineFacts): { timeline: TimelineItem[]; flags: string[] } {
   const D = rules.dates;
   const today = f.ASSESSMENT_DATE as string;
@@ -78,7 +91,7 @@ export function timeline(rules: TimelineRules, f: TimelineFacts): { timeline: Ti
                   basis, ["Does the other legislation set a different validity?"]));
   }
   // RED delegated act.
-  const radio = (f.RADIO_EQUIPMENT_RED_DA ?? "NO") as string;
+  const radio = redDaCovered(f);
   p = "Del. Reg. (EU) 2022/30";
   if (radio === "YES") {
     if (placed === UNK) out.push(item("RED_DA_CYBERSECURITY", "UNRESOLVED", p, D.RED_DA_APPLICATION, "placing date of the units unknown"));

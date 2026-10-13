@@ -198,7 +198,7 @@ GROUPS = {"PURPOSE_SCREEN": [
 CONFLICT_OK = {"PROTECTS_PHYSICAL_SECURITY", "RESIDENTIAL_SETTING", "STORES_PASSWORDS_CORE", "ADVANCED_SECURITY_CORE", "CENTRAL_CONTROL_OF_SECURITY",
                "IS_TOY", "FOR_CHILDREN_UNDER_14", "CRYPTO_CORE", "SECURITY_PURPOSE_OUTPUT"}
 # Value conventions per engine: classification and scope use booleans; the timeline uses YES/NO codes.
-CODE_FACTS = {"CHANGE_AFFECTS_ANNEX_I", "RADIO_EQUIPMENT_RED_DA"}
+CODE_FACTS = {"CHANGE_AFFECTS_ANNEX_I", "RADIO_EQUIPMENT_RED_DA", "RADIO_PRESENT", "RADIO_INTERNET", "RADIO_BODY_CHILD_TOY", "RADIO_PERSONAL_DATA"}
 EXTRA = {
     "CERTIFICATE_EXPIRY": {"question": "When does that certificate expire?", "kind": "date",
                            "why_we_ask": "The certificate stays valid until 11 June 2028, or until its own expiry date if that comes first.",
@@ -354,7 +354,8 @@ def build():
     types = {k: v.get("type") for k, v in cls["facts"].items()}
     types.update({k: ("bool" if v.get("values") == [True, False] else v.get("type", "enum")) for k, v in scope["facts"].items()})
     timeline = ["UNITS_PLACED_ON_MARKET", "CHANGE_AT", "CHANGE_AFFECTS_PURPOSE", "CHANGE_AFFECTS_ANNEX_I",
-                "RADIO_EQUIPMENT_RED_DA", "OTHER_LEGISLATION_CERTIFICATE"]
+                "RADIO_EQUIPMENT_RED_DA", "RADIO_PRESENT", "RADIO_INTERNET", "RADIO_BODY_CHILD_TOY", "RADIO_PERSONAL_DATA",
+                "OTHER_LEGISLATION_CERTIFICATE"]
     used = list(dict.fromkeys(list(scope["facts"]) + list(cls["facts"]) + timeline))
     out = {}
     for fid in used:

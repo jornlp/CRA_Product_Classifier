@@ -100,7 +100,17 @@ export function nextTimelineQuestions(rules: TimelineRules, f: TimelineFacts): s
   const D = rules.dates, out: string[] = [];
   const has = (k: string) => k in f;
   // Radio first: whether the RED delegated act applies decides whether 1 August 2025 is a period boundary.
-  if (!has("RADIO_EQUIPMENT_RED_DA")) out.push("RADIO_EQUIPMENT_RED_DA");
+  // One atomic question at a time (Del. Reg. 2022/30 Art. 1), stopping as soon as the answer is settled.
+  if (!has("RADIO_EQUIPMENT_RED_DA")) {
+    if (!has("RADIO_PRESENT")) out.push("RADIO_PRESENT");
+    else if (f.RADIO_PRESENT !== "NO") {
+      if (!has("RADIO_INTERNET")) out.push("RADIO_INTERNET");
+      else if (f.RADIO_INTERNET !== "YES") {
+        if (!has("RADIO_BODY_CHILD_TOY")) out.push("RADIO_BODY_CHILD_TOY");
+        else if (f.RADIO_BODY_CHILD_TOY !== "NO" && !has("RADIO_PERSONAL_DATA")) out.push("RADIO_PERSONAL_DATA");
+      }
+    }
+  }
   if (!has("UNITS_PLACED_ON_MARKET")) out.push("UNITS_PLACED_ON_MARKET");
   const placed = f.UNITS_PLACED_ON_MARKET as string | undefined;
   if (placed && placed !== "UNKNOWN" && placed < D.CRA_APPLICATION) {

@@ -299,12 +299,14 @@ function resultHtml(): string {
         `<li>${esc(reasonText[r.kind])} ${cat(r.category!)}${r.kind === "LAW_OPEN" ? ". Get expert advice: more answers will not resolve this." : ""}</li>`).join("")}</ul>` : ""}
       ${blockingCov ? `<p class="note">This version has rules for ${RULES.categories.length} of 26 categories. Until all 26 are covered,
         it does not state a class it cannot fully check${c.class_floor === "CRITICAL" ? "" : ", including Default"}.</p>` : ""}
-      ${c.excluded.length ? `<h3>Ruled out, and why</h3><ul>${c.excluded.map((x) => {
+      ${c.excluded.length ? `<p class="muted small">Which categories were ruled out, and why: see the end of this page.</p>` : ""}
+    </section>`;
+    const ruledOut = c.excluded.length ? `
+    <details class="box ruled-out"><summary><h2>Ruled out, and why (${c.excluded.length} ${c.excluded.length === 1 ? "category" : "categories"})</h2></summary><ul>${c.excluded.map((x) => {
         const viaScreen = x.failing.some((f) => f.fact && f.fact in res.derived);
         return `<li>${cat(x.category)}: does not meet ${x.failing.map((f) => `<q>${esc(f.quote)}</q>`).join(" or ")}${viaScreen
           ? ` <span class="muted small">(you indicated the product is not mainly for this; go back to change that)</span>` : ""}</li>`;
-      }).join("")}</ul>` : ""}
-    </section>`;
+      }).join("")}</ul></details>` : "";
     if (routesVary) {
       body += `<section class="box"><h2>Conformity route</h2><p>Depends on when the units are placed on the market: see the table below.</p></section>`;
     } else if (out.conformity_routes.some((r) => r.route !== "CRA_ART_32")) {
@@ -330,6 +332,7 @@ function resultHtml(): string {
           <td>${esc(i.basis)}${i.open_questions ? `<br><span class="muted small">${esc(i.open_questions.join(" "))}</span>` : ""}</td></tr>`).join("")}
       </tbody></table></section>`;
     }
+    body += ruledOut;
   }
   body += `
     <section class="box"><p>Rules reflect the law as of <strong>${esc(out.law_as_of)}</strong>; this version is valid until ${esc(out.valid_until)}.

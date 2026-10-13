@@ -1170,7 +1170,7 @@
   },
   {
    "fact_id": "RADIO_EQUIPMENT_RED_DA",
-   "question": "Is the product radio equipment that (a) can communicate over the internet, directly or via other equipment; (b) is internet-connected or in the childcare, toy or wearable categories AND can process personal data, traffic data or location data; or (c) is internet-connected and lets the user transfer money, monetary value or virtual currency?",
+   "question": "Do the radio equipment cybersecurity rules (Delegated Regulation (EU) 2022/30) cover the product?",
    "kind": "enum:YES/NO/UNKNOWN",
    "why_we_ask": "Delegated Regulation (EU) 2022/30 Art. 1, applying RED Art. 3(3)(d), (e) and (f). Its Art. 2 derogates: MDR/IVDR products are out entirely; products under Reg. 2018/1139, Reg. 2019/2144 or Dir. 2019/520 are out of limbs (e) and (f). Not a CRA scope question - radio equipment is fully in CRA scope - but these requirements have applied since 1 August 2025, so a CRA-only timeline answer would be falsely reassuring.",
    "categories_discriminated": [],
@@ -1189,7 +1189,14 @@
      "quote": "radio equipment that can communicate itself over the internet",
      "ref": "Delegated Regulation (EU) 2022/30, Art. 1"
     }
-   ]
+   ],
+   "derived_from": [
+    "RADIO_PRESENT",
+    "RADIO_INTERNET",
+    "RADIO_BODY_CHILD_TOY",
+    "RADIO_PERSONAL_DATA"
+   ],
+   "revision_note": "13 Oct 2026: no longer asked as one compound question. Derived from four atomic facts: covered if radio AND (internet-connected OR (toy, childcare or worn on the body AND can process personal, traffic or location data)). Art. 1(3) (money transfer) needs internet connection, so it adds no case. Art. 2 derogations (MDR/IVDR; Reg. 2018/1139, 2019/2144, Dir. 2019/520 for limbs (e),(f)) are outside CRA scope already, except electronic road toll systems, which this tool does not ask about."
   },
   {
    "fact_id": "STORES_PASSWORDS_CORE",
@@ -1764,8 +1771,8 @@
   },
   {
    "fact_id": "OTHER_LEGISLATION_CERTIFICATE",
-   "question": "Does the product hold an EU type-examination certificate or approval decision covering cybersecurity under other EU harmonisation legislation? If so, when does it expire?",
-   "kind": "bool+date",
+   "question": "Does the product hold an EU type-examination certificate or approval decision covering cybersecurity under other EU harmonisation legislation?",
+   "kind": "bool",
    "why_we_ask": "Art. 69(1): such certificates stay valid until 11.6.2028, or their earlier expiry, unless that legislation provides otherwise (LIFE-07, LIFE-11).",
    "categories_discriminated": [],
    "evidence_expectation": "DOCUMENT_LIKELY",
@@ -2325,6 +2332,84 @@
     "no": "A rodent-detecting camera for pest control: ticks nothing."
    },
    "revision": "v2 (purpose screen, added when building the screens)"
+  },
+  {
+   "fact_id": "RADIO_PRESENT",
+   "question": "Does the product have a radio: Wi-Fi, Bluetooth, a mobile network, NFC, LoRa or another wireless link?",
+   "why_we_ask": "Gate for Delegated Regulation (EU) 2022/30: it applies only to radio equipment (Directive 2014/53/EU).",
+   "user_why": "Products with a radio may already have cybersecurity rules under the radio equipment rules, since 1 August 2025, before the CRA applies.",
+   "legal_basis": [
+    {
+     "src": "B16",
+     "cite": "Delegated Regulation (EU) 2022/30, Art. 1",
+     "quote": "shall apply to any radio equipment that can communicate itself over the internet",
+     "ref": "Delegated Regulation (EU) 2022/30, Art. 1(1)"
+    }
+   ],
+   "kind": "enum:YES/NO/UNKNOWN",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED"
+  },
+  {
+   "fact_id": "RADIO_INTERNET",
+   "question": "Can the product itself communicate over the internet, directly or through other equipment such as a phone, hub or router?",
+   "why_we_ask": "Art. 1(1): internet-connected radio equipment is covered (RED Art. 3(3)(d)).",
+   "user_why": "Any radio product that can reach the internet, even through a phone or hub, is covered by the radio equipment cybersecurity rules.",
+   "legal_basis": [
+    {
+     "src": "B16",
+     "cite": "Delegated Regulation (EU) 2022/30, Art. 1",
+     "quote": "radio equipment that can communicate itself over the internet, whether it communicates directly or via any other equipment",
+     "ref": "Delegated Regulation (EU) 2022/30, Art. 1(1)"
+    }
+   ],
+   "kind": "enum:YES/NO/UNKNOWN",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED"
+  },
+  {
+   "fact_id": "RADIO_BODY_CHILD_TOY",
+   "question": "Is the product a toy, made only for childcare, or worn on the body or on clothing?",
+   "why_we_ask": "Art. 1(2)(b)-(d): these are covered even without an internet connection, if they can process personal, traffic or location data.",
+   "user_why": "Toys, childcare products and wearables are covered by the radio equipment rules even without an internet connection, if they handle personal data.",
+   "legal_basis": [
+    {
+     "src": "B16",
+     "cite": "Delegated Regulation (EU) 2022/30, Art. 1",
+     "quote": "radio equipment designed or intended exclusively for childcare",
+     "ref": "Delegated Regulation (EU) 2022/30, Art. 1(2)(b)"
+    },
+    {
+     "src": "B16",
+     "cite": "Delegated Regulation (EU) 2022/30, Art. 1",
+     "quote": "to be worn on, strapped to, or hung from any of the following",
+     "ref": "Delegated Regulation (EU) 2022/30, Art. 1(2)(d)"
+    }
+   ],
+   "kind": "enum:YES/NO/UNKNOWN",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED"
+  },
+  {
+   "fact_id": "RADIO_PERSONAL_DATA",
+   "question": "Can the product process personal data, or traffic or location data? For example names, recordings, health readings or where someone is.",
+   "why_we_ask": "Art. 1(2): the condition for the categories in points (b)-(d).",
+   "user_why": "For toys, childcare products and wearables, the radio equipment rules apply when the product can handle personal, traffic or location data.",
+   "legal_basis": [
+    {
+     "src": "B16",
+     "cite": "Delegated Regulation (EU) 2022/30, Art. 1",
+     "quote": "if that radio equipment is capable of processing",
+     "ref": "Delegated Regulation (EU) 2022/30, Art. 1(2)"
+    }
+   ],
+   "kind": "enum:YES/NO/UNKNOWN",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED"
   }
  ],
  "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",

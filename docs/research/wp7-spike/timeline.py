@@ -42,6 +42,19 @@ def substantial_modification(f):
                           "effect on Annex I Part I compliance unknown; unchanged purpose alone does not settle it (LIFE-08)")
 
 
+def red_da_covered(f):
+    """Del. Reg. 2022/30 Art. 1: radio AND (internet-connected OR (toy, childcare or worn on the body AND can
+    process personal, traffic or location data)). Art. 1(3) needs internet connection, so adds no case. Kleene
+    logic over YES/NO/UNKNOWN; a direct RADIO_EQUIPMENT_RED_DA answer wins; no radio answer at all means NO."""
+    if "RADIO_EQUIPMENT_RED_DA" in f:
+        return f["RADIO_EQUIPMENT_RED_DA"]
+    if "RADIO_PRESENT" not in f:
+        return "NO"
+    v = lambda k: {"YES": 1.0, "NO": 0.0}.get(f.get(k, UNK), 0.5)
+    r = min(v("RADIO_PRESENT"), max(v("RADIO_INTERNET"), min(v("RADIO_BODY_CHILD_TOY"), v("RADIO_PERSONAL_DATA"))))
+    return {1.0: "YES", 0.0: "NO"}.get(r, UNK)
+
+
 def timeline(f):
     today, placed = f["ASSESSMENT_DATE"], f.get("UNITS_PLACED_ON_MARKET", UNK)
     out, flags = [], []
@@ -82,7 +95,7 @@ def timeline(f):
         out.append(item("OTHER_LEGISLATION_CERTIFICATE", "TRANSITION" if valid else "NOT_APPLICABLE", "Art. 69(1)", None,
                         basis, ["Does the other legislation set a different validity?"]))
     # RED delegated act.
-    radio = f.get("RADIO_EQUIPMENT_RED_DA", "NO")
+    radio = red_da_covered(f)
     p = "Del. Reg. (EU) 2022/30"
     if radio == "YES":
         if placed == UNK:
@@ -146,6 +159,18 @@ FIXTURES = [
   {"CRA_ESSENTIAL_REQUIREMENTS": "APPLIES", "RED_DA_CYBERSECURITY": "APPLIES"}),
  ("RED-03", {"ASSESSMENT_DATE": "2026-10-12", "UNITS_PLACED_ON_MARKET": "2025-03-01", "RADIO_EQUIPMENT_RED_DA": "YES"},
   {"RED_DA_CYBERSECURITY": "NOT_APPLICABLE"}),
+ ("RED-05", {"ASSESSMENT_DATE": "2026-10-12", "UNITS_PLACED_ON_MARKET": "2026-01-10", "RADIO_PRESENT": "YES",
+             "RADIO_INTERNET": "NO", "RADIO_BODY_CHILD_TOY": "YES", "RADIO_PERSONAL_DATA": "YES"},
+  {"RED_DA_CYBERSECURITY": "APPLIES"}),
+ ("RED-06", {"ASSESSMENT_DATE": "2026-10-12", "UNITS_PLACED_ON_MARKET": "2026-01-10", "RADIO_PRESENT": "YES",
+             "RADIO_INTERNET": "YES"},
+  {"RED_DA_CYBERSECURITY": "APPLIES"}),
+ ("RED-07", {"ASSESSMENT_DATE": "2026-10-12", "UNITS_PLACED_ON_MARKET": "2026-01-10", "RADIO_PRESENT": "YES",
+             "RADIO_INTERNET": "UNKNOWN", "RADIO_BODY_CHILD_TOY": "NO"},
+  {"RED_DA_CYBERSECURITY": "UNRESOLVED"}),
+ ("RED-08", {"ASSESSMENT_DATE": "2026-10-12", "UNITS_PLACED_ON_MARKET": "2026-01-10", "RADIO_PRESENT": "YES",
+             "RADIO_INTERNET": "NO", "RADIO_BODY_CHILD_TOY": "NO"},
+  {"CRA_ESSENTIAL_REQUIREMENTS": "TRANSITION"}),
  ("RED-04", {"ASSESSMENT_DATE": "2026-10-12", "UNITS_PLACED_ON_MARKET": "UNKNOWN", "RADIO_EQUIPMENT_RED_DA": "YES"},
   {"CRA_ART_14_REPORTING": "APPLIES", "RED_DA_CYBERSECURITY": "UNRESOLVED"}),
 ]

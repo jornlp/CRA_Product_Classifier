@@ -545,6 +545,151 @@
     }
    },
    {
+    "case": "RED-05",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "2026-01-10",
+     "RADIO_PRESENT": "YES",
+     "RADIO_INTERNET": "NO",
+     "RADIO_BODY_CHILD_TOY": "YES",
+     "RADIO_PERSONAL_DATA": "YES"
+    },
+    "expect": {
+     "RED_DA_CYBERSECURITY": "APPLIES"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      },
+      {
+       "obligation": "RED_DA_CYBERSECURITY",
+       "status": "APPLIES",
+       "provision": "Del. Reg. (EU) 2022/30",
+       "basis": "radio equipment within the delegated act, placed on or after 1.8.2025",
+       "applies_from": "2025-08-01"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "RED-06",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "2026-01-10",
+     "RADIO_PRESENT": "YES",
+     "RADIO_INTERNET": "YES"
+    },
+    "expect": {
+     "RED_DA_CYBERSECURITY": "APPLIES"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      },
+      {
+       "obligation": "RED_DA_CYBERSECURITY",
+       "status": "APPLIES",
+       "provision": "Del. Reg. (EU) 2022/30",
+       "basis": "radio equipment within the delegated act, placed on or after 1.8.2025",
+       "applies_from": "2025-08-01"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "RED-07",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "2026-01-10",
+     "RADIO_PRESENT": "YES",
+     "RADIO_INTERNET": "UNKNOWN",
+     "RADIO_BODY_CHILD_TOY": "NO"
+    },
+    "expect": {
+     "RED_DA_CYBERSECURITY": "UNRESOLVED"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      },
+      {
+       "obligation": "RED_DA_CYBERSECURITY",
+       "status": "UNRESOLVED",
+       "provision": "Del. Reg. (EU) 2022/30",
+       "basis": "whether the delegated act covers the product is unknown",
+       "applies_from": "2025-08-01"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
+    "case": "RED-08",
+    "facts": {
+     "ASSESSMENT_DATE": "2026-10-12",
+     "UNITS_PLACED_ON_MARKET": "2026-01-10",
+     "RADIO_PRESENT": "YES",
+     "RADIO_INTERNET": "NO",
+     "RADIO_BODY_CHILD_TOY": "NO"
+    },
+    "expect": {
+     "CRA_ESSENTIAL_REQUIREMENTS": "TRANSITION"
+    },
+    "golden": {
+     "timeline": [
+      {
+       "obligation": "CRA_ART_14_REPORTING",
+       "status": "APPLIES",
+       "provision": "Art. 14; Art. 69(3)",
+       "basis": "applies to all in-scope products, whenever placed",
+       "applies_from": "2026-09-11"
+      },
+      {
+       "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
+       "status": "TRANSITION",
+       "provision": "Art. 69(2); Art. 71(2)",
+       "basis": "units placed before 11.12.2027 and not substantially modified from that date: no change after placing"
+      }
+     ],
+     "flags": []
+    }
+   },
+   {
     "case": "RED-04",
     "facts": {
      "ASSESSMENT_DATE": "2026-10-12",
