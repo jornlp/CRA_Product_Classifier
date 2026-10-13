@@ -26,10 +26,15 @@ export function nextStep(r: Rules, st: FlowState): { phase: Phase; fid?: string 
   if (cq) return { phase: "class", fid: cq };
   for (const fid of ["HIGH_RISK_AI_BASIS", "EHR_SYSTEM"]) if (!(fid in st.facts)) return { phase: "routes", fid };
   if (st.mode === "class") return { phase: "result" };  // dates come with the full check
-  const tq = nextTimelineQuestions(r.timeline, st.tfacts)[0];
+  // No date questions: the result shows each placing period instead, and a certificate's own expiry is
+  // stated as "its own expiry date or 11 June 2028, whichever comes first".
+  const tq = nextTimelineQuestions(r.timeline, { UNITS_PLACED_ON_MARKET: "UNKNOWN", ...st.tfacts })
+    .filter((q) => !DATE_QUESTIONS.has(q))[0];
   if (tq) return { phase: "timeline", fid: tq };
   return { phase: "result" };
 }
+
+const DATE_QUESTIONS = new Set(["UNITS_PLACED_ON_MARKET", "CHANGE_AT", "CERTIFICATE_EXPIRY"]);
 
 /** Record an answer. The units' placing date feeds both the timeline and the conformity routes. */
 export function record(st: FlowState, phase: Phase, fid: string, value: unknown) {

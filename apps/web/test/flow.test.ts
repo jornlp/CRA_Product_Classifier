@@ -4,7 +4,7 @@
  */
 import { describe, expect, it } from "vitest";
 import { readFileSync } from "node:fs";
-import { classify, scope, timeline } from "../../../packages/engine/src/index.js";
+import { classify, scope, timeline, placingPeriods, placingOutcome } from "../../../packages/engine/src/index.js";
 import { nextStep, record } from "../src/flow.js";
 import type { FlowState, Rules } from "../src/flow.js";
 
@@ -64,8 +64,12 @@ describe("interview case: water meter without gateway function (WTR-01)", () => 
     expect(r.asked).not.toContain("METERING_COMMUNICATION");
     expect(r.asked).not.toContain("FIREWALLING");
   });
-  it("timeline: radio equipment placed in 2028 gets the RED note", () => {
-    const red = r.tl.timeline.find((i) => i.obligation === "RED_DA_CYBERSECURITY");
+  it("no date is asked; units placed from 11 December 2027 get the RED note in their period", () => {
+    expect(r.asked).not.toContain("UNITS_PLACED_ON_MARKET");
+    const last = placingPeriods(R.classification, R.timeline, r.st.facts, r.st.tfacts).at(-1)!;
+    expect(last.label).toBe("On or after 11 December 2027");
+    const red = placingOutcome(R.classification, R.timeline, r.st.facts, r.st.tfacts, last.value).timeline
+      .find((i) => i.obligation === "RED_DA_CYBERSECURITY");
     expect(red?.status).toBe("APPLIES");
     expect(red?.open_questions?.[0]).toContain("aims to repeal");
   });
@@ -112,7 +116,8 @@ describe("check modes (scope only, class only, full) and continuing", () => {
     const second = walk(lock, "2026-10-12", "full", first.st);
     expect(second.asked.filter((q) => first.asked.includes(q))).toEqual([]);
     expect(second.asked[0]).toBe("PURPOSE_SCREEN");
-    expect(second.asked).toContain("UNITS_PLACED_ON_MARKET");
+    expect(second.asked).toContain("RADIO_EQUIPMENT_RED_DA");
+    for (const q of ["UNITS_PLACED_ON_MARKET", "CHANGE_AT", "CERTIFICATE_EXPIRY"]) expect(second.asked).not.toContain(q);
   });
   it("continuing from class to the full check asks only scope and dates", () => {
     const first = walk(lock, "2026-10-12", "class");

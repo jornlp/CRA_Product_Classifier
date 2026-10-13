@@ -27,6 +27,33 @@ const ROUTE_LABEL: Record<string, string> = {
   EHDS_CHAPTER_III: "European Health Data Space conformity procedure (Regulation (EU) 2025/327, Chapter III), by CRA Art. 32(5a)",
   OPEN: "Not settled by the law. Get expert advice.",
 };
+/** Obligations that depend on when the units are placed; the result shows them per placing period. */
+export const BY_PLACING = new Set(["CRA_ESSENTIAL_REQUIREMENTS", "RED_DA_CYBERSECURITY"]);
+export const PLACING_COLUMN: Record<string, string> = {
+  CRA_ESSENTIAL_REQUIREMENTS: "CRA requirements (Art. 69(2), 71(2))",
+  RED_DA_CYBERSECURITY: "Radio equipment cybersecurity rules (Del. Reg. (EU) 2022/30)",
+};
+const LONG_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const longDate = (d: string) => { const [y, m, day] = d.split("-").map(Number); return `${day} ${LONG_MONTHS[m - 1]} ${y}`; };
+/** Plain text for one obligation in one placing period. */
+export function placingCell(i: { obligation: string; status: string; applies_from?: string; open_questions?: string[] } | undefined): string {
+  if (!i) return "Does not apply";
+  if (i.obligation === "CRA_ESSENTIAL_REQUIREMENTS") {
+    if (i.status === "APPLIES") return "Apply";
+    if (i.status === "NOT_YET") return `Apply from ${longDate(i.applies_from!)}`;
+    if (i.status === "TRANSITION") return "Do not apply to these units, unless they are substantially modified on or after 11 December 2027 (Art. 3(30))";
+  }
+  if (i.obligation === "RED_DA_CYBERSECURITY" && i.status === "UNRESOLVED") return "Not determined: whether the delegated act covers the product is unknown";
+  return TL[i.status] + (i.open_questions?.length ? `. ${i.open_questions.join(" ")}` : "");
+}
+export interface PlacingRow { period: string; conformity_routes: { route: string }[]; timeline: { obligation: string; status: string }[] }
+/** Columns that matter: obligations present in any period, and the route only if it differs between periods. */
+export function placingColumns(rows: PlacingRow[]): { obligations: string[]; routes: boolean } {
+  const obligations = [...BY_PLACING].filter((o) => rows.some((r) => r.timeline.some((i) => i.obligation === o)));
+  return { obligations, routes: new Set(rows.map((r) => JSON.stringify(r.conformity_routes.map((x) => x.route)))).size > 1 };
+}
+export const routesText = (rs: { route: string }[]) => rs.filter((r) => r.route !== "CRA_ART_32").map((r) => routeLabel(r.route)).join("; ") || routeLabel("CRA_ART_32");
+
 export const routeLabel = (r: string) => ROUTE_LABEL[r] ?? (r.startsWith("DEPENDS_ON_CLASS") ? "Depends on the class, which is not yet determined" : r);
 const cell = (s: unknown) => String(s ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
 
@@ -78,6 +105,19 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
     }
     const routes = out.conformity_routes.filter((r: any) => r.route !== "CRA_ART_32");
     if (routes.length) L.push("### Conformity route", "", ...routes.map((r: any) => `- ${routeLabel(r.route)}`), "");
+  }
+  const rows: PlacingRow[] = out.timeline_by_placing_period ?? [];
+  const pc = placingColumns(rows);
+  if (rows.length && (pc.obligations.length || pc.routes)) {
+    L.push("## Depends on when the units are placed on the market", "",
+      "_Each unit counts on its own: what matters is when that unit is placed on the market, not when the model was launched._", "");
+    const head = ["Units placed", ...pc.obligations.map((o) => PLACING_COLUMN[o]), ...(pc.routes ? ["Conformity route"] : [])];
+    L.push(`| ${head.join(" | ")} |`, `|${head.map(() => "---").join("|")}|`);
+    for (const r of rows) {
+      L.push(`| ${[r.period, ...pc.obligations.map((o) => placingCell(r.timeline.find((i) => i.obligation === o) as any)),
+        ...(pc.routes ? [routesText(r.conformity_routes)] : [])].map(cell).join(" | ")} |`);
+    }
+    L.push("");
   }
   if (out.timeline?.length) {
     L.push("## When obligations apply", "", "| Obligation | Status | From | Basis |", "|---|---|---|---|");

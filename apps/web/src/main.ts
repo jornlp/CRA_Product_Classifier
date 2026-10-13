@@ -8,13 +8,14 @@ import sc from "../../../packages/rules/scope.json";
 import tl from "../../../packages/rules/timeline.json";
 import qs from "../../../packages/rules/questions.json";
 import guidance from "../../../packages/rules/guidance.json";
-import { classify, route, toOutput, scope, timeline, validityWarnings } from "../../../packages/engine/src/index.js";
+import { classify, route, toOutput, scope, timeline, validityWarnings, placingPeriods, placingOutcome } from "../../../packages/engine/src/index.js";
 import { nextStep, record, unrecord } from "./flow.js";
 import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, routeLabel, markdownToHtml } from "./report.js";
+import { reportMarkdown, routeLabel, markdownToHtml, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
+import type { PlacingRow } from "./report.js";
 import { aboutHtml } from "./about.js";
 import { count } from "./analytics.js";
 
@@ -243,17 +244,27 @@ function assemble() {
     citedSources: Object.keys(RULES.sources), rules: RULES.categories.map((c) => c.rule_id) });
   const mode = state.mode ?? "full";
   const scopeOut = mode === "class" ? { status: "UNRESOLVED", reasons: ["Not assessed: the user chose a classification-only check."] } : s;
-  const out = toOutput(RULES, state.facts, res, route(RULES, state.facts, res), {
-    assessmentId: `cra-${today}`, assessedAt: today, validUntil: vu, validityWarnings: warnings,
-    scope: scopeOut, timeline: mode === "full" && s.status === "IN_SCOPE" ? t.timeline : [],
+  // No placing date is asked: what depends on it is worked out for each placing period.
+  const byPeriod: PlacingRow[] = placingPeriods(RULES, TIMELINE, state.facts, state.tfacts).map((p) => {
+    const o = placingOutcome(RULES, TIMELINE, state.facts, state.tfacts, p.value);
+    return { period: p.label, from: p.from, before: p.before, conformity_routes: o.routes,
+             timeline: o.timeline.filter((i) => BY_PLACING.has(i.obligation)) };
   });
+  const routesVary = placingColumns(byPeriod).routes;
+  const showTimeline = mode === "full" && s.status === "IN_SCOPE";
+  const out = toOutput(RULES, state.facts, res, routesVary ? route(RULES, state.facts, res) : byPeriod[0].conformity_routes as ReturnType<typeof route>, {
+    assessmentId: `cra-${today}`, assessedAt: today, validUntil: vu, validityWarnings: warnings,
+    scope: scopeOut, timeline: showTimeline ? t.timeline.filter((i) => !BY_PLACING.has(i.obligation)) : [],
+  });
+  const periods = showTimeline ? byPeriod : routesVary ? byPeriod.map((r) => ({ ...r, timeline: [] })) : [];
   // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
   if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
-  return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, check: mode, for_your_records: state.record, timeline_facts: state.tfacts }, s, res };
+  return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, check: mode, for_your_records: state.record, timeline_facts: state.tfacts,
+    ...(periods.length ? { timeline_by_placing_period: periods } : {}) }, s, res, periods, routesVary };
 }
 
 function resultHtml(): string {
-  const { out, s, res } = assemble();
+  const { out, s, res, periods, routesVary } = assemble();
   const c = out.classification;
   const mode = state.mode ?? "full";
   const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${w.kind === "PAST_END_DATE" ? "Outdated" : "Law changed"}:</strong> ${esc(w.detail)}</div>`).join("");
@@ -290,14 +301,26 @@ function resultHtml(): string {
           ? ` <span class="muted small">(you indicated the product is not mainly for this; go back to change that)</span>` : ""}</li>`;
       }).join("")}</ul>` : ""}
     </section>`;
-    if (out.conformity_routes.some((r) => r.route !== "CRA_ART_32")) {
+    if (routesVary) {
+      body += `<section class="box"><h2>Conformity route</h2><p>Depends on when the units are placed on the market: see the table below.</p></section>`;
+    } else if (out.conformity_routes.some((r) => r.route !== "CRA_ART_32")) {
       body += `<section class="box"><h2>Conformity route</h2><ul>${out.conformity_routes.map((r) =>
         `<li>${esc(routeLabel(r.route))}</li>`).join("")}</ul></section>`;
+    }
+    const pc = placingColumns(periods);
+    if (periods.length && (pc.obligations.length || pc.routes)) {
+      body += `
+      <section class="box"><h2>Depends on when the units are placed on the market</h2>
+        <p class="muted small">Each unit counts on its own: what matters is when that unit is placed on the market, not when the model was launched.</p>
+        <table><thead><tr><th>Units placed</th>${pc.obligations.map((o) => `<th>${esc(PLACING_COLUMN[o])}</th>`).join("")}${pc.routes ? "<th>Conformity route</th>" : ""}</tr></thead><tbody>
+        ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}${
+          pc.routes ? `<td>${esc(routesText(r.conformity_routes))}</td>` : ""}</tr>`).join("")}
+        </tbody></table></section>`;
     }
     if (mode !== "class") {
       const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
       body += `
-      <section class="box"><h2>When</h2><table><thead><tr><th>Obligation</th><th>Status</th><th>Basis</th></tr></thead><tbody>
+      <section class="box"><h2>Other obligations</h2><table><thead><tr><th>Obligation</th><th>Status</th><th>Basis</th></tr></thead><tbody>
         ${out.timeline.map((i) => `<tr><td>${esc(i.obligation.replace(/_/g, " ").toLowerCase())}<br><span class="muted small">${esc(i.provision)}</span></td>
           <td>${esc(tlLabel[i.status])}${i.applies_from ? `<br><span class="muted small">from ${esc(i.applies_from)}</span>` : ""}</td>
           <td>${esc(i.basis)}${i.open_questions ? `<br><span class="muted small">${esc(i.open_questions.join(" "))}</span>` : ""}</td></tr>`).join("")}

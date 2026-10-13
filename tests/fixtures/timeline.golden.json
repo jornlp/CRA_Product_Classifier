@@ -316,8 +316,7 @@
        "obligation": "CRA_ESSENTIAL_REQUIREMENTS",
        "status": "APPLIES",
        "provision": "Art. 69(2); Art. 71(2); Art. 3(30)",
-       "basis": "change modifies the intended purpose (Art. 3(30), second limb)",
-       "applies_from": "2028-02-01"
+       "basis": "change modifies the intended purpose (Art. 3(30), second limb); the requirements apply to these units from the change"
       }
      ],
      "flags": []
@@ -422,7 +421,7 @@
        "obligation": "OTHER_LEGISLATION_CERTIFICATE",
        "status": "NOT_APPLICABLE",
        "provision": "Art. 69(1)",
-       "basis": "certificate remains valid until 2028-01-01, unless the other legislation provides otherwise",
+       "basis": "the certificate has expired",
        "open_questions": [
         "Does the other legislation set a different validity?"
        ]

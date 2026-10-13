@@ -99,6 +99,8 @@ export function nextScopeQuestions(rules: ScopeRules, facts: Facts): string[] {
 export function nextTimelineQuestions(rules: TimelineRules, f: TimelineFacts): string[] {
   const D = rules.dates, out: string[] = [];
   const has = (k: string) => k in f;
+  // Radio first: whether the RED delegated act applies decides whether 1 August 2025 is a period boundary.
+  if (!has("RADIO_EQUIPMENT_RED_DA")) out.push("RADIO_EQUIPMENT_RED_DA");
   if (!has("UNITS_PLACED_ON_MARKET")) out.push("UNITS_PLACED_ON_MARKET");
   const placed = f.UNITS_PLACED_ON_MARKET as string | undefined;
   if (placed && placed !== "UNKNOWN" && placed < D.CRA_APPLICATION) {
@@ -109,7 +111,6 @@ export function nextTimelineQuestions(rules: TimelineRules, f: TimelineFacts): s
       if (f.CHANGE_AFFECTS_PURPOSE === false && !has("CHANGE_AFFECTS_ANNEX_I")) out.push("CHANGE_AFFECTS_ANNEX_I");
     }
   }
-  if (!has("RADIO_EQUIPMENT_RED_DA")) out.push("RADIO_EQUIPMENT_RED_DA");
   if (!has("OTHER_LEGISLATION_CERTIFICATE")) out.push("OTHER_LEGISLATION_CERTIFICATE");
   if (f.OTHER_LEGISLATION_CERTIFICATE === true && !has("CERTIFICATE_EXPIRY")) out.push("CERTIFICATE_EXPIRY");
   return out;

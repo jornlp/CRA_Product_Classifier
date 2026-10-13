@@ -60,7 +60,8 @@ def timeline(f):
     else:
         sm, why = substantial_modification(f)
         if sm == "TRUE":
-            out.append(item("CRA_ESSENTIAL_REQUIREMENTS", "APPLIES", p + "; Art. 3(30)", f["CHANGE_AT"], why))
+            out.append(item("CRA_ESSENTIAL_REQUIREMENTS", "APPLIES", p + "; Art. 3(30)", None,
+                            why + "; the requirements apply to these units from the change"))
         elif sm == "FALSE":
             out.append(item("CRA_ESSENTIAL_REQUIREMENTS", "TRANSITION", p, None,
                             "units placed before 11.12.2027 and not substantially modified from that date: " + why))
@@ -71,10 +72,15 @@ def timeline(f):
     # Art. 69(1) certificates.
     if f.get("OTHER_LEGISLATION_CERTIFICATE"):
         exp = f.get("CERTIFICATE_EXPIRY")
-        end = min(exp, D["CERT_VALIDITY_END"]) if exp and exp != UNK else D["CERT_VALIDITY_END"]
-        out.append(item("OTHER_LEGISLATION_CERTIFICATE", "TRANSITION" if today < end else "NOT_APPLICABLE", "Art. 69(1)", None,
-                        f"certificate remains valid until {end}, unless the other legislation provides otherwise",
-                        ["Does the other legislation set a different validity?"]))
+        own = bool(exp and exp != UNK and exp < D["CERT_VALIDITY_END"])
+        end = exp if own else D["CERT_VALIDITY_END"]
+        valid = today < end
+        until = (f"its own expiry date, before {D['CERT_VALIDITY_END']}" if own else D["CERT_VALIDITY_END"] if exp and exp != UNK
+                 else f"its own expiry date or {D['CERT_VALIDITY_END']}, whichever comes first")
+        basis = (f"certificate remains valid until {until}, unless the other legislation provides otherwise" if valid
+                 else "the certificate has expired" if own else f"Art. 69(1) validity ended on {D['CERT_VALIDITY_END']}")
+        out.append(item("OTHER_LEGISLATION_CERTIFICATE", "TRANSITION" if valid else "NOT_APPLICABLE", "Art. 69(1)", None,
+                        basis, ["Does the other legislation set a different validity?"]))
     # RED delegated act.
     radio = f.get("RADIO_EQUIPMENT_RED_DA", "NO")
     p = "Del. Reg. (EU) 2022/30"

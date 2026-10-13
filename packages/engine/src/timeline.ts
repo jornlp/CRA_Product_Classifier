@@ -54,7 +54,8 @@ export function timeline(rules: TimelineRules, f: TimelineFacts): { timeline: Ti
                   "units placed on or after 11.12.2027; earlier placement of the same type gives no protection"));
   } else {
     const [sm, why] = substantialModification(rules, f);
-    if (sm === "TRUE") out.push(item("CRA_ESSENTIAL_REQUIREMENTS", "APPLIES", p + "; Art. 3(30)", f.CHANGE_AT as string, why));
+    if (sm === "TRUE") out.push(item("CRA_ESSENTIAL_REQUIREMENTS", "APPLIES", p + "; Art. 3(30)", null,
+                                     why + "; the requirements apply to these units from the change"));
     else if (sm === "FALSE") out.push(item("CRA_ESSENTIAL_REQUIREMENTS", "TRANSITION", p, null,
       "units placed before 11.12.2027 and not substantially modified from that date: " + why));
     else {
@@ -66,10 +67,15 @@ export function timeline(rules: TimelineRules, f: TimelineFacts): { timeline: Ti
   // Art. 69(1) certificates.
   if (f.OTHER_LEGISLATION_CERTIFICATE) {
     const exp = f.CERTIFICATE_EXPIRY as string | undefined;
-    const end = exp && exp !== UNK ? (exp < D.CERT_VALIDITY_END ? exp : D.CERT_VALIDITY_END) : D.CERT_VALIDITY_END;
-    out.push(item("OTHER_LEGISLATION_CERTIFICATE", today < end ? "TRANSITION" : "NOT_APPLICABLE", "Art. 69(1)", null,
-                  `certificate remains valid until ${end}, unless the other legislation provides otherwise`,
-                  ["Does the other legislation set a different validity?"]));
+    const own = !!(exp && exp !== UNK && exp < D.CERT_VALIDITY_END);
+    const end = own ? exp! : D.CERT_VALIDITY_END;
+    const valid = today < end;
+    const until = own ? `its own expiry date, before ${D.CERT_VALIDITY_END}` : exp && exp !== UNK ? D.CERT_VALIDITY_END
+      : `its own expiry date or ${D.CERT_VALIDITY_END}, whichever comes first`;
+    const basis = valid ? `certificate remains valid until ${until}, unless the other legislation provides otherwise`
+      : own ? "the certificate has expired" : `Art. 69(1) validity ended on ${D.CERT_VALIDITY_END}`;
+    out.push(item("OTHER_LEGISLATION_CERTIFICATE", valid ? "TRANSITION" : "NOT_APPLICABLE", "Art. 69(1)", null,
+                  basis, ["Does the other legislation set a different validity?"]));
   }
   // RED delegated act.
   const radio = (f.RADIO_EQUIPMENT_RED_DA ?? "NO") as string;

@@ -133,7 +133,6 @@ describe("screens: pest-control camera", () => {
   it("finishes the remaining questions", async () => {
     await answer("No high-risk AI system");
     await answer("No"); // EHR
-    await answer({ date: "2028-03-01" });
     await answer("No"); // RED DA
     await answer("No"); // certificate
   });
@@ -165,8 +164,12 @@ describe("screens: pest-control camera", () => {
     expect(app().querySelector("#rec-product")).not.toBeNull();
     expect(app().textContent).toContain("plays no part in the assessment");
   });
-  it("result shows when obligations apply", () => {
+  it("result shows when obligations apply, by placing period, without asking for a date", () => {
     expect(app().textContent).toContain("cra art 14 reporting");
+    const rows = [...app().querySelectorAll("table")].find((t) => t.textContent!.includes("Units placed"))!.querySelectorAll("tbody tr");
+    expect([...rows].map((r) => r.children[0].textContent)).toEqual(["Before 11 December 2027", "On or after 11 December 2027"]);
+    expect(rows[0].textContent).toContain("unless they are substantially modified");
+    expect(rows[1].textContent).toContain("Apply from 11 December 2027");
   });
   it("Home returns to the start screen and keeps the answers; choosing the check again resumes at the result", async () => {
     document.getElementById("home-btn")!.click(); await tick();

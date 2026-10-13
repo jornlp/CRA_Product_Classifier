@@ -175,6 +175,10 @@ Decided 12 October 2026 by the project lead.
   library and nothing leaves the browser. AC-06's "PDF and JSON" is met, with Markdown added.
 - **Start screen:** two choices, "Does the CRA apply?" (continuing to class and dates from its
   result) and "Class only". The separate full check was dropped as redundant.
+- **No date questions** (decided 13 October 2026): the tool does not ask when units are placed, when a
+  change was made or when a certificate expires. The result shows what applies per placing period instead,
+  cut at every date the rules compare with (`packages/engine/src/periods.ts`, soundness test in
+  `periods.test.ts`); a certificate is stated as valid until its own expiry or 11 June 2028, whichever is first.
 - **Not done before publication:** independent technical review of the rules (DR-04, §8.2), and
   comprehension testing with users (WP6, AC-08). The site says "Preview: rules not yet
   independently reviewed".
