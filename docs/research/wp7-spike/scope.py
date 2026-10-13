@@ -19,7 +19,7 @@ def derive(facts):
     for d in SPEC["derive"]:
         if "screen" in d:
             scr = facts.get(d["screen"])
-            if scr and isinstance(scr["value"], list):
+            if scr and isinstance(scr["value"], list) and d.get("unsure") not in scr["value"]:
                 for opt, sets in d["unticked_sets"].items():
                     if opt not in scr["value"]:
                         for fk, fv in sets.items():
@@ -106,7 +106,10 @@ FIXTURES = [
  fx("SCP-06", {"DATA_INTERFACE_PRESENT": False}, "OUT_OF_SCOPE", drop=("CONNECTION_INTENDED",)),
  fx("SCP-07", {"CONNECTION_INTENDED": False}, "UNRESOLVED"),
  fx("SCP-10", {"CONNECTION_USE": "FORESEEABLE"}, "IN_SCOPE", drop=("DATA_INTERFACE_PRESENT", "CONNECTION_INTENDED")),
- fx("SCP-11", {"CONNECTION_USE": "NOT_FORESEEABLE"}, "OUT_OF_SCOPE", drop=("DATA_INTERFACE_PRESENT", "CONNECTION_INTENDED")),
+ fx("SCP-11", {"CONNECTION_USE": "NOT_FORESEEABLE"}, "UNRESOLVED", drop=("DATA_INTERFACE_PRESENT", "CONNECTION_INTENDED")),
+ fx("SCP-14", {"PRODUCT_KIND": "SOFTWARE", "CONNECTION_USE": "NO_INTERFACE"}, "IN_SCOPE", drop=("DATA_INTERFACE_PRESENT", "CONNECTION_INTENDED")),
+ fx("SCP-15", {"DATA_INTERFACE_PRESENT": True, "CONNECTION_INTENDED": False, "CONNECTION_FORESEEABLE": False}, "UNRESOLVED"),
+ fx("EXC-08b", {"EXCLUSION_SCREEN": ["L_CATEGORY"], "L_CATEGORY_168_2013": "PART"}, "UNRESOLVED"),
  fx("SCP-12", {"CONNECTION_USE": "NO_INTERFACE"}, "OUT_OF_SCOPE", drop=("DATA_INTERFACE_PRESENT", "CONNECTION_INTENDED")),
  fx("SCP-13", {"CONNECTION_USE": "INTENDED"}, "IN_SCOPE", drop=("DATA_INTERFACE_PRESENT", "CONNECTION_INTENDED")),
  fx("SCP-08", {"MARKET_STATUS": "EXHIBITION_ONLY"}, "OUT_OF_SCOPE"),

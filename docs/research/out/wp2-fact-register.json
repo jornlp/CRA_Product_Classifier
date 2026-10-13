@@ -52,7 +52,7 @@
     "yes": "Supplied free of charge but as part of a paid support offering.",
     "no": "A hobby project published with no commercial activity around it."
    },
-   "user_why": "The CRA only covers products supplied as part of a business activity. Giving something away for free can still count: what matters is whether you earn from it in some way, for example by charging for support, for a platform around it, or by requiring users' personal data. Truly non-commercial projects, such as most volunteer open-source work, are outside.",
+   "user_why": "The CRA only covers products supplied in the course of a commercial activity. Giving something away for free can still count: for example charging for support or for a platform around it, or requiring users' personal data. Truly non-commercial projects, such as most volunteer open-source work, are outside. If you are an open-source software steward (a legal person that systematically supports open-source software meant for commercial use), the CRA gives you separate duties (Art. 24), including reporting (Art. 14).",
    "legal_basis": [
     {
      "src": "CRA",

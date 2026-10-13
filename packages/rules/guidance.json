@@ -238,6 +238,41 @@
     }
    ],
    "note": "Official examples for each option are behind the ⓘ next to it."
+  },
+  "CONNECTION_USE": {
+   "hint": "Any data connection counts: cable, USB, radio, or through another device or the operating system. It does not have to be the internet.",
+   "examples": [
+    {
+     "answer": "YES",
+     "kind": "OFFICIAL_GUIDANCE",
+     "source": "B7",
+     "item": "FAQ 2",
+     "text": "A printer connected to a laptop by USB has a direct physical data connection.",
+     "quote": "when a product with digital elements connects via a USB cable (e.g. a printer connecting to a laptop)"
+    },
+    {
+     "answer": "YES",
+     "kind": "OFFICIAL_GUIDANCE",
+     "source": "B7",
+     "item": "FAQ 2",
+     "text": "A door lock reading an NFC tag, or a Bluetooth headset paired with a phone, has a data connection by radio.",
+     "quote": "Bluetooth (e.g. a Bluetooth headset connecting to a smartphone), near-field communication technology (e.g. a door lock connecting to an NFC tag)"
+    },
+    {
+     "answer": "YES",
+     "kind": "OFFICIAL_GUIDANCE",
+     "source": "B7",
+     "item": "FAQ 1.3",
+     "text": "Software that runs on a computer or phone is at least indirectly connected, through the operating system.",
+     "quote": "an offline text editor or a calculator that are indirectly connected via the operating system"
+    }
+   ],
+   "lookalikes": [
+    {
+     "term": "not internet-connected",
+     "text": "Not the test. A USB-only or Bluetooth-only product still has a data connection."
+    }
+   ]
   }
  }
 }

@@ -184,7 +184,7 @@
   "COMMERCIAL_ACTIVITY": {
    "question": "Is it supplied in the course of a commercial activity, whether paid or free of charge?",
    "kind": "bool",
-   "why_we_ask": "The CRA only covers products supplied as part of a business activity. Giving something away for free can still count: what matters is whether you earn from it in some way, for example by charging for support, for a platform around it, or by requiring users' personal data. Truly non-commercial projects, such as most volunteer open-source work, are outside.",
+   "why_we_ask": "The CRA only covers products supplied in the course of a commercial activity. Giving something away for free can still count: for example charging for support or for a platform around it, or requiring users' personal data. Truly non-commercial projects, such as most volunteer open-source work, are outside. If you are an open-source software steward (a legal person that systematically supports open-source software meant for commercial use), the CRA gives you separate duties (Art. 24), including reporting (Art. 14).",
    "evidence": "MANUFACTURER_ONLY",
    "legal_basis": [
     {
@@ -1009,7 +1009,11 @@
    "options": [
     {
      "value": "L_CATEGORY",
-     "label": "Yes, an L-category vehicle or a part for one"
+     "label": "Yes, an L-category vehicle"
+    },
+    {
+     "value": "PART",
+     "label": "A part or component for one"
     },
     {
      "value": "L1E_DESIGNED_TO_PEDAL",
@@ -1684,7 +1688,7 @@
     },
     {
      "value": "CHIP",
-     "label": "being a chip built into other products (processor, controller, ASIC, FPGA, secure element)",
+     "label": "being a chip (processor, controller, ASIC, FPGA, secure element), or a card or other carrier with a secure element (payment, ID, access or SIM card)",
      "info": [
       {
        "category": "III-I-13",
@@ -2116,10 +2120,10 @@
          "mark": true
         },
         {
-         "text": ", such as through audio or written input, and that, based on those demands, tasks or questions, provide access to other services or "
+         "text": ", such as through audio or written input, and that, based on those demands, tasks or questions, "
         },
         {
-         "text": "control the functions of connected devices in residential settings",
+         "text": "provide access to other services or control the functions of connected devices in residential settings",
          "mark": true
         },
         {
@@ -2308,10 +2312,17 @@
      ],
      "faq_examples": [],
      "group": "Energy"
+    },
+    {
+     "value": "NOT_SURE",
+     "label": "Not sure: ask me about each category instead",
+     "info": [],
+     "faq_examples": [],
+     "group": "Not sure"
     }
    ],
    "stem": "My product is mainly for …",
-   "stem_warning": "Not for features it also has. An app with a login is not mainly for checking who someone is; a camera is not mainly for protecting a home unless that is what it is sold for.",
+   "stem_warning": "Not for features it also has: an app with a login is not mainly for checking who someone is. Judge by what the product does, not by how it is marketed.",
    "stem_note": "The CRA applies in every sector, including ones it does not mention (for example industry, transport, office, education, healthcare, finance). The class depends on what the product is for, not on its sector."
   },
   "STORES_PASSWORDS_CORE": {
@@ -2672,6 +2683,10 @@
     {
      "value": "FPGA",
      "label": "An FPGA"
+    },
+    {
+     "value": "SECURE_ELEMENT_IN_CARRIER",
+     "label": "No, but it is a card or other carrier with a secure element built in (payment, ID, access or SIM card, wristband)"
     },
     {
      "value": "NOT_AN_IC",

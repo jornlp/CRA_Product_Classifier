@@ -14,7 +14,7 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, routeLabel, markdownToHtml, RED_NOTE, ROUTE_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
+import { reportMarkdown, routeLabel, markdownToHtml, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
 import type { PlacingRow } from "./report.js";
 import { aboutHtml } from "./about.js";
 import { count } from "./analytics.js";
@@ -184,7 +184,7 @@ function questionHtml(phase: Phase, fid: string): string {
     } else {
       control = stem + opts.map(box).join("");
     }
-    control += `<p class="muted small">Tick all that apply, or nothing if none does: that gives the default class, which still carries all CRA requirements.</p>`;
+    control += `<p class="muted small">Tick all that apply. Tick nothing only if none does: that gives the default class, which still carries all CRA requirements. If you are unsure, tick Not sure and you will be asked about each category.</p>`;
   } else if (q.kind === "date") {
     const dateVal = typeof prev === "string" && /^\d{4}-\d{2}-\d{2}$/.test(prev) ? prev : "";
     control = `<label class="opt"><span>Date</span> <input type="date" name="d" value="${esc(dateVal)}"></label>`
@@ -292,6 +292,8 @@ function resultHtml(): string {
   let body = warn + (mode === "class" ? ""
     : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeText[s.status])}</p>
       <ul>${s.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
+      ${s.status === "OUT_OF_SCOPE" && state.facts.COMMERCIAL_ACTIVITY?.value === false
+        ? `<p class="note">${esc(STEWARD_NOTE)}</p>` : ""}
       ${mode === "scope" && s.status === "IN_SCOPE" ? `<div class="nav"><button type="button" id="to-class">Continue: which class?</button></div>` : ""}</section>`);
   let ruledOut = "";
   if ((mode === "full" && s.status === "IN_SCOPE") || mode === "class") {

@@ -86,7 +86,8 @@
     "VOICE_ASSISTANT",
     "TOY",
     "WEARABLE",
-    "METERING"
+    "METERING",
+    "NOT_SURE"
    ],
    "evidence": "MANUFACTURER_ONLY"
   },
@@ -123,6 +124,7 @@
     "SOC_UNCLEAR",
     "ASIC",
     "FPGA",
+    "SECURE_ELEMENT_IN_CARRIER",
     "NOT_AN_IC"
    ],
    "evidence": "DOCUMENT"
@@ -413,7 +415,8 @@
      "METERING_COMMUNICATION": false
     }
    },
-   "why": "Answered on the purpose screen: the product is not mainly for this. One question over an OR-joined list, so every option left unticked is an answered 'no' (WP7 4.1)."
+   "why": "Answered on the purpose screen: the product is not mainly for this. One question over an OR-joined list, so every option left unticked is an answered 'no' (WP7 4.1). Ticking 'Not sure' settles nothing: every category is then asked about on its own.",
+   "unsure": "NOT_SURE"
   },
   {
    "screen": "EXCLUSION_SCREEN",
@@ -945,8 +948,12 @@
     },
     "C3": {
      "fact": "RESIDENTIAL_SETTING",
-     "is": true,
-     "quote": "control the functions of connected devices in residential settings"
+     "map": {
+      "TRUE": "TRUE",
+      "FALSE": "OPEN"
+     },
+     "quote": "provide access to other services or control the functions of connected devices in residential settings",
+     "open_ref": "III-I-16: whether 'in residential settings' also qualifies 'provide access to other services' is not settled; outside residential settings the tool does not rule the category out"
     }
    },
    "match": {
@@ -1410,7 +1417,8 @@
      "in": [
       "MICROCONTROLLER",
       "MICROPROCESSOR",
-      "SOC_UNCLEAR"
+      "SOC_UNCLEAR",
+      "SECURE_ELEMENT_IN_CARRIER"
      ],
      "quote": "Secure elements are microcontrollers or microprocessors"
     },
@@ -1445,6 +1453,10 @@
     {
      "quote": "They typically store, process, or manage cryptographic operations or sensitive data",
      "why": "'typically': not a condition"
+    },
+    {
+     "quote": "Smartcards or similar devices are secure elements integrated into a carrier material",
+     "why": "covered by IC_TYPE = SECURE_ELEMENT_IN_CARRIER in C1a"
     }
    ],
    "test_ids": [

@@ -186,6 +186,12 @@ Decided 12 October 2026 by the project lead.
 - **No AI Act or EHDS questions** (decided 13 October 2026): they do not change the CRA class or requirements,
   only the conformity procedure (CRA Art. 12, 32(5a)). The result carries a fixed note that these laws may apply,
   with the CRA articles behind a click. The engine and its route fixtures are unchanged.
+- **Legal review fixes** (13 October 2026), all in the strict direction: smartcards and secure elements in a carrier
+  reach Critical (IV-03); software is treated as at least indirectly connected (FAQ 1.3); a data interface claimed
+  not to be foreseeably used gives "open", not out of scope; the purpose screen has "Not sure"; L-category parts
+  are "open"; III-I-16 outside residential settings is "open" (MP-13 changed); the purpose warning follows the
+  guidance (objective, not marketing); stewards get a pointer to Art. 24; the RED note no longer suggests it ends
+  when the CRA applies.
 - **Not done before publication:** independent technical review of the rules (DR-04, §8.2), and
   comprehension testing with users (WP6, AC-08). The site says "Preview: rules not yet
   independently reviewed".

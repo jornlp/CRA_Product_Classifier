@@ -2066,12 +2066,12 @@
    "section": "P",
    "scenario": "Voice assistant appliance for office meeting rooms that controls room equipment and online calendars",
    "decisive_fact": "C3 residential settings",
-   "expected_behaviour": "Category excluded; fails 'in residential settings' only",
-   "status": "AUTHOR_VERIFIED",
+   "expected_behaviour": "Category not ruled out: whether 'in residential settings' also qualifies 'provide access to other services' is open (changed 13 Oct 2026)",
+   "status": "OPEN_QUESTION",
    "expected_scope": "IN",
    "expected_category": {
     "id": "III-I-16",
-    "matches": false,
+    "matches": "OPEN",
     "condition": "C3 residential settings"
    },
    "expected_class": "NOT_ASSERTED",

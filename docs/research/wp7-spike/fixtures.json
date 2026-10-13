@@ -11956,14 +11956,9 @@
     }
    },
    "expect": {
-    "status": "DEFAULT",
-    "failing": [
-     "III-I-16",
-     [
-      "C3"
-     ]
-    ]
-   }
+    "status": "UNRESOLVED"
+   },
+   "note": "13 Oct 2026: 'in residential settings' may qualify only the control limb; outside residential settings III-I-16 is now LAW_OPEN, not ruled out (legal review item 7)."
   },
   {
    "case": "CAT-18P",
@@ -16465,6 +16460,216 @@
    },
    "expect": {
     "status": "CRITICAL"
+   }
+  },
+  {
+   "case": "CAT-26C",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "SECURE_ELEMENT_IN_CARRIER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": 4,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "UNITS_PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    },
+    "AUTH_OR_ACCESS_CONTROL": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RENDERS_WEB_CONTENT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DETECTS_MALWARE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "VPN_TUNNEL": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONFIGURES_NETWORK_ELEMENTS": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MULTI_SOURCE_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CORRELATES_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_PURPOSE_OUTPUT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MANAGES_BOOT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MANAGES_CERT_LIFECYCLE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "NETWORK_INTERFACE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HARDWARE_ABSTRACTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "NETWORK_DEVICE_ROLE": {
+     "value": [
+      "NONE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "NATURAL_LANGUAGE_ASSISTANT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PUBLIC_INTERNET": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IS_TOY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TOY_INTERACTIVE_OR_TRACKING": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "WORN_ON_BODY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HEALTH_MONITORING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FOR_CHILDREN_UNDER_14": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MEDICAL_STATUS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "VIRTUALISATION_TYPE": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "FILTERS_OR_DETECTS_INTRUSION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MULTIPLE_DISCRETE_COMPONENTS": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PHYSICAL_TAMPER_ENVELOPE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": {
+    "status": "CRITICAL"
+   },
+   "note": "Smartcard: a secure element integrated into a carrier (2025/2392, Critical point 3). Legal review item 1."
+  },
+  {
+   "case": "PUR-NS",
+   "facts": {
+    "PURPOSE_SCREEN": {
+     "value": [
+      "NOT_SURE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "note": "Purpose screen 'Not sure' settles no category (legal review item 4).",
+   "expect": {
+    "status": "UNRESOLVED"
    }
   }
  ]

@@ -45,7 +45,7 @@ LABELS = {
                           "NOT_APPLICABLE": "Not covered (for example equipment used to test vehicles)"},
     "AVIATION_2018_1139": {"CERTIFIED": "Certified under Reg. 2018/1139", "IN_SCOPE_NOT_CERTIFIED": "Within its scope but not certified",
                            "NOT_APPLICABLE": "Not an aviation product"},
-    "L_CATEGORY_168_2013": {"L_CATEGORY": "Yes, an L-category vehicle or a part for one", "L1E_DESIGNED_TO_PEDAL": "An L1e vehicle designed to pedal, such as a speed pedelec",
+    "L_CATEGORY_168_2013": {"L_CATEGORY": "Yes, an L-category vehicle", "PART": "A part or component for one", "L1E_DESIGNED_TO_PEDAL": "An L1e vehicle designed to pedal, such as a speed pedelec",
                             "NOT_APPLICABLE": "No"},
     "SPARE_PART": {"IDENTICAL_SAME_SPEC": "Replaces an identical component, same specifications", "DIFFERENT_SPEC": "A replacement with different or improved specifications",
                    "NOT_A_SPARE_PART": "Not a spare part"},
@@ -55,11 +55,12 @@ LABELS = {
                      "PROXIMITY_ONLY": "Only from a phone or device standing next to it (for example Bluetooth)",
                      "NONE": "Only on the device itself"},
     "IC_TYPE": {"MICROPROCESSOR": "A microprocessor (uses external memory)", "MICROCONTROLLER": "A microcontroller (memory integrated)",
-                "SOC_UNCLEAR": "A system-on-chip; not clearly either", "ASIC": "An ASIC", "FPGA": "An FPGA",
+                "SOC_UNCLEAR": "A system-on-chip; not clearly either", "SECURE_ELEMENT_IN_CARRIER": "No, but it is a card or other carrier with a secure element built in (payment, ID, access or SIM card, wristband)", "ASIC": "An ASIC", "FPGA": "An FPGA",
                 "NOT_AN_IC": "No, it is not itself a chip"},
     "AVA_VAN_LEVEL": {"NONE": "No AVA_VAN level", "1": "AVA_VAN.1", "2": "AVA_VAN.2", "3": "AVA_VAN.3", "4": "AVA_VAN.4", "5": "AVA_VAN.5"},
     "METERED_COMMODITY": {"ELECTRICITY": "Electricity", "GAS": "Gas", "HEAT": "Heat", "WATER": "Water", "OTHER": "Something else", "NONE": "Not part of a metering system"},
     "PURPOSE_SCREEN": {
+        "NOT_SURE": "Not sure: ask me about each category instead",
         "IDENTITY": "checking who someone is, or controlling their access: identity management, access readers, authentication",
         "PASSWORDS": "storing and managing passwords (a password manager)",
         "MALWARE": "finding, removing or quarantining malicious software (antivirus)",
@@ -74,7 +75,7 @@ LABELS = {
         "ROUTING": "routing or switching network traffic, or connecting to the internet (router, modem, switch, access point)",
         "NETWORK_INTERFACE": "connecting a device to a network (network card, adapter, virtual network interface)",
         "NETWORK_MGMT": "managing or configuring other network equipment",
-        "CHIP": "being a chip built into other products (processor, controller, ASIC, FPGA, secure element)",
+        "CHIP": "being a chip (processor, controller, ASIC, FPGA, secure element), or a card or other carrier with a secure element (payment, ID, access or SIM card)",
         "SECURITY_BOX": "protecting keys or sensitive data in tamper-protected hardware (hardware security module, payment terminal, tachograph)",
         "CRYPTO_FOR_OTHERS": "cryptographic processing or key protection for other systems",
         "HOME_SECURITY": "protecting a home or the people in it (locks, alarms, security cameras, baby monitors)",
@@ -185,8 +186,8 @@ def option_info(cls, register=None):
 
 # A multi-select whose options continue a sentence; the stem stays visible above the options.
 STEMS = {"PURPOSE_SCREEN": ("My product is mainly for …",
-                            "Not for features it also has. An app with a login is not mainly for checking who someone is; "
-                            "a camera is not mainly for protecting a home unless that is what it is sold for.")}
+                            "Not for features it also has: an app with a login is not mainly for checking who someone is. "
+                            "Judge by what the product does, not by how it is marketed.")}
 # Shown above the stem: the list is about purpose, not sector, and the sectors named are examples only.
 STEM_NOTES = {"PURPOSE_SCREEN":
     "The CRA applies in every sector, including ones it does not mention (for example industry, transport, "
@@ -197,7 +198,8 @@ GROUPS = {"PURPOSE_SCREEN": [
     ("Network equipment", ["ROUTING", "NETWORK_INTERFACE", "NETWORK_MGMT"]),
     ("Chips and hardware security", ["CHIP", "SECURITY_BOX", "CRYPTO_FOR_OTHERS"]),
     ("Home and personal products", ["HOME_SECURITY", "HOME_CONTROL", "VOICE_ASSISTANT", "TOY", "WEARABLE"]),
-    ("Energy", ["METERING"])]}
+    ("Energy", ["METERING"]),
+    ("Not sure", ["NOT_SURE"])]}
 # Facts where the user's own documents can genuinely disagree: offer "documents say different things".
 CONFLICT_OK = {"PROTECTS_PHYSICAL_SECURITY", "RESIDENTIAL_SETTING", "STORES_PASSWORDS_CORE", "ADVANCED_SECURITY_CORE", "CENTRAL_CONTROL_OF_SECURITY",
                "IS_TOY", "FOR_CHILDREN_UNDER_14", "CRYPTO_CORE", "SECURITY_PURPOSE_OUTPUT"}

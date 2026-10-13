@@ -96,9 +96,9 @@ describe("screens: pest-control camera", () => {
     expect(guide).toContain("Words that mislead");
     expect(guide).not.toContain("None of these");
     expect(app().querySelector(".stem .stem-text")!.textContent).toBe("My product is mainly for …");
-    expect(app().querySelector(".stem .stem-warning")!.textContent).toContain("An app with a login is not mainly for checking who someone is");
+    expect(app().querySelector(".stem .stem-warning")!.textContent).toContain("an app with a login is not mainly for checking who someone is");
     const groupNames = [...app().querySelectorAll(".group-name")].map((g) => g.textContent);
-    expect(groupNames).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy"]);
+    expect(groupNames).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy", "Not sure"]);
     expect(app().querySelectorAll("details .group").length).toBe(0); // no group is hidden
   });
   it("each purpose option has an ⓘ that opens the official text, without ticking the option", async () => {

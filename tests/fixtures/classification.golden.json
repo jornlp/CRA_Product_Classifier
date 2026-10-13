@@ -690,11 +690,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -1634,11 +1629,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -2567,11 +2557,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -7187,11 +7172,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -10838,11 +10818,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -11727,11 +11702,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -12621,11 +12591,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -13485,11 +13450,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -14364,11 +14324,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -15238,11 +15193,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -16106,11 +16056,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -17007,11 +16952,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -17904,11 +17844,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -18843,11 +18778,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -19753,11 +19683,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -20653,11 +20578,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -21589,11 +21509,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -22530,11 +22445,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -23471,11 +23381,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -24412,11 +24317,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -25353,11 +25253,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -26286,11 +26181,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -27230,11 +27120,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -28163,11 +28048,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -29096,11 +28976,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -30029,11 +29904,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -30962,11 +30832,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -31895,11 +31760,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -32839,11 +32699,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -33772,11 +33627,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -34695,11 +34545,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -35629,11 +35474,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -36563,11 +36403,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -37496,11 +37331,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -38429,11 +38259,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -39362,11 +39187,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -40306,11 +40126,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -41239,11 +41054,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -42172,11 +41982,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -43105,11 +42910,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -44043,11 +43843,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -44976,11 +44771,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -45920,11 +45710,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -46858,11 +46643,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -47796,11 +47576,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -48729,11 +48504,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -49632,11 +49402,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -50542,11 +50307,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -51429,11 +51189,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -52314,11 +52069,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -53249,11 +52999,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -55532,20 +55277,14 @@
      "provenance": "USER_CONFIRMED"
     }
    },
-   "note": null,
+   "note": "13 Oct 2026: 'in residential settings' may qualify only the control limb; outside residential settings III-I-16 is now LAW_OPEN, not ruled out (legal review item 7).",
    "options": {
     "assessed_at": "2026-10-12",
     "valid_until": "2027-10-12"
    },
-   "harness_status": "DEFAULT",
+   "harness_status": "UNRESOLVED",
    "expect": {
-    "status": "DEFAULT",
-    "failing": [
-     "III-I-16",
-     [
-      "C3"
-     ]
-    ]
+    "status": "UNRESOLVED"
    },
    "golden": {
     "assessment_id": "MP-13",
@@ -55818,9 +55557,14 @@
      "assumed": true
     },
     "classification": {
-     "status": "DEFAULT",
+     "status": "UNRESOLVED",
      "class_floor": "DEFAULT",
-     "blocking": [],
+     "blocking": [
+      {
+       "category": "III-I-16",
+       "value": "OPEN"
+      }
+     ],
      "matched": [],
      "excluded": [
       {
@@ -56025,17 +55769,6 @@
          "condition": "C3",
          "quote": "beyond the ASIC itself",
          "fact": "SECURES_BEYOND_ITSELF"
-        }
-       ]
-      },
-      {
-       "category": "III-I-16",
-       "rule_id": "CAT-III-I-16",
-       "failing": [
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -56263,7 +55996,14 @@
      }
     ],
     "timeline": [],
-    "reasons": [],
+    "reasons": [
+     {
+      "kind": "LAW_OPEN",
+      "category": "III-I-16",
+      "detail": "III-I-16 is OPEN",
+      "open_ref": "III-I-16: whether 'in residential settings' also qualifies 'provide access to other services' is not settled; outside residential settings the tool does not rule the category out"
+     }
+    ],
     "next_questions": [],
     "reassessment_recommended": {
      "value": false
@@ -56965,11 +56705,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -57883,11 +57618,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -58812,11 +58542,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -59730,11 +59455,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -60664,11 +60384,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -61598,11 +61313,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -62515,11 +62225,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -63454,11 +63159,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -64371,11 +64071,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -65310,11 +65005,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -66240,11 +65930,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -67167,11 +66852,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -68111,11 +67791,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -69044,11 +68719,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -69984,11 +69654,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -70917,11 +70582,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -71850,11 +71510,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -72758,11 +72413,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -73622,11 +73272,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -74542,11 +74187,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -75459,11 +75099,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -76398,11 +76033,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -77332,11 +76962,6 @@
          "condition": "C2",
          "quote": "process demands, tasks or questions based on natural language prompts",
          "fact": "NATURAL_LANGUAGE_ASSISTANT"
-        },
-        {
-         "condition": "C3",
-         "quote": "control the functions of connected devices in residential settings",
-         "fact": "RESIDENTIAL_SETTING"
         }
        ]
       },
@@ -77550,6 +77175,1256 @@
     "timeline": [],
     "reasons": [],
     "next_questions": [],
+    "reassessment_recommended": {
+     "value": false
+    },
+    "disclaimer_version": "v3-13-draft"
+   }
+  },
+  {
+   "case": "CAT-26C",
+   "facts": {
+    "STORES_PASSWORDS_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PROTECTS_PHYSICAL_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RESIDENTIAL_SETTING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROL_PATH": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "CENTRAL_CONTROL_OF_SECURITY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IC_TYPE": {
+     "value": "SECURE_ELEMENT_IN_CARRIER",
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_FUNCTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURES_BEYOND_ITSELF": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TAMPER_PROTECTION": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "AVA_VAN_LEVEL": {
+     "value": 4,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERING_COMMUNICATION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "COLLECTS_METER_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_SUPPORT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FIREWALLING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONTROLS_OTHER_DEVICES": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "METERED_COMMODITY": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "ADVANCED_SECURITY_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HIGH_RISK_AI_BASIS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "EHR_SYSTEM": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "UNITS_PLACED_ON_MARKET": {
+     "value": "2028-01-15",
+     "provenance": "USER_CONFIRMED"
+    },
+    "AUTH_OR_ACCESS_CONTROL": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "RENDERS_WEB_CONTENT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DETECTS_MALWARE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "VPN_TUNNEL": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONFIGURES_NETWORK_ELEMENTS": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MULTI_SOURCE_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CORRELATES_DATA": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "SECURITY_PURPOSE_OUTPUT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MANAGES_BOOT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MANAGES_CERT_LIFECYCLE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "NETWORK_INTERFACE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HARDWARE_ABSTRACTION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "NETWORK_DEVICE_ROLE": {
+     "value": [
+      "NONE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "NATURAL_LANGUAGE_ASSISTANT": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PUBLIC_INTERNET": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "IS_TOY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "TOY_INTERACTIVE_OR_TRACKING": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "WORN_ON_BODY": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "HEALTH_MONITORING": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "FOR_CHILDREN_UNDER_14": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MEDICAL_STATUS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "VIRTUALISATION_TYPE": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "FILTERS_OR_DETECTS_INTRUSION": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CRYPTO_CORE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MULTIPLE_DISCRETE_COMPONENTS": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "PHYSICAL_TAMPER_ENVELOPE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "note": "Smartcard: a secure element integrated into a carrier (2025/2392, Critical point 3). Legal review item 1.",
+   "options": {
+    "assessed_at": "2026-10-12",
+    "valid_until": "2027-10-12"
+   },
+   "harness_status": "CRITICAL",
+   "expect": {
+    "status": "CRITICAL"
+   },
+   "golden": {
+    "assessment_id": "CAT-26C",
+    "assessed_at": "2026-10-12",
+    "rule_set_version": "0.1.0",
+    "law_as_of": "2026-10-12",
+    "valid_until": "2027-10-12",
+    "validity_warnings": [],
+    "sources": [
+     {
+      "code": "B1c",
+      "id": "02024R2847-20241120",
+      "sha256": "b72428a6133baef95ce09a05885532b480029796aecf6e90e9ab0790c72fbd72"
+     },
+     {
+      "code": "B2",
+      "id": "32025R2392",
+      "sha256": "fac0a59b6cad2f1c7878c561e066b0d47514fb7fc2dcb708cdd1285073aecdf3"
+     },
+     {
+      "code": "B11c",
+      "id": "02024R1689-20260727",
+      "sha256": "1ccd38d1c78482cf2053b70110115adcc5080700acc8bd7bead8cb3579143ccf"
+     },
+     {
+      "code": "B18",
+      "id": "32025R0327",
+      "sha256": "2969e359baba367ae97724029791c3ca8c1f5f9c5e0a4867b2f6f48f6f1e5cd0"
+     }
+    ],
+    "facts": [
+     {
+      "fact_id": "STORES_PASSWORDS_CORE",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "PROTECTS_PHYSICAL_SECURITY",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "RESIDENTIAL_SETTING",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "CONTROL_PATH",
+      "value": "NONE",
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "CENTRAL_CONTROL_OF_SECURITY",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "IC_TYPE",
+      "value": "SECURE_ELEMENT_IN_CARRIER",
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "SECURITY_FUNCTION",
+      "value": true,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "SECURES_BEYOND_ITSELF",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "TAMPER_PROTECTION",
+      "value": true,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "AVA_VAN_LEVEL",
+      "value": 4,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "METERING_COMMUNICATION",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "COLLECTS_METER_DATA",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "CRYPTO_SUPPORT",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "FIREWALLING",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "CONTROLS_OTHER_DEVICES",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "METERED_COMMODITY",
+      "value": "NONE",
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "ADVANCED_SECURITY_CORE",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "HIGH_RISK_AI_BASIS",
+      "value": "NONE",
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "EHR_SYSTEM",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "UNITS_PLACED_ON_MARKET",
+      "value": "2028-01-15",
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "AUTH_OR_ACCESS_CONTROL",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "RENDERS_WEB_CONTENT",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "DETECTS_MALWARE",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "VPN_TUNNEL",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "CONFIGURES_NETWORK_ELEMENTS",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "MULTI_SOURCE_DATA",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "CORRELATES_DATA",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "SECURITY_PURPOSE_OUTPUT",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "MANAGES_BOOT",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "MANAGES_CERT_LIFECYCLE",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "NETWORK_INTERFACE",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "HARDWARE_ABSTRACTION",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "NETWORK_DEVICE_ROLE",
+      "value": [
+       "NONE"
+      ],
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "NATURAL_LANGUAGE_ASSISTANT",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "PUBLIC_INTERNET",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "IS_TOY",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "TOY_INTERACTIVE_OR_TRACKING",
+      "value": "NONE",
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "WORN_ON_BODY",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "HEALTH_MONITORING",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "FOR_CHILDREN_UNDER_14",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "MEDICAL_STATUS",
+      "value": "NONE",
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "VIRTUALISATION_TYPE",
+      "value": "NONE",
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "FILTERS_OR_DETECTS_INTRUSION",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "CRYPTO_CORE",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "MULTIPLE_DISCRETE_COMPONENTS",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "PHYSICAL_TAMPER_ENVELOPE",
+      "value": false,
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "scope": {
+     "status": "IN_SCOPE",
+     "reasons": [
+      "assumed in trial"
+     ],
+     "assumed": true
+    },
+    "classification": {
+     "status": "CRITICAL",
+     "class_floor": "CRITICAL",
+     "blocking": [],
+     "matched": [
+      {
+       "category": "IV-03",
+       "class": "CRITICAL",
+       "rule_id": "CAT-IV-03"
+      }
+     ],
+     "excluded": [
+      {
+       "category": "III-I-01",
+       "rule_id": "CAT-III-I-01",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "provide mechanisms for authentication or authorisation",
+         "fact": "AUTH_OR_ACCESS_CONTROL"
+        }
+       ]
+      },
+      {
+       "category": "III-I-02",
+       "rule_id": "CAT-III-I-02",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "enable end users to access, render, and interact with web content and services hosted on servers",
+         "fact": "RENDERS_WEB_CONTENT"
+        }
+       ]
+      },
+      {
+       "category": "III-I-03",
+       "rule_id": "CAT-III-I-03",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "store passwords, locally on a device or on a remote server",
+         "fact": "STORES_PASSWORDS_CORE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-04",
+       "rule_id": "CAT-III-I-04",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "detect or search for malicious software or code on devices, or remove or quarantine such software or code",
+         "fact": "DETECTS_MALWARE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-05",
+       "rule_id": "CAT-III-I-05",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "establish an encrypted logical tunnel that is constructed from the system resources of a physical or virtual network",
+         "fact": "VPN_TUNNEL"
+        }
+       ]
+      },
+      {
+       "category": "III-I-06",
+       "rule_id": "CAT-III-I-06",
+       "failing": [
+        {
+         "condition": "C2",
+         "quote": "controlling their network operations and configuration",
+         "fact": "CONFIGURES_NETWORK_ELEMENTS"
+        }
+       ]
+      },
+      {
+       "category": "III-I-07",
+       "rule_id": "CAT-III-I-07",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "collect data from multiple sources",
+         "fact": "MULTI_SOURCE_DATA"
+        },
+        {
+         "condition": "C2",
+         "quote": "analyse and correlate that data",
+         "fact": "CORRELATES_DATA"
+        },
+        {
+         "condition": "C3",
+         "quote": "present it as actionable information for security-related purposes",
+         "fact": "SECURITY_PURPOSE_OUTPUT"
+        }
+       ]
+      },
+      {
+       "category": "III-I-08",
+       "rule_id": "CAT-III-I-08",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "manage the process of initial system startup after power on/restart by initialising hardware, loading or transferring control to the operating system environment or system resources",
+         "fact": "MANAGES_BOOT"
+        }
+       ]
+      },
+      {
+       "category": "III-I-09",
+       "rule_id": "CAT-III-I-09",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "used as part of a public key infrastructure (PKI) that manage the validation, creation, issuance, distribution, status publication, renewal or revocation of digital certificates",
+         "fact": "MANAGES_CERT_LIFECYCLE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-10",
+       "rule_id": "CAT-III-I-10",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "directly or indirectly connect a device to a network via an API that emulates that of drivers of physical network interfaces",
+         "fact": "NETWORK_INTERFACE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-11",
+       "rule_id": "CAT-III-I-11",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "provide an abstract interface of the underlying hardware and control the execution of software",
+         "fact": "HARDWARE_ABSTRACTION"
+        }
+       ]
+      },
+      {
+       "category": "III-I-12",
+       "rule_id": "CAT-III-I-12",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "Routers are products with digital elements that establish and control the flow of data between different networks",
+         "fact": "NETWORK_DEVICE_ROLE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-13",
+       "rule_id": "CAT-III-I-13",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "integrated circuits that carry out central processing functions relying on external memory and peripherals",
+         "fact": "IC_TYPE"
+        },
+        {
+         "condition": "C3",
+         "quote": "beyond the microprocessor itself",
+         "fact": "SECURES_BEYOND_ITSELF"
+        }
+       ]
+      },
+      {
+       "category": "III-I-14",
+       "rule_id": "CAT-III-I-14",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "integrated circuits that carry out central processing functions integrating memory",
+         "fact": "IC_TYPE"
+        },
+        {
+         "condition": "C3",
+         "quote": "beyond the microcontroller itself",
+         "fact": "SECURES_BEYOND_ITSELF"
+        }
+       ]
+      },
+      {
+       "category": "III-I-15",
+       "rule_id": "CAT-III-I-15",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "fully or partially custom-designed to perform a specific function",
+         "fact": "IC_TYPE"
+        },
+        {
+         "condition": "C3",
+         "quote": "beyond the ASIC itself",
+         "fact": "SECURES_BEYOND_ITSELF"
+        }
+       ]
+      },
+      {
+       "category": "III-I-16",
+       "rule_id": "CAT-III-I-16",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "communicate on the public Internet, whether directly or via other equipment",
+         "fact": "PUBLIC_INTERNET"
+        },
+        {
+         "condition": "C2",
+         "quote": "process demands, tasks or questions based on natural language prompts",
+         "fact": "NATURAL_LANGUAGE_ASSISTANT"
+        }
+       ]
+      },
+      {
+       "category": "III-I-17",
+       "rule_id": "CAT-III-I-17",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "protect the physical security of consumers",
+         "fact": "PROTECTS_PHYSICAL_SECURITY"
+        },
+        {
+         "condition": "C2",
+         "quote": "in a residential setting",
+         "fact": "RESIDENTIAL_SETTING"
+        },
+        {
+         "condition": "C3",
+         "quote": "can be controlled or managed remotely from other systems",
+         "fact": "CONTROL_PATH"
+        },
+        {
+         "condition": "C4",
+         "quote": "centrally control such products",
+         "fact": "CENTRAL_CONTROL_OF_SECURITY"
+        }
+       ]
+      },
+      {
+       "category": "III-I-18",
+       "rule_id": "CAT-III-I-18",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "that are covered by Directive 2009/48/EC",
+         "fact": "IS_TOY"
+        },
+        {
+         "condition": "C2",
+         "quote": "that communicate on the public Internet, whether directly or via any other equipment",
+         "fact": "PUBLIC_INTERNET"
+        },
+        {
+         "condition": "C3",
+         "quote": "Where the toy merely detects the proximity of the user or of other toys by using sensing technologies, the toy is not to be considered to have location tracking features.",
+         "fact": "TOY_INTERACTIVE_OR_TRACKING"
+        }
+       ]
+      },
+      {
+       "category": "III-I-19",
+       "rule_id": "CAT-III-I-19",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "worn on the body directly or via clothing or accessories",
+         "fact": "WORN_ON_BODY"
+        },
+        {
+         "condition": "C2",
+         "quote": "regularly or continuously, sense and further process information, including body metrics, relevant to the user's health",
+         "fact": "HEALTH_MONITORING"
+        },
+        {
+         "condition": "C4",
+         "quote": "of individuals under the age of 14",
+         "fact": "FOR_CHILDREN_UNDER_14"
+        }
+       ]
+      },
+      {
+       "category": "III-II-01",
+       "rule_id": "CAT-III-II-01",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "manage the execution and lifecycle of containers running on a single host operating system",
+         "fact": "VIRTUALISATION_TYPE"
+        }
+       ]
+      },
+      {
+       "category": "III-II-02",
+       "rule_id": "CAT-III-II-02",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "protect a connected network or system from unauthorized access by monitoring and restricting data communication traffic",
+         "fact": "FILTERS_OR_DETECTS_INTRUSION"
+        }
+       ]
+      },
+      {
+       "category": "III-II-03",
+       "rule_id": "CAT-III-II-03",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "microprocessors with security-related functionalities referred to in Table 'Class I', point 13"
+        },
+        {
+         "condition": "C3",
+         "quote": "designed to provide protection of AVA_VAN level 2 or 3",
+         "fact": "AVA_VAN_LEVEL"
+        }
+       ]
+      },
+      {
+       "category": "III-II-04",
+       "rule_id": "CAT-III-II-04",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "microcontrollers with security-related functionalities referred to in Table 'Class I', point 14"
+        },
+        {
+         "condition": "C3",
+         "quote": "designed to provide protection of AVA_VAN level 2 or 3",
+         "fact": "AVA_VAN_LEVEL"
+        }
+       ]
+      },
+      {
+       "category": "IV-01",
+       "rule_id": "CAT-IV-01",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "securely store, process, or manage sensitive data or perform cryptographic operations",
+         "fact": "CRYPTO_CORE"
+        },
+        {
+         "condition": "C2",
+         "quote": "consist of multiple discrete components",
+         "fact": "MULTIPLE_DISCRETE_COMPONENTS"
+        },
+        {
+         "condition": "C3",
+         "quote": "incorporating a hardware physical envelope providing tamper evidence, resistance or response as countermeasures against physical attacks",
+         "fact": "PHYSICAL_TAMPER_ENVELOPE"
+        }
+       ]
+      },
+      {
+       "category": "IV-02",
+       "rule_id": "CAT-IV-02",
+       "failing": [
+        {
+         "condition": "G1",
+         "quote": "control communication between components in or connected to smart metering systems",
+         "fact": "METERING_COMMUNICATION"
+        },
+        {
+         "condition": "G2",
+         "quote": "collect, process and store meter or personal data",
+         "fact": "COLLECTS_METER_DATA"
+        },
+        {
+         "condition": "G3",
+         "quote": "supporting specific cryptographic needs",
+         "fact": "CRYPTO_SUPPORT"
+        },
+        {
+         "condition": "G4",
+         "quote": "incorporate firewalling functionalities",
+         "fact": "FIREWALLING"
+        },
+        {
+         "condition": "G5",
+         "quote": "provide the means to control other devices",
+         "fact": "CONTROLS_OTHER_DEVICES"
+        },
+        {
+         "condition": "G6",
+         "quote": "other sources of energy such as gas or heat",
+         "fact": "METERED_COMMODITY"
+        },
+        {
+         "condition": "L2",
+         "quote": "other devices for advanced security purposes, including for secure cryptoprocessing",
+         "fact": "ADVANCED_SECURITY_CORE"
+        }
+       ]
+      }
+     ],
+     "uncovered_categories": []
+    },
+    "conformity_routes": [
+     {
+      "rule_id": "ROUTE-ART12",
+      "route": "CRA_ART_32",
+      "open_ref": null
+     }
+    ],
+    "timeline": [],
+    "reasons": [],
+    "next_questions": [],
+    "reassessment_recommended": {
+     "value": false
+    },
+    "disclaimer_version": "v3-13-draft"
+   }
+  },
+  {
+   "case": "PUR-NS",
+   "facts": {
+    "PURPOSE_SCREEN": {
+     "value": [
+      "NOT_SURE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "note": "Purpose screen 'Not sure' settles no category (legal review item 4).",
+   "options": {
+    "assessed_at": "2026-10-12",
+    "valid_until": "2027-10-12"
+   },
+   "harness_status": "UNRESOLVED",
+   "expect": {
+    "status": "UNRESOLVED"
+   },
+   "golden": {
+    "assessment_id": "PUR-NS",
+    "assessed_at": "2026-10-12",
+    "rule_set_version": "0.1.0",
+    "law_as_of": "2026-10-12",
+    "valid_until": "2027-10-12",
+    "validity_warnings": [],
+    "sources": [
+     {
+      "code": "B1c",
+      "id": "02024R2847-20241120",
+      "sha256": "b72428a6133baef95ce09a05885532b480029796aecf6e90e9ab0790c72fbd72"
+     },
+     {
+      "code": "B2",
+      "id": "32025R2392",
+      "sha256": "fac0a59b6cad2f1c7878c561e066b0d47514fb7fc2dcb708cdd1285073aecdf3"
+     },
+     {
+      "code": "B11c",
+      "id": "02024R1689-20260727",
+      "sha256": "1ccd38d1c78482cf2053b70110115adcc5080700acc8bd7bead8cb3579143ccf"
+     },
+     {
+      "code": "B18",
+      "id": "32025R0327",
+      "sha256": "2969e359baba367ae97724029791c3ca8c1f5f9c5e0a4867b2f6f48f6f1e5cd0"
+     }
+    ],
+    "facts": [
+     {
+      "fact_id": "PURPOSE_SCREEN",
+      "value": [
+       "NOT_SURE"
+      ],
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "scope": {
+     "status": "IN_SCOPE",
+     "reasons": [
+      "assumed in trial"
+     ],
+     "assumed": true
+    },
+    "classification": {
+     "status": "UNRESOLVED",
+     "class_floor": "DEFAULT",
+     "blocking": [
+      {
+       "category": "III-I-01",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-02",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-03",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-04",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-05",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-06",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-07",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-08",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-09",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-10",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-11",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-12",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-13",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-14",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-15",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-16",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-17",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-18",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-I-19",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-II-01",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-II-02",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-II-03",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "III-II-04",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "IV-01",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "IV-02",
+       "value": "UNKNOWN"
+      },
+      {
+       "category": "IV-03",
+       "value": "UNKNOWN"
+      }
+     ],
+     "matched": [],
+     "excluded": [],
+     "uncovered_categories": []
+    },
+    "conformity_routes": [],
+    "timeline": [],
+    "reasons": [
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-01",
+      "detail": "III-I-01 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-02",
+      "detail": "III-I-02 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-03",
+      "detail": "III-I-03 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-04",
+      "detail": "III-I-04 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-05",
+      "detail": "III-I-05 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-06",
+      "detail": "III-I-06 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-07",
+      "detail": "III-I-07 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-08",
+      "detail": "III-I-08 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-09",
+      "detail": "III-I-09 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-10",
+      "detail": "III-I-10 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-11",
+      "detail": "III-I-11 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-12",
+      "detail": "III-I-12 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-13",
+      "detail": "III-I-13 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-14",
+      "detail": "III-I-14 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-15",
+      "detail": "III-I-15 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-16",
+      "detail": "III-I-16 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-17",
+      "detail": "III-I-17 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-18",
+      "detail": "III-I-18 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-I-19",
+      "detail": "III-I-19 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-II-01",
+      "detail": "III-II-01 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-II-02",
+      "detail": "III-II-02 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-II-03",
+      "detail": "III-II-03 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "III-II-04",
+      "detail": "III-II-04 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "IV-01",
+      "detail": "IV-01 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "IV-02",
+      "detail": "IV-02 is UNKNOWN"
+     },
+     {
+      "kind": "MISSING_FACTS",
+      "category": "IV-03",
+      "detail": "IV-03 is UNKNOWN"
+     }
+    ],
+    "next_questions": [
+     "ADVANCED_SECURITY_CORE",
+     "AUTH_OR_ACCESS_CONTROL",
+     "AVA_VAN_LEVEL",
+     "CENTRAL_CONTROL_OF_SECURITY",
+     "COLLECTS_METER_DATA",
+     "CONFIGURES_NETWORK_ELEMENTS",
+     "CONTROLS_OTHER_DEVICES",
+     "CONTROL_PATH",
+     "CORRELATES_DATA",
+     "CRYPTO_CORE",
+     "CRYPTO_SUPPORT",
+     "DETECTS_MALWARE",
+     "FILTERS_OR_DETECTS_INTRUSION",
+     "FIREWALLING",
+     "FOR_CHILDREN_UNDER_14",
+     "HARDWARE_ABSTRACTION",
+     "HEALTH_MONITORING",
+     "IC_TYPE",
+     "IS_TOY",
+     "MANAGES_BOOT",
+     "MANAGES_CERT_LIFECYCLE",
+     "MEDICAL_STATUS",
+     "METERED_COMMODITY",
+     "METERING_COMMUNICATION",
+     "MULTIPLE_DISCRETE_COMPONENTS",
+     "MULTI_SOURCE_DATA",
+     "NATURAL_LANGUAGE_ASSISTANT",
+     "NETWORK_DEVICE_ROLE",
+     "NETWORK_INTERFACE",
+     "PHYSICAL_TAMPER_ENVELOPE",
+     "PROTECTS_PHYSICAL_SECURITY",
+     "PUBLIC_INTERNET",
+     "RENDERS_WEB_CONTENT",
+     "RESIDENTIAL_SETTING",
+     "SECURES_BEYOND_ITSELF",
+     "SECURITY_FUNCTION",
+     "SECURITY_PURPOSE_OUTPUT",
+     "STORES_PASSWORDS_CORE",
+     "TAMPER_PROTECTION",
+     "TOY_INTERACTIVE_OR_TRACKING",
+     "VIRTUALISATION_TYPE",
+     "VPN_TUNNEL",
+     "WORN_ON_BODY"
+    ],
     "reassessment_recommended": {
      "value": false
     },

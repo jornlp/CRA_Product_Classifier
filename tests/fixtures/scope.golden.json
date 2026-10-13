@@ -215,6 +215,7 @@
    "golden": {
     "status": "OUT_OF_SCOPE",
     "reasons": [
+     "not applicable: CONN_INTERFACE_UNUSED — \"reasonably foreseeable use\"",
      "not applicable: no intended or reasonably foreseeable data connection (Art. 2(1))"
     ],
     "trace": []
@@ -252,7 +253,8 @@
    "golden": {
     "status": "UNRESOLVED",
     "reasons": [
-     "UNKNOWN: applicability CONN_FORESEEABLE"
+     "UNKNOWN: applicability CONN_FORESEEABLE",
+     "OPEN: applicability CONN_INTERFACE_UNUSED"
     ],
     "trace": []
    }
@@ -314,11 +316,128 @@
      "provenance": "USER_CONFIRMED"
     }
    },
-   "expect": "OUT_OF_SCOPE",
+   "expect": "UNRESOLVED",
    "golden": {
-    "status": "OUT_OF_SCOPE",
+    "status": "UNRESOLVED",
     "reasons": [
-     "not applicable: no intended or reasonably foreseeable data connection (Art. 2(1))"
+     "OPEN: applicability CONN_INTERFACE_UNUSED"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-14",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "SOFTWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_USE": {
+     "value": "NO_INTERFACE",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-15",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_FORESEEABLE": {
+     "value": false,
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "OPEN: applicability CONN_INTERFACE_UNUSED"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "EXC-08b",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "DATA_INTERFACE_PRESENT": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_INTENDED": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [
+      "L_CATEGORY"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "L_CATEGORY_168_2013": {
+     "value": "PART",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "UNRESOLVED",
+   "golden": {
+    "status": "UNRESOLVED",
+    "reasons": [
+     "OPEN: exclusion L_CATEGORY (EXC-08b: whether a part or component falls under Reg. 168/2013 and so under the exclusion by Del. Reg. (EU) 2025/1535 depends on whether it is designed exclusively for such vehicles; the tool does not settle that)"
     ],
     "trace": []
    }
@@ -351,6 +470,7 @@
    "golden": {
     "status": "OUT_OF_SCOPE",
     "reasons": [
+     "not applicable: CONN_INTERFACE_UNUSED — \"reasonably foreseeable use\"",
      "not applicable: no intended or reasonably foreseeable data connection (Art. 2(1))"
     ],
     "trace": []
