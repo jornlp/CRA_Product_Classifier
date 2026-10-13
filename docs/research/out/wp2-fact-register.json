@@ -2410,6 +2410,32 @@
    "categories_discriminated": [],
    "evidence_expectation": "MANUFACTURER_ONLY",
    "provenance_required": "DOCUMENT_SUPPORTED_OR_USER_CONFIRMED"
+  },
+  {
+   "fact_id": "CONNECTION_USE",
+   "question": "Does the product exchange data with other devices or networks?",
+   "kind": "enum:INTENDED/FORESEEABLE/NOT_FORESEEABLE/NO_INTERFACE/UNKNOWN",
+   "why_we_ask": "Art. 2(1) connection test as one question: intended purpose OR reasonably foreseeable use includes a direct or indirect logical or physical data connection. Replaces asking DATA_INTERFACE_PRESENT, CONNECTION_INTENDED and CONNECTION_FORESEEABLE one by one; those are asked only after 'Not sure'.",
+   "categories_discriminated": [],
+   "evidence_expectation": "MANUFACTURER_ONLY",
+   "provenance_required": "USER_CONFIRMED",
+   "user_why": "The CRA covers products whose intended or reasonably foreseeable use includes exchanging data with a device or network. It does not have to be the internet: a cable, USB, Bluetooth, or a link through another device all count.",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "1",
+     "quote": "the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection to a device or network",
+     "ref": "CRA Art. 2(1)"
+    },
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "10",
+     "quote": "a connection to a device or network, which does not take place directly but rather as part of a larger system",
+     "ref": "CRA Art. 3(10)"
+    }
+   ]
   }
  ],
  "evidence_note": "Tranche 1 of the collection found that decidability splits by product class rather than by fact: hardware datasheets state decisive conditions explicitly and are backed by certification registries, while software product pages state marketing claims that vendors define differently. The same fact can therefore be DOCUMENT_LIKELY for a hardware product and MANUFACTURER_ONLY for a software one. See wp2-collection-tranche-1.md.",

@@ -77,8 +77,8 @@ describe("screens: pest-control camera", () => {
   it("answers scope, with the exclusion screen as a list", async () => {
     await answer("On sale or supplied in the EU");
     await answer("Yes"); // commercial activity
-    await answer("Yes"); // data interface
-    await answer("Yes"); // connection intended
+    expect(heading()).toBe("Does the product exchange data with other devices or networks?");
+    await answer("Yes: that is part of how it is meant to be used"); // one question for the Art. 2(1) connection test
     expect(heading()).toContain("Tick all that apply");
     await answer([]);    // no exclusion
   });

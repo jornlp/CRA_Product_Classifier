@@ -61,6 +61,14 @@ describe("scope: asking only what matters gives the same result", () => {
       COMMERCIAL_ACTIVITY: { value: true }, DATA_INTERFACE_PRESENT: { value: true }, CONNECTION_INTENDED: { value: true } });
     expect(q[0]).toBe("EXCLUSION_SCREEN");
   });
+  it("the Art. 2(1) connection test is one question; 'not sure' falls back to the separate ones", () => {
+    const base = { PRODUCT_KIND: { value: "HARDWARE" }, MARKET_STATUS: { value: "MADE_AVAILABLE" }, COMMERCIAL_ACTIVITY: { value: true } };
+    expect(nextScopeQuestions(sc, base)[0]).toBe("CONNECTION_USE");
+    expect(nextScopeQuestions(sc, { ...base, CONNECTION_USE: { value: "FORESEEABLE" } })[0]).toBe("EXCLUSION_SCREEN");
+    expect(nextScopeQuestions(sc, { ...base, CONNECTION_USE: { value: "NO_INTERFACE" } })).toEqual([]);
+    const unsure = nextScopeQuestions(sc, { ...base, CONNECTION_USE: { value: "UNKNOWN" } });
+    expect(["DATA_INTERFACE_PRESENT", "CONNECTION_INTENDED"]).toContain(unsure[0]);
+  });
   it("ticking nothing on the screen asks no follow-up", () => {
     const q = nextScopeQuestions(sc, { PRODUCT_KIND: { value: "HARDWARE" }, MARKET_STATUS: { value: "MADE_AVAILABLE" },
       COMMERCIAL_ACTIVITY: { value: true }, DATA_INTERFACE_PRESENT: { value: true }, CONNECTION_INTENDED: { value: true },

@@ -258,6 +258,138 @@
    }
   },
   {
+   "case": "SCP-10",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_USE": {
+     "value": "FORESEEABLE",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-11",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_USE": {
+     "value": "NOT_FORESEEABLE",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "not applicable: no intended or reasonably foreseeable data connection (Art. 2(1))"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-12",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_USE": {
+     "value": "NO_INTERFACE",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "OUT_OF_SCOPE",
+   "golden": {
+    "status": "OUT_OF_SCOPE",
+    "reasons": [
+     "not applicable: no intended or reasonably foreseeable data connection (Art. 2(1))"
+    ],
+    "trace": []
+   }
+  },
+  {
+   "case": "SCP-13",
+   "facts": {
+    "PRODUCT_KIND": {
+     "value": "HARDWARE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "MARKET_STATUS": {
+     "value": "MADE_AVAILABLE",
+     "provenance": "USER_CONFIRMED"
+    },
+    "COMMERCIAL_ACTIVITY": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "EXCLUSION_SCREEN": {
+     "value": [],
+     "provenance": "USER_CONFIRMED"
+    },
+    "CONNECTION_USE": {
+     "value": "INTENDED",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "expect": "IN_SCOPE",
+   "golden": {
+    "status": "IN_SCOPE",
+    "reasons": [
+     "Art. 2(1) met; no exclusion in Art. 2(2)-(7) applies"
+    ],
+    "trace": []
+   }
+  },
+  {
    "case": "SCP-08",
    "facts": {
     "PRODUCT_KIND": {

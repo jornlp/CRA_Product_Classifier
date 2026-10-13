@@ -265,6 +265,96 @@
     }
    ]
   },
+  "CONNECTION_USE": {
+   "question": "Does the product exchange data with other devices or networks?",
+   "kind": "enum",
+   "why_we_ask": "The CRA covers products whose intended or reasonably foreseeable use includes exchanging data with a device or network. It does not have to be the internet: a cable, USB, Bluetooth, or a link through another device all count.",
+   "evidence": "MANUFACTURER_ONLY",
+   "legal_basis": [
+    {
+     "src": "CRA",
+     "art": "2",
+     "para": "1",
+     "quote": "the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection to a device or network",
+     "ref": "CRA Art. 2(1)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 2: Scope",
+      "lines": [
+       {
+        "label": "1.",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "This Regulation applies to products with digital elements made available on the market, "
+         },
+         {
+          "text": "the intended purpose or reasonably foreseeable use of which includes a direct or indirect logical or physical data connection to a device or network",
+          "mark": true
+         },
+         {
+          "text": "."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "CRA",
+     "art": "3",
+     "def": "10",
+     "quote": "a connection to a device or network, which does not take place directly but rather as part of a larger system",
+     "ref": "CRA Art. 3(10)",
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Article 3: Definitions",
+      "lines": [
+       {
+        "label": "(10)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "‘indirect connection’ means "
+         },
+         {
+          "text": "a connection to a device or network, which does not take place directly but rather as part of a larger system",
+          "mark": true
+         },
+         {
+          "text": " that is directly connectable to such device or network;"
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "options": [
+    {
+     "value": "INTENDED",
+     "label": "Yes: that is part of how it is meant to be used (directly or through another device; a cable, USB or Bluetooth counts)"
+    },
+    {
+     "value": "FORESEEABLE",
+     "label": "Not meant to, but it has a way to (a port, radio or interface) and users can reasonably be expected to use it"
+    },
+    {
+     "value": "NOT_FORESEEABLE",
+     "label": "It has a way to, but no one can reasonably be expected to use it to exchange data"
+    },
+    {
+     "value": "NO_INTERFACE",
+     "label": "No: it has no way at all to exchange data (no network, radio, cable, USB, card slot or software interface)"
+    },
+    {
+     "value": "UNKNOWN",
+     "label": "Not sure"
+    }
+   ]
+  },
   "DATA_INTERFACE_PRESENT": {
    "question": "Does the product have any way to exchange data at all: network, radio, cable, USB, memory card, or a software interface?",
    "kind": "bool",

@@ -34,6 +34,15 @@
    ],
    "requires": "USER_CONFIRMED"
   },
+  "CONNECTION_USE": {
+   "values": [
+    "INTENDED",
+    "FORESEEABLE",
+    "NOT_FORESEEABLE",
+    "NO_INTERFACE"
+   ],
+   "requires": "USER_CONFIRMED"
+  },
   "DATA_INTERFACE_PRESENT": {
    "values": [
     true,
@@ -155,6 +164,49 @@
     }
    },
    "why": "The screen is one question over an OR-joined list: every option the user leaves unticked is an answered 'no' (WP7 4.1). Only ticked options open a follow-up question."
+  },
+  {
+   "if": {
+    "CONNECTION_USE": "INTENDED"
+   },
+   "then": {
+    "DATA_INTERFACE_PRESENT": true,
+    "CONNECTION_INTENDED": true
+   },
+   "why": "Art. 2(1) has one connection test, 'intended purpose or reasonably foreseeable use'; one question with mutually exclusive answers settles its facts. 'Not sure' settles nothing, so the separate questions follow."
+  },
+  {
+   "if": {
+    "CONNECTION_USE": "FORESEEABLE"
+   },
+   "then": {
+    "DATA_INTERFACE_PRESENT": true,
+    "CONNECTION_INTENDED": false,
+    "CONNECTION_FORESEEABLE": true
+   },
+   "why": "Art. 2(1) has one connection test, 'intended purpose or reasonably foreseeable use'; one question with mutually exclusive answers settles its facts. 'Not sure' settles nothing, so the separate questions follow."
+  },
+  {
+   "if": {
+    "CONNECTION_USE": "NOT_FORESEEABLE"
+   },
+   "then": {
+    "DATA_INTERFACE_PRESENT": true,
+    "CONNECTION_INTENDED": false,
+    "CONNECTION_FORESEEABLE": false
+   },
+   "why": "Art. 2(1) has one connection test, 'intended purpose or reasonably foreseeable use'; one question with mutually exclusive answers settles its facts. 'Not sure' settles nothing, so the separate questions follow."
+  },
+  {
+   "if": {
+    "CONNECTION_USE": "NO_INTERFACE"
+   },
+   "then": {
+    "DATA_INTERFACE_PRESENT": false,
+    "CONNECTION_INTENDED": false,
+    "CONNECTION_FORESEEABLE": false
+   },
+   "why": "Art. 2(1) has one connection test, 'intended purpose or reasonably foreseeable use'; one question with mutually exclusive answers settles its facts. 'Not sure' settles nothing, so the separate questions follow."
   },
   {
    "if": {
@@ -311,6 +363,7 @@
   "PRODUCT_KIND",
   "MARKET_STATUS",
   "COMMERCIAL_ACTIVITY",
+  "CONNECTION_USE",
   "DATA_INTERFACE_PRESENT",
   "CONNECTION_INTENDED",
   "CONNECTION_FORESEEABLE",
