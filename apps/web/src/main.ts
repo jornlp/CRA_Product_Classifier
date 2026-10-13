@@ -256,7 +256,11 @@ function assemble() {
     assessmentId: `cra-${today}`, assessedAt: today, validUntil: vu, validityWarnings: warnings,
     scope: scopeOut, timeline: showTimeline ? t.timeline.filter((i) => !BY_PLACING.has(i.obligation)) : [],
   });
-  const periods = showTimeline ? byPeriod : routesVary ? byPeriod.map((r) => ({ ...r, timeline: [] })) : [];
+  // Class only: no scope or timeline questions were asked, but the CRA requirements per placing period
+  // need no answers, so they are shown too (stated under "if the CRA applies").
+  const periods = showTimeline ? byPeriod
+    : mode === "class" ? byPeriod.map((r) => ({ ...r, timeline: r.timeline.filter((i) => i.obligation === "CRA_ESSENTIAL_REQUIREMENTS") }))
+    : [];
   // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
   if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
   return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, check: mode, for_your_records: state.record, timeline_facts: state.tfacts,
@@ -310,7 +314,7 @@ function resultHtml(): string {
     const pc = placingColumns(periods);
     if (periods.length && (pc.obligations.length || pc.routes)) {
       body += `
-      <section class="box"><h2>Depends on when the units are placed on the market</h2>
+      <section class="box"><h2>${mode === "class" ? "If the CRA applies: when" : "Depends on when the units are placed on the market"}</h2>
         <p class="muted small">Each unit counts on its own: what matters is when that unit is placed on the market, not when the model was launched.</p>
         <table><thead><tr><th>Units placed</th>${pc.obligations.map((o) => `<th>${esc(PLACING_COLUMN[o])}</th>`).join("")}${pc.routes ? "<th>Conformity route</th>" : ""}</tr></thead><tbody>
         ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}${

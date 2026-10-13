@@ -47,6 +47,9 @@ it("class only, smart lock: skips scope, ends with a conditional class and an of
   expect(text).toContain("Not checked.");
   expect(text).toContain("If the CRA applies: not determined. At least: Important, Class I");  // scope unchecked: never definite
   expect(text).not.toContain("cra art 14 reporting");
+  // No dates asked, but the CRA requirements per placing period are shown.
+  const rows = [...app().querySelectorAll("table")].find((t) => t.textContent!.includes("Units placed"))!.querySelectorAll("tbody tr");
+  expect([...rows].map((r) => r.children[0].textContent)).toEqual(["Before 11 December 2027", "On or after 11 December 2027"]);
   app().querySelector<HTMLButtonElement>("#to-full")!.click(); await tick();
   expect(heading()).toContain("hardware, software, or an online service");
 });
