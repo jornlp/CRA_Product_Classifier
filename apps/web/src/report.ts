@@ -54,6 +54,11 @@ export function placingColumns(rows: PlacingRow[]): { obligations: string[]; rou
 }
 export const routesText = (rs: { route: string }[]) => rs.filter((r) => r.route !== "CRA_ART_32").map((r) => routeLabel(r.route)).join("; ") || routeLabel("CRA_ART_32");
 
+/** Pointer only: the tool does not ask about or assess the RED delegated act. */
+export const RED_NOTE = "Products with a radio (Wi-Fi, Bluetooth, a mobile network or another wireless link) may already have to meet " +
+  "cybersecurity requirements under the radio equipment rules (Delegated Regulation (EU) 2022/30) for units placed on the market " +
+  "since 1 August 2025, before the CRA's requirements apply. This tool does not check those rules.";
+
 export const routeLabel = (r: string) => ROUTE_LABEL[r] ?? (r.startsWith("DEPENDS_ON_CLASS") ? "Depends on the class, which is not yet determined" : r);
 const cell = (s: unknown) => String(s ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
 
@@ -120,6 +125,7 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
     }
     L.push("");
   }
+  if (out.timeline?.length || rows.length) L.push(`_${RED_NOTE}_`, "");
   if (out.timeline?.length) {
     L.push("## When obligations apply", "", "| Obligation | Status | From | Basis |", "|---|---|---|---|");
     for (const i of out.timeline) {

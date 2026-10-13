@@ -14,7 +14,7 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, routeLabel, markdownToHtml, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
+import { reportMarkdown, routeLabel, markdownToHtml, RED_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
 import type { PlacingRow } from "./report.js";
 import { aboutHtml } from "./about.js";
 import { count } from "./analytics.js";
@@ -325,7 +325,8 @@ function resultHtml(): string {
         <table><thead><tr><th>Units placed</th>${pc.obligations.map((o) => `<th>${esc(PLACING_COLUMN[o])}</th>`).join("")}${pc.routes ? "<th>Conformity route</th>" : ""}</tr></thead><tbody>
         ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}${
           pc.routes ? `<td>${esc(routesText(r.conformity_routes))}</td>` : ""}</tr>`).join("")}
-        </tbody></table></section>`;
+        </tbody></table>
+        <p class="note">${esc(RED_NOTE)}</p></section>`;
     }
     if (out.timeline.length) {
       const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };

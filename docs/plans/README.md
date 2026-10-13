@@ -179,6 +179,10 @@ Decided 12 October 2026 by the project lead.
   change was made or when a certificate expires. The result shows what applies per placing period instead,
   cut at every date the rules compare with (`packages/engine/src/periods.ts`, soundness test in
   `periods.test.ts`); a certificate is stated as valid until its own expiry or 11 June 2028, whichever is first.
+- **RED delegated act: pointer only** (decided 13 October 2026): no radio questions are asked. Every result
+  with dates carries a fixed note that radio products may already be covered by Del. Reg. (EU) 2022/30 for
+  units placed since 1 August 2025, and that the tool does not check it. The engine keeps its RED logic and
+  fixtures, so asking can be switched back on in `apps/web/src/flow.ts`.
 - **Not done before publication:** independent technical review of the rules (DR-04, §8.2), and
   comprehension testing with users (WP6, AC-08). The site says "Preview: rules not yet
   independently reviewed".

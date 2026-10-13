@@ -136,7 +136,6 @@ describe("screens: pest-control camera", () => {
   it("finishes the remaining questions", async () => {
     await answer("No high-risk AI system");
     await answer("No"); // EHR
-    await answer("No"); // RED DA
     await answer("No"); // certificate
   });
   it("result: in scope, smart-home security ruled out with the official wording, class Default", () => {
@@ -173,6 +172,7 @@ describe("screens: pest-control camera", () => {
     expect([...rows].map((r) => r.children[0].textContent)).toEqual(["Before 11 December 2027", "On or after 11 December 2027"]);
     expect(rows[0].textContent).toContain("unless they are substantially modified");
     expect(rows[1].textContent).toContain("Apply from 11 December 2027");
+    expect(app().textContent).toContain("Delegated Regulation (EU) 2022/30");
   });
   it("Home returns to the start screen and keeps the answers; choosing the check again resumes at the result", async () => {
     document.getElementById("home-btn")!.click(); await tick();

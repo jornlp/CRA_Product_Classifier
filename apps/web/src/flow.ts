@@ -34,7 +34,10 @@ export function nextStep(r: Rules, st: FlowState): { phase: Phase; fid?: string 
   return { phase: "result" };
 }
 
-const DATE_QUESTIONS = new Set(["UNITS_PLACED_ON_MARKET", "CHANGE_AT", "CERTIFICATE_EXPIRY"]);
+// Not asked: dates (the result shows each placing period instead) and the radio equipment questions (the
+// RED delegated act is only pointed to, in a fixed note on the result; v4 keeps RED conformity out of scope).
+const DATE_QUESTIONS = new Set(["UNITS_PLACED_ON_MARKET", "CHANGE_AT", "CERTIFICATE_EXPIRY",
+  "RADIO_PRESENT", "RADIO_INTERNET", "RADIO_BODY_CHILD_TOY", "RADIO_PERSONAL_DATA", "RADIO_EQUIPMENT_RED_DA"]);
 
 /** Record an answer. The units' placing date feeds both the timeline and the conformity routes. */
 export function record(st: FlowState, phase: Phase, fid: string, value: unknown) {
