@@ -57,7 +57,7 @@ export const routesText = (rs: { route: string }[]) => rs.filter((r) => r.route 
 /** Pointer only: the tool does not ask about or assess the RED delegated act. */
 export const RED_NOTE =
   "Radio equipment may already have to meet cybersecurity requirements under the radio equipment rules (Delegated Regulation " +
-  "(EU) 2022/30) for units placed on the market since 1 August 2025, before the CRA's requirements apply. Radio equipment is " +
+  "(EU) 2022/30) for units placed on the market **since 1 August 2025, before the CRA's requirements apply**. Radio equipment is " +
   "any product that intentionally sends or receives radio waves to communicate or to determine position, speed or other " +
   "characteristics, including one that needs an antenna added (Directive 2014/53/EU, Art. 2(1)): for example Wi-Fi, Bluetooth, " +
   "mobile, NFC or RFID, satellite positioning, or radar. The rules cover radio equipment that can communicate over the internet, " +
@@ -66,8 +66,8 @@ export const RED_NOTE =
 
 /** Pointer only: the AI Act and the EHDS do not change the CRA class or requirements, only the conformity procedure. */
 export const ROUTE_NOTE = "Other EU laws may also apply to the product, such as the AI Act (for a high-risk AI system) or the " +
-  "European Health Data Space Regulation (for an electronic health record system). They do not change the CRA class or the CRA " +
-  "requirements; they can change which conformity procedure checks those requirements (CRA Art. 12 and 32(5a)). " +
+  "European Health Data Space Regulation (for an electronic health record system). They **do not change the CRA class or the CRA " +
+  "requirements**; they can change **which conformity procedure** checks those requirements (CRA Art. 12 and 32(5a)). " +
   "This tool does not check those laws.";
 
 export const routeLabel = (r: string) => ROUTE_LABEL[r] ?? (r.startsWith("DEPENDS_ON_CLASS") ? "Depends on the class, which is not yet determined" : r);

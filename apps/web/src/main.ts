@@ -61,6 +61,8 @@ function lawHtml(l: Legal): string {
 type Question = { question: string; kind: string; why_we_ask: string; legal_basis?: Legal[]; hint?: string; options?: Option[]; evidence?: string;
   stem?: string; stem_warning?: string; stem_note?: string };
 const QUESTIONS = (qs as { questions: Record<string, Question> }).questions;
+/** Escape, then render the notes' **key phrase** marks as bold. */
+const strong = (t: string) => esc(t).replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
 /** The law behind each timeline obligation, verbatim with the key words marked. */
 const OBLIGATION_LAW = (qs as unknown as { obligations: Record<string, Legal[]> }).obligations;
 const OBLIGATION_FAQ = (qs as unknown as { obligation_faq: Record<string, { entry: string; quote: string; source: string }[]> }).obligation_faq;
@@ -345,8 +347,8 @@ function resultHtml(): string {
     if (periods.length || out.timeline.length || mode === "class") body += `
       <details class="box other-laws"><summary><h2>Other EU laws that may apply</h2>
         <span class="muted small">radio equipment rules (since 1 August 2025), AI Act, European Health Data Space</span></summary>
-        <h3>Radio equipment rules</h3><p>${esc(RED_NOTE)}</p>
-        <h3>AI Act and European Health Data Space</h3><p>${esc(ROUTE_NOTE)}</p>
+        <h3>Radio equipment rules</h3><p>${strong(RED_NOTE)}</p>
+        <h3>AI Act and European Health Data Space</h3><p>${strong(ROUTE_NOTE)}</p>
         ${lawDetails("CONFORMITY_ROUTES", "The law: CRA Art. 12(2), 12(3) and 32(5a)")}</details>`;
     body += ruledOut;
   }

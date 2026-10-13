@@ -173,6 +173,7 @@ describe("screens: pest-control camera", () => {
     expect(app().textContent).toContain("Delegated Regulation (EU) 2022/30");
     // AI Act and EHDS: a pointer only, not part of the CRA class.
     expect(app().textContent).toContain("They do not change the CRA class or the CRA requirements");
+    expect([...app().querySelectorAll(".other-laws strong")].map((b) => b.textContent)).toContain("which conformity procedure");
     expect([...app().querySelectorAll("table")].some((t) => t.textContent!.includes("If the product is"))).toBe(false);
     // The law behind each obligation is one click away, verbatim with the key words marked.
     const marks = [...app().querySelectorAll("details.legal mark")].map((m) => m.textContent);
