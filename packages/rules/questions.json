@@ -2441,10 +2441,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },
@@ -2496,10 +2492,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },
@@ -2551,10 +2543,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },
@@ -2661,10 +2649,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },
@@ -3436,10 +3420,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },
@@ -4042,10 +4022,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },
@@ -4524,10 +4500,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },
@@ -4799,10 +4771,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },
@@ -5026,10 +4994,6 @@
     {
      "value": "UNKNOWN",
      "label": "Not sure"
-    },
-    {
-     "value": "CONFLICTING",
-     "label": "Our documents say different things"
     }
    ]
   },

@@ -216,9 +216,9 @@ GROUPS = {"PURPOSE_SCREEN": [
     ("Home and personal products", ["HOME_SECURITY", "HOME_CONTROL", "VOICE_ASSISTANT", "TOY", "WEARABLE"]),
     ("Energy", ["METERING"]),
     ("None of these, or not sure", ["NONE", "NOT_SURE"])]}
-# Facts where the user's own documents can genuinely disagree: offer "documents say different things".
-CONFLICT_OK = {"PROTECTS_PHYSICAL_SECURITY", "RESIDENTIAL_SETTING", "STORES_PASSWORDS_CORE", "ADVANCED_SECURITY_CORE", "CENTRAL_CONTROL_OF_SECURITY",
-               "IS_TOY", "FOR_CHILDREN_UNDER_14", "CRYPTO_CORE", "SECURITY_PURPOSE_OUTPUT"}
+# No "our documents say different things" answer (decided 14 October 2026): the user chooses, or answers
+# "Not sure". The engine keeps handling CONFLICTING facts (document-based input, fixtures).
+CONFLICT_OK: set[str] = set()
 # Value conventions per engine: classification and scope use booleans; the timeline uses YES/NO codes.
 CODE_FACTS = {"CHANGE_AFFECTS_ANNEX_I", "RADIO_EQUIPMENT_RED_DA", "RADIO_PRESENT", "RADIO_INTERNET", "RADIO_BODY_CHILD_TOY", "RADIO_PERSONAL_DATA"}
 # The law behind each timeline obligation, shown behind a click on the result (verbatim, key words marked).
