@@ -11,6 +11,10 @@ interface Ctx {
   disclaimer: string;
   /** Plain-language scope reasons (explain.ts); the engine's technical reasons stay in the JSON. */
   scopeReasons?: string[];
+  /** Why the class is not determined, in plain words (explain.ts). */
+  classOpen?: string[];
+  /** Class-only check: the class if the CRA applies (the JSON keeps UNRESOLVED without a settled scope). */
+  classIfApplies?: string;
 }
 
 export const CLASS: Record<string, string> = {
@@ -22,9 +26,11 @@ const SCOPE: Record<string, string> = {
   UNRESOLVED: "Based on your answers so far, whether the CRA applies is not determined.",
 };
 export const scopeVerdict = (status: string) => SCOPE[status];
+/** "Default, or a higher class" / "Important, Class I, or higher": what is certain while the class is open. */
+export const floorText = (floor: string) => floor === "DEFAULT" ? "Default, or a higher class" : `${CLASS[floor]}, or higher`;
 /** The class verdict, always tied to the answers, and conditional in a class-only check. */
 export function classVerdict(c: { status: string; class_floor: string }, check?: string): string {
-  const stated = c.status === "UNRESOLVED" ? `not determined; at least ${CLASS[c.class_floor]}` : CLASS[c.status];
+  const stated = c.status === "UNRESOLVED" ? `not determined yet: ${floorText(c.class_floor)}` : CLASS[c.status];
   return check === "class" ? `If the CRA applies, based on your answers: ${stated}` : `Based on your answers: ${stated}`;
 }
 const TL: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
@@ -147,7 +153,8 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
   const c = out.classification;
   if (out.check === "class" || (out.check !== "scope" && out.scope.status === "IN_SCOPE")) {
     L.push("## Class", "");
-    L.push(`**${classVerdict(c, out.check)}**`, "");
+    L.push(`**${classVerdict(out.check === "class" && ctx.classIfApplies ? { ...c, status: ctx.classIfApplies } : c, out.check)}**`, "");
+    if (ctx.classOpen?.length) L.push("Why it is not determined:", "", ...ctx.classOpen.map((t) => `- ${t}`), "");
     if (c.matched.length) L.push("### Matches", "", ...c.matched.map((m: any) => `- ${cat(m.category)}: ${CLASS[m.class]}`), "");
     const open = out.reasons.filter((r: any) => r.category && r.kind in REASON);
     if (open.length) {

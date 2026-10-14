@@ -47,7 +47,9 @@ it("class only, smart lock: skips scope, ends with a conditional class and an of
   await pick("From another system");    // control path
   const text = app().textContent!;
   expect(text).toContain("Scope not checked");
-  expect(text).toContain("If the CRA applies, based on your answers: not determined; at least Important, Class I");  // scope unchecked: never definite
+  // Stated "if the CRA applies" (scope unchecked); the JSON export keeps the class UNRESOLVED (AC-02).
+  expect(app().querySelector(".verdict-kicker")!.textContent).toContain("If the CRA applies");
+  expect(app().querySelector(".verdict")!.textContent).toBe("Important, Class I");
   // No dates asked, but what needs no answers is shown "if the CRA applies": requirements per placing period, and reporting.
   const { head, rows } = obligations();
   expect(head).toEqual(["Obligation", "Units placed before 11 December 2027", "Units placed on or after 11 December 2027"]);

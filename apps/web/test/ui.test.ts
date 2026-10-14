@@ -92,7 +92,7 @@ describe("screens: pest-control camera", () => {
     await answer([]);    // no exclusion
   });
   it("the scope result shows when the requirements apply, and offers to continue to the class", async () => {
-    expect(app().textContent).toContain("Based on your answers, the CRA applies to this product.");
+    expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("The CRA applies");
     const { head, rows } = obligations();
     expect(head).toEqual(["Obligation", "Units placed before 11 December 2027", "Units placed on or after 11 December 2027"]);
     expect(rows[1].textContent).toContain("Applies since 11 September 2026");
@@ -147,12 +147,12 @@ describe("screens: pest-control camera", () => {
   });
   it("result: in scope, smart-home security ruled out with the official wording, class Default", () => {
     const text = app().textContent!;
-    expect(text).toContain("Based on your answers, the CRA applies to this product.");
+    expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("The CRA applies");
     expect(text).toContain("Ruled out, and why");
     expect(text).toContain("Smart home products with security functionalities");
     expect(text).toContain("protect the physical security of consumers");
-    expect(app().querySelector(".verdict:nth-of-type(1)")).not.toBeNull();
-    expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("Based on your answers: Default");
+    expect(app().querySelector(".verdict-card .verdict")).not.toBeNull();
+    expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("Default");
     expect(text).toContain("you indicated the product is not mainly for this");
     expect(text).toContain("does not provide legal advice");
   });
@@ -212,6 +212,6 @@ describe("screens: pest-control camera", () => {
     expect(heading()).toBe("What do you want to know?");
     expect(app().querySelector("#start-again")).not.toBeNull();
     app().querySelector<HTMLButtonElement>('button.choice[data-mode="scope"]')!.click(); await tick();
-    expect(app().textContent).toContain("Based on your answers, the CRA applies to this product.");
+    expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("The CRA applies");
   });
 });

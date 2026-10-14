@@ -154,3 +154,18 @@ body:has(#consent-bar) { padding-bottom: 7rem; }
 }
 table.obligations td:first-child details { font-weight: normal; }
 .why-more[hidden] { display: none; }
+/* Verdict cards: the result first, in large type, with a colour per outcome. */
+.verdict-card { border-left: 6px solid var(--tone); background: var(--tone-bg); border-radius: 10px; padding: .8rem 1rem; margin: .4rem 0 .9rem; }
+.verdict-kicker { margin: 0; font-size: .85rem; color: var(--muted); }
+.verdict-card .verdict { margin: .15rem 0 0; font-size: 1.6rem; font-weight: 750; line-height: 1.2; }
+.verdict-sub { margin: .3rem 0 0; font-size: .95rem; }
+.tone-in, .tone-default { --tone: #2e7d4f; --tone-bg: #eaf5ee; }
+.tone-out { --tone: #6b6b6b; --tone-bg: #f0efec; }
+.tone-imp1 { --tone: #b7791f; --tone-bg: #fdf5e6; }
+.tone-imp2 { --tone: #c2571a; --tone-bg: #fdeee4; }
+.tone-critical { --tone: #b42318; --tone-bg: #fdecea; }
+.tone-open { --tone: #3b6ea8; --tone-bg: #eaf1f9; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .verdict-card { --tone-bg: #262523; } }
+:root[data-theme="dark"] .verdict-card { --tone-bg: #262523; }
+ul.why-open li { margin: .35rem 0; }
+@media print { .verdict-card { border-left-width: 4px; background: none; } }

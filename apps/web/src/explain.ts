@@ -3,7 +3,7 @@
  * technical reason strings, which stay in the JSON export). Used by the result page and the report.
  */
 import { scopeConditionValues, T, F, U, C, O } from "../../../packages/engine/src/index.js";
-import type { ScopeRules, Facts, ScopeStatus } from "../../../packages/engine/src/index.js";
+import type { ScopeRules, Facts, ScopeStatus, ClassificationRules, ClassifyResult } from "../../../packages/engine/src/index.js";
 
 const NOT_MET: Record<string, (facts: Facts) => string> = {
   PDE: () => "It is only an online service with no product it belongs to. The CRA covers hardware and software products and their remote data processing (Art. 2(1), Art. 3(1)-(2)).",
@@ -69,4 +69,40 @@ export function scopeReasonsPlain(rules: ScopeRules, facts: Facts, status: Scope
   for (const k of missing) out.push(`Not answered yet: ${ASK[k] ?? k}.`);
   for (const t of open) if (t) out.push(`The law does not settle this; get expert advice. ${t}.`.replace(/\.\.$/, "."));
   return out;
+}
+
+const CLASS_NAME: Record<string, string> = { DEFAULT: "Default", IMPORTANT_I: "Important, Class I", IMPORTANT_II: "Important, Class II", CRITICAL: "Critical" };
+/** A category's title up to its first ", including" (the full titles run to several lines). */
+const shortTitle = (t: string) => t.split(/,? including /)[0];
+
+/**
+ * Why the class is not determined, in plain words: which answers are "Not sure" or missing, where answers
+ * conflict, and where the law itself is open. One line per question (not per category), so a single
+ * "Not sure" that keeps three categories open is said once.
+ */
+export function classOpenPlain(rules: ClassificationRules, res: ClassifyResult, facts: Facts,
+    questions: Record<string, { question: string }>, categories: Record<string, { title: string }>): string[] {
+  const order = rules.class_order as string[];
+  const byId = Object.fromEntries(rules.categories.map((c) => [c.category, c]));
+  const askedFor = new Map<string, Set<string>>(), conflicts = new Map<string, Set<string>>(), open: string[] = [];
+  const all = { ...facts, ...Object.fromEntries(Object.entries(res.derived).map(([k]) => [k, facts[k]])) };
+  for (const [k, r] of Object.entries(res.categories)) {
+    if (r.value === T || r.value === F || order.indexOf(r.class) <= order.indexOf(res.floor)) continue;
+    const label = `${shortTitle(categories[k]?.title ?? k)} (${CLASS_NAME[r.class] ?? r.class})`;
+    for (const [cid, v] of Object.entries(r.conditions)) {
+      const cond = byId[k]?.conditions[cid] as { fact?: string; quote?: string } | undefined;
+      if (!cond) continue;
+      if (v === O) open.push(`The law does not settle whether the product meets "${cond.quote}" for ${label}. More answers will not resolve this: get expert advice.`);
+      else if (v === C && cond.fact) (conflicts.get(cond.fact) ?? conflicts.set(cond.fact, new Set()).get(cond.fact)!).add(label);
+      else if (v === U && cond.fact) (askedFor.get(cond.fact) ?? askedFor.set(cond.fact, new Set()).get(cond.fact)!).add(label);
+    }
+  }
+  const out: string[] = [];
+  for (const [fid, cats] of askedFor) {
+    const q = questions[fid]?.question ?? fid;
+    const how = all[fid]?.value === U || all[fid]?.value === "UNKNOWN" ? "You answered “Not sure” to" : "Not answered:";
+    out.push(`${how} “${q}”. This decides ${[...cats].join("; ")}.`);
+  }
+  for (const [fid, cats] of conflicts) out.push(`Your answers conflict on “${questions[fid]?.question ?? fid}”. This decides ${[...cats].join("; ")}.`);
+  return [...out, ...open];
 }

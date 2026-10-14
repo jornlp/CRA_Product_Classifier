@@ -14,10 +14,10 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, markdownToHtml, CLASS, scopeVerdict, classVerdict, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, obligationTable } from "./report.js";
+import { reportMarkdown, markdownToHtml, CLASS, scopeVerdict, classVerdict, floorText, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, obligationTable } from "./report.js";
 import type { PlacingRow } from "./report.js";
 import { aboutHtml } from "./about.js";
-import { scopeReasonsPlain } from "./explain.js";
+import { scopeReasonsPlain, classOpenPlain } from "./explain.js";
 import { count, countingPossible, getConsent, setConsent } from "./analytics.js";
 
 const RULES = cls as unknown as ClassificationRules;
@@ -220,6 +220,13 @@ function readAnswer(form: HTMLFormElement, fid: string): { ok: boolean; value?: 
   return i === null ? { ok: false } : { ok: true, value: q.options![Number(i)].value };
 }
 
+const TONE: Record<string, string> = { DEFAULT: "default", IMPORTANT_I: "imp1", IMPORTANT_II: "imp2", CRITICAL: "critical", UNRESOLVED: "open" };
+/** The verdict as a prominent card: a small lead-in, the result in large type, and an optional line below. */
+function verdictCard(kicker: string, main: string, sub: string, tone: string): string {
+  return `<div class="verdict-card tone-${tone}"><p class="verdict-kicker">${esc(kicker)}</p>
+    <p class="verdict">${esc(main)}</p>${sub ? `<p class="verdict-sub">${esc(sub)}</p>` : ""}</div>`;
+}
+
 function startHtml(): string {
   const opt = (mode: Mode, title: string, text: string) =>
     `<button type="button" class="choice" data-mode="${mode}"><strong>${esc(title)}</strong><span>${esc(text)}</span></button>`;
@@ -275,7 +282,8 @@ function resultHtml(): string {
   const mode = state.mode ?? "full";
   const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${({ PAST_END_DATE: "Outdated", LAW_CHANGED: "Law changed", LAW_CHECK_STALE: "Law check overdue" } as Record<string, string>)[w.kind]}:</strong> ${esc(w.detail)}</div>`).join("");
   let body = warn + (mode === "class" ? ""
-    : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeVerdict(s.status))}</p>
+    : `<section class="box"><h2>Scope</h2>${verdictCard("Based on your answers", ({ IN_SCOPE: "The CRA applies", OUT_OF_SCOPE: "The CRA does not apply", UNRESOLVED: "Not determined yet" } as Record<string, string>)[s.status],
+        s.status === "UNRESOLVED" ? "See below for what is still open." : "", ({ IN_SCOPE: "in", OUT_OF_SCOPE: "out", UNRESOLVED: "open" } as Record<string, string>)[s.status])}
       <ul>${scopeReasonsPlain(SCOPE, state.facts, s.status).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
       ${s.status === "OUT_OF_SCOPE" && state.facts.COMMERCIAL_ACTIVITY?.value === false
         ? `<p class="note">${esc(STEWARD_NOTE)}</p>` : ""}
@@ -283,20 +291,20 @@ function resultHtml(): string {
   let ruledOut = "";
   if ((mode === "full" && s.status === "IN_SCOPE") || mode === "class") {
     const cat = (id: string) => `${esc(CATEGORIES[id]?.title ?? id)} <span class="muted">(${esc(id)})</span>`;
-    const status = classVerdict(c, mode);
+    // Class only: stated "if the CRA applies", so the engine's class is shown (the JSON keeps UNRESOLVED, AC-02).
+    const shown = mode === "class" ? res.status : c.status;
+    const open = shown === "UNRESOLVED" ? classOpenPlain(RULES, res, state.facts, QUESTIONS, CATEGORIES) : [];
     const blockingCov = c.blocking.filter((b) => b.value === "NOT_COVERED").length;
-    const blockingOther = c.blocking.filter((b) => b.value !== "NOT_COVERED");
-    const reasonText: Record<string, string> = {
-      MISSING_FACTS: "An answer is missing for", CONFLICTING_FACTS: "Your answers conflict for", LAW_OPEN: "The law does not settle",
-    };
     body += `
     <section class="box"><h2>Class</h2>
       ${mode === "class" ? `<p class="scope-line">Scope not checked: this assumes the CRA applies to your product.
         <button type="button" id="to-full" class="link-btn">Check whether it applies</button></p>` : ""}
-      <p class="verdict">${esc(status)}</p>
+      ${verdictCard(mode === "class" ? "If the CRA applies, based on your answers, the class is" : "Based on your answers, the class is",
+        shown === "UNRESOLVED" ? "Not determined yet" : CLASS_LABEL[shown],
+        shown === "UNRESOLVED" ? `So far: ${floorText(c.class_floor)}.` : "", TONE[shown] ?? "open")}
+      ${open.length ? `<h3>Why it is not determined</h3><ul class="why-open">${open.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
+        <p class="muted small">Go back to change a "Not sure" answer, or get expert advice where the law is open.</p>` : ""}
       ${c.matched.length ? `<h3>Matches</h3><ul>${c.matched.map((m) => `<li>${cat(m.category)}: ${esc(CLASS_LABEL[m.class])}</li>`).join("")}</ul>` : ""}
-      ${blockingOther.length ? `<h3>Still open</h3><ul>${out.reasons.filter((r) => r.category && r.kind in reasonText).map((r) =>
-        `<li>${esc(reasonText[r.kind])} ${cat(r.category!)}${r.kind === "LAW_OPEN" ? ". Get expert advice: more answers will not resolve this." : ""}</li>`).join("")}</ul>` : ""}
       ${blockingCov ? `<p class="note">This version has rules for ${RULES.categories.length} of 26 categories. Until all 26 are covered,
         it does not state a class it cannot fully check${c.class_floor === "CRITICAL" ? "" : ", including Default"}.</p>` : ""}
       ${c.excluded.length ? `<p class="muted small">Which categories were ruled out, and why: see the end of this page.</p>` : ""}
@@ -355,6 +363,11 @@ function resultHtml(): string {
   return body;
 }
 
+/** For the report: the class if the CRA applies (class-only check), and why it is open, if it is. */
+function classReportCtx(res: ReturnType<typeof classify>) {
+  return { classIfApplies: res.status, classOpen: res.status === "UNRESOLVED" ? classOpenPlain(RULES, res, state.facts, QUESTIONS, CATEGORIES) : [] };
+}
+
 function readRecord() {
   state.record.product = (document.getElementById("rec-product") as HTMLInputElement | null)?.value ?? state.record.product;
   state.record.description = (document.getElementById("rec-description") as HTMLTextAreaElement | null)?.value ?? state.record.description;
@@ -364,7 +377,7 @@ function readRecord() {
 function printReport() {
   readRecord();
   const { out, res } = assemble();
-  const md = reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer, scopeReasons: scopeReasonsPlain(SCOPE, state.facts, scope(SCOPE, state.facts).status) });
+  const md = reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer, scopeReasons: scopeReasonsPlain(SCOPE, state.facts, scope(SCOPE, state.facts).status), ...classReportCtx(res) });
   let root = document.getElementById("print-root");
   if (!root) { root = Object.assign(document.createElement("div"), { id: "print-root" }); document.body.appendChild(root); }
   root.innerHTML = markdownToHtml(md);
@@ -379,7 +392,7 @@ function download(format: "md" | "json") {
   state.record.description = (document.getElementById("rec-description") as HTMLTextAreaElement | null)?.value ?? state.record.description;
   const { out, res } = assemble();
   const body = format === "json" ? JSON.stringify(out, null, 1)
-    : reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer, scopeReasons: scopeReasonsPlain(SCOPE, state.facts, scope(SCOPE, state.facts).status) });
+    : reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer, scopeReasons: scopeReasonsPlain(SCOPE, state.facts, scope(SCOPE, state.facts).status), ...classReportCtx(res) });
   const blob = new Blob([body], { type: format === "json" ? "application/json" : "text/markdown" });
   const name = (state.record.product.trim().replace(/[^\w-]+/g, "-").slice(0, 40) || out.assessment_id) + (format === "json" ? ".json" : ".md");
   const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name });
