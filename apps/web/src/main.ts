@@ -163,7 +163,9 @@ const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b)
 function questionHtml(phase: Phase, fid: string): string {
   const q = QUESTIONS[fid];
   const prev = state.remembered[fid];
-  const checked = (v: unknown) => (Array.isArray(prev) ? prev.some((p) => same(p, v)) : prev !== undefined && same(prev, v)) ? " checked" : "";
+  // An earlier empty list was answered with "None of these", so show that again when going back.
+  const checked = (v: unknown) => (Array.isArray(prev) ? (v === "NONE" ? prev.length === 0 : prev.some((p) => same(p, v)))
+    : prev !== undefined && same(prev, v)) ? " checked" : "";
   const g = GUIDE[fid];
   const hint = q.hint ?? g?.hint;
   let control = "";
@@ -183,7 +185,7 @@ function questionHtml(phase: Phase, fid: string): string {
     } else {
       control = stem + opts.map(box).join("");
     }
-    control += `<p class="muted small">Tick all that apply. Tick nothing only if none does: that gives the default class, which still carries all CRA requirements. If you are unsure, tick Not sure and you will be asked about each category.</p>`;
+    control += `<p class="muted small">Tick all that apply. If none does, tick None of these: that gives the default class, which still carries all CRA requirements. If you are unsure, tick Not sure and you will be asked about each category.</p>`;
   } else if (q.kind === "text") {
     control = `<textarea name="t" rows="3">${esc(typeof prev === "string" ? prev : "")}</textarea>`;
   } else {
@@ -214,7 +216,12 @@ function questionHtml(phase: Phase, fid: string): string {
 function readAnswer(form: HTMLFormElement, fid: string): { ok: boolean; value?: unknown } {
   const q = QUESTIONS[fid];
   const fd = new FormData(form);
-  if (q.kind === "multi-enum") return { ok: true, value: fd.getAll("a").map((i) => q.options![Number(i)].value) };
+  if (q.kind === "multi-enum") {
+    const v = fd.getAll("a").map((i) => q.options![Number(i)].value);
+    // A list with an explicit "None of these" needs an active answer: an empty list is not taken as "none".
+    if (!v.length && q.options!.some((o) => o.value === "NONE")) return { ok: false };
+    return { ok: true, value: v.filter((x) => x !== "NONE") };
+  }
   if (q.kind === "text") return { ok: true, value: fd.get("t") };
   const i = fd.get("a");
   return i === null ? { ok: false } : { ok: true, value: q.options![Number(i)].value };
@@ -449,6 +456,10 @@ function render() {
       e.preventDefault();
       const a = readAnswer(form, cur.fid!);
       if (a.ok) answer(cur.fid!, cur.phase, a.value);
+      else if (QUESTIONS[cur.fid!].kind === "multi-enum") {
+        const sel = document.getElementById("selection");
+        if (sel) { sel.innerHTML = `<strong>Tick at least one option</strong>, or \u201cNone of these\u201d, or \u201cNot sure\u201d.`; sel.classList.add("selection-error"); }
+      }
     });
     form.querySelectorAll<HTMLButtonElement>("button.info-btn").forEach((b) => b.addEventListener("click", () => {
       const panel = document.getElementById(b.getAttribute("aria-controls")!)!;
@@ -459,12 +470,23 @@ function render() {
     // Tick boxes: repeat the selection next to Next, so a long list need not be scrolled back.
     const sel = document.getElementById("selection");
     if (sel) {
+      // "None of these" excludes every other option, and ticking another option clears it.
+      const noneIdx = (QUESTIONS[cur.fid!].options ?? []).findIndex((o) => o.value === "NONE");
+      const hasNone = noneIdx >= 0;
+      if (hasNone) form.addEventListener("change", (e) => {
+        const t = e.target as HTMLInputElement;
+        if (t.type !== "checkbox" || !t.checked) return;
+        for (const b of form.querySelectorAll<HTMLInputElement>('input[type="checkbox"]')) {
+          if (b !== t && (Number(t.value) === noneIdx || Number(b.value) === noneIdx)) b.checked = false;
+        }
+      });
       const show = () => {
         const picked = [...form.querySelectorAll<HTMLInputElement>('input[type="checkbox"]:checked')]
           .map((i) => i.closest("label")?.querySelector("span")?.textContent ?? "");
         sel.innerHTML = picked.length
           ? `<strong>Selected (${picked.length}):</strong> ${picked.map(esc).join("; ")}`
-          : `<strong>Nothing selected:</strong> none of these applies.`;
+          : hasNone ? `<strong>Nothing selected yet.</strong>` : `<strong>Nothing selected:</strong> none of these applies.`;
+        sel.classList.remove("selection-error");
       };
       form.addEventListener("change", show);
       show();

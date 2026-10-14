@@ -60,6 +60,7 @@ LABELS = {
     "AVA_VAN_LEVEL": {"NONE": "No AVA_VAN level", "1": "AVA_VAN.1", "2": "AVA_VAN.2", "3": "AVA_VAN.3", "4": "AVA_VAN.4", "5": "AVA_VAN.5"},
     "METERED_COMMODITY": {"ELECTRICITY": "Electricity", "GAS": "Gas", "HEAT": "Heat", "WATER": "Water", "OTHER": "Something else", "NONE": "Not part of a metering system"},
     "PURPOSE_SCREEN": {
+        "NONE": "None of these: my product is mainly for something else",
         "NOT_SURE": "Not sure: ask me about each category instead",
         "IDENTITY": "checking who someone is, or controlling their access: identity management, access readers, authentication",
         "PASSWORDS": "storing and managing passwords (a password manager)",
@@ -199,7 +200,7 @@ GROUPS = {"PURPOSE_SCREEN": [
     ("Chips and hardware security", ["CHIP", "SECURITY_BOX", "CRYPTO_FOR_OTHERS"]),
     ("Home and personal products", ["HOME_SECURITY", "HOME_CONTROL", "VOICE_ASSISTANT", "TOY", "WEARABLE"]),
     ("Energy", ["METERING"]),
-    ("Not sure", ["NOT_SURE"])]}
+    ("None of these, or not sure", ["NONE", "NOT_SURE"])]}
 # Facts where the user's own documents can genuinely disagree: offer "documents say different things".
 CONFLICT_OK = {"PROTECTS_PHYSICAL_SECURITY", "RESIDENTIAL_SETTING", "STORES_PASSWORDS_CORE", "ADVANCED_SECURITY_CORE", "CENTRAL_CONTROL_OF_SECURITY",
                "IS_TOY", "FOR_CHILDREN_UNDER_14", "CRYPTO_CORE", "SECURITY_PURPOSE_OUTPUT"}

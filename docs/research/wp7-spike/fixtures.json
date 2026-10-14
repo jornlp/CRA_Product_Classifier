@@ -16671,6 +16671,21 @@
    "expect": {
     "status": "UNRESOLVED"
    }
+  },
+  {
+   "case": "PUR-NONE",
+   "facts": {
+    "PURPOSE_SCREEN": {
+     "value": [
+      "NONE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "note": "Explicit 'None of these' on the purpose screen: the same as ticking nothing; every category is ruled out.",
+   "expect": {
+    "status": "DEFAULT"
+   }
   }
  ]
 }

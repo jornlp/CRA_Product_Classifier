@@ -34,13 +34,25 @@ it("class only, smart lock: skips scope, ends with a conditional class and an of
   expect(heading()).toContain("mainly for");
   // Tick boxes: the selection is repeated next to Next and follows each change.
   const sel = () => document.getElementById("selection")!.textContent!;
-  expect(sel()).toBe("Nothing selected: none of these applies.");
+  expect(sel()).toBe("Nothing selected yet.");
+  // An empty list is not an answer: the user must tick something, "None of these" or "Not sure".
+  app().querySelector<HTMLFormElement>("form#q")!.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })); await tick();
+  expect(heading()).toContain("mainly for");
+  expect(sel()).toContain("Tick at least one option");
   const box = [...app().querySelectorAll("label.opt")].find((x) => x.textContent!.trim().startsWith("protecting a home"))!
     .querySelector("input") as HTMLInputElement;
   box.checked = true; box.dispatchEvent(new Event("change", { bubbles: true }));
   expect(sel()).toMatch(/^Selected \(1\): protecting a home/);
+  // "None of these" clears the other ticks, and ticking another option clears "None of these".
+  const none = [...app().querySelectorAll("label.opt")].find((x) => x.textContent!.trim().startsWith("None of these"))!
+    .querySelector("input") as HTMLInputElement;
+  none.checked = true; none.dispatchEvent(new Event("change", { bubbles: true }));
+  expect(box.checked).toBe(false);
+  expect(sel()).toMatch(/^Selected \(1\): None of these/);
+  box.checked = true; box.dispatchEvent(new Event("change", { bubbles: true }));
+  expect(none.checked).toBe(false);
   box.checked = false; box.dispatchEvent(new Event("change", { bubbles: true }));
-  expect(sel()).toBe("Nothing selected: none of these applies.");
+  expect(sel()).toBe("Nothing selected yet.");
   await pick(["protecting a home"]);    // purpose screen
   await pick("Yes");                    // protects physical security
   await pick("Yes");                    // residential

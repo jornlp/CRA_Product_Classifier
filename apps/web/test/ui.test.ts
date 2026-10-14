@@ -107,7 +107,7 @@ describe("screens: pest-control camera", () => {
     expect(app().querySelector(".stem .stem-text")!.textContent).toBe("My product is mainly for …");
     expect(app().querySelector(".stem .stem-warning")!.textContent).toContain("an app with a login is not mainly for checking who someone is");
     const groupNames = [...app().querySelectorAll(".group-name")].map((g) => g.textContent);
-    expect(groupNames).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy", "Not sure"]);
+    expect(groupNames).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy", "None of these, or not sure"]);
     expect(app().querySelectorAll("details .group").length).toBe(0); // no group is hidden
   });
   it("each purpose option has an ⓘ that opens the official text, without ticking the option", async () => {
@@ -138,8 +138,8 @@ describe("screens: pest-control camera", () => {
     expect(panel.textContent).toContain("Does not count: A smartphone contains an operating system");
     btn.click();
   });
-  it("ticking nothing on the purpose screen skips every category question", async () => {
-    await answer([]);
+  it("'None of these' on the purpose screen skips every category question", async () => {
+    await answer(["None of these"]);
     expect(heading()).toContain("type-examination certificate");  // no category, AI Act or EHDS question
   });
   it("finishes the remaining questions", async () => {

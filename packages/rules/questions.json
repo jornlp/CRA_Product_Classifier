@@ -2314,11 +2314,18 @@
      "group": "Energy"
     },
     {
+     "value": "NONE",
+     "label": "None of these: my product is mainly for something else",
+     "info": [],
+     "faq_examples": [],
+     "group": "None of these, or not sure"
+    },
+    {
      "value": "NOT_SURE",
      "label": "Not sure: ask me about each category instead",
      "info": [],
      "faq_examples": [],
-     "group": "Not sure"
+     "group": "None of these, or not sure"
     }
    ],
    "stem": "My product is mainly for …",

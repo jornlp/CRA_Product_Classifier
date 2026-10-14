@@ -87,6 +87,7 @@
     "TOY",
     "WEARABLE",
     "METERING",
+    "NONE",
     "NOT_SURE"
    ],
    "evidence": "MANUFACTURER_ONLY"
