@@ -1,3 +1,4 @@
+import { longDate } from "../../../packages/engine/src/periods.js";
 /**
  * Human-readable report (Markdown) of an assessment: what was concluded, why, on what answers,
  * and under which law. The JSON export remains the complete machine-readable record.
@@ -12,7 +13,7 @@ interface Ctx {
   scopeReasons?: string[];
 }
 
-const CLASS: Record<string, string> = {
+export const CLASS: Record<string, string> = {
   DEFAULT: "Default", IMPORTANT_I: "Important, Class I", IMPORTANT_II: "Important, Class II", CRITICAL: "Critical", UNRESOLVED: "Not determined",
 };
 const SCOPE: Record<string, string> = {
@@ -30,21 +31,13 @@ const TL: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRA
 const REASON: Record<string, string> = {
   MISSING_FACTS: "An answer is missing for", CONFLICTING_FACTS: "Answers conflict for", LAW_OPEN: "The law does not settle",
 };
-const ROUTE_LABEL: Record<string, string> = {
-  CRA_ART_32: "CRA conformity procedures (CRA Art. 32)",
-  CRA_ART_32_VIA_ART_12_3: "CRA conformity procedures, by CRA Art. 12(3)",
-  AI_ACT_ART_43: "AI Act conformity procedure (AI Act Art. 43), by CRA Art. 12(2)",
-  EHDS_CHAPTER_III: "European Health Data Space conformity procedure (Regulation (EU) 2025/327, Chapter III), by CRA Art. 32(5a)",
-  OPEN: "Not settled by the law. Get expert advice.",
-};
 /** Obligations that depend on when the units are placed; the result shows them per placing period. */
 export const BY_PLACING = new Set(["CRA_ESSENTIAL_REQUIREMENTS", "RED_DA_CYBERSECURITY"]);
 export const PLACING_COLUMN: Record<string, string> = {
   CRA_ESSENTIAL_REQUIREMENTS: "CRA requirements (Art. 69(2), 71(2))",
   RED_DA_CYBERSECURITY: "Radio equipment cybersecurity rules (Del. Reg. (EU) 2022/30)",
 };
-const LONG_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const longDate = (d: string) => { const [y, m, day] = d.split("-").map(Number); return `${day} ${LONG_MONTHS[m - 1]} ${y}`; };
+
 /** Plain text for one obligation in one placing period. */
 export function placingCell(i: { obligation: string; status: string; applies_from?: string; open_questions?: string[] } | undefined): string {
   if (!i) return "Does not apply";
@@ -57,12 +50,10 @@ export function placingCell(i: { obligation: string; status: string; applies_fro
   return TL[i.status] + (i.open_questions?.length ? `. ${i.open_questions.join(" ")}` : "");
 }
 export interface PlacingRow { period: string; conformity_routes: { route: string }[]; timeline: { obligation: string; status: string }[] }
-/** Columns that matter: obligations present in any period, and the route only if it differs between periods. */
-export function placingColumns(rows: PlacingRow[]): { obligations: string[]; routes: boolean } {
-  const obligations = [...BY_PLACING].filter((o) => rows.some((r) => r.timeline.some((i) => i.obligation === o)));
-  return { obligations, routes: new Set(rows.map((r) => JSON.stringify(r.conformity_routes.map((x) => x.route)))).size > 1 };
+/** Columns that matter: obligations present in any period. */
+export function placingColumns(rows: PlacingRow[]): { obligations: string[] } {
+  return { obligations: [...BY_PLACING].filter((o) => rows.some((r) => r.timeline.some((i) => i.obligation === o))) };
 }
-export const routesText = (rs: { route: string }[]) => rs.filter((r) => r.route !== "CRA_ART_32").map((r) => routeLabel(r.route)).join("; ") || routeLabel("CRA_ART_32");
 
 /** Pointer only: the tool does not ask about or assess the RED delegated act. */
 export const RED_NOTE =
@@ -86,7 +77,6 @@ export const ROUTE_NOTE = "Other EU laws may also apply to the product, such as 
   "requirements**; they can change **which conformity procedure** checks those requirements (CRA Art. 12 and 32(5a)). " +
   "This tool does not check those laws.";
 
-export const routeLabel = (r: string) => ROUTE_LABEL[r] ?? (r.startsWith("DEPENDS_ON_CLASS") ? "Depends on the class, which is not yet determined" : r);
 const cell = (s: unknown) => String(s ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
 
 function answerLabel(ctx: Ctx, fid: string, v: unknown): string {
@@ -94,7 +84,7 @@ function answerLabel(ctx: Ctx, fid: string, v: unknown): string {
   if (v === "CONFLICTING") return "Our documents say different things";
   const opts = ctx.questions[fid]?.options ?? [];
   if (Array.isArray(v)) return v.length ? v.map((x) => opts.find((o) => o.value === x)?.label ?? String(x)).join("; ") : "None of these";
-  return opts.find((o) => o.value === v)?.label ?? (v === "" ? "No change" : String(v));
+  return opts.find((o) => o.value === v)?.label ?? String(v);
 }
 
 export function reportMarkdown(out: Out, ctx: Ctx): string {
@@ -109,7 +99,7 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
     `| Law as of | ${out.law_as_of} (rule set ${out.rule_set_version}) |`, `| Valid until | ${out.valid_until} |`);
   if (rec.description) L.push(`| Product | ${cell(rec.description)} |`);
   L.push("");
-  for (const w of out.validity_warnings ?? []) L.push(`> **${w.kind === "PAST_END_DATE" ? "Outdated" : "Law changed"}:** ${w.detail}`, "");
+  for (const w of out.validity_warnings ?? []) L.push(`> **${({ PAST_END_DATE: "Outdated", LAW_CHANGED: "Law changed", LAW_CHECK_STALE: "Law check overdue" } as Record<string, string>)[w.kind]}:** ${w.detail}`, "");
 
   L.push("## Scope", "");
   if (out.check === "class") L.push("Not checked. The class below assumes the CRA applies.", "");
@@ -139,14 +129,13 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
   }
   const rows: PlacingRow[] = out.timeline_by_placing_period ?? [];
   const pc = placingColumns(rows);
-  if (rows.length && (pc.obligations.length || pc.routes)) {
+  if (rows.length && pc.obligations.length) {
     L.push("## Depends on when the units are placed on the market", "",
       "_Each unit counts on its own: what matters is when that unit is placed on the market, not when the model was launched._", "");
-    const head = ["Units placed", ...pc.obligations.map((o) => PLACING_COLUMN[o]), ...(pc.routes ? ["Conformity route"] : [])];
+    const head = ["Units placed", ...pc.obligations.map((o) => PLACING_COLUMN[o])];
     L.push(`| ${head.join(" | ")} |`, `|${head.map(() => "---").join("|")}|`);
     for (const r of rows) {
-      L.push(`| ${[r.period, ...pc.obligations.map((o) => placingCell(r.timeline.find((i) => i.obligation === o) as any)),
-        ...(pc.routes ? [routesText(r.conformity_routes)] : [])].map(cell).join(" | ")} |`);
+      L.push(`| ${[r.period, ...pc.obligations.map((o) => placingCell(r.timeline.find((i) => i.obligation === o) as any))].map(cell).join(" | ")} |`);
     }
     L.push("");
   }
@@ -163,7 +152,7 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
   L.push("## Your answers", "", "| Question | Answer |", "|---|---|");
   for (const f of out.facts) L.push(`| ${cell(ctx.questions[f.fact_id]?.question ?? f.fact_id)} | ${cell(answerLabel(ctx, f.fact_id, f.value))} |`);
   for (const [k, v] of Object.entries<unknown>(out.timeline_facts ?? {})) {
-    if (k === "ASSESSMENT_DATE" || k === "UNITS_PLACED_ON_MARKET") continue;
+    if (k === "ASSESSMENT_DATE") continue;
     L.push(`| ${cell(ctx.questions[k]?.question ?? k)} | ${cell(answerLabel(ctx, k, v))} |`);
   }
   L.push("");

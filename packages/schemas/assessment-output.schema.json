@@ -339,7 +339,7 @@
    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
   },
   "validity_warnings": {
-   "description": "Shown prominently with the result (DR-05). PAST_END_DATE once valid_until has passed; LAW_CHANGED when the scheduled EUR-Lex check found a change affecting a rule this result used.",
+   "description": "Shown prominently with the result (DR-05). PAST_END_DATE once valid_until has passed; LAW_CHANGED when the scheduled EUR-Lex check found a change affecting a rule this result used. LAW_CHECK_STALE when the last EUR-Lex check is more than 21 days old.",
    "type": "array",
    "items": {
     "type": "object",
@@ -351,7 +351,8 @@
      "kind": {
       "enum": [
        "PAST_END_DATE",
-       "LAW_CHANGED"
+       "LAW_CHANGED",
+       "LAW_CHECK_STALE"
       ]
      },
      "detail": {
@@ -365,6 +366,61 @@
      },
      "since": {
       "type": "string"
+     }
+    },
+    "additionalProperties": false
+   }
+  },
+  "check": {
+   "description": "Web app: which check the user ran.",
+   "enum": [
+    "scope",
+    "class",
+    "full"
+   ]
+  },
+  "for_your_records": {
+   "description": "Web app: optional product name and description typed by the user; plays no part in the assessment.",
+   "type": "object",
+   "properties": {
+    "product": {
+     "type": "string"
+    },
+    "description": {
+     "type": "string"
+    }
+   },
+   "additionalProperties": false
+  },
+  "timeline_facts": {
+   "description": "Web app: the answers the timeline was computed from (dates as asked, or the assessment date only).",
+   "type": "object"
+  },
+  "timeline_by_placing_period": {
+   "description": "Web app: what depends on the units' placing date, per placing period (no placing date is asked).",
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "period",
+     "conformity_routes",
+     "timeline"
+    ],
+    "properties": {
+     "period": {
+      "type": "string"
+     },
+     "from": {
+      "type": "string"
+     },
+     "before": {
+      "type": "string"
+     },
+     "conformity_routes": {
+      "type": "array"
+     },
+     "timeline": {
+      "type": "array"
      }
     },
     "additionalProperties": false

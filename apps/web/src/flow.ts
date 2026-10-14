@@ -5,7 +5,7 @@
 import { scope, nextScopeQuestions, nextClassificationQuestions, nextTimelineQuestions } from "../../../packages/engine/src/index.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts } from "../../../packages/engine/src/index.js";
 
-export type Phase = "start" | "scope" | "class" | "routes" | "timeline" | "result";
+export type Phase = "start" | "scope" | "class" | "timeline" | "result";
 /**
  * What the user asked for (v4 3.1: three independently reported results).
  *   scope: does the CRA apply?            class: which class, assuming it applies?
@@ -43,13 +43,11 @@ const DATE_QUESTIONS = new Set(["UNITS_PLACED_ON_MARKET", "CHANGE_AT", "CERTIFIC
 export function record(st: FlowState, phase: Phase, fid: string, value: unknown) {
   if (phase === "timeline") {
     st.tfacts[fid] = value;
-    if (fid === "UNITS_PLACED_ON_MARKET") st.facts.UNITS_PLACED_ON_MARKET = { value, provenance: "USER_CONFIRMED" };
   } else st.facts[fid] = { value, provenance: "USER_CONFIRMED" };
 }
 
 export function unrecord(st: FlowState, phase: Phase, fid: string) {
   if (phase === "timeline") {
     delete st.tfacts[fid];
-    if (fid === "UNITS_PLACED_ON_MARKET") delete st.facts.UNITS_PLACED_ON_MARKET;
   } else delete st.facts[fid];
 }

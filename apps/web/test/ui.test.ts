@@ -5,6 +5,7 @@
  */
 import { beforeAll, describe, expect, it, vi } from "vitest";
 import { readFileSync } from "node:fs";
+import Ajv2020 from "ajv/dist/2020.js";
 
 const status = JSON.parse(readFileSync(`${process.cwd()}/apps/web/public/law-status.json`, "utf8"));
 const app = () => document.getElementById("app")!;
@@ -47,12 +48,13 @@ describe("screens: pest-control camera", () => {
   });
   it("starts with the product kind, and shows why we ask", () => {
     expect(heading()).toContain("hardware, software, or an online service");
-    expect(app().querySelector("details.why")).not.toBeNull();
+    expect(app().querySelector("fieldset p.why")!.textContent).toMatch(/^Why we ask: /);
   });
   it("explains why in plain words, with the legal wording one level down", () => {
-    const why = app().querySelector("details.why")!;
-    expect(why.querySelector("p")!.textContent!.length).toBeGreaterThan(60);
-    const law = why.querySelector("details.legal article.law")!;
+    expect(app().querySelector("fieldset p.why")!.textContent!.length).toBeGreaterThan(60);  // shown, no click needed
+    const legal = app().querySelector("details.legal")!;
+    expect(legal.hasAttribute("open")).toBe(false);                                         // the law: one click
+    const law = legal.querySelector("article.law")!;
     expect(law.querySelector(".law-act")!.textContent).toContain("Regulation (EU) 2024/2847");
     expect(law.querySelector(".law-num")!.textContent).toBe("Article 3");
     expect(law.querySelector(".law-title")!.textContent).toBe("Definitions");
@@ -159,6 +161,20 @@ describe("screens: pest-control camera", () => {
     expect(root.querySelector("h1")!.textContent).toMatch(/^CRA assessment/);
     expect(root.textContent).toContain("Your answers");
     expect(root.textContent).toContain("Nothing in this notice excludes liability that cannot be excluded by law.");
+  });
+  it("the JSON export is valid against the assessment-output schema", async () => {
+    let blob: Blob | undefined;
+    const orig = URL.createObjectURL;
+    URL.createObjectURL = ((b: Blob) => { blob = b; return "blob:test"; }) as typeof URL.createObjectURL;
+    try {
+      app().querySelector<HTMLSelectElement>("#save-format")!.value = "json";
+      app().querySelector<HTMLButtonElement>("#save")!.click();
+    } finally { URL.createObjectURL = orig; app().querySelector<HTMLSelectElement>("#save-format")!.value = "pdf"; }
+    const doc = JSON.parse(await blob!.text());
+    const schema = JSON.parse(readFileSync(`${process.cwd()}/packages/schemas/assessment-output.schema.json`, "utf8"));
+    const validate = new Ajv2020({ allErrors: true, strict: false }).compile(schema);
+    expect(validate(doc), JSON.stringify(validate.errors)).toBe(true);
+    expect(doc.timeline_by_placing_period.length).toBe(2);
   });
   it("offers optional record fields that are not part of the assessment", () => {
     expect(app().querySelector("#rec-product")).not.toBeNull();

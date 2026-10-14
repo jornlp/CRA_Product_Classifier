@@ -1,3 +1,4 @@
+import type { ValidityWarning } from "./validity.js";
 /**
  * Render a classification in the assessment-output schema (packages/schemas).
  * Reference: docs/research/wp7-spike/evaluate.py to_output.
@@ -14,7 +15,7 @@ export interface OutputOptions {
   /** Real scope and timeline results; without them the trial placeholders are used (golden files). */
   scope?: { status: string; reasons: string[] };
   timeline?: { obligation: string; status: string; provision: string; basis?: string; applies_from?: string; open_questions?: string[] }[];
-  validityWarnings?: { kind: "PAST_END_DATE" | "LAW_CHANGED"; detail: string; rules?: string[]; since?: string }[];
+  validityWarnings?: ValidityWarning[];
 }
 
 export function toOutput(rules: ClassificationRules, facts: Facts, res: ClassifyResult, routes: RouteResult[], opt: OutputOptions) {

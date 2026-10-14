@@ -14,7 +14,7 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, routeLabel, markdownToHtml, scopeVerdict, classVerdict, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
+import { reportMarkdown, markdownToHtml, CLASS, scopeVerdict, classVerdict, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns } from "./report.js";
 import type { PlacingRow } from "./report.js";
 import { aboutHtml } from "./about.js";
 import { scopeReasonsPlain } from "./explain.js";
@@ -79,9 +79,7 @@ type Example = { answer: string; kind: string; source: string; text: string; quo
 type Guide = { hint?: string; note?: string; examples: Example[]; lookalikes: { term: string; text: string; case?: string }[] };
 const GUIDE = (guidance as { questions: Record<string, Guide> }).questions;
 
-const CLASS_LABEL: Record<string, string> = {
-  DEFAULT: "Default", IMPORTANT_I: "Important, Class I", IMPORTANT_II: "Important, Class II", CRITICAL: "Critical", UNRESOLVED: "Not determined",
-};
+const CLASS_LABEL = CLASS;
 const SOURCE_LABEL: Record<string, string> = {
   OFFICIAL_TEXT: "Official text (binding)", OFFICIAL_RECITAL: "CRA recital (explains the law, not binding)",
   OFFICIAL_GUIDANCE: "Commission FAQ v14 (non-binding)",
@@ -127,7 +125,7 @@ const app = document.getElementById("app")!;
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 const PHASE_LABEL: Record<Phase, string> = {
   start: "", scope: "Does the CRA apply?", class: "Which class?",
-  routes: "Overlaps with other laws", timeline: "When do obligations apply?", result: "Result",
+  timeline: "When do obligations apply?", result: "Result",
 };
 
 function optionLabel(fid: string, value: string): string {
@@ -186,10 +184,6 @@ function questionHtml(phase: Phase, fid: string): string {
       control = stem + opts.map(box).join("");
     }
     control += `<p class="muted small">Tick all that apply. Tick nothing only if none does: that gives the default class, which still carries all CRA requirements. If you are unsure, tick Not sure and you will be asked about each category.</p>`;
-  } else if (q.kind === "date") {
-    const dateVal = typeof prev === "string" && /^\d{4}-\d{2}-\d{2}$/.test(prev) ? prev : "";
-    control = `<label class="opt"><span>Date</span> <input type="date" name="d" value="${esc(dateVal)}"></label>`
-      + (q.options ?? []).map((o, i) => `<label class="opt"><input type="radio" name="a" value="${i}"${dateVal ? "" : checked(o.value)}> <span>${esc(o.label)}</span></label>`).join("");
   } else if (q.kind === "text") {
     control = `<textarea name="t" rows="3">${esc(typeof prev === "string" ? prev : "")}</textarea>`;
   } else {
@@ -201,14 +195,12 @@ function questionHtml(phase: Phase, fid: string): string {
       <p class="phase">${esc(PHASE_LABEL[phase])}</p>
       <fieldset>
         <legend><h2>${esc(q.question)}</h2></legend>
+        <p class="why"><span class="why-label">Why we ask:</span> ${esc(q.why_we_ask)}</p>
         ${hint ? `<p class="hint">${esc(hint)}</p>` : ""}
         <div class="opts">${control}</div>
       </fieldset>
-      <details class="why"><summary>Why we ask</summary>
-        <p>${esc(q.why_we_ask)}</p>
-        ${q.legal_basis?.length ? `<details class="legal"><summary>Legal basis</summary>${q.legal_basis.map(lawHtml).join("")}
-          <p class="muted small">Highlighted: the words that decide this question.</p></details>` : ""}
-      </details>
+      ${q.legal_basis?.length ? `<details class="legal"><summary>Legal basis</summary>${q.legal_basis.map(lawHtml).join("")}
+        <p class="muted small">Highlighted: the words that decide this question.</p></details>` : ""}
       ${q.kind === "multi-enum" ? `<p id="selection" class="selection" aria-live="polite"></p>` : ""}
       <div class="nav">
         ${state.history.length ? `<button type="button" id="back" class="secondary">Back</button>` : ""}
@@ -223,11 +215,6 @@ function readAnswer(form: HTMLFormElement, fid: string): { ok: boolean; value?: 
   const fd = new FormData(form);
   if (q.kind === "multi-enum") return { ok: true, value: fd.getAll("a").map((i) => q.options![Number(i)].value) };
   if (q.kind === "text") return { ok: true, value: fd.get("t") };
-  if (q.kind === "date") {
-    const picked = fd.get("a"), d = String(fd.get("d") ?? "");
-    if (picked !== null) return { ok: true, value: q.options![Number(picked)].value };
-    return d ? { ok: true, value: d } : { ok: false };
-  }
   const i = fd.get("a");
   return i === null ? { ok: false } : { ok: true, value: q.options![Number(i)].value };
 }
@@ -263,10 +250,9 @@ function assemble() {
     return { period: p.label, from: p.from, before: p.before, conformity_routes: o.routes,
              timeline: o.timeline.filter((i) => BY_PLACING.has(i.obligation)) };
   });
-  const routesVary = placingColumns(byPeriod).routes;
   // Dates need no answers, so they come with every in-scope result, the scope check included.
   const showTimeline = mode !== "class" && s.status === "IN_SCOPE";
-  const out = toOutput(RULES, state.facts, res, routesVary ? route(RULES, state.facts, res) : byPeriod[0].conformity_routes as ReturnType<typeof route>, {
+  const out = toOutput(RULES, state.facts, res, route(RULES, state.facts, res), {
     assessmentId: `cra-${today}`, assessedAt: today, validUntil: vu, validityWarnings: warnings,
     scope: scopeOut, timeline: showTimeline ? t.timeline.filter((i) => !BY_PLACING.has(i.obligation)) : [],
   });
@@ -278,14 +264,14 @@ function assemble() {
   // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
   if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
   return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, check: mode, for_your_records: state.record, timeline_facts: state.tfacts,
-    ...(periods.length ? { timeline_by_placing_period: periods } : {}) }, s, res, periods, routesVary };
+    ...(periods.length ? { timeline_by_placing_period: periods } : {}) }, s, res, periods };
 }
 
 function resultHtml(): string {
   const { out, s, res, periods } = assemble();
   const c = out.classification;
   const mode = state.mode ?? "full";
-  const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${w.kind === "PAST_END_DATE" ? "Outdated" : "Law changed"}:</strong> ${esc(w.detail)}</div>`).join("");
+  const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${({ PAST_END_DATE: "Outdated", LAW_CHANGED: "Law changed", LAW_CHECK_STALE: "Law check overdue" } as Record<string, string>)[w.kind]}:</strong> ${esc(w.detail)}</div>`).join("");
   let body = warn + (mode === "class" ? ""
     : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeVerdict(s.status))}</p>
       <ul>${scopeReasonsPlain(SCOPE, state.facts, s.status).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
@@ -322,13 +308,12 @@ function resultHtml(): string {
   }
   {
     const pc = placingColumns(periods);
-    if (periods.length && (pc.obligations.length || pc.routes)) {
+    if (periods.length && pc.obligations.length) {
       body += `
       <section class="box"><h2>When the requirements apply${mode === "class" ? " (if the CRA applies)" : ""}</h2>
         <p class="muted small">Each unit counts on its own: what matters is when that unit is placed on the market, not when the model was launched.</p>
-        <table><thead><tr><th>Units placed</th>${pc.obligations.map((o) => `<th>${esc(PLACING_COLUMN[o])}</th>`).join("")}${pc.routes ? "<th>Conformity route</th>" : ""}</tr></thead><tbody>
-        ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}${
-          pc.routes ? `<td>${esc(routesText(r.conformity_routes))}</td>` : ""}</tr>`).join("")}
+        <table><thead><tr><th>Units placed</th>${pc.obligations.map((o) => `<th>${esc(PLACING_COLUMN[o])}</th>`).join("")}</tr></thead><tbody>
+        ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}</tr>`).join("")}
         </tbody></table>
         ${pc.obligations.map((o) => lawDetails(o, `The law and the Commission FAQ: ${PLACING_COLUMN[o]}`)).join("")}</section>`;
     }

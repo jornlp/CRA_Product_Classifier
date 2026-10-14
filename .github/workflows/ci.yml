@@ -4,6 +4,7 @@ name: ci
 on:
   push:
   pull_request:
+  workflow_call:   # pages.yml runs these same checks before every deploy
 permissions:
   contents: read
 jobs:
@@ -24,6 +25,10 @@ jobs:
           python-version: "3.12"
       - name: Verify rules against held sources (quotes, category list, open-question references)
         run: npm run verify:research
+      - name: Golden fixtures are up to date with the Python reference engine
+        run: |
+          (cd docs/research/wp7-spike && python3 export_fixtures.py)
+          git diff --exit-code tests/fixtures || { echo "tests/fixtures is stale: run export_fixtures.py and commit" >&2; exit 1; }
       - name: Question texts match the fact register
         run: python3 docs/research/tools/build_questions.py --check
       - name: Build the site
