@@ -138,3 +138,19 @@ body:has(#consent-bar) { padding-bottom: 7rem; }
 .why.clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; }
 .why-more { font-size: .9rem; margin: 0 0 .4rem; display: block; }
 @media print { .why.clamp { display: block; -webkit-line-clamp: unset; } .why-more { display: none; } }
+.layout.single { grid-template-columns: minmax(0, 1fr); max-width: 46rem; }
+.save-box h2 { margin-top: 0; }
+.records legend { font-weight: 600; }
+.fineprint { color: var(--muted); font-size: .85rem; padding: 0 .2rem; }
+.fineprint p { margin: .5rem 0; }
+/* Phones: the obligations table stacks, each period cell with its own label. */
+@media (max-width: 600px) {
+  table.obligations thead { display: none; }
+  table.obligations, table.obligations tbody, table.obligations tr, table.obligations td { display: block; width: auto; }
+  table.obligations tr { border-bottom: 1px solid var(--line); padding: .5rem 0; }
+  table.obligations td { border: none; padding: .25rem 0; }
+  table.obligations td:first-child { font-weight: 600; }
+  table.obligations td[data-label]::before { content: attr(data-label) ": "; display: block; font-size: .8rem; color: var(--muted); font-weight: 600; }
+}
+table.obligations td:first-child details { font-weight: normal; }
+.why-more[hidden] { display: none; }

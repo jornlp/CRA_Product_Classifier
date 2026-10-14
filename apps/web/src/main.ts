@@ -8,7 +8,7 @@ import sc from "../../../packages/rules/scope.json";
 import tl from "../../../packages/rules/timeline.json";
 import qs from "../../../packages/rules/questions.json";
 import guidance from "../../../packages/rules/guidance.json";
-import { classify, route, toOutput, scope, timeline, validityWarnings, placingPeriods, placingOutcome } from "../../../packages/engine/src/index.js";
+import { classify, route, toOutput, scope, timeline, validityWarnings, placingPeriods, placingOutcome, longDate } from "../../../packages/engine/src/index.js";
 import { nextStep, record, unrecord } from "./flow.js";
 import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
@@ -317,8 +317,8 @@ function resultHtml(): string {
         <table class="obligations"><thead><tr><th>Obligation</th>${tbl.columns.map((c) => `<th>Units placed ${esc(c.charAt(0).toLowerCase() + c.slice(1))}</th>`).join("")}</tr></thead><tbody>
         ${tbl.rows.map((r) => `<tr><td>${esc(r.label)}${lawDetails(r.obligation, "The law and the Commission FAQ")}</td>${
           r.cells.every((x) => x === r.cells[0]) && r.cells.length > 1
-            ? `<td colspan="${r.cells.length}">${esc(r.cells[0])} <span class="muted small">(whenever placed)</span></td>`
-            : r.cells.map((x) => `<td>${esc(x)}</td>`).join("")}</tr>`).join("")}
+            ? `<td colspan="${r.cells.length}" data-label="Units placed at any time">${esc(r.cells[0])} <span class="muted small">(whenever placed)</span></td>`
+            : r.cells.map((x, k) => `<td data-label="Units placed ${esc(tbl.columns[k].charAt(0).toLowerCase() + tbl.columns[k].slice(1))}">${esc(x)}</td>`).join("")}</tr>`).join("")}
         </tbody></table></section>`;
     }
     // Pointers only: laws this tool does not check. Collapsed; the title names them.
@@ -331,11 +331,8 @@ function resultHtml(): string {
     body += ruledOut;
   }
   body += `
-    <section class="box"><p>Rules reflect the law as of <strong>${esc(out.law_as_of)}</strong>; this version is valid until ${esc(out.valid_until)}
-      (twelve months from release; the CRA's main requirements apply from 11 December 2027, so check for a newer version by then).
-      ${lawStatus ? `Last checked against EUR-Lex on ${esc(lawStatus.checked_at)}.` : ""}</p>
-      <p class="muted small">${esc(CONFIG.disclaimer)}</p>
-      <fieldset class="records"><legend><h3>For your records (optional)</h3></legend>
+    <section class="box save-box"><h2>Save this result</h2>
+      <fieldset class="records"><legend>For your records (optional)</legend>
         <p class="muted small">Added to the download only. It plays no part in the assessment, and nothing leaves your browser.</p>
         <label>Product name <input type="text" id="rec-product" value="${esc(state.record.product)}"></label>
         <label>Description <textarea id="rec-description" rows="2">${esc(state.record.description)}</textarea></label>
@@ -350,7 +347,11 @@ function resultHtml(): string {
           <option value="pdf" selected>PDF (report)</option>
         </select>
       </span>
-      <button type="button" id="restart" class="secondary">Start again</button></div></section>`;
+      <button type="button" id="restart" class="secondary">Start again</button></div></section>
+    <section class="fineprint"><p>Rules reflect the law as of <strong>${esc(longDate(out.law_as_of))}</strong>; this version is valid until
+      ${esc(longDate(out.valid_until))} (twelve months from release; the CRA's main requirements apply from 11 December 2027, so check
+      for a newer version by then).${lawStatus ? ` Last checked against EUR-Lex on ${esc(longDate(lawStatus.checked_at))}.` : ""}</p>
+      <p>${esc(CONFIG.disclaimer)}</p></section>`;
   return body;
 }
 
@@ -429,7 +430,7 @@ function render() {
     });
     document.getElementById("restart")?.addEventListener("click", restart);
   } else {
-    app.innerHTML = header + `<div class="layout">${questionHtml(cur.phase, cur.fid!)}</div>`;
+    app.innerHTML = header + `<div class="layout${GUIDE[cur.fid!] ? "" : " single"}">${questionHtml(cur.phase, cur.fid!)}</div>`;
     const form = document.getElementById("q") as HTMLFormElement;
     form.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -457,7 +458,11 @@ function render() {
     }
     // "Why we ask": at most four lines, with "more" only when the text is actually cut off.
     const why = document.getElementById("why"), more = document.getElementById("why-more") as HTMLButtonElement | null;
-    if (why && more && why.scrollHeight > why.clientHeight + 1) {
+    const clamped = why?.getBoundingClientRect().height ?? 0;
+    why?.classList.remove("clamp");
+    const full = why?.getBoundingClientRect().height ?? 0;
+    why?.classList.add("clamp");
+    if (why && more && full - clamped > 4) {
       more.hidden = false;
       more.addEventListener("click", () => {
         const open = why.classList.toggle("clamp") === false;
