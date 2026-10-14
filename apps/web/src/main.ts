@@ -316,7 +316,7 @@ function resultHtml(): string {
     body += `
     <section class="box"><h2>Class</h2>
       ${verdictCard(mode === "class"
-        ? `If the CRA applies (<button type="button" id="to-full" class="link-btn">check whether it applies</button>), based on your answers, the class is`
+        ? `If the CRA applies <span class="nowrap">(<button type="button" id="to-full" class="link-btn">check whether it applies</button>)</span>, based on your answers, the class is`
         : "Based on your answers, the class is",
         shown === "UNRESOLVED" ? "Not determined yet" : CLASS_LABEL[shown],
         shown === "UNRESOLVED" ? `So far: ${floorText(c.class_floor)}.` : "", TONE[shown] ?? "open")}
