@@ -16686,6 +16686,29 @@
    "expect": {
     "status": "DEFAULT"
    }
+  },
+  {
+   "case": "PUR-WEAR",
+   "facts": {
+    "PURPOSE_SCREEN": {
+     "value": [
+      "WEARABLE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "HEALTH_MONITORING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MEDICAL_STATUS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "note": "Ticking 'being worn on the body' answers WORN_ON_BODY = yes; with health monitoring and no medical-device status, III-I-19 matches.",
+   "expect": {
+    "status": "IMPORTANT_I"
+   }
   }
  ]
 }

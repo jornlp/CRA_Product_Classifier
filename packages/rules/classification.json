@@ -416,8 +416,19 @@
      "METERING_COMMUNICATION": false
     }
    },
-   "why": "Answered on the purpose screen: the product is not mainly for this. One question over an OR-joined list, so every option left unticked is an answered 'no' (WP7 4.1). Ticking 'Not sure' settles nothing: every category is then asked about on its own.",
-   "unsure": "NOT_SURE"
+   "why": "Answered on the purpose screen: the product is not mainly for this. One question over an OR-joined list, so every option left unticked is an answered 'no' (WP7 4.1). Ticking 'Not sure' settles nothing: every category is then asked about on its own. Where an option is the same test as its follow-up question (worn on the body, a toy, a password manager), ticking it answers that question 'yes', so it is not asked twice; this only moves towards the stricter result.",
+   "unsure": "NOT_SURE",
+   "ticked_sets": {
+    "WEARABLE": {
+     "WORN_ON_BODY": true
+    },
+    "TOY": {
+     "IS_TOY": true
+    },
+    "PASSWORDS": {
+     "STORES_PASSWORDS_CORE": true
+    }
+   }
   },
   {
    "screen": "EXCLUSION_SCREEN",

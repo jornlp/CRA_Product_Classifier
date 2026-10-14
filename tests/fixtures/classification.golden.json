@@ -78807,6 +78807,396 @@
     },
     "disclaimer_version": "v3-13-draft"
    }
+  },
+  {
+   "case": "PUR-WEAR",
+   "facts": {
+    "PURPOSE_SCREEN": {
+     "value": [
+      "WEARABLE"
+     ],
+     "provenance": "USER_CONFIRMED"
+    },
+    "HEALTH_MONITORING": {
+     "value": true,
+     "provenance": "USER_CONFIRMED"
+    },
+    "MEDICAL_STATUS": {
+     "value": "NONE",
+     "provenance": "USER_CONFIRMED"
+    }
+   },
+   "note": "Ticking 'being worn on the body' answers WORN_ON_BODY = yes; with health monitoring and no medical-device status, III-I-19 matches.",
+   "options": {
+    "assessed_at": "2026-10-12",
+    "valid_until": "2027-10-12"
+   },
+   "harness_status": "IMPORTANT_I",
+   "expect": {
+    "status": "IMPORTANT_I"
+   },
+   "golden": {
+    "assessment_id": "PUR-WEAR",
+    "assessed_at": "2026-10-12",
+    "rule_set_version": "0.1.0",
+    "law_as_of": "2026-10-12",
+    "valid_until": "2027-10-12",
+    "validity_warnings": [],
+    "sources": [
+     {
+      "code": "B1c",
+      "id": "02024R2847-20241120",
+      "sha256": "b72428a6133baef95ce09a05885532b480029796aecf6e90e9ab0790c72fbd72"
+     },
+     {
+      "code": "B2",
+      "id": "32025R2392",
+      "sha256": "fac0a59b6cad2f1c7878c561e066b0d47514fb7fc2dcb708cdd1285073aecdf3"
+     },
+     {
+      "code": "B11c",
+      "id": "02024R1689-20260727",
+      "sha256": "1ccd38d1c78482cf2053b70110115adcc5080700acc8bd7bead8cb3579143ccf"
+     },
+     {
+      "code": "B18",
+      "id": "32025R0327",
+      "sha256": "2969e359baba367ae97724029791c3ca8c1f5f9c5e0a4867b2f6f48f6f1e5cd0"
+     }
+    ],
+    "facts": [
+     {
+      "fact_id": "PURPOSE_SCREEN",
+      "value": [
+       "WEARABLE"
+      ],
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "HEALTH_MONITORING",
+      "value": true,
+      "provenance": "USER_CONFIRMED"
+     },
+     {
+      "fact_id": "MEDICAL_STATUS",
+      "value": "NONE",
+      "provenance": "USER_CONFIRMED"
+     }
+    ],
+    "scope": {
+     "status": "IN_SCOPE",
+     "reasons": [
+      "assumed in trial"
+     ],
+     "assumed": true
+    },
+    "classification": {
+     "status": "IMPORTANT_I",
+     "class_floor": "IMPORTANT_I",
+     "blocking": [],
+     "matched": [
+      {
+       "category": "III-I-19",
+       "class": "IMPORTANT_I",
+       "rule_id": "CAT-III-I-19"
+      }
+     ],
+     "excluded": [
+      {
+       "category": "III-I-01",
+       "rule_id": "CAT-III-I-01",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "provide mechanisms for authentication or authorisation",
+         "fact": "AUTH_OR_ACCESS_CONTROL"
+        }
+       ]
+      },
+      {
+       "category": "III-I-02",
+       "rule_id": "CAT-III-I-02",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "enable end users to access, render, and interact with web content and services hosted on servers",
+         "fact": "RENDERS_WEB_CONTENT"
+        }
+       ]
+      },
+      {
+       "category": "III-I-03",
+       "rule_id": "CAT-III-I-03",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "store passwords, locally on a device or on a remote server",
+         "fact": "STORES_PASSWORDS_CORE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-04",
+       "rule_id": "CAT-III-I-04",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "detect or search for malicious software or code on devices, or remove or quarantine such software or code",
+         "fact": "DETECTS_MALWARE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-05",
+       "rule_id": "CAT-III-I-05",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "establish an encrypted logical tunnel that is constructed from the system resources of a physical or virtual network",
+         "fact": "VPN_TUNNEL"
+        }
+       ]
+      },
+      {
+       "category": "III-I-06",
+       "rule_id": "CAT-III-I-06",
+       "failing": [
+        {
+         "condition": "C2",
+         "quote": "controlling their network operations and configuration",
+         "fact": "CONFIGURES_NETWORK_ELEMENTS"
+        }
+       ]
+      },
+      {
+       "category": "III-I-07",
+       "rule_id": "CAT-III-I-07",
+       "failing": [
+        {
+         "condition": "C3",
+         "quote": "present it as actionable information for security-related purposes",
+         "fact": "SECURITY_PURPOSE_OUTPUT"
+        }
+       ]
+      },
+      {
+       "category": "III-I-08",
+       "rule_id": "CAT-III-I-08",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "manage the process of initial system startup after power on/restart by initialising hardware, loading or transferring control to the operating system environment or system resources",
+         "fact": "MANAGES_BOOT"
+        }
+       ]
+      },
+      {
+       "category": "III-I-09",
+       "rule_id": "CAT-III-I-09",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "used as part of a public key infrastructure (PKI) that manage the validation, creation, issuance, distribution, status publication, renewal or revocation of digital certificates",
+         "fact": "MANAGES_CERT_LIFECYCLE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-10",
+       "rule_id": "CAT-III-I-10",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "directly or indirectly connect a device to a network via an API that emulates that of drivers of physical network interfaces",
+         "fact": "NETWORK_INTERFACE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-11",
+       "rule_id": "CAT-III-I-11",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "provide an abstract interface of the underlying hardware and control the execution of software",
+         "fact": "HARDWARE_ABSTRACTION"
+        }
+       ]
+      },
+      {
+       "category": "III-I-12",
+       "rule_id": "CAT-III-I-12",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "Routers are products with digital elements that establish and control the flow of data between different networks",
+         "fact": "NETWORK_DEVICE_ROLE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-13",
+       "rule_id": "CAT-III-I-13",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "integrated circuits that carry out central processing functions relying on external memory and peripherals",
+         "fact": "IC_TYPE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-14",
+       "rule_id": "CAT-III-I-14",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "integrated circuits that carry out central processing functions integrating memory",
+         "fact": "IC_TYPE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-15",
+       "rule_id": "CAT-III-I-15",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "fully or partially custom-designed to perform a specific function",
+         "fact": "IC_TYPE"
+        }
+       ]
+      },
+      {
+       "category": "III-I-16",
+       "rule_id": "CAT-III-I-16",
+       "failing": [
+        {
+         "condition": "C2",
+         "quote": "process demands, tasks or questions based on natural language prompts",
+         "fact": "NATURAL_LANGUAGE_ASSISTANT"
+        }
+       ]
+      },
+      {
+       "category": "III-I-17",
+       "rule_id": "CAT-III-I-17",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "protect the physical security of consumers",
+         "fact": "PROTECTS_PHYSICAL_SECURITY"
+        },
+        {
+         "condition": "C4",
+         "quote": "centrally control such products",
+         "fact": "CENTRAL_CONTROL_OF_SECURITY"
+        }
+       ]
+      },
+      {
+       "category": "III-I-18",
+       "rule_id": "CAT-III-I-18",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "that are covered by Directive 2009/48/EC",
+         "fact": "IS_TOY"
+        }
+       ]
+      },
+      {
+       "category": "III-II-01",
+       "rule_id": "CAT-III-II-01",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "manage the execution and lifecycle of containers running on a single host operating system",
+         "fact": "VIRTUALISATION_TYPE"
+        }
+       ]
+      },
+      {
+       "category": "III-II-02",
+       "rule_id": "CAT-III-II-02",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "protect a connected network or system from unauthorized access by monitoring and restricting data communication traffic",
+         "fact": "FILTERS_OR_DETECTS_INTRUSION"
+        }
+       ]
+      },
+      {
+       "category": "III-II-03",
+       "rule_id": "CAT-III-II-03",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "microprocessors with security-related functionalities referred to in Table 'Class I', point 13"
+        }
+       ]
+      },
+      {
+       "category": "III-II-04",
+       "rule_id": "CAT-III-II-04",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "microcontrollers with security-related functionalities referred to in Table 'Class I', point 14"
+        }
+       ]
+      },
+      {
+       "category": "IV-01",
+       "rule_id": "CAT-IV-01",
+       "failing": [
+        {
+         "condition": "C1",
+         "quote": "securely store, process, or manage sensitive data or perform cryptographic operations",
+         "fact": "CRYPTO_CORE"
+        }
+       ]
+      },
+      {
+       "category": "IV-02",
+       "rule_id": "CAT-IV-02",
+       "failing": [
+        {
+         "condition": "G1",
+         "quote": "control communication between components in or connected to smart metering systems",
+         "fact": "METERING_COMMUNICATION"
+        },
+        {
+         "condition": "L2",
+         "quote": "other devices for advanced security purposes, including for secure cryptoprocessing",
+         "fact": "ADVANCED_SECURITY_CORE"
+        }
+       ]
+      },
+      {
+       "category": "IV-03",
+       "rule_id": "CAT-IV-03",
+       "failing": [
+        {
+         "condition": "C1a",
+         "quote": "Secure elements are microcontrollers or microprocessors",
+         "fact": "IC_TYPE"
+        }
+       ]
+      }
+     ],
+     "uncovered_categories": []
+    },
+    "conformity_routes": [],
+    "timeline": [],
+    "reasons": [],
+    "next_questions": [],
+    "reassessment_recommended": {
+     "value": false
+    },
+    "disclaimer_version": "v3-13-draft"
+   }
   }
  ]
 }

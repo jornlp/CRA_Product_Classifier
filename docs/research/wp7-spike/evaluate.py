@@ -77,6 +77,10 @@ def apply_derive(derives, raw):
         if "screen" in d:
             scr = facts.get(d["screen"])
             if scr and isinstance(scr["value"], list) and d.get("unsure") not in scr["value"]:
+                for opt, sets in d.get("ticked_sets", {}).items():
+                    if opt in scr["value"]:
+                        for fk, fv in sets.items():
+                            facts.setdefault(fk, {"value": fv, "provenance": scr.get("provenance", "USER_CONFIRMED"), "derived": d["why"]})
                 for opt, sets in d["unticked_sets"].items():
                     if opt not in scr["value"]:
                         for fk, fv in sets.items():

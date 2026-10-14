@@ -53,7 +53,9 @@ export type Facts = Record<string, Fact>;
  * from one answer (no data interface -> no connection). Answers given directly always win.
  */
 export type Derive =
-  | { screen: string; unticked_sets: Record<string, Record<string, unknown>>; why: string; unsure?: string }
+  | { screen: string; unticked_sets: Record<string, Record<string, unknown>>; why: string; unsure?: string;
+      /** Options that are the same test as their follow-up: ticking one answers that follow-up (strict direction). */
+      ticked_sets?: Record<string, Record<string, unknown>> }
   | { if: Record<string, unknown>; then: Record<string, unknown>; why: string };
 
 export function applyDerive(derives: readonly Derive[] | undefined, raw: Facts): Facts {
@@ -63,6 +65,11 @@ export function applyDerive(derives: readonly Derive[] | undefined, raw: Facts):
     if ("screen" in d) {
       const scr = facts[d.screen];
       if (scr && Array.isArray(scr.value) && !(d.unsure && (scr.value as unknown[]).includes(d.unsure))) {
+        for (const [opt, sets] of Object.entries(d.ticked_sets ?? {})) {
+          if ((scr.value as unknown[]).includes(opt)) {
+            for (const [fk, fv] of Object.entries(sets)) setDefault(fk, { value: fv, provenance: scr.provenance ?? "USER_CONFIRMED", derived: d.why });
+          }
+        }
         for (const [opt, sets] of Object.entries(d.unticked_sets)) {
           if (!(scr.value as unknown[]).includes(opt)) {
             for (const [fk, fv] of Object.entries(sets)) setDefault(fk, { value: fv, provenance: scr.provenance ?? "USER_CONFIRMED", derived: d.why });
