@@ -9,8 +9,9 @@ The tool is time-boxed (DR-05): every result states the law it rests on, and aft
 results carry a prominent marker. A weekly check of EUR-Lex flags changes in the law.
 
 Results can be saved as PDF, Markdown or JSON. Everything runs in the browser; nothing entered is
-sent anywhere. No cookies. If enabled, page views and a few step names are counted anonymously with
-GoatCounter (EU-hosted, cookieless), skipped when the browser asks not to be tracked. Code is Apache-2.0, rules and test cases are CC BY 4.0: see [LICENSING.md](LICENSING.md).
+sent anywhere. No cookies. Page views and a few step names are counted with GoatCounter (EU-hosted,
+cookieless) only if the visitor agrees first (ePrivacy Art. 5(3)); browsers that ask not to be tracked
+are neither counted nor asked. Code is Apache-2.0, rules and test cases are CC BY 4.0: see [LICENSING.md](LICENSING.md).
 
 **Disclaimer.** This tool is an informational aid for a preliminary assessment of applicability and
 product classification under the EU Cyber Resilience Act. It does not provide legal advice, a binding

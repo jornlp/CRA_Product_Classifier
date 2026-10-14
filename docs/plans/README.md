@@ -192,6 +192,10 @@ Decided 12 October 2026 by the project lead.
   are "open"; III-I-16 outside residential settings is "open" (MP-13 changed); the purpose warning follows the
   guidance (objective, not marketing); stewards get a pointer to Art. 24; the RED note no longer suggests it ends
   when the CRA applies.
+- **Visitor counting needs consent** (decided 14 October 2026): EDPB Guidelines 2/2023 bring pixel requests
+  under ePrivacy Art. 5(3), and the Belgian DPA does not exempt audience measurement. GoatCounter counts only
+  after an explicit "Yes" in a small, non-blocking bar (both answers equally easy; changeable under About);
+  with Do Not Track or Global Privacy Control nothing is asked or counted.
 - **Not done before publication:** independent technical review of the rules (DR-04, §8.2), and
   comprehension testing with users (WP6, AC-08). The site says "Preview: rules not yet
   independently reviewed".

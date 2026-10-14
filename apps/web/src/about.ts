@@ -3,7 +3,7 @@ import { CONFIG, validUntil } from "./config.js";
 
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
-export function aboutHtml(o: { lawAsOf: string; ruleSet: string; sources: Record<string, { id: string }>; lastCheck?: string | null }): string {
+export function aboutHtml(o: { consent?: "yes" | "no" | null; lawAsOf: string; ruleSet: string; sources: Record<string, { id: string }>; lastCheck?: string | null }): string {
   const src: Record<string, string> = {
     B1c: "Regulation (EU) 2024/2847 (Cyber Resilience Act), consolidated text",
     B2: "Implementing Regulation (EU) 2025/2392, technical descriptions of important and critical products",
@@ -49,15 +49,21 @@ export function aboutHtml(o: { lawAsOf: string; ruleSet: string; sources: Record
   </ul>
   <h3>Your data</h3>
   <p>Your answers stay in your browser: nothing you enter is sent anywhere, and there are no accounts and no cookies. If you
-  choose Light or Dark, that choice is stored in this browser only.</p>
+  choose Light or Dark, or answer the question about counting visits, that choice is stored in this browser only.</p>
   <p>The site is hosted on GitHub Pages. Like any website host, GitHub receives your IP address and browser type to deliver the
   pages (see GitHub's privacy statement).</p>${CONFIG.COUNTER_URL
     ? `
-  <p>To see whether the tool is used, page views and a few steps (a check started, a result reached, a report saved) are
-  counted with GoatCounter, hosted in the EU. It uses no cookies and does not store IP addresses; each count is a web request,
-  so it does receive your IP address and browser type, and no answers or results. Nothing is counted if your browser asks not
-  to be tracked (Do Not Track or Global Privacy Control). The basis is a legitimate interest in knowing whether the tool is
-  used (GDPR Art. 6(1)(f)).</p>`
+  <p>Counting visits, only if you agree: to see whether the tool is used, page views and a few steps (a check started, a
+  result reached, a report saved) can be counted with GoatCounter, hosted in the EU. Nothing is counted unless you say yes.
+  It uses no cookies and does not store IP addresses; each count is a web request, so GoatCounter does receive your IP address
+  and browser type, and never your answers or results. If your browser asks not to be tracked (Do Not Track or Global Privacy
+  Control), we do not count and do not ask. The basis is your consent (GDPR Art. 6(1)(a); ePrivacy Directive Art. 5(3)), which
+  you can withdraw at any time; your choice is remembered in this browser only.</p>
+  ${o.consent === undefined ? `<p class="muted small">Counting is not available in this browser or on this page.</p>`
+    : `<p><strong>Your choice:</strong> ${o.consent === "yes" ? "visits are counted." : o.consent === "no" ? "visits are not counted." : "not made yet; nothing is counted."}
+      ${o.consent === "yes" ? `<button type="button" class="secondary small-btn" data-set-consent="no">Stop counting</button>`
+        : `<button type="button" class="secondary small-btn" data-set-consent="yes">Count my visits</button>${o.consent === null
+          ? ` <button type="button" class="secondary small-btn" data-set-consent="no">Don't count</button>` : ""}`}</p>`}`
     : ""}${CONFIG.PUBLISHER ? `
   <p>Responsible for this site: ${esc(CONFIG.PUBLISHER)}.</p>` : ""}
   <p>Questions about your data or the tool: open an issue in the repository (see "Licence and errors" below).</p>

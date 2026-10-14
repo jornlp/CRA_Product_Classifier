@@ -18,7 +18,7 @@ import { reportMarkdown, markdownToHtml, CLASS, scopeVerdict, classVerdict, RED_
 import type { PlacingRow } from "./report.js";
 import { aboutHtml } from "./about.js";
 import { scopeReasonsPlain } from "./explain.js";
-import { count } from "./analytics.js";
+import { count, countingPossible, getConsent, setConsent } from "./analytics.js";
 
 const RULES = cls as unknown as ClassificationRules;
 const SCOPE = sc as unknown as ScopeRules;
@@ -401,8 +401,14 @@ function restart() { state = fresh(); counted = new Set(); render(); }
 function render() {
   if (showAbout) {
     countOnce("about");
-    app.innerHTML = aboutHtml({ lawAsOf: RULES.law_as_of, ruleSet: RULES.rule_set_version, sources: RULES.sources, lastCheck: lawStatus?.checked_at });
+    app.innerHTML = aboutHtml({ consent: countingPossible() ? getConsent() : undefined, lawAsOf: RULES.law_as_of, ruleSet: RULES.rule_set_version, sources: RULES.sources, lastCheck: lawStatus?.checked_at });
     document.getElementById("about-close")?.addEventListener("click", () => { showAbout = false; render(); });
+    document.querySelectorAll<HTMLButtonElement>("button[data-set-consent]").forEach((b) => b.addEventListener("click", () => {
+      setConsent(b.dataset.setConsent as "yes" | "no");
+      if (b.dataset.setConsent === "yes") count(location.pathname, false);
+      document.getElementById("consent-bar")?.remove();
+      render();
+    }));
     window.scrollTo(0, 0);
     return;
   }
@@ -461,7 +467,27 @@ function render() {
 }
 
 initTheme();
-count(location.pathname, false);
+// Ask before counting: a small bar, not blocking, both answers equally easy; nothing is sent before "Yes".
+function consentBar() {
+  document.getElementById("consent-bar")?.remove();
+  if (!countingPossible() || getConsent() !== null) return;
+  const bar = Object.assign(document.createElement("div"), { id: "consent-bar", className: "consent-bar" });
+  bar.setAttribute("role", "region");
+  bar.setAttribute("aria-label", "Counting visits");
+  bar.innerHTML = `<p>May we count your visit anonymously, to see whether this tool is used? Your answers are never sent,
+    and no cookies are used. You can change this later under About.</p>
+    <div class="consent-buttons"><button type="button" class="secondary" data-consent="yes">Yes, count my visit</button>
+    <button type="button" class="secondary" data-consent="no">No</button></div>`;
+  bar.querySelectorAll<HTMLButtonElement>("button[data-consent]").forEach((b) => b.addEventListener("click", () => {
+    setConsent(b.dataset.consent as "yes" | "no");
+    if (b.dataset.consent === "yes") count(location.pathname, false);
+    bar.remove();
+    if (showAbout) render();
+  }));
+  document.body.appendChild(bar);
+}
+count(location.pathname, false);  // only if consent was given on an earlier visit
+consentBar();
 // Home: back to the start screen, keeping the answers so a check can be continued.
 for (const id of ["home", "home-btn"]) document.getElementById(id)?.addEventListener("click", () => { showAbout = false; state.mode = undefined; render(); });
 document.getElementById("about-btn")?.addEventListener("click", () => { showAbout = true; render(); });
