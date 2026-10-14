@@ -38,6 +38,10 @@ beforeAll(async () => {
   await tick(); await tick();
 });
 
+const obligations = () => {
+  const t = document.querySelector("table.obligations")!;
+  return { head: [...t.querySelectorAll("thead th")].map((h) => h.textContent), rows: [...t.querySelectorAll("tbody tr")] };
+};
 describe("screens: pest-control camera", () => {
   it("first asks what the user wants to know, with three checks", async () => {
     expect(heading()).toBe("What do you want to know?");
@@ -89,9 +93,9 @@ describe("screens: pest-control camera", () => {
   });
   it("the scope result shows when the requirements apply, and offers to continue to the class", async () => {
     expect(app().textContent).toContain("Based on your answers, the CRA applies to this product.");
-    const rows = [...app().querySelectorAll("table")].find((t) => t.textContent!.includes("Units placed"))!.querySelectorAll("tbody tr");
-    expect([...rows].map((r) => r.children[0].textContent)).toEqual(["Before 11 December 2027", "On or after 11 December 2027"]);
-    expect(app().textContent).toContain("cra art 14 reporting");
+    const { head, rows } = obligations();
+    expect(head).toEqual(["Obligation", "Units placed before 11 December 2027", "Units placed on or after 11 December 2027"]);
+    expect(rows[1].textContent).toContain("Applies since 11 September 2026");
     app().querySelector<HTMLButtonElement>("#to-class")!.click(); await tick();
   });
   it("asks what the product is mainly for, with the stem and its warning always visible", async () => {
@@ -184,11 +188,15 @@ describe("screens: pest-control camera", () => {
     expect(app().textContent).toContain("plays no part in the assessment");
   });
   it("result shows when obligations apply, by placing period, without asking for a date", () => {
-    expect(app().textContent).toContain("cra art 14 reporting");
-    const rows = [...app().querySelectorAll("table")].find((t) => t.textContent!.includes("Units placed"))!.querySelectorAll("tbody tr");
-    expect([...rows].map((r) => r.children[0].textContent)).toEqual(["Before 11 December 2027", "On or after 11 December 2027"]);
-    expect(rows[0].textContent).toContain("unless they are substantially modified");
-    expect(rows[1].textContent).toContain("Apply from 11 December 2027");
+    const { rows } = obligations();
+    // CRA requirements: one cell per placing period
+    const req = [...rows[0].querySelectorAll("td")].slice(1).map((c) => c.textContent);
+    expect(req[0]).toContain("unless they are substantially modified");
+    expect(req[1]).toContain("Apply from 11 December 2027");
+    // Reporting: the same for every unit, shown once across the periods
+    const rep = rows[1].querySelectorAll("td");
+    expect(rep[1].getAttribute("colspan")).toBe("2");
+    expect(rep[1].textContent).toContain("Applies since 11 September 2026 (whenever placed)");
     expect(app().textContent).toContain("Delegated Regulation (EU) 2022/30");
     // AI Act and EHDS: a pointer only, not part of the CRA class.
     expect(app().textContent).toContain("They do not change the CRA class or the CRA requirements");

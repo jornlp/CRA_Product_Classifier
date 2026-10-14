@@ -14,7 +14,7 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, markdownToHtml, CLASS, scopeVerdict, classVerdict, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns } from "./report.js";
+import { reportMarkdown, markdownToHtml, CLASS, scopeVerdict, classVerdict, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, obligationTable } from "./report.js";
 import type { PlacingRow } from "./report.js";
 import { aboutHtml } from "./about.js";
 import { scopeReasonsPlain } from "./explain.js";
@@ -252,16 +252,17 @@ function assemble() {
              timeline: o.timeline.filter((i) => BY_PLACING.has(i.obligation)) };
   });
   // Dates need no answers, so they come with every in-scope result, the scope check included.
-  const showTimeline = mode !== "class" && s.status === "IN_SCOPE";
+  // Class only: no scope answers, but nothing here needs answers either, so it is shown "if the CRA applies".
+  const showTimeline = mode === "class" || s.status === "IN_SCOPE";
   const out = toOutput(RULES, state.facts, res, route(RULES, state.facts, res), {
     assessmentId: `cra-${today}`, assessedAt: today, validUntil: vu, validityWarnings: warnings,
     scope: scopeOut, timeline: showTimeline ? t.timeline.filter((i) => !BY_PLACING.has(i.obligation)) : [],
   });
   // Class only: no scope or timeline questions were asked, but the CRA requirements per placing period
   // need no answers, so they are shown too (stated under "if the CRA applies").
-  const periods = showTimeline ? byPeriod
+  const periods = !showTimeline ? []
     : mode === "class" ? byPeriod.map((r) => ({ ...r, timeline: r.timeline.filter((i) => i.obligation === "CRA_ESSENTIAL_REQUIREMENTS") }))
-    : [];
+    : byPeriod;
   // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
   if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
   return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, check: mode, for_your_records: state.record, timeline_facts: state.tfacts,
@@ -308,24 +309,17 @@ function resultHtml(): string {
       }).join("")}</ul></details>` : "";
   }
   {
-    const pc = placingColumns(periods);
-    if (periods.length && pc.obligations.length) {
+    const tbl = obligationTable(periods, out.timeline);
+    if (tbl.rows.length) {
       body += `
-      <section class="box"><h2>When the requirements apply${mode === "class" ? " (if the CRA applies)" : ""}</h2>
-        <p class="muted small">Each unit counts on its own: what matters is when that unit is placed on the market, not when the model was launched.</p>
-        <table><thead><tr><th>Units placed</th>${pc.obligations.map((o) => `<th>${esc(PLACING_COLUMN[o])}</th>`).join("")}</tr></thead><tbody>
-        ${periods.map((r) => `<tr><td>${esc(r.period)}</td>${pc.obligations.map((o) => `<td>${esc(placingCell(r.timeline.find((i) => i.obligation === o) as never))}</td>`).join("")}</tr>`).join("")}
-        </tbody></table>
-        ${pc.obligations.map((o) => lawDetails(o, `The law and the Commission FAQ: ${PLACING_COLUMN[o]}`)).join("")}</section>`;
-    }
-    if (out.timeline.length) {
-      const tlLabel: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
-      body += `
-      <section class="box"><h2>Other obligations</h2><table><thead><tr><th>Obligation</th><th>Status</th><th>Basis</th></tr></thead><tbody>
-        ${out.timeline.map((i) => `<tr><td>${esc(i.obligation.replace(/_/g, " ").toLowerCase())}<br>${lawDetails(i.obligation, i.provision)}</td>
-          <td>${esc(tlLabel[i.status])}${i.applies_from ? `<br><span class="muted small">from ${esc(i.applies_from)}</span>` : ""}</td>
-          <td>${esc(i.basis)}${i.open_questions ? `<br><span class="muted small">${esc(i.open_questions.join(" "))}</span>` : ""}</td></tr>`).join("")}
-      </tbody></table></section>`;
+      <section class="box"><h2>When the obligations apply${mode === "class" ? " (if the CRA applies)" : ""}</h2>
+        <p class="muted small">By when the units are placed on the market. Each unit counts on its own: what matters is when that unit is placed, not when the model was launched.</p>
+        <table class="obligations"><thead><tr><th>Obligation</th>${tbl.columns.map((c) => `<th>Units placed ${esc(c.charAt(0).toLowerCase() + c.slice(1))}</th>`).join("")}</tr></thead><tbody>
+        ${tbl.rows.map((r) => `<tr><td>${esc(r.label)}${lawDetails(r.obligation, "The law and the Commission FAQ")}</td>${
+          r.cells.every((x) => x === r.cells[0]) && r.cells.length > 1
+            ? `<td colspan="${r.cells.length}">${esc(r.cells[0])} <span class="muted small">(whenever placed)</span></td>`
+            : r.cells.map((x) => `<td>${esc(x)}</td>`).join("")}</tr>`).join("")}
+        </tbody></table></section>`;
     }
     // Pointers only: laws this tool does not check. Collapsed; the title names them.
     if (periods.length || out.timeline.length || mode === "class") body += `

@@ -17,6 +17,10 @@ async function pick(labels: string[] | string) {
   form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true })); await tick();
 }
 
+const obligations = () => {
+  const t = document.querySelector("table.obligations")!;
+  return { head: [...t.querySelectorAll("thead th")].map((h) => h.textContent), rows: [...t.querySelectorAll("tbody tr")] };
+};
 beforeAll(async () => {
   document.body.innerHTML = `<main><div id="app"></div></main>`;
   vi.stubGlobal("fetch", vi.fn(async () => ({ ok: true, json: async () => status })));
@@ -44,10 +48,10 @@ it("class only, smart lock: skips scope, ends with a conditional class and an of
   const text = app().textContent!;
   expect(text).toContain("Scope not checked");
   expect(text).toContain("If the CRA applies, based on your answers: not determined; at least Important, Class I");  // scope unchecked: never definite
-  expect(text).not.toContain("cra art 14 reporting");
-  // No dates asked, but the CRA requirements per placing period are shown.
-  const rows = [...app().querySelectorAll("table")].find((t) => t.textContent!.includes("Units placed"))!.querySelectorAll("tbody tr");
-  expect([...rows].map((r) => r.children[0].textContent)).toEqual(["Before 11 December 2027", "On or after 11 December 2027"]);
+  // No dates asked, but what needs no answers is shown "if the CRA applies": requirements per placing period, and reporting.
+  const { head, rows } = obligations();
+  expect(head).toEqual(["Obligation", "Units placed before 11 December 2027", "Units placed on or after 11 December 2027"]);
+  expect(rows.map((r) => r.children[0].textContent!.slice(0, 15))).toEqual(["CRA requirement", "Reporting activ"]);
   app().querySelector<HTMLButtonElement>("#to-full")!.click(); await tick();
   expect(heading()).toContain("hardware, software, or an online service");
 });

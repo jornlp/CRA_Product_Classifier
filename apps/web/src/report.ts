@@ -49,11 +49,30 @@ export function placingCell(i: { obligation: string; status: string; applies_fro
   if (i.obligation === "RED_DA_CYBERSECURITY" && i.status === "UNRESOLVED") return "Not determined: whether the delegated act covers the product is unknown";
   return TL[i.status] + (i.open_questions?.length ? `. ${i.open_questions.join(" ")}` : "");
 }
-export interface PlacingRow { period: string; conformity_routes: { route: string }[]; timeline: { obligation: string; status: string }[] }
-/** Columns that matter: obligations present in any period. */
-export function placingColumns(rows: PlacingRow[]): { obligations: string[] } {
-  return { obligations: [...BY_PLACING].filter((o) => rows.some((r) => r.timeline.some((i) => i.obligation === o))) };
+/** Row names of the obligations table, and the provisions behind them. */
+export const OBLIGATION_LABEL: Record<string, string> = {
+  CRA_ESSENTIAL_REQUIREMENTS: "CRA requirements: security requirements, conformity assessment, CE marking (Art. 69(2), 71(2))",
+  CRA_ART_14_REPORTING: "Reporting actively exploited vulnerabilities and severe incidents (Art. 14, 69(3), 71(2))",
+  OTHER_LEGISLATION_CERTIFICATE: "Your existing certificate under other EU law (Art. 69(1))",
+};
+const isoToLong = (t: string) => t.replace(/\b(\d{4}-\d{2}-\d{2})\b/g, (d) => longDate(d));
+const sentence = (t: string) => isoToLong(t.charAt(0).toUpperCase() + t.slice(1));
+/** Plain text for an obligation that does not depend on the placing date. */
+function otherCell(i: { obligation: string; status: string; applies_from?: string; basis?: string }): string {
+  if (i.obligation === "CRA_ART_14_REPORTING")
+    return i.status === "APPLIES" ? `Applies since ${longDate(i.applies_from!)}` : `Applies from ${longDate(i.applies_from!)}`;
+  return sentence(i.basis ?? "");
 }
+/** One table: a row per obligation, a column per placing period. What does not depend on the placing date has the same cell in every column. */
+export function obligationTable(periods: PlacingRow[], other: { obligation: string; status: string; applies_from?: string; basis?: string }[]):
+    { columns: string[]; rows: { obligation: string; label: string; cells: string[] }[] } {
+  const columns = periods.length ? periods.map((p) => p.period) : ["Whenever placed"];
+  const rows = [...BY_PLACING].filter((o) => periods.some((p) => p.timeline.some((i) => i.obligation === o)))
+    .map((o) => ({ obligation: o, label: OBLIGATION_LABEL[o] ?? PLACING_COLUMN[o], cells: periods.map((p) => placingCell(p.timeline.find((i) => i.obligation === o) as never)) }));
+  for (const i of other) rows.push({ obligation: i.obligation, label: OBLIGATION_LABEL[i.obligation] ?? i.obligation, cells: columns.map(() => otherCell(i)) });
+  return { columns, rows };
+}
+export interface PlacingRow { period: string; conformity_routes: { route: string }[]; timeline: { obligation: string; status: string }[] }
 
 /** Pointer only: the tool does not ask about or assess the RED delegated act. */
 export const RED_NOTE =
@@ -127,25 +146,14 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
     }
     L.push(`_${ROUTE_NOTE}_`, "");
   }
-  const rows: PlacingRow[] = out.timeline_by_placing_period ?? [];
-  const pc = placingColumns(rows);
-  if (rows.length && pc.obligations.length) {
-    L.push("## Depends on when the units are placed on the market", "",
-      "_Each unit counts on its own: what matters is when that unit is placed on the market, not when the model was launched._", "");
-    const head = ["Units placed", ...pc.obligations.map((o) => PLACING_COLUMN[o])];
-    L.push(`| ${head.join(" | ")} |`, `|${head.map(() => "---").join("|")}|`);
-    for (const r of rows) {
-      L.push(`| ${[r.period, ...pc.obligations.map((o) => placingCell(r.timeline.find((i) => i.obligation === o) as any))].map(cell).join(" | ")} |`);
-    }
-    L.push("");
-  }
-  if (out.timeline?.length || rows.length) L.push(`_${RED_NOTE}_`, "");
-  if (out.timeline?.length) {
-    L.push("## When obligations apply", "", "| Obligation | Status | From | Basis |", "|---|---|---|---|");
-    for (const i of out.timeline) {
-      L.push(`| ${cell(i.obligation.replace(/_/g, " ").toLowerCase())} (${cell(i.provision)}) | ${TL[i.status]} | ${i.applies_from ?? ""} | ${cell(i.basis)}${i.open_questions ? ` ${cell(i.open_questions.join(" "))}` : ""} |`);
-    }
-    L.push("");
+  const tbl = obligationTable(out.timeline_by_placing_period ?? [], out.timeline ?? []);
+  if (tbl.rows.length) {
+    L.push(`## When the obligations apply${out.check === "class" ? " (if the CRA applies)" : ""}`, "",
+      "_By when the units are placed on the market. Each unit counts on its own: what matters is when that unit is placed, not when the model was launched._", "");
+    const head = ["Obligation", ...tbl.columns.map((c) => `Units placed ${c.charAt(0).toLowerCase()}${c.slice(1)}`)];
+    L.push(`| ${head.map(cell).join(" | ")} |`, `|${head.map(() => "---").join("|")}|`);
+    for (const r of tbl.rows) L.push(`| ${[r.label, ...r.cells].map(cell).join(" | ")} |`);
+    L.push("", `_${RED_NOTE}_`, "");
   }
 
   L.push(...R);
