@@ -195,7 +195,8 @@ function questionHtml(phase: Phase, fid: string): string {
       <p class="phase">${esc(PHASE_LABEL[phase])}</p>
       <fieldset>
         <legend><h2>${esc(q.question)}</h2></legend>
-        <p class="why"><span class="why-label">Why we ask:</span> ${esc(q.why_we_ask)}</p>
+        <p class="why clamp" id="why"><span class="why-label">Why we ask:</span> ${esc(q.why_we_ask)}</p>
+        <button type="button" class="link-btn why-more" id="why-more" aria-controls="why" aria-expanded="false" hidden>more</button>
         ${q.legal_basis?.length ? `<details class="legal why-legal"><summary>Legal basis</summary>${q.legal_basis.map(lawHtml).join("")}
           <p class="muted small">Highlighted: the words that decide this question.</p></details>` : ""}
         ${hint ? `<p class="hint">${esc(hint)}</p>` : ""}
@@ -459,6 +460,16 @@ function render() {
       };
       form.addEventListener("change", show);
       show();
+    }
+    // "Why we ask": at most four lines, with "more" only when the text is actually cut off.
+    const why = document.getElementById("why"), more = document.getElementById("why-more") as HTMLButtonElement | null;
+    if (why && more && why.scrollHeight > why.clientHeight + 1) {
+      more.hidden = false;
+      more.addEventListener("click", () => {
+        const open = why.classList.toggle("clamp") === false;
+        more.textContent = open ? "less" : "more";
+        more.setAttribute("aria-expanded", String(open));
+      });
     }
     form.querySelector<HTMLElement>("input, textarea")?.focus();
   }

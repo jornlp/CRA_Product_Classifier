@@ -49,6 +49,9 @@ describe("screens: pest-control camera", () => {
   it("starts with the product kind, and shows why we ask", () => {
     expect(heading()).toContain("hardware, software, or an online service");
     expect(app().querySelector("fieldset p.why")!.textContent).toMatch(/^Why we ask: /);
+    // At most four lines on screen (CSS clamp); "more" appears only when the text is cut off, which needs layout.
+    expect(app().querySelector("#why")!.classList.contains("clamp")).toBe(true);
+    expect(app().querySelector<HTMLButtonElement>("#why-more")!.hidden).toBe(true);
   });
   it("explains why in plain words, with the legal wording one level down", () => {
     expect(app().querySelector("fieldset p.why")!.textContent!.length).toBeGreaterThan(60);  // shown, no click needed

@@ -135,3 +135,6 @@ h1 .home:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; 
 .consent-buttons { display: flex; gap: .5rem; }
 @media print { .consent-bar { display: none; } }
 body:has(#consent-bar) { padding-bottom: 7rem; }
+.why.clamp { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; line-clamp: 4; overflow: hidden; }
+.why-more { font-size: .9rem; margin: 0 0 .4rem; display: block; }
+@media print { .why.clamp { display: block; -webkit-line-clamp: unset; } .why-more { display: none; } }
