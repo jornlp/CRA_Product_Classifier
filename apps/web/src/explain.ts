@@ -72,6 +72,8 @@ export function scopeReasonsPlain(rules: ScopeRules, facts: Facts, status: Scope
 }
 
 const CLASS_NAME: Record<string, string> = { DEFAULT: "Default", IMPORTANT_I: "Important, Class I", IMPORTANT_II: "Important, Class II", CRITICAL: "Critical" };
+/** After a quoted question: no extra full stop if it already ends in one. */
+const end = (q: string) => (/[?.!]$/.test(q) ? "" : ".");
 /** A category's title up to its first ", including" (the full titles run to several lines). */
 const shortTitle = (t: string) => t.split(/,? including /)[0];
 
@@ -101,8 +103,11 @@ export function classOpenPlain(rules: ClassificationRules, res: ClassifyResult, 
   for (const [fid, cats] of askedFor) {
     const q = questions[fid]?.question ?? fid;
     const how = all[fid]?.value === U || all[fid]?.value === "UNKNOWN" ? "You answered “Not sure” to" : "Not answered:";
-    out.push(`${how} “${q}”. This decides ${[...cats].join("; ")}.`);
+    out.push(`${how} “${q}”${end(q)} This decides ${[...cats].join("; ")}.`);
   }
-  for (const [fid, cats] of conflicts) out.push(`Your answers conflict on “${questions[fid]?.question ?? fid}”. This decides ${[...cats].join("; ")}.`);
+  for (const [fid, cats] of conflicts) {
+    const q = questions[fid]?.question ?? fid;
+    out.push(`Your answers conflict on “${q}”${end(q)} This decides ${[...cats].join("; ")}.`);
+  }
   return [...out, ...open];
 }
