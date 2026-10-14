@@ -14,9 +14,10 @@ import type { Phase, Mode } from "./flow.js";
 import type { ClassificationRules, ScopeRules, TimelineRules, Facts, LawStatus } from "../../../packages/engine/src/index.js";
 import { CONFIG, validUntil } from "./config.js";
 import { initTheme } from "./theme.js";
-import { reportMarkdown, routeLabel, markdownToHtml, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
+import { reportMarkdown, routeLabel, markdownToHtml, scopeVerdict, classVerdict, RED_NOTE, ROUTE_NOTE, STEWARD_NOTE, BY_PLACING, PLACING_COLUMN, placingCell, placingColumns, routesText } from "./report.js";
 import type { PlacingRow } from "./report.js";
 import { aboutHtml } from "./about.js";
+import { scopeReasonsPlain } from "./explain.js";
 import { count } from "./analytics.js";
 
 const RULES = cls as unknown as ClassificationRules;
@@ -285,21 +286,16 @@ function resultHtml(): string {
   const c = out.classification;
   const mode = state.mode ?? "full";
   const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${w.kind === "PAST_END_DATE" ? "Outdated" : "Law changed"}:</strong> ${esc(w.detail)}</div>`).join("");
-  const scopeText: Record<string, string> = {
-    IN_SCOPE: "The CRA applies to this product.", OUT_OF_SCOPE: "The CRA does not apply to this product.",
-    UNRESOLVED: "Whether the CRA applies is not determined yet.",
-  };
   let body = warn + (mode === "class" ? ""
-    : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeText[s.status])}</p>
-      <ul>${s.reasons.map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
+    : `<section class="box"><h2>Scope</h2><p class="verdict">${esc(scopeVerdict(s.status))}</p>
+      <ul>${scopeReasonsPlain(SCOPE, state.facts, s.status).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
       ${s.status === "OUT_OF_SCOPE" && state.facts.COMMERCIAL_ACTIVITY?.value === false
         ? `<p class="note">${esc(STEWARD_NOTE)}</p>` : ""}
       ${mode === "scope" && s.status === "IN_SCOPE" ? `<div class="nav"><button type="button" id="to-class">Continue: which class?</button></div>` : ""}</section>`);
   let ruledOut = "";
   if ((mode === "full" && s.status === "IN_SCOPE") || mode === "class") {
     const cat = (id: string) => `${esc(CATEGORIES[id]?.title ?? id)} <span class="muted">(${esc(id)})</span>`;
-    const stated = c.status === "UNRESOLVED" ? `Not determined. At least: ${CLASS_LABEL[c.class_floor]}` : CLASS_LABEL[c.status];
-    const status = mode === "class" ? `If the CRA applies: ${stated.charAt(0).toLowerCase()}${stated.slice(1)}` : stated;
+    const status = classVerdict(c, mode);
     const blockingCov = c.blocking.filter((b) => b.value === "NOT_COVERED").length;
     const blockingOther = c.blocking.filter((b) => b.value !== "NOT_COVERED");
     const reasonText: Record<string, string> = {
@@ -355,7 +351,8 @@ function resultHtml(): string {
     body += ruledOut;
   }
   body += `
-    <section class="box"><p>Rules reflect the law as of <strong>${esc(out.law_as_of)}</strong>; this version is valid until ${esc(out.valid_until)}.
+    <section class="box"><p>Rules reflect the law as of <strong>${esc(out.law_as_of)}</strong>; this version is valid until ${esc(out.valid_until)}
+      (twelve months from release; the CRA's main requirements apply from 11 December 2027, so check for a newer version by then).
       ${lawStatus ? `Last checked against EUR-Lex on ${esc(lawStatus.checked_at)}.` : ""}</p>
       <p class="muted small">${esc(CONFIG.disclaimer)}</p>
       <fieldset class="records"><legend><h3>For your records (optional)</h3></legend>
@@ -386,7 +383,7 @@ function readRecord() {
 function printReport() {
   readRecord();
   const { out, res } = assemble();
-  const md = reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer });
+  const md = reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer, scopeReasons: scopeReasonsPlain(SCOPE, state.facts, scope(SCOPE, state.facts).status) });
   let root = document.getElementById("print-root");
   if (!root) { root = Object.assign(document.createElement("div"), { id: "print-root" }); document.body.appendChild(root); }
   root.innerHTML = markdownToHtml(md);
@@ -401,7 +398,7 @@ function download(format: "md" | "json") {
   state.record.description = (document.getElementById("rec-description") as HTMLTextAreaElement | null)?.value ?? state.record.description;
   const { out, res } = assemble();
   const body = format === "json" ? JSON.stringify(out, null, 1)
-    : reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer });
+    : reportMarkdown(out, { categories: CATEGORIES, questions: QUESTIONS, derived: res.derived, disclaimer: CONFIG.disclaimer, scopeReasons: scopeReasonsPlain(SCOPE, state.facts, scope(SCOPE, state.facts).status) });
   const blob = new Blob([body], { type: format === "json" ? "application/json" : "text/markdown" });
   const name = (state.record.product.trim().replace(/[^\w-]+/g, "-").slice(0, 40) || out.assessment_id) + (format === "json" ? ".json" : ".md");
   const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: name });

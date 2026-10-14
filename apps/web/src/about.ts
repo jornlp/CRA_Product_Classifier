@@ -31,6 +31,8 @@ export function aboutHtml(o: { lawAsOf: string; ruleSet: string; sources: Record
     <li>Delegated Regulations (EU) 2025/1535 (L-category vehicles) and 2022/30 (radio equipment)</li>
     <li>European Commission, Frequently Asked Questions on the CRA, version 14 (non-binding)</li></ul>
   <p class="muted small">Every condition and quote is checked word for word against these texts before each release.</p>
+  <p class="muted small">EU legal texts and Commission documents: © European Union, from EUR-Lex and the Commission, reused under
+  Commission Decision 2011/833/EU. Quotes are reproduced as published; the tool's own explanations are not official.</p>
   <h3>Validity</h3>
   <p>The rules reflect the law as of <strong>${esc(o.lawAsOf)}</strong> (rule set ${esc(o.ruleSet)}). This version is valid
   until <strong>${esc(validUntil(o.lawAsOf))}</strong>. After that date it keeps working, but every result is marked as possibly
@@ -46,9 +48,19 @@ export function aboutHtml(o: { lawAsOf: string; ruleSet: string; sources: Record
     <li>Whether a product with a medical purpose that is not certified as a medical device falls under the medical device rules.</li>
   </ul>
   <h3>Your data</h3>
-  <p>Everything runs in your browser. Nothing you enter is sent anywhere. No cookies, no tracking, no accounts. Only your colour scheme choice is remembered, in this browser.</p>${CONFIG.COUNTER_URL
-    ? `<p>To see whether the tool is used, page views and a few steps (a check started, a result reached, a report saved) are counted anonymously with GoatCounter, which is hosted in the EU and uses no cookies. Your answers and results are never sent. Nothing is counted if your browser asks not to be tracked (Do Not Track or Global Privacy Control).</p>`
-    : ""}
+  <p>Your answers stay in your browser: nothing you enter is sent anywhere, and there are no accounts and no cookies. If you
+  choose Light or Dark, that choice is stored in this browser only.</p>
+  <p>The site is hosted on GitHub Pages. Like any website host, GitHub receives your IP address and browser type to deliver the
+  pages (see GitHub's privacy statement).</p>${CONFIG.COUNTER_URL
+    ? `
+  <p>To see whether the tool is used, page views and a few steps (a check started, a result reached, a report saved) are
+  counted with GoatCounter, hosted in the EU. It uses no cookies and does not store IP addresses; each count is a web request,
+  so it does receive your IP address and browser type, and no answers or results. Nothing is counted if your browser asks not
+  to be tracked (Do Not Track or Global Privacy Control). The basis is a legitimate interest in knowing whether the tool is
+  used (GDPR Art. 6(1)(f)).</p>`
+    : ""}${CONFIG.PUBLISHER ? `
+  <p>Responsible for this site: ${esc(CONFIG.PUBLISHER)}.</p>` : ""}
+  <p>Questions about your data or the tool: open an issue in the repository (see "Licence and errors" below).</p>
   <h3>Licence and errors</h3>
   <p>Code under Apache-2.0; rules and test cases under CC BY 4.0. If you find an error, please report it${CONFIG.REPO_URL
     ? ` as an issue at <a href="${esc(CONFIG.REPO_URL)}/issues">${esc(CONFIG.REPO_URL.replace(/^https?:\/\//, ""))}</a>`

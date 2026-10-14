@@ -8,14 +8,24 @@ interface Ctx {
   questions: Record<string, { question: string; options?: { value: unknown; label: string }[] }>;
   derived: Record<string, string>;
   disclaimer: string;
+  /** Plain-language scope reasons (explain.ts); the engine's technical reasons stay in the JSON. */
+  scopeReasons?: string[];
 }
 
 const CLASS: Record<string, string> = {
   DEFAULT: "Default", IMPORTANT_I: "Important, Class I", IMPORTANT_II: "Important, Class II", CRITICAL: "Critical", UNRESOLVED: "Not determined",
 };
 const SCOPE: Record<string, string> = {
-  IN_SCOPE: "The CRA applies to this product.", OUT_OF_SCOPE: "The CRA does not apply to this product.", UNRESOLVED: "Not determined.",
+  IN_SCOPE: "Based on your answers, the CRA applies to this product.",
+  OUT_OF_SCOPE: "Based on your answers, the CRA does not apply to this product.",
+  UNRESOLVED: "Based on your answers so far, whether the CRA applies is not determined.",
 };
+export const scopeVerdict = (status: string) => SCOPE[status];
+/** The class verdict, always tied to the answers, and conditional in a class-only check. */
+export function classVerdict(c: { status: string; class_floor: string }, check?: string): string {
+  const stated = c.status === "UNRESOLVED" ? `not determined; at least ${CLASS[c.class_floor]}` : CLASS[c.status];
+  return check === "class" ? `If the CRA applies, based on your answers: ${stated}` : `Based on your answers: ${stated}`;
+}
 const TL: Record<string, string> = { APPLIES: "Applies", NOT_YET: "Not yet", TRANSITION: "Transition", NOT_APPLICABLE: "Does not apply", UNRESOLVED: "Not determined" };
 const REASON: Record<string, string> = {
   MISSING_FACTS: "An answer is missing for", CONFLICTING_FACTS: "Answers conflict for", LAW_OPEN: "The law does not settle",
@@ -103,13 +113,12 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
 
   L.push("## Scope", "");
   if (out.check === "class") L.push("Not checked. The class below assumes the CRA applies.", "");
-  else L.push(`**${SCOPE[out.scope.status]}**`, "", ...out.scope.reasons.map((r: string) => `- ${r}`), "");
+  else L.push(`**${SCOPE[out.scope.status]}**`, "", ...(ctx.scopeReasons ?? out.scope.reasons).map((r: string) => `- ${r}`), "");
 
   const c = out.classification;
   if (out.check === "class" || (out.check !== "scope" && out.scope.status === "IN_SCOPE")) {
     L.push("## Class", "");
-    const stated = c.status === "UNRESOLVED" ? `Not determined. At least: ${CLASS[c.class_floor]}` : CLASS[c.status];
-    L.push(`**${out.check === "class" ? "If the CRA applies: " : ""}${stated}**`, "");
+    L.push(`**${classVerdict(c, out.check)}**`, "");
     if (c.matched.length) L.push("### Matches", "", ...c.matched.map((m: any) => `- ${cat(m.category)}: ${CLASS[m.class]}`), "");
     const open = out.reasons.filter((r: any) => r.category && r.kind in REASON);
     if (open.length) {

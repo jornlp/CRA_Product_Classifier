@@ -14,9 +14,6 @@ export function count(name: string, event = true): void {
   if (nav.doNotTrack === "1" || nav.globalPrivacyControl === true) return;
   if (!url || !/^https?:$/.test(location.protocol) || /^(localhost|127\.|\[::1\]|$)/.test(location.hostname)) return;
   const q = new URLSearchParams({ p: event ? EVENT_PREFIX + name : name, e: String(event), rnd: Math.random().toString(36).slice(2) });
-  if (!event) {
-    q.set("t", document.title);
-    if (document.referrer) q.set("r", document.referrer);
-  }
+  if (!event) q.set("t", document.title);  // no referrer: where a visitor came from is not needed
   try { new Image().src = `${url}?${q}`; } catch { /* not counted */ }
 }

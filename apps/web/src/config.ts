@@ -7,6 +7,8 @@ export const CONFIG = {
   VALIDITY_MONTHS: 12,
   /** Where people report errors; set when the repository is published. */
   REPO_URL: "https://github.com/jornlp/CRA_Product_Classifier" as string | null,
+  /** Who publishes the site (About page: publisher and data controller). */
+  PUBLISHER: null as string | null,
   /** GoatCounter endpoint for anonymous page and event counts (see analytics.ts); null switches it off.
    *  Must be a full https://<code>.goatcounter.com/count URL: CI allows no other external URL. */
   COUNTER_URL: "https://jlp.goatcounter.com/count" as string | null,
