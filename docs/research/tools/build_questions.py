@@ -188,7 +188,7 @@ def option_info(cls, register=None):
 # A multi-select whose options continue a sentence; the stem stays visible above the options.
 STEMS = {"PURPOSE_SCREEN": ("My product is mainly for …",
                             "Not for features it also has: an app with a login is not mainly for checking who someone is. "
-                            "Judge by what the product does, not by how it is marketed.")}
+                            "Judge by what the product actually does for its intended use; a description that does not match it changes nothing.")}
 # Shown above the stem: the list is about purpose, not sector, and the sectors named are examples only.
 STEM_NOTES = {"PURPOSE_SCREEN":
     "The CRA applies in every sector, including ones it does not mention (for example industry, transport, "
