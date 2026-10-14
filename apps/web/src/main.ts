@@ -231,8 +231,8 @@ function readAnswer(form: HTMLFormElement, fid: string): { ok: boolean; value?: 
 
 const TONE: Record<string, string> = { DEFAULT: "default", IMPORTANT_I: "imp1", IMPORTANT_II: "imp2", CRITICAL: "critical", UNRESOLVED: "open" };
 /** The verdict as a prominent card: a small lead-in, the result in large type, and an optional line below. */
-function verdictCard(kicker: string, main: string, sub: string, tone: string): string {
-  return `<div class="verdict-card tone-${tone}"><p class="verdict-kicker">${esc(kicker)}</p>
+function verdictCard(kickerHtml: string, main: string, sub: string, tone: string): string {
+  return `<div class="verdict-card tone-${tone}"><p class="verdict-kicker">${kickerHtml}</p>
     <p class="verdict">${esc(main)}</p>${sub ? `<p class="verdict-sub">${esc(sub)}</p>` : ""}</div>`;
 }
 
@@ -315,9 +315,9 @@ function resultHtml(): string {
     const blockingCov = c.blocking.filter((b) => b.value === "NOT_COVERED").length;
     body += `
     <section class="box"><h2>Class</h2>
-      ${mode === "class" ? `<p class="scope-line">Scope not checked: this assumes the CRA applies to your product.
-        <button type="button" id="to-full" class="link-btn">Check whether it applies</button></p>` : ""}
-      ${verdictCard(mode === "class" ? "If the CRA applies, based on your answers, the class is" : "Based on your answers, the class is",
+      ${verdictCard(mode === "class"
+        ? `If the CRA applies (<button type="button" id="to-full" class="link-btn">check whether it applies</button>), based on your answers, the class is`
+        : "Based on your answers, the class is",
         shown === "UNRESOLVED" ? "Not determined yet" : CLASS_LABEL[shown],
         shown === "UNRESOLVED" ? `So far: ${floorText(c.class_floor)}.` : "", TONE[shown] ?? "open")}
       ${open.length ? `<h3>Why it is not determined</h3><ul class="why-open">${open.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>

@@ -58,7 +58,7 @@ it("class only, smart lock: skips scope, ends with a conditional class and an of
   await pick("Yes");                    // residential
   await pick("From another system");    // control path
   const text = app().textContent!;
-  expect(text).toContain("Scope not checked");
+  expect(app().querySelector(".verdict-kicker #to-full")!.textContent).toBe("check whether it applies");
   // Stated "if the CRA applies" (scope unchecked); the JSON export keeps the class UNRESOLVED (AC-02).
   expect(app().querySelector(".verdict-kicker")!.textContent).toContain("If the CRA applies");
   expect(app().querySelector(".verdict")!.textContent).toBe("Important, Class I");
