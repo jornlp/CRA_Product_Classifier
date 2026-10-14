@@ -253,11 +253,11 @@
    "options": [
     {
      "value": true,
-     "label": "Yes"
+     "label": "Yes: supplied as part of a business activity, paid or free of charge"
     },
     {
      "value": false,
-     "label": "No"
+     "label": "No: not part of any business activity (for example a hobby or volunteer project)"
     },
     {
      "value": "UNKNOWN",
@@ -507,11 +507,11 @@
    "options": [
     {
      "value": true,
-     "label": "Yes"
+     "label": "Yes: exchanging data is part of how it is meant to be used, directly or through another device"
     },
     {
      "value": false,
-     "label": "No"
+     "label": "No: it is not meant to exchange data at all, not even indirectly"
     },
     {
      "value": "UNKNOWN",
@@ -3676,11 +3676,11 @@
    "options": [
     {
      "value": true,
-     "label": "Yes"
+     "label": "Yes: it does at least one of these"
     },
     {
      "value": false,
-     "label": "No"
+     "label": "No: it does none of these"
     },
     {
      "value": "UNKNOWN",
@@ -4464,11 +4464,11 @@
    "options": [
     {
      "value": true,
-     "label": "Yes"
+     "label": "Yes: it communicates on the public internet, itself or through other equipment such as a phone, hub or cloud service"
     },
     {
      "value": false,
-     "label": "No"
+     "label": "No: it never communicates on the public internet, not even through other equipment"
     },
     {
      "value": "UNKNOWN",
@@ -4624,9 +4624,9 @@
    ]
   },
   "WORN_ON_BODY": {
-   "question": "Is it worn on the body, directly or via clothing or accessories?",
+   "question": "Is the product worn or placed on the body?",
    "kind": "bool",
-   "why_we_ask": "Wearables are a listed category when they monitor health or are made for children. First: is it worn on the body, directly or through clothing or accessories?",
+   "why_we_ask": "Wearables are a listed category when they monitor health or are made for children under 14. Being worn through clothing or an accessory counts too, for example a tracker clipped to a belt or sewn into a shirt.",
    "evidence": "DOCUMENT_LIKELY",
    "legal_basis": [
     {
@@ -4662,11 +4662,11 @@
    "options": [
     {
      "value": true,
-     "label": "Yes"
+     "label": "Yes: worn or placed on the body, directly or through clothing or an accessory (a watch, ring, smart shirt, or a tracker clipped to clothing)"
     },
     {
      "value": false,
-     "label": "No"
+     "label": "No: it is not worn or placed on the body at all"
     },
     {
      "value": "UNKNOWN",
@@ -4966,11 +4966,11 @@
    "options": [
     {
      "value": true,
-     "label": "Yes"
+     "label": "Yes: it does at least one of these"
     },
     {
      "value": false,
-     "label": "No"
+     "label": "No: it does none of these"
     },
     {
      "value": "UNKNOWN",
@@ -5017,11 +5017,11 @@
    "options": [
     {
      "value": true,
-     "label": "Yes"
+     "label": "Yes: at least one of these is what it is for"
     },
     {
      "value": false,
-     "label": "No"
+     "label": "No: none of these is what it is for"
     },
     {
      "value": "UNKNOWN",

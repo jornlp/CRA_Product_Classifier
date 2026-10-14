@@ -17,6 +17,21 @@ OUT = ROOT / "packages/rules/questions.json"
 YES_NO = [{"value": True, "label": "Yes"}, {"value": False, "label": "No"}]
 YES_NO_CODES = [{"value": "YES", "label": "Yes"}, {"value": "NO", "label": "No"}]
 NOT_SURE = {"value": "UNKNOWN", "label": "Not sure"}
+# Yes/No questions whose bare "Yes"/"No" would be ambiguous: each answer says what it covers.
+BOOL_LABELS = {
+    "WORN_ON_BODY": ("Yes: worn or placed on the body, directly or through clothing or an accessory (a watch, ring, smart shirt, or a tracker clipped to clothing)",
+                     "No: it is not worn or placed on the body at all"),
+    "PUBLIC_INTERNET": ("Yes: it communicates on the public internet, itself or through other equipment such as a phone, hub or cloud service",
+                        "No: it never communicates on the public internet, not even through other equipment"),
+    "CONNECTION_INTENDED": ("Yes: exchanging data is part of how it is meant to be used, directly or through another device",
+                            "No: it is not meant to exchange data at all, not even indirectly"),
+    "COMMERCIAL_ACTIVITY": ("Yes: supplied as part of a business activity, paid or free of charge",
+                            "No: not part of any business activity (for example a hobby or volunteer project)"),
+    # OR-joined lists: "Yes" means at least one applies.
+    "AUTH_OR_ACCESS_CONTROL": ("Yes: it does at least one of these", "No: it does none of these"),
+    "FILTERS_OR_DETECTS_INTRUSION": ("Yes: it does at least one of these", "No: it does none of these"),
+    "CRYPTO_CORE": ("Yes: at least one of these is what it is for", "No: none of these is what it is for"),
+}
 CONFLICT = {"value": "CONFLICTING", "label": "Our documents say different things"}
 
 LABELS = {
@@ -400,7 +415,8 @@ def _layout(l):
 
 def options(fid, kind, rules_values, rules_type=None):
     if rules_type == "bool" and fid not in CODE_FACTS:
-        opts = YES_NO
+        opts = ([{"value": True, "label": BOOL_LABELS[fid][0]}, {"value": False, "label": BOOL_LABELS[fid][1]}]
+                if fid in BOOL_LABELS else YES_NO)
     elif kind in ("bool", "bool+date"):
         opts = YES_NO_CODES if fid in CODE_FACTS else YES_NO
     elif kind.startswith("enum:") and fid in CODE_FACTS:

@@ -1026,7 +1026,7 @@
   },
   {
    "fact_id": "WORN_ON_BODY",
-   "question": "Is it worn on the body, directly or via clothing or accessories?",
+   "question": "Is the product worn or placed on the body?",
    "kind": "bool",
    "why_we_ask": "III-I-19",
    "categories_discriminated": [
@@ -1038,7 +1038,7 @@
     "yes": "A wristband, smartwatch or smart garment.",
     "no": "A device clipped to a bag but not worn on the body."
    },
-   "user_why": "Wearables are a listed category when they monitor health or are made for children. First: is it worn on the body, directly or through clothing or accessories?",
+   "user_why": "Wearables are a listed category when they monitor health or are made for children under 14. Being worn through clothing or an accessory counts too, for example a tracker clipped to a belt or sewn into a shirt.",
    "legal_basis": [
     {
      "src": "B2",
