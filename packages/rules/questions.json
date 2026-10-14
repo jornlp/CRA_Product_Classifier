@@ -1157,6 +1157,9 @@
      "para": "1",
      "quote": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
      "ref": "CRA Art. 7(1)",
+     "key": [
+      "core functionality"
+     ],
      "text": {
       "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
       "heading": "Article 7: Important products with digital elements",
@@ -1167,11 +1170,71 @@
         "point": false,
         "parts": [
          {
-          "text": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
+          "text": "Products with digital elements which have the ",
           "mark": true
          },
          {
-          "text": " with digital elements and shall be subject to the conformity assessment procedures referred to in Article 32(2) and (3). The integration of a product with digital elements which has the core functionality of a product category set out in Annex III shall not in itself render the product in which it is integrated subject to the conformity assessment procedures referred to in Article 32(2) and (3)."
+          "text": "core functionality",
+          "mark": true,
+          "key": true
+         },
+         {
+          "text": " of a product category set out in Annex III shall be considered to be important products",
+          "mark": true
+         },
+         {
+          "text": " with digital elements and shall be subject to the conformity assessment procedures referred to in Article 32(2) and (3). The integration of a product with digital elements which has the "
+         },
+         {
+          "text": "core functionality",
+          "key": true
+         },
+         {
+          "text": " of a product category set out in Annex III shall not in itself render the product in which it is integrated subject to the conformity assessment procedures referred to in Article 32(2) and (3)."
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "src": "RECITAL",
+     "n": "45",
+     "quote": "should be understood as products which have the core functionality of a category of important products",
+     "ref": "CRA recital 45",
+     "key": [
+      "core functionality"
+     ],
+     "text": {
+      "act": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "heading": "Recitals",
+      "lines": [
+       {
+        "label": "(45)",
+        "level": 0,
+        "point": false,
+        "parts": [
+         {
+          "text": "Important products with digital elements as referred to in this Regulation "
+         },
+         {
+          "text": "should be understood as products which have the ",
+          "mark": true
+         },
+         {
+          "text": "core functionality",
+          "mark": true,
+          "key": true
+         },
+         {
+          "text": " of a category of important products",
+          "mark": true
+         },
+         {
+          "text": " with digital elements that is set out in this Regulation."
+         },
+         {
+          "text": " …"
          }
         ]
        }

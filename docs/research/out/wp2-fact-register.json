@@ -2322,7 +2322,19 @@
      "art": "7",
      "para": "1",
      "quote": "Products with digital elements which have the core functionality of a product category set out in Annex III shall be considered to be important products",
-     "ref": "CRA Art. 7(1)"
+     "ref": "CRA Art. 7(1)",
+     "key": [
+      "core functionality"
+     ]
+    },
+    {
+     "src": "RECITAL",
+     "n": "45",
+     "quote": "should be understood as products which have the core functionality of a category of important products",
+     "ref": "CRA recital 45",
+     "key": [
+      "core functionality"
+     ]
     }
    ],
    "evidence_expectation": "MANUFACTURER_ONLY",

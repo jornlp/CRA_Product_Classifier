@@ -323,7 +323,29 @@ def _excerpt(text, hl):
     return a, b
 
 
+def _key(lines, keys):
+    """Mark every occurrence of the key words (e.g. 'core functionality') as key, inside and outside the highlight."""
+    if not keys:
+        return lines
+    pat = re.compile("(" + "|".join(re.escape(k) for k in keys) + ")")
+    for ln in lines:
+        parts = []
+        for p in ln["parts"]:
+            for i, bit in enumerate(pat.split(p["text"])):
+                if bit:
+                    parts.append({**p, "text": bit, **({"key": True} if i % 2 else {})})
+        ln["parts"] = parts
+    return lines
+
+
 def layout(l):
+    t = _layout(l)
+    if t and l.get("key"):
+        t["lines"] = _key(t["lines"], l["key"])
+    return t
+
+
+def _layout(l):
     src = l["src"]
     if src in ("AIACT", "EHDS"):
         return None  # citation only: no extracted text held

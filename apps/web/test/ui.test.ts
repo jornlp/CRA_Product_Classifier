@@ -105,6 +105,10 @@ describe("screens: pest-control camera", () => {
     expect(guide).toContain("Words that mislead");
     expect(guide).not.toContain("None of these");
     expect(app().querySelector(".stem .stem-text")!.textContent).toBe("My product is mainly for …");
+    // The legal basis: "mainly for" is the law's "core functionality", marked as key words wherever it occurs.
+    const keys = [...app().querySelectorAll("details.why-legal mark.key")].map((m) => m.textContent);
+    expect(keys.length).toBeGreaterThanOrEqual(3);
+    expect(new Set(keys)).toEqual(new Set(["core functionality"]));
     expect(app().querySelector(".stem .stem-warning")!.textContent).toContain("an app with a login is not mainly for checking who someone is");
     const groupNames = [...app().querySelectorAll(".group-name")].map((g) => g.textContent);
     expect(groupNames).toEqual(["Security software", "System software", "Network equipment", "Chips and hardware security", "Home and personal products", "Energy", "None of these, or not sure"]);

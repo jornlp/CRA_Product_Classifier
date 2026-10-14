@@ -45,7 +45,7 @@ function optionInfoHtml(info: CatInfo[], id: string, faq: FaqExample[] = []): st
       <p class="muted small">Highlighted: the conditions this tool checks for this category.</p>
     </article>`).join("")}</div>`;
 }
-type LawLine = { label: string; level: number; parts: { text: string; mark?: boolean }[] };
+type LawLine = { label: string; level: number; parts: { text: string; mark?: boolean; key?: boolean }[] };
 type Legal = { ref: string; quote?: string; text?: { act: string; heading: string; lines: LawLine[] } | null };
 
 /** A provision laid out as law: act, centred article heading, numbered lines, decisive words marked. */
@@ -56,7 +56,7 @@ function lawHtml(l: Legal): string {
     <p class="law-act">${esc(l.text.act)}</p>
     ${l.text.heading ? `<p class="law-num">${esc(num)}</p>${title.length ? `<p class="law-title">${esc(title.join(": "))}</p>` : ""}` : ""}
     ${l.text.lines.map((ln) => `<p class="law-line lvl${ln.level}"><span class="law-label">${esc(ln.label)}</span><span>${
-      ln.parts.map((p) => (p.mark ? `<mark>${esc(p.text)}</mark>` : esc(p.text))).join("")}</span></p>`).join("")}
+      ln.parts.map((p) => (p.key ? `<mark class="key">${esc(p.text)}</mark>` : p.mark ? `<mark>${esc(p.text)}</mark>` : esc(p.text))).join("")}</span></p>`).join("")}
   </article>`;
 }
 type Question = { question: string; kind: string; why_we_ask: string; legal_basis?: Legal[]; hint?: string; options?: Option[]; evidence?: string;

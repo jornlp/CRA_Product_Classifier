@@ -176,3 +176,5 @@ ul.why-open li { margin: .35rem 0; }
 .verdict-kicker #to-full { font-weight: 700; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 .verdict-kicker #to-full:hover, .verdict-kicker #to-full:focus-visible { text-decoration-thickness: 2px; }
 .nowrap { white-space: nowrap; }
+/* Key words in the law (e.g. "core functionality"): bold and underlined, inside or outside the highlight. */
+.law mark.key { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 2px; }
