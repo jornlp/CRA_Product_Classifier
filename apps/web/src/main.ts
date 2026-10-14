@@ -91,8 +91,10 @@ interface State {
   facts: Facts; tfacts: Record<string, unknown>; history: { phase: Phase; fid: string }[]; done: Set<string>; mode?: Mode;
   /** For the user's own records only; never used in the assessment. */
   record: { product: string; description: string };
-  /** Last answer given to each question, so going back shows it again. */
+  /** Last answer given to each question, so going back (or starting a check again) shows it again. */
   remembered: Record<string, unknown>;
+  /** The check left via Home, so it can be resumed from the start screen. */
+  lastMode?: Mode;
 }
 const today = new Date().toISOString().slice(0, 10);
 let state: State = fresh();
@@ -234,17 +236,26 @@ function verdictCard(kicker: string, main: string, sub: string, tone: string): s
     <p class="verdict">${esc(main)}</p>${sub ? `<p class="verdict-sub">${esc(sub)}</p>` : ""}</div>`;
 }
 
+const MODE_NAME: Record<string, string> = { scope: "Does the CRA apply?", class: "Class only", full: "Does the CRA apply, and which class?" };
+
 function startHtml(): string {
   const opt = (mode: Mode, title: string, text: string) =>
     `<button type="button" class="choice" data-mode="${mode}"><strong>${esc(title)}</strong><span>${esc(text)}</span></button>`;
+  const prev = state.history.length && state.lastMode ? state.lastMode : undefined;
+  const done = prev ? nextStep(RULESET, { ...state, mode: prev }).phase === "result" : false;
   return `<section class="start">
-    <h2>What do you want to know?</h2>
+    ${prev ? `<section class="box resume"><h2>Your previous check</h2>
+      <p>${esc(MODE_NAME[prev] ?? prev)}: ${done ? "the result is ready." : `${state.history.length} question${state.history.length === 1 ? "" : "s"} answered so far.`}</p>
+      <div class="nav"><button type="button" id="resume">${done ? "Show the result" : "Continue where you left off"}</button>
+        <button type="button" id="start-again" class="secondary">Start again (clear my answers)</button></div></section>` : ""}
+    <h2>${prev ? "Or start a check" : "What do you want to know?"}</h2>
     <div class="choices">
       ${opt("scope", "Does the CRA apply to my product?", "About six questions: what you supply, to whom, and whether it connects to anything. The result also shows when the requirements apply, and you can continue to the class.")}
       ${opt("class", "Class only", "Which class is my product? For when you already know the CRA applies. The result is stated as \u201cif the CRA applies\u201d.")}
     </div>
-    <p class="muted small">You can continue a partial check later without answering again.</p>
-    ${state.history.length ? `<div class="nav"><button type="button" id="start-again" class="secondary">Start again (clear my answers)</button></div>` : ""}
+    <p class="muted small">${state.history.length
+      ? "A check starts at the first question, with your earlier answers filled in: press Next to keep an answer, or change it."
+      : "You can leave a check with Home and continue it later without answering again."}</p>
   </section>`;
 }
 
@@ -433,8 +444,12 @@ function render() {
   const header = `<p class="muted pilot">${n < 26 ? `Pilot. Rules for ${n} of 26 categories. ` : "Preview: rules not yet independently reviewed. "}Informational only; not legal advice.</p>`;
   if (cur.phase === "start") {
     app.innerHTML = header + startHtml();
-    app.querySelectorAll<HTMLButtonElement>("button.choice").forEach((b) =>
-      b.addEventListener("click", () => { state.mode = b.dataset.mode as Mode; countOnce(`start-${state.mode}`); render(); }));
+    // A chosen check starts at its first question; earlier answers stay filled in (remembered), not applied.
+    app.querySelectorAll<HTMLButtonElement>("button.choice").forEach((b) => b.addEventListener("click", () => {
+      if (state.history.length) state = { ...fresh(), remembered: state.remembered, record: state.record };
+      state.mode = b.dataset.mode as Mode; countOnce(`start-${state.mode}`); render();
+    }));
+    document.getElementById("resume")?.addEventListener("click", () => { state.mode = state.lastMode; render(); });
     document.getElementById("start-again")?.addEventListener("click", restart);
   } else if (cur.phase === "result") {
     countOnce(`result-${state.mode}`);
@@ -534,7 +549,12 @@ function consentBar() {
 count(location.pathname, false);  // only if consent was given on an earlier visit
 consentBar();
 // Home: back to the start screen, keeping the answers so a check can be continued.
-for (const id of ["home", "home-btn"]) document.getElementById(id)?.addEventListener("click", () => { showAbout = false; state.mode = undefined; render(); });
+for (const id of ["home", "home-btn"]) document.getElementById(id)?.addEventListener("click", () => {
+  showAbout = false;
+  if (state.mode) state.lastMode = state.mode;
+  state.mode = undefined;
+  render();
+});
 document.getElementById("about-btn")?.addEventListener("click", () => { showAbout = true; render(); });
 (async () => {
   try {

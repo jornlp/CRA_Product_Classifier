@@ -207,11 +207,18 @@ describe("screens: pest-control camera", () => {
     expect(marks).toContain("Article 14 shall apply from 11 September 2026");
     expect(marks.some((m) => m!.includes("only if, from that date, those products are subject to a substantial modification"))).toBe(true);
   });
-  it("Home returns to the start screen and keeps the answers; choosing the check again resumes at the result", async () => {
+  it("Home keeps the answers: 'Show the result' resumes; choosing a check starts it again with the answers filled in", async () => {
     document.getElementById("home-btn")!.click(); await tick();
-    expect(heading()).toBe("What do you want to know?");
-    expect(app().querySelector("#start-again")).not.toBeNull();
-    app().querySelector<HTMLButtonElement>('button.choice[data-mode="scope"]')!.click(); await tick();
+    expect(heading()).toBe("Your previous check");
+    expect(app().querySelector(".resume")!.textContent).toContain("the result is ready");
+    app().querySelector<HTMLButtonElement>("#resume")!.click(); await tick();
     expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("The CRA applies");
+    document.getElementById("home-btn")!.click(); await tick();
+    app().querySelector<HTMLButtonElement>('button.choice[data-mode="class"]')!.click(); await tick();
+    expect(heading()).toContain("mainly for");                       // starts at the first question, not the result
+    const none = [...app().querySelectorAll("label.opt")].find((x) => x.textContent!.trim().startsWith("None of these"))!
+      .querySelector("input") as HTMLInputElement;
+    expect(none.checked).toBe(true);                                 // the earlier answer, filled in
   });
+
 });

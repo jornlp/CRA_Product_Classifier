@@ -170,3 +170,4 @@ table.obligations td:first-child details { font-weight: normal; }
 ul.why-open li { margin: .35rem 0; }
 @media print { .verdict-card { border-left-width: 4px; background: none; } }
 .selection-error { border-left-color: #b42318; }
+.resume { margin-bottom: 1.2rem; } .resume h2 { margin-top: 0; }
