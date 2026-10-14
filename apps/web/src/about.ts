@@ -1,15 +1,10 @@
 /** The About page: what the tool is and is not, how it works, sources, validity, open questions. */
 import { CONFIG, validUntil } from "./config.js";
+import { SOURCE_NAME, sourceVersion, eurlexUrl } from "./report.js";
 
 const esc = (s: unknown) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]!);
 
 export function aboutHtml(o: { consent?: "yes" | "no" | null; lawAsOf: string; ruleSet: string; sources: Record<string, { id: string }>; lastCheck?: string | null }): string {
-  const src: Record<string, string> = {
-    B1c: "Regulation (EU) 2024/2847 (Cyber Resilience Act), consolidated text",
-    B2: "Implementing Regulation (EU) 2025/2392, technical descriptions of important and critical products",
-    B11c: "Regulation (EU) 2024/1689 (AI Act), consolidated text",
-    B18: "Regulation (EU) 2025/327 (European Health Data Space)",
-  };
   return `<section class="box about">
   <h2>About this tool</h2>
   <h3>What it does</h3>
@@ -27,7 +22,7 @@ export function aboutHtml(o: { consent?: "yes" | "no" | null; lawAsOf: string; r
   "not determined" instead of guessing: when an answer is missing, when answers conflict, or when the law itself does not
   settle the question. It states "Default" only when every one of the 26 listed categories has been ruled out.</p>
   <h3>Sources</h3>
-  <ul>${Object.entries(o.sources).map(([code, s]) => `<li>${esc(src[code] ?? code)} <span class="muted small">(${esc(s.id)})</span></li>`).join("")}
+  <ul>${Object.entries(o.sources).map(([code, s]) => `<li>${esc(SOURCE_NAME[code] ?? code)}, ${esc(sourceVersion(s.id))} <span class="muted small">(<a href="${esc(eurlexUrl(s.id))}">EUR-Lex</a>)</span></li>`).join("")}
     <li>Delegated Regulations (EU) 2025/1535 (L-category vehicles) and 2022/30 (radio equipment)</li>
     <li>European Commission, Frequently Asked Questions on the CRA, version 14 (non-binding)</li></ul>
   <p class="muted small">Every condition and quote is checked word for word against these texts before each release.</p>

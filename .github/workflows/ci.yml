@@ -35,10 +35,10 @@ jobs:
         run: npm run build -w @cra/web
       - name: No external requests in the built site (AC-07)
         run: |
-          # Allowed: the link to this repository (for reporting errors), a link the user may click; and the
+          # Allowed: links the user may click (this repository, for reporting errors; EUR-Lex, for the sources); and the
           # GoatCounter endpoint, which receives only page and event names (analytics.ts), never answers.
           # Anything else fails the build.
-          found=$(grep -rhEo 'https?://[^"'"'"' )`]+' apps/web/dist --include='*.js' --include='*.html' | grep -vE '^https://(github\.com/jornlp/CRA_Product_Classifier|[a-z0-9-]+\.goatcounter\.com/count)$' || true)
+          found=$(grep -rhEo 'https?://[^"'"'"' )`]+' apps/web/dist --include='*.js' --include='*.html' | grep -vE '^https://(github\.com/jornlp/CRA_Product_Classifier|[a-z0-9-]+\.goatcounter\.com/count|eur-lex\.europa\.eu/legal-content/EN/TXT/\?uri=CELEX:)$' || true)
           if [ -n "$found" ]; then
             echo "The built site references an external URL. Assessment data must never leave the browser:" >&2
             echo "$found" >&2

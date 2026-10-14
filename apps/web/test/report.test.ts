@@ -25,6 +25,9 @@ it("reads as a report: title, scope, class, reasons with the official wording, a
   expect(md).toContain("“protect the physical security of consumers”");
   expect(md).toContain("_(you indicated the product is not mainly for this)_");
   expect(md).toContain("## When the obligations apply");
+  // Sources by name and version, with a link, not internal codes
+  expect(md).toContain("- Regulation (EU) 2024/2847 (Cyber Resilience Act), consolidated text of 20 November 2024. [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R2847-20241120)");
+  expect(md).not.toMatch(/^- B1c:/m);
   expect(md).toContain("| What is your product mainly for? | None of these |");
   expect(md).toContain("## Sources");
   expect(md.trim().endsWith("_Not legal advice._")).toBe(true);
@@ -40,6 +43,7 @@ it("the same report renders to HTML for Save as PDF", () => {
   expect(html).toContain("<h1>CRA assessment: RatWatch 2</h1>");
   expect(html).toContain("<h2>Class</h2>");
   expect(html).toContain("<strong>Based on your answers, the CRA applies to this product.</strong>");
+  expect(html).toContain('<a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32025R2392">EUR-Lex</a>');
   expect(html).toMatch(/<table><thead><tr><th>Question<\/th><th>Answer<\/th><\/tr><\/thead>/);
   expect(html).toContain("<em>(you indicated the product is not mainly for this)</em>");
   expect(html).toContain("<em>Not legal advice.</em>");

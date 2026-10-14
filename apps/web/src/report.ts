@@ -50,6 +50,26 @@ export function placingCell(i: { obligation: string; status: string; applies_fro
   return TL[i.status] + (i.open_questions?.length ? `. ${i.open_questions.join(" ")}` : "");
 }
 /** Row names of the obligations table, and the provisions behind them. */
+/** Readable names for the held legal sources (codes in rule files and the JSON export). */
+export const SOURCE_NAME: Record<string, string> = {
+  B1c: "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+  B2: "Implementing Regulation (EU) 2025/2392 (technical descriptions of important and critical products)",
+  B11c: "Regulation (EU) 2024/1689 (AI Act)",
+  B18: "Regulation (EU) 2025/327 (European Health Data Space)",
+};
+/** Link to the act on EUR-Lex. Links only: the page never requests them (CI allows this one URL prefix). */
+export const eurlexUrl = (celex: string) => "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:" + celex;
+/** "02024R2847-20241120" -> "consolidated text of 20 November 2024"; "32025R2392" -> "as published in the Official Journal". */
+export const sourceVersion = (id: string) => {
+  const m = /^0\d{4}[A-Z]\d{4}-(\d{4})(\d{2})(\d{2})$/.exec(id);
+  return m ? `consolidated text of ${longDate(`${m[1]}-${m[2]}-${m[3]}`)}` : "as published in the Official Journal";
+};
+const OTHER_SOURCES = [
+  "Delegated Regulation (EU) 2025/1535 (exclusion of two- and three-wheel vehicles and quadricycles)",
+  "Delegated Regulation (EU) 2022/30 (radio equipment; pointed to, not checked)",
+  "European Commission, FAQs on the Cyber Resilience Act, version 14 (non-binding)",
+];
+
 export const OBLIGATION_LABEL: Record<string, string> = {
   CRA_ESSENTIAL_REQUIREMENTS: "CRA requirements: security requirements, conformity assessment, CE marking (Art. 69(2), 71(2))",
   CRA_ART_14_REPORTING: "Reporting actively exploited vulnerabilities and severe incidents (Art. 14, 69(3), 71(2))",
@@ -164,18 +184,22 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
     L.push(`| ${cell(ctx.questions[k]?.question ?? k)} | ${cell(answerLabel(ctx, k, v))} |`);
   }
   L.push("");
-  L.push("## Sources", "", ...out.sources.map((s: any) => `- ${s.code}: ${s.id} (sha256 ${s.sha256.slice(0, 12)}…)`), "");
+  L.push("## Sources", "", "The rules rest on these texts. Every quote was checked word for word against exactly these versions.", "",
+    ...out.sources.map((s: any) => `- ${SOURCE_NAME[s.code] ?? s.code}, ${sourceVersion(s.id)}. [EUR-Lex](${eurlexUrl(s.id)})`),
+    ...OTHER_SOURCES.map((t) => `- ${t}`), "",
+    "_The JSON export identifies each file checked by its SHA-256 fingerprint._", "");
   L.push("---", "", `_${ctx.disclaimer}_`, "");
   return L.join("\n");
 }
 
 /**
  * Render the report's own Markdown as HTML, for printing to PDF. Only the subset reportMarkdown
- * produces is supported: headings, tables, lists, block quotes, rules, bold and italic.
+ * produces is supported: headings, tables, lists, block quotes, rules, bold, italic and EUR-Lex links.
  */
 export function markdownToHtml(md: string): string {
   const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
   const inline = (s: string) => esc(s)
+    .replace(/\[([^\]]+)\]\((https:\/\/eur-lex\.europa\.eu\/[^\s)]+)\)/g, '<a href="$2">$1</a>')  // EUR-Lex links only
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/(^|[\s(])_(.+?)_(?=$|[\s.,;:)])/g, "$1<em>$2</em>");
   const cells = (row: string) => row.trim().replace(/^\||\|$/g, "").split(/(?<!\\)\|/).map((c) => c.trim().replace(/\\\|/g, "|"));
