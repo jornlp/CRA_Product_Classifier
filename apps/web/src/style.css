@@ -178,3 +178,6 @@ ul.why-open li { margin: .35rem 0; }
 .nowrap { white-space: nowrap; }
 /* Key words in the law (e.g. "core functionality"): bold and underlined, inside or outside the highlight. */
 .law mark.key { font-weight: 700; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 2px; }
+.notice { border-left: 4px solid var(--accent); padding: .5rem .8rem; background: var(--card); border-radius: 6px; margin: 0 0 1rem; }
+.notice-line { margin: -.4rem 0 .8rem; font-size: .9rem; font-weight: 600; }
+@media print { .notice-line { font-weight: 400; } }

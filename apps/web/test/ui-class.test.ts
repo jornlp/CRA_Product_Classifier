@@ -30,6 +30,7 @@ beforeAll(async () => {
 });
 
 it("class only, smart lock: skips scope, ends with a conditional class and an offer to check scope", async () => {
+  expect(app().querySelector(".start .notice")!.textContent).toContain("not legal advice");  // before any question
   app().querySelector<HTMLButtonElement>('button.choice[data-mode="class"]')!.click(); await tick();
   expect(heading()).toContain("mainly for");
   // Tick boxes: the selection is repeated next to Next and follows each change.
@@ -62,6 +63,7 @@ it("class only, smart lock: skips scope, ends with a conditional class and an of
   // Stated "if the CRA applies" (scope unchecked); the JSON export keeps the class UNRESOLVED (AC-02).
   expect(app().querySelector(".verdict-kicker")!.textContent).toContain("If the CRA applies");
   expect(app().querySelector(".verdict")!.textContent).toBe("Important, Class I");
+  expect(app().querySelector(".verdict-card + .notice-line")).not.toBeNull();
   // No dates asked, but what needs no answers is shown "if the CRA applies": requirements per placing period, and reporting.
   const { head, rows } = obligations();
   expect(head).toEqual(["Obligation", "Units placed before 11 December 2027", "Units placed on or after 11 December 2027"]);

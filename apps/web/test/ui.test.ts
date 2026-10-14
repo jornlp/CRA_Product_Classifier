@@ -156,6 +156,7 @@ describe("screens: pest-control camera", () => {
     expect(text).toContain("Smart home products with security functionalities");
     expect(text).toContain("protect the physical security of consumers");
     expect(app().querySelector(".verdict-card .verdict")).not.toBeNull();
+    expect(app().querySelector(".verdict-card + .notice-line")!.textContent).toContain("not legal advice");
     expect([...app().querySelectorAll(".verdict")].map((v) => v.textContent)).toContain("Default");
     expect(text).toContain("you indicated the product is not mainly for this");
     expect(text).toContain("does not provide legal advice");
@@ -186,6 +187,7 @@ describe("screens: pest-control camera", () => {
     const validate = new Ajv2020({ allErrors: true, strict: false }).compile(schema);
     expect(validate(doc), JSON.stringify(validate.errors)).toBe(true);
     expect(doc.timeline_by_placing_period.length).toBe(2);
+    expect(doc.disclaimer).toContain("does not provide legal advice");   // the text itself, not only its version
   });
   it("offers optional record fields that are not part of the assessment", () => {
     expect(app().querySelector("#rec-product")).not.toBeNull();

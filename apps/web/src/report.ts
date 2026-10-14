@@ -139,6 +139,7 @@ export function reportMarkdown(out: Out, ctx: Ctx): string {
   const rec = out.for_your_records ?? {};
   const check = { scope: "Does the CRA apply?", class: "Which class?", full: "Full check" }[out.check as string] ?? "Full check";
   L.push(`# CRA assessment${rec.product ? `: ${rec.product}` : ""}`, "");
+  L.push("> **Informational result, not legal advice.** It depends on the answers given and on the rule set's reading of the law. See the disclaimer at the end.", "");
   L.push(`| | |`, `|---|---|`,
     `| Date | ${out.assessed_at} |`, `| Check | ${check} |`,
     `| Law as of | ${out.law_as_of} (rule set ${out.rule_set_version}) |`, `| Valid until | ${out.valid_until} |`);

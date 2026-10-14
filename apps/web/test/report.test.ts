@@ -24,6 +24,8 @@ it("reads as a report: title, scope, class, reasons with the official wording, a
   expect(md).toContain("Smart home products with security functionalities");
   expect(md).toContain("“protect the physical security of consumers”");
   expect(md).toContain("_(you indicated the product is not mainly for this)_");
+  // The notice comes right after the title, not only in the disclaimer at the end.
+  expect(md.split("\n").slice(0, 4).join("\n")).toContain("**Informational result, not legal advice.**");
   expect(md).toContain("## When the obligations apply");
   // Sources by name and version, with a link, not internal codes
   expect(md).toContain("- Regulation (EU) 2024/2847 (Cyber Resilience Act), consolidated text of 20 November 2024. [EUR-Lex](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02024R2847-20241120)");

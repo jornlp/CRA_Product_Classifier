@@ -425,6 +425,10 @@
     },
     "additionalProperties": false
    }
+  },
+  "disclaimer": {
+   "description": "Web app: the full disclaimer text, so a shared export carries it (not only its version).",
+   "type": "string"
   }
  },
  "additionalProperties": false,

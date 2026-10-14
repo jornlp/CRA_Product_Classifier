@@ -231,6 +231,9 @@ function readAnswer(form: HTMLFormElement, fid: string): { ok: boolean; value?: 
 
 const TONE: Record<string, string> = { DEFAULT: "default", IMPORTANT_I: "imp1", IMPORTANT_II: "imp2", CRITICAL: "critical", UNRESOLVED: "open" };
 /** The verdict as a prominent card: a small lead-in, the result in large type, and an optional line below. */
+/** Under the first verdict card, so a screenshot of the verdict carries it too. */
+const NOTICE_LINE = `<p class="notice-line">Informational result, not legal advice. See the disclaimer at the end.</p>`;
+
 function verdictCard(kickerHtml: string, main: string, sub: string, tone: string): string {
   return `<div class="verdict-card tone-${tone}"><p class="verdict-kicker">${kickerHtml}</p>
     <p class="verdict">${esc(main)}</p>${sub ? `<p class="verdict-sub">${esc(sub)}</p>` : ""}</div>`;
@@ -248,6 +251,8 @@ function startHtml(): string {
       <p>${esc(MODE_NAME[prev] ?? prev)}: ${done ? "the result is ready." : `${state.history.length} question${state.history.length === 1 ? "" : "s"} answered so far.`}</p>
       <div class="nav"><button type="button" id="resume">${done ? "Show the result" : "Continue where you left off"}</button>
         <button type="button" id="start-again" class="secondary">Start again (clear my answers)</button></div></section>` : ""}
+    <p class="notice">This tool gives information, not legal advice. The result depends on your answers and on how the rules
+      read the law; for decisions, consult a qualified adviser.</p>
     <h2>${prev ? "Or start a check" : "What do you want to know?"}</h2>
     <div class="choices">
       ${opt("scope", "Does the CRA apply to my product?", "About six questions: what you supply, to whom, and whether it connects to anything. The result also shows when the requirements apply, and you can continue to the class.")}
@@ -290,7 +295,7 @@ function assemble() {
     : byPeriod;
   // v4 5.2: without a settled scope there is no definitive class, only the floor (schema AC-02 rule).
   if (scopeOut.status !== "IN_SCOPE" && out.classification.status !== "UNRESOLVED") out.classification.status = "UNRESOLVED";
-  return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, check: mode, for_your_records: state.record, timeline_facts: state.tfacts,
+  return { out: { ...out, disclaimer_version: CONFIG.disclaimerVersion, disclaimer: CONFIG.disclaimer, check: mode, for_your_records: state.record, timeline_facts: state.tfacts,
     ...(periods.length ? { timeline_by_placing_period: periods } : {}) }, s, res, periods };
 }
 
@@ -301,7 +306,7 @@ function resultHtml(): string {
   const warn = out.validity_warnings.map((w) => `<div class="box warn" role="alert"><strong>${({ PAST_END_DATE: "Outdated", LAW_CHANGED: "Law changed", LAW_CHECK_STALE: "Law check overdue" } as Record<string, string>)[w.kind]}:</strong> ${esc(w.detail)}</div>`).join("");
   let body = warn + (mode === "class" ? ""
     : `<section class="box"><h2>Scope</h2>${verdictCard("Based on your answers", ({ IN_SCOPE: "The CRA applies", OUT_OF_SCOPE: "The CRA does not apply", UNRESOLVED: "Not determined yet" } as Record<string, string>)[s.status],
-        s.status === "UNRESOLVED" ? "See below for what is still open." : "", ({ IN_SCOPE: "in", OUT_OF_SCOPE: "out", UNRESOLVED: "open" } as Record<string, string>)[s.status])}
+        s.status === "UNRESOLVED" ? "See below for what is still open." : "", ({ IN_SCOPE: "in", OUT_OF_SCOPE: "out", UNRESOLVED: "open" } as Record<string, string>)[s.status])}${NOTICE_LINE}
       <ul>${scopeReasonsPlain(SCOPE, state.facts, s.status).map((r) => `<li>${esc(r)}</li>`).join("")}</ul>
       ${s.status === "OUT_OF_SCOPE" && state.facts.COMMERCIAL_ACTIVITY?.value === false
         ? `<p class="note">${esc(STEWARD_NOTE)}</p>` : ""}
@@ -319,7 +324,7 @@ function resultHtml(): string {
         ? `If the CRA applies <span class="nowrap">(<button type="button" id="to-full" class="link-btn">check whether it applies</button>)</span>, based on your answers, the class is`
         : "Based on your answers, the class is",
         shown === "UNRESOLVED" ? "Not determined yet" : CLASS_LABEL[shown],
-        shown === "UNRESOLVED" ? `So far: ${floorText(c.class_floor)}.` : "", TONE[shown] ?? "open")}
+        shown === "UNRESOLVED" ? `So far: ${floorText(c.class_floor)}.` : "", TONE[shown] ?? "open")}${mode === "class" ? NOTICE_LINE : ""}
       ${open.length ? `<h3>Why it is not determined</h3><ul class="why-open">${open.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>
         <p class="muted small">Go back to change a "Not sure" answer, or get expert advice where the law is open.</p>` : ""}
       ${c.matched.length ? `<h3>Matches</h3><ul>${c.matched.map((m) => `<li>${cat(m.category)}: ${esc(CLASS_LABEL[m.class])}</li>`).join("")}</ul>` : ""}
