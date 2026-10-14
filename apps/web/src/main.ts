@@ -196,11 +196,11 @@ function questionHtml(phase: Phase, fid: string): string {
       <fieldset>
         <legend><h2>${esc(q.question)}</h2></legend>
         <p class="why"><span class="why-label">Why we ask:</span> ${esc(q.why_we_ask)}</p>
+        ${q.legal_basis?.length ? `<details class="legal why-legal"><summary>Legal basis</summary>${q.legal_basis.map(lawHtml).join("")}
+          <p class="muted small">Highlighted: the words that decide this question.</p></details>` : ""}
         ${hint ? `<p class="hint">${esc(hint)}</p>` : ""}
         <div class="opts">${control}</div>
       </fieldset>
-      ${q.legal_basis?.length ? `<details class="legal"><summary>Legal basis</summary>${q.legal_basis.map(lawHtml).join("")}
-        <p class="muted small">Highlighted: the words that decide this question.</p></details>` : ""}
       ${q.kind === "multi-enum" ? `<p id="selection" class="selection" aria-live="polite"></p>` : ""}
       <div class="nav">
         ${state.history.length ? `<button type="button" id="back" class="secondary">Back</button>` : ""}
